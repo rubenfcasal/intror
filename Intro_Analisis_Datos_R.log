@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6630 64-bit) (preloaded format=xelatex 2018.10.5)  1 OCT 2019 16:31
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6630 64-bit) (preloaded format=xelatex 2018.10.5)  1 OCT 2019 20:43
 entering extended mode
 **./Intro_Analisis_Datos_R.tex
 (Intro_Analisis_Datos_R.tex
@@ -1030,7 +1030,7 @@ g
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [3]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 189.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 200.
 )
 \tf@toc=\write5
 \openout5 = `Intro_Analisis_Datos_R.toc'.
@@ -1296,86 +1296,137 @@ File: 05-AnalisisExploratorio_files/figure-latex/unnamed-chunk-34-3.pdf Graphic
 
 ]
 Capítulo 6.
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 4580.
-[77] [78]
+[77]
+File: 06-Inferencia_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type
+ pdf)
+<use 06-Inferencia_files/figure-latex/unnamed-chunk-5-1.pdf>
+File: 06-Inferencia_files/figure-latex/unnamed-chunk-5-2.pdf Graphic file (type
+ pdf)
+<use 06-Inferencia_files/figure-latex/unnamed-chunk-5-2.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[78] [79] [80]
+File: 06-Inferencia_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (typ
+e pdf)
+<use 06-Inferencia_files/figure-latex/unnamed-chunk-14-1.pdf>
+[81] [82] [83]
+File: 06-Inferencia_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (typ
+e pdf)
+<use 06-Inferencia_files/figure-latex/unnamed-chunk-20-1.pdf>
+[84]
+File: 06-Inferencia_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (typ
+e pdf)
+<use 06-Inferencia_files/figure-latex/unnamed-chunk-22-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[85]
+File: 06-Inferencia_files/figure-latex/unnamed-chunk-22-2.pdf Graphic file (typ
+e pdf)
+<use 06-Inferencia_files/figure-latex/unnamed-chunk-22-2.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[86]
+File: 06-Inferencia_files/figure-latex/unnamed-chunk-22-3.pdf Graphic file (typ
+e pdf)
+<use 06-Inferencia_files/figure-latex/unnamed-chunk-22-3.pdf>
+[87] [88] [89]
+File: 06-Inferencia_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (typ
+e pdf)
+<use 06-Inferencia_files/figure-latex/unnamed-chunk-25-1.pdf>
+[90] [91] [92]
+File: 06-Inferencia_files/figure-latex/unnamed-chunk-34-1.pdf Graphic file (typ
+e pdf)
+<use 06-Inferencia_files/figure-latex/unnamed-chunk-34-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[93] [94]
 Capítulo 7.
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 5556.
+[95
+
+] [96]
+Capítulo 8.
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file 
 (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-2-1.pdf>
-[79
+[97
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[80]
+[98]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file 
 (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-7-1.pdf>
 
 Underfull \vbox (badness 7851) has occurred while \output is active []
 
-[81] [82] [83]
+[99] [100] [101]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-10-1.pdf>
-[84]
+[102]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-11-1.pdf>
-[85] [86]
+[103] [104]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-14-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[87] [88] [89] [90] [91]
+[105] [106] [107] [108] [109]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-21-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[92] [93]
+[110] [111]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-23-1.pdf>
 
 Underfull \vbox (badness 7273) has occurred while \output is active []
 
-[94]
+[112]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-25-1.pdf>
 
 Underfull \vbox (badness 5064) has occurred while \output is active []
 
-[95] [96]
+[113] [114]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-28-1.pdf>
 
-Overfull \hbox (15.35164pt too wide) in paragraph at lines 5830--5832
+Overfull \hbox (15.35164pt too wide) in paragraph at lines 6806--6808
 []|\TU/lmr/m/n/10 cooks.distance|  
  []
 
-[97]
+[115]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-30-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[98] [99] [100]
+[116] [117] [118]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-36-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-36-1.pdf>
-[101]
+[119]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-37-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-37-1.pdf>
-[102]
+[120]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-40-1.pdf>
@@ -1385,11 +1436,11 @@ File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-41-1.pdf Graphic file
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[103] [104]
+[121] [122]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-43-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-43-1.pdf>
-[105]
+[123]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-44-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-44-1.pdf>
@@ -1399,30 +1450,30 @@ File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-45-1.pdf Graphic file
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[106]
+[124]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-46-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-46-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[107]
+[125]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-47-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-47-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[108]
+[126]
 File: 08-ModelosLineales_files/figure-latex/unnamed-chunk-48-1.pdf Graphic file
  (type pdf)
 <use 08-ModelosLineales_files/figure-latex/unnamed-chunk-48-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[109] [110]
-Capítulo 8.
-[111
+[127] [128]
+Capítulo 9.
+[129
 
 ]
 File: 09-ModelosGLM_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type
@@ -1431,23 +1482,23 @@ File: 09-ModelosGLM_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[112] [113] [114] [115] [116] [117]
+[130] [131] [132] [133] [134] [135]
 File: 09-ModelosGLM_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (typ
 e pdf)
 <use 09-ModelosGLM_files/figure-latex/unnamed-chunk-12-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[118]
+[136]
 File: 09-ModelosGLM_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (typ
 e pdf)
 <use 09-ModelosGLM_files/figure-latex/unnamed-chunk-13-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[119] [120]
-Capítulo 9.
-[121
+[137] [138]
+Capítulo 10.
+[139
 
 ]
 File: 10-ModelosNP_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type 
@@ -1456,39 +1507,39 @@ pdf)
 
 Underfull \vbox (badness 2088) has occurred while \output is active []
 
-[122]
+[140]
 File: 10-ModelosNP_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type 
 pdf)
 <use 10-ModelosNP_files/figure-latex/unnamed-chunk-9-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[123]
+[141]
 File: 10-ModelosNP_files/figure-latex/unnamed-chunk-9-2.pdf Graphic file (type 
 pdf)
 <use 10-ModelosNP_files/figure-latex/unnamed-chunk-9-2.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[124]
+[142]
 File: 10-ModelosNP_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type
  pdf)
 <use 10-ModelosNP_files/figure-latex/unnamed-chunk-10-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[125] [126]
+[143] [144]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[127]
+[145]
 File: 10-ModelosNP_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type
  pdf)
 <use 10-ModelosNP_files/figure-latex/unnamed-chunk-13-1.pdf>
-[128]
-Capítulo 10.
-[129
+[146]
+Capítulo 11.
+[147
 
-] [130] [131]
+] [148] [149]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-14-1.pdf>
@@ -1498,31 +1549,31 @@ ype pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[132] [133]
+[150] [151]
 Underfull \vbox (badness 1142) has occurred while \output is active []
 
-[134]
+[152]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-23-1.pdf>
 
 Underfull \vbox (badness 5711) has occurred while \output is active []
 
-[135]
+[153]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-23-2.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-23-2.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[136]
+[154]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-23-3.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-23-3.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[137] [138] [139] [140] [141] [142] [143]
+[155] [156] [157] [158] [159] [160] [161]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-42-1.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-42-1.pdf>
@@ -1532,76 +1583,76 @@ ype pdf)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[144]
+[162]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-45-1.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-45-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[145]
+[163]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-46-1.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-46-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[146]
+[164]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-47-1.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-47-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[147]
+[165]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-49-1.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-49-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[148]
+[166]
 File: 11-Programacion_files/figure-latex/unnamed-chunk-51-1.pdf Graphic file (t
 ype pdf)
 <use 11-Programacion_files/figure-latex/unnamed-chunk-51-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[149] [150]
-Capítulo 11.
-[151
+[167] [168]
+Capítulo 12.
+[169
 
 ]
 File: 12-Informes_files/figure-latex/figura1-1.pdf Graphic file (type pdf)
 <use 12-Informes_files/figure-latex/figura1-1.pdf>
-[152] [153]
-Overfull \hbox (24.47495pt too wide) in paragraph at lines 8815--8818
+[170] [171]
+Overfull \hbox (24.47495pt too wide) in paragraph at lines 9791--9794
 []\TU/lmr/m/n/10 Para generar el informe se puede emplear la funcion \TU/lmtt/m
 /n/10 spin \TU/lmr/m/n/10 del paquete \TU/lmr/m/it/10 knitr\TU/lmr/m/n/10 . Por
  ejemplo: \TU/lmtt/m/n/10 spin("Ridge_Lasso.R"))\TU/lmr/m/n/10 .
  []
 
-[154] [155
+[172] [173
 
-] [156
+] [174
 
 ]
 Apéndice A.
 
-Overfull \hbox (44.12059pt too wide) in paragraph at lines 8877--8881
+Overfull \hbox (44.12059pt too wide) in paragraph at lines 9853--9857
 []\TU/lmr/bx/n/10 Recursos para el aprendizaje de R \TU/lmr/m/n/10 ( []$[][][][
 ][] [] [] [] [][][][][][][][][][][] [] [][][][][][] [] [][] [] [][][][] [] [][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][]$[]
  []
 
-[157]
-Underfull \hbox (badness 3158) in paragraph at lines 9017--9020
+[175]
+Underfull \hbox (badness 3158) in paragraph at lines 9993--9996
 [][]\TU/lmr/m/n/10 Escritura de libros con bookdown[] (disponible en el reposit
 orio de GitHub []rubenfca-
  []
 
-[158] [159] [160
+[176] [177] [178
 
 ]
 Apéndice B.
@@ -1610,12 +1661,12 @@ File: figuras/rproject.png Graphic file (type bmp)
 File: figuras/cran.png Graphic file (type bmp)
 <figuras/cran.png>
 
-Overfull \hbox (157.10072pt too wide) in alignment at lines 9133--9140
+Overfull \hbox (157.10072pt too wide) in alignment at lines 10109--10116
  [] [] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 9140
+Underfull \vbox (badness 10000) detected at line 10116
  []
 
 File: figuras/R351.png Graphic file (type bmp)
@@ -1623,7 +1674,7 @@ File: figuras/R351.png Graphic file (type bmp)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[161]
+[179]
 File: figuras/image3.png Graphic file (type bmp)
 <figuras/image3.png>
 File: figuras/image4.png Graphic file (type bmp)
@@ -1633,15 +1684,13 @@ File: figuras/image5.png Graphic file (type bmp)
 File: figuras/image6.png Graphic file (type bmp)
 <figuras/image6.png>
 
-Underfull \vbox (badness 10000) detected at line 9182
+Underfull \vbox (badness 10000) detected at line 10158
  []
 
 
-Overfull \vbox (161.44875pt too high) has occurred while \output is active []
+Overfull \vbox (163.23pt too high) has occurred while \output is active []
 
-[162] [163] [164
-
-]
+[180]
 Apéndice C.
 File: figuras/RStudio-screenshot.png Graphic file (type bmp)
 <figuras/RStudio-screenshot.png>
@@ -1651,57 +1700,60 @@ File: figuras/Rcommander1.png Graphic file (type bmp)
 <figuras/Rcommander1.png>
 File: figuras/Rcommander2.png Graphic file (type bmp)
 <figuras/Rcommander2.png>
-[165] [166]
+[181
+
+] [182]
 File: figuras/Rcommander3.png Graphic file (type bmp)
 <figuras/Rcommander3.png>
-[167] [168] [169] [170
+[183] [184] [185] [186
 
 ]
 Apéndice D.
 
-Underfull \hbox (badness 2245) in paragraph at lines 9381--9384
+Underfull \hbox (badness 2245) in paragraph at lines 10357--10360
 []\TU/lmtt/m/n/10 group_by() \TU/lmr/m/n/10 permite operaciones por grupo emple
 ando el concepto “dividir-aplicar-combinar”
  []
 
-[171] [172] [173]
-Overfull \hbox (23.40163pt too wide) in paragraph at lines 9644--9648
+[187] [188] [189]
+Overfull \hbox (23.40163pt too wide) in paragraph at lines 10620--10624
 []\TU/lmr/m/n/10 Este operador le permite canalizar la salida de una función a 
 la entrada de otra función. \TU/lmtt/m/n/10 segundo(primero(datos))
  []
 
-[174]
+[190]
 File: 24-dplyr_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf
 )
 <use 24-dplyr_files/figure-latex/unnamed-chunk-13-1.pdf>
-[175] [176
+[191] [192
 
 ]
 Apéndice E.
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <24.88> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 9691.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 10667.
+
 File: figuras/rconsortium2.png Graphic file (type bmp)
 <figuras/rconsortium2.png>
 File: figuras/Revolution.jpeg Graphic file (type bmp)
 <figuras/Revolution.jpeg>
 File: figuras/rstudio_stickers.png Graphic file (type bmp)
 <figuras/rstudio_stickers.png>
-[177]
+[193]
 No file Intro_Analisis_Datos_R.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 9776.
-[178]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 9776.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 10752.
+[194]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 10752.
 (Intro_Analisis_Datos_R.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 9776.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 9776.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 10752.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 10752.
  ) 
 Here is how much of TeX's memory you used:
- 24709 strings out of 427836
- 459176 string characters out of 3152479
- 594248 words of memory out of 3000000
- 28321 multiletter control sequences out of 15000+200000
+ 24756 strings out of 427836
+ 461327 string characters out of 3152479
+ 596289 words of memory out of 3000000
+ 28361 multiletter control sequences out of 15000+200000
  554355 words of font info for 72 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  45i,9n,68p,821b,497s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Intro_Analisis_Datos_R.pdf (178 pages).
+Output written on Intro_Analisis_Datos_R.pdf (194 pages).

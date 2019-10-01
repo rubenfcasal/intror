@@ -15,7 +15,7 @@ Cada vez son más las empresas que utilizan `R`.
     - Facebook, Twitter, Bank of America, Monsanto, ...
 
 
-### Microsoft
+## Microsoft
 
 ![](figuras/Revolution.jpeg){width="20%"}
 
@@ -30,7 +30,7 @@ Cada vez son más las empresas que utilizan `R`.
 - Integracion de R con: SQL Server, PowerBI, Azure y Cortana
   Analytics.
 
-### RStudio {#rstudio-com}
+## RStudio {#rstudio-com}
 
 ![](figuras/rstudio_stickers.png){width="40%"}
 

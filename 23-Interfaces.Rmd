@@ -45,7 +45,7 @@ sus ventajas son:
 ![](figuras/Rcommander.png)
 
 
-#### Instalación de R-Commander 
+### Instalación de R-Commander 
  
 Por ejemplo, la
 instalación de la interfaz gráfica R-Commander se puede hacer

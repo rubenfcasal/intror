@@ -40,10 +40,10 @@ Durante el proceso de instalación la recomendación (para evitar posibles
 problemas) es seleccionar ventanas simples SDI en lugar de múltiples
 ventanas MDI (hay que *utilizar opciones de configuración*).
 
-------------------------------------------------------------   ------------------------------------------------------------
- ![](figuras/image3.png){width="2.5375in" height="1.925in"}     ![](figuras/image4.png){width="2.5375in" height="1.925in"}
- ![](figuras/image5.png){width="2.5375in" height="1.925in"}     ![](figuras/image6.png){width="2.5375in" height="1.925in"}
-------------------------------------------------------------   ------------------------------------------------------------
+--------------------------------------   --------------------------------------
+ ![](figuras/image3.png){width="95%"}     ![](figuras/image4.png){width="95%"}
+ ![](figuras/image5.png){width="95%"}     ![](figuras/image6.png){width="95%"}
+--------------------------------------   --------------------------------------
 
 Una vez terminada la instalación, al abrir el programa `R`, aparece la
 ventana de la consola (simula una ventana de comandos de Unix) que permite 
