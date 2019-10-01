@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Capítulo 10 Programación | Introducción al Análisis de Datos con R</title>
+  <meta name="description" content="Este es un libro introductorio al análisis de datos con R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Capítulo 10 Programación | Introducción al Análisis de Datos con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este es un libro introductorio al análisis de datos con R" />
+  <meta name="github-repo" content="rubenfcasal/intror" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 10 Programación | Introducción al Análisis de Datos con R" />
+  
+  <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
+  
+
+<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa">
+
+
+<meta name="date" content="2019-10-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="regresion-no-parametrica.html">
+<link rel="next" href="generacion-de-informes.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción al Análisis de Datos con R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prólogo</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#el-lenguaje-y-entorno-estadistico-r"><i class="fa fa-check"></i><b>1.1</b> El lenguaje y entorno estadístico <code>R</code></a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduccion.html"><a href="introduccion.html#principales-caracteristicas"><i class="fa fa-check"></i><b>1.1.1</b> Principales características</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduccion.html"><a href="introduccion.html#interfaces-graficas"><i class="fa fa-check"></i><b>1.1.2</b> Interfaces gráficas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#entorno-de-trabajo"><i class="fa fa-check"></i><b>1.2</b> Entorno de trabajo</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduccion.html"><a href="introduccion.html#ventana-de-consola"><i class="fa fa-check"></i><b>1.2.1</b> Ventana de Consola</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduccion.html"><a href="introduccion.html#ventana-de-script"><i class="fa fa-check"></i><b>1.2.2</b> Ventana de Script</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduccion.html"><a href="introduccion.html#ayuda-dentro-del-programa"><i class="fa fa-check"></i><b>1.2.3</b> Ayuda dentro del programa</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#librerias"><i class="fa fa-check"></i><b>1.3</b> Librerías</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="introduccion.html"><a href="introduccion.html#paquetes"><i class="fa fa-check"></i><b>1.3.1</b> Paquetes</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduccion.html"><a href="introduccion.html#instalacion-pkg"><i class="fa fa-check"></i><b>1.3.2</b> Instalación</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduccion.html"><a href="introduccion.html#carga"><i class="fa fa-check"></i><b>1.3.3</b> Carga</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#una-primera-sesion"><i class="fa fa-check"></i><b>1.4</b> Una primera sesión</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="introduccion.html"><a href="introduccion.html#inicio-de-una-sesion"><i class="fa fa-check"></i><b>1.4.1</b> Inicio de una sesión</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduccion.html"><a href="introduccion.html#objetos-basicos"><i class="fa fa-check"></i><b>1.5</b> Objetos básicos</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="introduccion.html"><a href="introduccion.html#objetos-numericos"><i class="fa fa-check"></i><b>1.5.1</b> Objetos numéricos</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduccion.html"><a href="introduccion.html#objetos-tipo-caracter"><i class="fa fa-check"></i><b>1.5.2</b> Objetos tipo carácter</a></li>
+<li class="chapter" data-level="1.5.3" data-path="introduccion.html"><a href="introduccion.html#objetos-logicos"><i class="fa fa-check"></i><b>1.5.3</b> Objetos lógicos</a></li>
+<li class="chapter" data-level="1.5.4" data-path="introduccion.html"><a href="introduccion.html#operadores-logicos"><i class="fa fa-check"></i><b>1.5.4</b> Operadores lógicos</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="introduccion.html"><a href="introduccion.html#area-de-trabajo"><i class="fa fa-check"></i><b>1.6</b> Área de trabajo</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="introduccion.html"><a href="introduccion.html#guardar-y-cargar-resultados"><i class="fa fa-check"></i><b>1.6.1</b> Guardar y cargar resultados</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduccion.html"><a href="introduccion.html#directorio-de-trabajo"><i class="fa fa-check"></i><b>1.6.2</b> Directorio de trabajo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>2</b> Estructuras de datos</a><ul>
+<li class="chapter" data-level="2.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>2.1</b> Vectores</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#generacion-de-secuencias"><i class="fa fa-check"></i><b>2.1.1</b> Generación de secuencias</a></li>
+<li class="chapter" data-level="2.1.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#generacion-secuencias-aleatorias"><i class="fa fa-check"></i><b>2.1.2</b> Generación secuencias aleatorias</a></li>
+<li class="chapter" data-level="2.1.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#seleccion-de-elementos-de-un-vector"><i class="fa fa-check"></i><b>2.1.3</b> Selección de elementos de un vector</a></li>
+<li class="chapter" data-level="2.1.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#ordenacion-de-vectores"><i class="fa fa-check"></i><b>2.1.4</b> Ordenación de vectores</a></li>
+<li class="chapter" data-level="2.1.5" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#valores-perdidos"><i class="fa fa-check"></i><b>2.1.5</b> Valores perdidos</a></li>
+<li class="chapter" data-level="2.1.6" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores-no-numericos"><i class="fa fa-check"></i><b>2.1.6</b> Vectores no numéricos</a></li>
+<li class="chapter" data-level="2.1.7" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#factores"><i class="fa fa-check"></i><b>2.1.7</b> Factores</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#matrices-y-arrays"><i class="fa fa-check"></i><b>2.2</b> Matrices y arrays</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#matrices"><i class="fa fa-check"></i><b>2.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#nombres-en-matrices"><i class="fa fa-check"></i><b>2.2.2</b> Nombres en matrices</a></li>
+<li class="chapter" data-level="2.2.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#acceso-a-los-elementos-de-una-matriz"><i class="fa fa-check"></i><b>2.2.3</b> Acceso a los elementos de una matriz</a></li>
+<li class="chapter" data-level="2.2.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#ordenacion-por-filas-y-columnas"><i class="fa fa-check"></i><b>2.2.4</b> Ordenación por filas y columnas</a></li>
+<li class="chapter" data-level="2.2.5" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#operaciones-con-matrices-y-arrays"><i class="fa fa-check"></i><b>2.2.5</b> Operaciones con Matrices y Arrays</a></li>
+<li class="chapter" data-level="2.2.6" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#ejemplos"><i class="fa fa-check"></i><b>2.2.6</b> Ejemplos</a></li>
+<li class="chapter" data-level="2.2.7" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#inversion-de-una-matriz"><i class="fa fa-check"></i><b>2.2.7</b> Inversión de una matriz</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>2.3</b> Data frames</a></li>
+<li class="chapter" data-level="2.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>2.4</b> Listas</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graficos.html"><a href="graficos.html"><i class="fa fa-check"></i><b>3</b> Gráficos</a><ul>
+<li class="chapter" data-level="3.1" data-path="graficos.html"><a href="graficos.html#el-comando-plot"><i class="fa fa-check"></i><b>3.1</b> El comando plot</a></li>
+<li class="chapter" data-level="3.2" data-path="graficos.html"><a href="graficos.html#funciones-graficas-de-bajo-nivel"><i class="fa fa-check"></i><b>3.2</b> Funciones gráficas de bajo nivel</a></li>
+<li class="chapter" data-level="3.3" data-path="graficos.html"><a href="graficos.html#ejemplos-1"><i class="fa fa-check"></i><b>3.3</b> Ejemplos</a></li>
+<li class="chapter" data-level="3.4" data-path="graficos.html"><a href="graficos.html#parametros-graficos"><i class="fa fa-check"></i><b>3.4</b> Parámetros gráficos</a></li>
+<li class="chapter" data-level="3.5" data-path="graficos.html"><a href="graficos.html#multiples-graficos-por-ventana"><i class="fa fa-check"></i><b>3.5</b> Múltiples gráficos por ventana</a></li>
+<li class="chapter" data-level="3.6" data-path="graficos.html"><a href="graficos.html#exportar-graficos"><i class="fa fa-check"></i><b>3.6</b> Exportar gráficos</a></li>
+<li class="chapter" data-level="3.7" data-path="graficos.html"><a href="graficos.html#otras-librerias-graficas"><i class="fa fa-check"></i><b>3.7</b> Otras librerías gráficas</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="graficos.html"><a href="graficos.html#ejemplos-2"><i class="fa fa-check"></i><b>3.7.1</b> Ejemplos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#lectura-importacion-y-exportacion-de-datos"><i class="fa fa-check"></i><b>4.1</b> Lectura, importación y exportación de datos</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#introduccion-directa"><i class="fa fa-check"></i><b>4.1.1</b> Introducción directa</a></li>
+<li class="chapter" data-level="4.1.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#lectura-desde-paquetes"><i class="fa fa-check"></i><b>4.1.2</b> Lectura desde paquetes</a></li>
+<li class="chapter" data-level="4.1.3" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#lectura-de-archivos-de-texto"><i class="fa fa-check"></i><b>4.1.3</b> Lectura de archivos de texto</a></li>
+<li class="chapter" data-level="4.1.4" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#importacion-desde-spss"><i class="fa fa-check"></i><b>4.1.4</b> Importación desde SPSS</a></li>
+<li class="chapter" data-level="4.1.5" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#importacion-desde-excel"><i class="fa fa-check"></i><b>4.1.5</b> Importación desde Excel</a></li>
+<li class="chapter" data-level="4.1.6" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#exportacion-de-datos"><i class="fa fa-check"></i><b>4.1.6</b> Exportación de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#manipulacion-de-datos-1"><i class="fa fa-check"></i><b>4.2</b> Manipulación de datos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>4.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>4.2.2</b> Operaciones con casos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html"><i class="fa fa-check"></i><b>5</b> Análisis exploratorio de datos</a><ul>
+<li class="chapter" data-level="5.1" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#medidas-resumen"><i class="fa fa-check"></i><b>5.1</b> Medidas resumen</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#datos-de-ejemplo"><i class="fa fa-check"></i><b>5.1.1</b> Datos de ejemplo</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#tablas-de-frecuencias"><i class="fa fa-check"></i><b>5.1.2</b> Tablas de frecuencias</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#media-y-varianza"><i class="fa fa-check"></i><b>5.1.3</b> Media y varianza</a></li>
+<li class="chapter" data-level="5.1.4" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#mediana-y-cuantiles"><i class="fa fa-check"></i><b>5.1.4</b> Mediana y cuantiles</a></li>
+<li class="chapter" data-level="5.1.5" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#summary"><i class="fa fa-check"></i><b>5.1.5</b> <em>Summary</em></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#graficos-1"><i class="fa fa-check"></i><b>5.2</b> Gráficos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#diagrama-de-barras-y-grafico-de-sectores"><i class="fa fa-check"></i><b>5.2.1</b> Diagrama de barras y gráfico de sectores</a></li>
+<li class="chapter" data-level="5.2.2" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#grafico-de-puntos"><i class="fa fa-check"></i><b>5.2.2</b> Gráfico de puntos</a></li>
+<li class="chapter" data-level="5.2.3" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#arbol-de-tallo-y-hojas"><i class="fa fa-check"></i><b>5.2.3</b> Árbol de tallo y hojas</a></li>
+<li class="chapter" data-level="5.2.4" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#histograma"><i class="fa fa-check"></i><b>5.2.4</b> Histograma</a></li>
+<li class="chapter" data-level="5.2.5" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#grafico-de-densidad"><i class="fa fa-check"></i><b>5.2.5</b> Gráfico de densidad</a></li>
+<li class="chapter" data-level="5.2.6" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#diagrama-de-cajas"><i class="fa fa-check"></i><b>5.2.6</b> Diagrama de cajas</a></li>
+<li class="chapter" data-level="5.2.7" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#grafica-de-dispersion"><i class="fa fa-check"></i><b>5.2.7</b> Gráfica de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html"><i class="fa fa-check"></i><b>6</b> Modelado de datos</a><ul>
+<li class="chapter" data-level="6.1" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html#modelos-de-regresion"><i class="fa fa-check"></i><b>6.1</b> Modelos de regresión</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html#herramientas-disponibles-en-r"><i class="fa fa-check"></i><b>6.1.1</b> Herramientas disponibles en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html#formulas"><i class="fa fa-check"></i><b>6.2</b> Fórmulas</a></li>
+<li class="chapter" data-level="6.3" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html#ejemplo-regresion-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Ejemplo: regresión lineal simple</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>7</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ejemplo"><i class="fa fa-check"></i><b>7.1</b> Ejemplo</a></li>
+<li class="chapter" data-level="7.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ajuste-funcion-lm"><i class="fa fa-check"></i><b>7.2</b> Ajuste: función <code>lm</code></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#extraccion-de-informacion"><i class="fa fa-check"></i><b>7.2.1</b> Extracción de información</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#prediccion"><i class="fa fa-check"></i><b>7.3</b> Predicción</a></li>
+<li class="chapter" data-level="7.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#seleccion-de-variables-explicativas"><i class="fa fa-check"></i><b>7.4</b> Selección de variables explicativas</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#busqueda-exhaustiva"><i class="fa fa-check"></i><b>7.4.1</b> Búsqueda exhaustiva</a></li>
+<li class="chapter" data-level="7.4.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#seleccion-por-pasos"><i class="fa fa-check"></i><b>7.4.2</b> Selección por pasos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#regresion-con-variables-categoricas"><i class="fa fa-check"></i><b>7.5</b> Regresión con variables categóricas</a></li>
+<li class="chapter" data-level="7.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#interacciones"><i class="fa fa-check"></i><b>7.6</b> Interacciones</a></li>
+<li class="chapter" data-level="7.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#diagnosis-del-modelo"><i class="fa fa-check"></i><b>7.7</b> Diagnosis del modelo</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#graficas-basicas-de-diagnostico"><i class="fa fa-check"></i><b>7.7.1</b> Gráficas básicas de diagnóstico</a></li>
+<li class="chapter" data-level="7.7.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#graficos-parciales-de-residuos"><i class="fa fa-check"></i><b>7.7.2</b> Gráficos parciales de residuos</a></li>
+<li class="chapter" data-level="7.7.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estadisticos"><i class="fa fa-check"></i><b>7.7.3</b> Estadísticos</a></li>
+<li class="chapter" data-level="7.7.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#contrastes"><i class="fa fa-check"></i><b>7.7.4</b> Contrastes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#metodos-de-regularizacion"><i class="fa fa-check"></i><b>7.8</b> Métodos de regularización</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#datos"><i class="fa fa-check"></i><b>7.8.1</b> Datos</a></li>
+<li class="chapter" data-level="7.8.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ridge-regression"><i class="fa fa-check"></i><b>7.8.2</b> Ridge Regression</a></li>
+<li class="chapter" data-level="7.8.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#lasso"><i class="fa fa-check"></i><b>7.8.3</b> Lasso</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#alternativas"><i class="fa fa-check"></i><b>7.9</b> Alternativas</a><ul>
+<li class="chapter" data-level="7.9.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#transformacion-modelos-linealizables"><i class="fa fa-check"></i><b>7.9.1</b> Transformación (modelos linealizables)</a></li>
+<li class="chapter" data-level="7.9.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ajuste-polinomico"><i class="fa fa-check"></i><b>7.9.2</b> Ajuste polinómico</a></li>
+<li class="chapter" data-level="7.9.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ajuste-polinomico-local-robusto"><i class="fa fa-check"></i><b>7.9.3</b> Ajuste polinómico local (robusto)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>8</b> Modelos lineales generalizados</a><ul>
+<li class="chapter" data-level="8.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ajuste-funcion-glm"><i class="fa fa-check"></i><b>8.1</b> Ajuste: función <code>glm</code></a></li>
+<li class="chapter" data-level="8.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresion-logistica"><i class="fa fa-check"></i><b>8.2</b> Regresión logística</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplo-2"><i class="fa fa-check"></i><b>8.2.1</b> Ejemplo</a></li>
+<li class="chapter" data-level="8.2.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ajuste-de-un-modelo-de-regresion-logistica"><i class="fa fa-check"></i><b>8.2.2</b> Ajuste de un modelo de regresión logística</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#prediccion-1"><i class="fa fa-check"></i><b>8.3</b> Predicción</a></li>
+<li class="chapter" data-level="8.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#seleccion-de-variables-explicativas-1"><i class="fa fa-check"></i><b>8.4</b> Selección de variables explicativas</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#seleccion-por-pasos-1"><i class="fa fa-check"></i><b>8.4.1</b> Selección por pasos</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#diagnosis-del-modelo-1"><i class="fa fa-check"></i><b>8.5</b> Diagnosis del modelo</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#graficas-basicas-de-diagnostico-1"><i class="fa fa-check"></i><b>8.5.1</b> Gráficas básicas de diagnóstico</a></li>
+<li class="chapter" data-level="8.5.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#graficos-parciales-de-residuos-1"><i class="fa fa-check"></i><b>8.5.2</b> Gráficos parciales de residuos</a></li>
+<li class="chapter" data-level="8.5.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#estadisticos-1"><i class="fa fa-check"></i><b>8.5.3</b> Estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#alternativas-1"><i class="fa fa-check"></i><b>8.6</b> Alternativas</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html"><i class="fa fa-check"></i><b>9</b> Regresión no paramétrica</a><ul>
+<li class="chapter" data-level="9.1" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#modelos-aditivos"><i class="fa fa-check"></i><b>9.1</b> Modelos aditivos</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#ajuste-funcion-gam"><i class="fa fa-check"></i><b>9.1.1</b> Ajuste: función <code>gam</code></a></li>
+<li class="chapter" data-level="9.1.2" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#ejemplo-3"><i class="fa fa-check"></i><b>9.1.2</b> Ejemplo</a></li>
+<li class="chapter" data-level="9.1.3" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#superficie-de-prediccion"><i class="fa fa-check"></i><b>9.1.3</b> Superficie de predicción</a></li>
+<li class="chapter" data-level="9.1.4" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#comparacion-de-modelos"><i class="fa fa-check"></i><b>9.1.4</b> Comparación de modelos</a></li>
+<li class="chapter" data-level="9.1.5" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#diagnosis-del-modelo-2"><i class="fa fa-check"></i><b>9.1.5</b> Diagnosis del modelo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="programacion.html"><a href="programacion.html"><i class="fa fa-check"></i><b>10</b> Programación</a><ul>
+<li class="chapter" data-level="10.1" data-path="programacion.html"><a href="programacion.html#funciones"><i class="fa fa-check"></i><b>10.1</b> Funciones</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="programacion.html"><a href="programacion.html#ejemplo-progresion-geometrica"><i class="fa fa-check"></i><b>10.1.1</b> Ejemplo: progresión geométrica</a></li>
+<li class="chapter" data-level="10.1.2" data-path="programacion.html"><a href="programacion.html#argumentos-de-entrada"><i class="fa fa-check"></i><b>10.1.2</b> Argumentos de entrada</a></li>
+<li class="chapter" data-level="10.1.3" data-path="programacion.html"><a href="programacion.html#salida"><i class="fa fa-check"></i><b>10.1.3</b> Salida</a></li>
+<li class="chapter" data-level="10.1.4" data-path="programacion.html"><a href="programacion.html#otros-ejemplos"><i class="fa fa-check"></i><b>10.1.4</b> Otros ejemplos</a></li>
+<li class="chapter" data-level="10.1.5" data-path="programacion.html"><a href="programacion.html#variables-locales-y-globales"><i class="fa fa-check"></i><b>10.1.5</b> Variables locales y globales</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="programacion.html"><a href="programacion.html#ejecucion-condicional"><i class="fa fa-check"></i><b>10.2</b> Ejecución condicional</a></li>
+<li class="chapter" data-level="10.3" data-path="programacion.html"><a href="programacion.html#bucles-y-vectorizacion"><i class="fa fa-check"></i><b>10.3</b> Bucles y vectorización</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="programacion.html"><a href="programacion.html#bucles"><i class="fa fa-check"></i><b>10.3.1</b> Bucles</a></li>
+<li class="chapter" data-level="10.3.2" data-path="programacion.html"><a href="programacion.html#vectorizacion"><i class="fa fa-check"></i><b>10.3.2</b> Vectorización</a></li>
+<li class="chapter" data-level="10.3.3" data-path="programacion.html"><a href="programacion.html#funciones-apply"><i class="fa fa-check"></i><b>10.3.3</b> Funciones <code>apply</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="programacion.html"><a href="programacion.html#aplicacion-validacion-cruzada"><i class="fa fa-check"></i><b>10.4</b> Aplicación: validación cruzada</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="programacion.html"><a href="programacion.html#primer-ejemplo"><i class="fa fa-check"></i><b>10.4.1</b> Primer ejemplo</a></li>
+<li class="chapter" data-level="10.4.2" data-path="programacion.html"><a href="programacion.html#segundo-ejemplo"><i class="fa fa-check"></i><b>10.4.2</b> Segundo ejemplo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html"><i class="fa fa-check"></i><b>11</b> Generación de informes</a><ul>
+<li class="chapter" data-level="11.1" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#r-markdown"><i class="fa fa-check"></i><b>11.1</b> R Markdown</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#introduccion-1"><i class="fa fa-check"></i><b>11.1.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.1.2" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#inclusion-de-codigo-r"><i class="fa fa-check"></i><b>11.1.2</b> Inclusión de código R</a></li>
+<li class="chapter" data-level="11.1.3" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#inclusion-de-graficos"><i class="fa fa-check"></i><b>11.1.3</b> Inclusión de gráficos</a></li>
+<li class="chapter" data-level="11.1.4" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#inclusion-de-tablas"><i class="fa fa-check"></i><b>11.1.4</b> Inclusión de tablas</a></li>
+<li class="chapter" data-level="11.1.5" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#extraccion-del-codigo-r"><i class="fa fa-check"></i><b>11.1.5</b> Extracción del código R</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#spin"><i class="fa fa-check"></i><b>11.2</b> Spin</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a><ul>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html#bibliografia-complementaria"><i class="fa fa-check"></i>Bibliografía complementaria</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apendices</b></span></li>
+<li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a><ul>
+<li class="chapter" data-level="A.1" data-path="links.html"><a href="links.html#rstudio-links"><i class="fa fa-check"></i><b>A.1</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="instalacion.html"><a href="instalacion.html"><i class="fa fa-check"></i><b>B</b> Instalación de R</a><ul>
+<li class="chapter" data-level="B.1" data-path="instalacion.html"><a href="instalacion.html#instalacion-de-r-en-windows"><i class="fa fa-check"></i><b>B.1</b> Instalación de R en Windows</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="instalacion.html"><a href="instalacion.html#asistente-de-instalacion"><i class="fa fa-check"></i><b>B.1.1</b> Asistente de instalación</a></li>
+<li class="chapter" data-level="B.1.2" data-path="instalacion.html"><a href="instalacion.html#instalacion-de-paquetes"><i class="fa fa-check"></i><b>B.1.2</b> Instalación de paquetes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="interfaces.html"><a href="interfaces.html"><i class="fa fa-check"></i><b>C</b> Interfaces gráficas</a><ul>
+<li class="chapter" data-level="C.1" data-path="interfaces.html"><a href="interfaces.html#rstudio"><i class="fa fa-check"></i><b>C.1</b> RStudio</a></li>
+<li class="chapter" data-level="C.2" data-path="interfaces.html"><a href="interfaces.html#rcmdr"><i class="fa fa-check"></i><b>C.2</b> RCommander</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>D</b> Manipulación de datos con dplyr</a><ul>
+<li class="chapter" data-level="D.1" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#el-paquete-dplyr"><i class="fa fa-check"></i><b>D.1</b> El paquete <strong>dplyr</strong></a><ul>
+<li class="chapter" data-level="D.1.1" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#datos-de-ejemplo-1"><i class="fa fa-check"></i><b>D.1.1</b> Datos de ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#operaciones-con-variables-columnas"><i class="fa fa-check"></i><b>D.2</b> Operaciones con variables (columnas)</a><ul>
+<li class="chapter" data-level="D.2.1" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#seleccionar-variables-con-select"><i class="fa fa-check"></i><b>D.2.1</b> Seleccionar variables con <strong>select()</strong></a></li>
+<li class="chapter" data-level="D.2.2" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#generar-nuevas-variables-con-mutate"><i class="fa fa-check"></i><b>D.2.2</b> Generar nuevas variables con <strong>mutate()</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#operaciones-con-casos-filas"><i class="fa fa-check"></i><b>D.3</b> Operaciones con casos (filas)</a><ul>
+<li class="chapter" data-level="D.3.1" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#seleccionar-casos-con-filter"><i class="fa fa-check"></i><b>D.3.1</b> Seleccionar casos con <strong>filter()</strong></a></li>
+<li class="chapter" data-level="D.3.2" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#organizar-casos-con-arrange"><i class="fa fa-check"></i><b>D.3.2</b> Organizar casos con <strong>arrange()</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="D.4" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#resumir-valores-con-summarise"><i class="fa fa-check"></i><b>D.4</b> Resumir valores con <strong>summarise()</strong></a></li>
+<li class="chapter" data-level="D.5" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#agrupar-casos-con-group_by"><i class="fa fa-check"></i><b>D.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
+<li class="chapter" data-level="D.6" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#operador-pipe-tuberia-redireccion"><i class="fa fa-check"></i><b>D.6</b> Operador <em>pipe</em> <strong>%&gt;% </strong>(tubería, redirección)</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="companias-que-usan-r.html"><a href="companias-que-usan-r.html"><i class="fa fa-check"></i><b>E</b> Compañías que usan <code>R</code></a><ul>
+<li class="chapter" data-level="E.0.1" data-path="companias-que-usan-r.html"><a href="companias-que-usan-r.html#microsoft"><i class="fa fa-check"></i><b>E.0.1</b> Microsoft</a></li>
+<li class="chapter" data-level="E.0.2" data-path="companias-que-usan-r.html"><a href="companias-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.0.2</b> RStudio</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción al Análisis de Datos con <code>R</code></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="programacion" class="section level1">
+<h1><span class="header-section-number">Capítulo 10</span> Programación</h1>
+<p>En este capítulo se introducirán los comandos básicos de programación en R…</p>
+<div id="funciones" class="section level2">
+<h2><span class="header-section-number">10.1</span> Funciones</h2>
+<p>El lenguaje <code>R</code> permite al usuario definir sus propias funciones. El esquema de una función es el que sigue:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, arg2, ... ) {expresión}</code></pre></div>
+<ul>
+<li><p>En la expresión anterior <code>arg1, arg2, ...</code> son los argumentos de entrada (también llamados parámetros).</p></li>
+<li><p>La <code>expresión</code> está compuesta de comandos que utilizan los argumentos de entrada para dar la <strong>salida</strong> deseada.</p></li>
+<li><p>La salida de una función puese ser un número, un vector, una grafica, un mensaje, etc.</p></li>
+</ul>
+<div id="ejemplo-progresion-geometrica" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> Ejemplo: progresión geométrica</h3>
+<p>Para introducirnos en las funciones, vamos a escribir una función que permita trabajar con las llamadas <strong>progresiones geométricas</strong>.</p>
+<p>Una progresión geométrica es una sucesión de números <span class="math inline">\(a_1, a_2, a_3\ldots\)</span> tales que cada uno de ellos (salvo el primero) es igual al anterior multiplicado por una constante llamada <strong>razón</strong>, que representaremos por <span class="math inline">\(r\)</span>. Ejemplos:</p>
+<ul>
+<li><p><span class="math inline">\(a_1=1\)</span>, <span class="math inline">\(r=2\)</span>:</p>
+<p>1, 2, 4, 8, 16,…</p></li>
+<li><p><span class="math inline">\(a_1=-1\)</span>, <span class="math inline">\(r=-2\)</span>:</p>
+<p>1, -2, 4, -8, 16,…</p></li>
+</ul>
+<p>Según la definición anterior, se verifica que: <span class="math display">\[a_2=a_1\cdot r; \quad a_3=a_2\cdot r=a_1\cdot r^2; \quad ...\]</span> y generalizando este proceso se obtiene el llamado término general:</p>
+<p><span class="math display">\[a_n=a_1\cdot r^{n-1}\]</span></p>
+<p>También se puede comprobar que la suma de los <span class="math inline">\(n\)</span> términos de la progresión es:</p>
+<p><span class="math display">\[S_n=a_1+\ldots_+a_n=\frac{a_1(r^n-1)}{r-1}\]</span></p>
+<p>La siguiente función, que llamaremos <code>an</code> calcula el término <span class="math inline">\(a_n\)</span> de una progresión geométrica pasando como entrada el primer elemento <code>a1</code>, la razón <code>r</code> y el valor <code>n</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">an &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) {
+        a1 <span class="op">*</span><span class="st"> </span>r<span class="op">^</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
+      }</code></pre></div>
+<p>A continuación algún ejemplo para comprobar su funcionamiento:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">4</span>, <span class="dt">r =</span> <span class="op">-</span><span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1] -128</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="op">-</span><span class="dv">50</span>, <span class="dt">r =</span> <span class="dv">4</span>, <span class="dt">n =</span> <span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1] -51200</code></pre>
+<p>Con la función anterior se pueden obtener, con una sola llamada, varios valores de la progresión:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)    <span class="co"># a1, ..., a5</span></code></pre></div>
+<pre><code>## [1]  1  2  4  8 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">10</span><span class="op">:</span><span class="dv">15</span>)  <span class="co"># a10, ..., a15</span></code></pre></div>
+<pre><code>## [1]   512  1024  2048  4096  8192 16384</code></pre>
+<p>La función <code>Sn</code> calcula la suma de los primeros <code>n</code> elementos de la progresión:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Sn &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) {
+        a1 <span class="op">*</span><span class="st"> </span>(r<span class="op">^</span>n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>(r <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
+      }
+  
+<span class="kw">Sn</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
+<pre><code>## [1] 31</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)    <span class="co"># Valores de la progresión</span></code></pre></div>
+<pre><code>## [1]  1  2  4  8 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sn</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)    <span class="co"># Suma de los valores</span></code></pre></div>
+<pre><code>## [1]  1  3  7 15 31</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cumsum(an(a1 = 1, r = 2, n = 1:5))</span></code></pre></div>
+</div>
+<div id="argumentos-de-entrada" class="section level3">
+<h3><span class="header-section-number">10.1.2</span> Argumentos de entrada</h3>
+<p>Como ya hemos comentado, los argumentos son los valores de entrada de una función.</p>
+<ul>
+<li><p>Por ejemplo, en la función anterior:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">an &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) {a1 <span class="op">*</span><span class="st"> </span>r<span class="op">^</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)}</code></pre></div>
+<p>los argumentos de entrada son <code>a1</code>, <code>r</code> y <code>n</code>.</p></li>
+</ul>
+<p>Veamos alguna consideración sobre los argumentos:</p>
+<ul>
+<li><p>No es necesario utilizar el nombre de los argumentos. En este caso es obligatorio mantener el orden de entrada. Por ejemplo, las siguientes llamadas son equivalentes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)</code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
+<pre><code>## [1] 16</code></pre></li>
+<li><p>Si se nombran los argumentos, se pueden pasar en cualquier orden:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">a1 =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">a1 =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 16</code></pre></li>
+</ul>
+<div id="argumentos-por-defecto" class="section level4">
+<h4><span class="header-section-number">10.1.2.1</span> Argumentos por defecto</h4>
+<p>En muchas ocasiones resulta muy interesante que las funciones tengan argumentos por defecto.</p>
+<p>Por ejemplo, si se quiere que en una función:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, arg2, arg3, arg4, ...) { expresión }</code></pre></div>
+<p>los argumento <code>arg2</code> y <code>arg3</code> tomen por defecto los valores <code>a</code> y <code>b</code> respectivamentebastaría con escribir:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, <span class="dt">arg2 =</span> a, <span class="dt">arg3 =</span> b, arg4, ...) { expresión }</code></pre></div>
+<p>Para comprender mejor esto considérese el siguiente ejemplo ilustrativo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xy2 &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">3</span>) { x <span class="op">*</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span> }
+<span class="kw">xy2</span>()</code></pre></div>
+<pre><code>## [1] 18</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xy2</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xy2</span>(<span class="dt">y =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 32</code></pre>
+</div>
+<div id="el-argumento-..." class="section level4">
+<h4><span class="header-section-number">10.1.2.2</span> El argumento <code>...</code></h4>
+<p>El argumento “<code>...</code>” permite pasar de manera “libre” argumentos adicionales para ser utilizados por otra “subfunción” dentro de la función principal.</p>
+<p>Por ejemplo, en la función:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Density.Plot &lt;-<span class="st"> </span><span class="cf">function</span>(datos, ...) { <span class="kw">plot</span>(<span class="kw">density</span>(datos), ...) }</code></pre></div>
+<p>a partir del primer argumento, los argumentos se incluirán en <code>...</code> y serán utilizados por la función <code>plot</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(cars)
+<span class="kw">Density.Plot</span>(cars<span class="op">$</span>speed)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Density.Plot</span>(cars<span class="op">$</span>speed, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">xlab =</span> <span class="st">&quot;velocidad&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;distancia&quot;</span>)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-14-2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Los argumentos de entrada de una función se obtienen ejecutando <code>args(funcion)</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(an)</code></pre></div>
+<pre><code>## function (a1, r, n) 
+## NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(xy2)</code></pre></div>
+<pre><code>## function (x = 2, y = 3) 
+## NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">args</span>(Density.Plot))</code></pre></div>
+<pre><code>## function (datos, ...)</code></pre>
+<p>Por otro lado, al escribir el nombre de una función se obtiene su contenido:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">an</code></pre></div>
+<pre><code>## function(a1, r, n) {
+##         a1 * r^(n - 1)
+##       }
+## &lt;bytecode: 0x0000000018c94ad0&gt;</code></pre>
+</div>
+</div>
+<div id="salida" class="section level3">
+<h3><span class="header-section-number">10.1.3</span> Salida</h3>
+<p>El valor que devolverá una función será:</p>
+<ul>
+<li><p>el último objeto evaluado dentro de ella, o</p></li>
+<li><p>lo indicado dentro de la sentencia <code>return</code>.</p></li>
+</ul>
+<p>Como las funciones pueden devolver objetos de varios tipos es hatibual que la salida sea una lista.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">an &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) { a1 <span class="op">*</span><span class="st"> </span>r<span class="op">^</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) }
+Sn &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) { a1 <span class="op">*</span><span class="st"> </span>(r<span class="op">^</span>n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>(r <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) }
+  
+asn &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>) {
+  A &lt;-<span class="st"> </span><span class="kw">an</span>(a1, r, n)
+  S &lt;-<span class="st"> </span><span class="kw">Sn</span>(a1, r, n)
+  ii &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>n
+  AA &lt;-<span class="st"> </span><span class="kw">an</span>(a1, r, ii)
+  SS &lt;-<span class="st"> </span><span class="kw">Sn</span>(a1, r, ii)
+  <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">an =</span> A, <span class="dt">Sn =</span> S, <span class="dt">salida =</span> <span class="kw">data.frame</span>(<span class="dt">valores =</span> AA, <span class="dt">suma =</span> SS)))
+}</code></pre></div>
+<p>La función <code>asn</code> utiliza las funiones <code>an</code> y <code>Sn</code> programadas antes y devuelve como salida una lista con las siguientes componentes:</p>
+<ul>
+<li><code>an</code>: valor de <span class="math inline">\(a_n\)</span></li>
+<li><code>Sn</code>: valor de <span class="math inline">\(S_n\)</span></li>
+<li><code>salida</code>: data.frame con dos variables
+<ul>
+<li><code>salida</code>: vector con las <span class="math inline">\(n\)</span> primeras componentes de la progresión</li>
+<li><code>suma</code>: suma de las <span class="math inline">\(n\)</span> primeras componentes</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">asn</span>()</code></pre></div>
+<pre><code>## $an
+## [1] 16
+## 
+## $Sn
+## [1] 31
+## 
+## $salida
+##   valores suma
+## 1       1    1
+## 2       2    3
+## 3       4    7
+## 4       8   15
+## 5      16   31</code></pre>
+<p>La salida de la función anterior es una lista y se puede acceder a los elementos de la misma:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">asn</span>()
+res<span class="op">$</span>an</code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res<span class="op">$</span>Sn</code></pre></div>
+<pre><code>## [1] 31</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res<span class="op">$</span>salida</code></pre></div>
+<pre><code>##   valores suma
+## 1       1    1
+## 2       2    3
+## 3       4    7
+## 4       8   15
+## 5      16   31</code></pre>
+</div>
+<div id="otros-ejemplos" class="section level3">
+<h3><span class="header-section-number">10.1.4</span> Otros ejemplos</h3>
+<div id="ejemplo-letra-del-dni" class="section level4">
+<h4><span class="header-section-number">10.1.4.1</span> Ejemplo: letra del DNI</h4>
+<p>A continuación se calculará la letra del DNI a partir de su correspondiente número. El método utilizado para obtener la letra del DNI consiste en dividir el número entre 23 y según el resto obtenido adjudicar la letra que figura en la siguiente tabla:</p>
+<table>
+<thead>
+<tr class="header">
+<th>resto</th>
+<th>letra</th>
+<th></th>
+<th>resto</th>
+<th>letra</th>
+<th></th>
+<th>resto</th>
+<th>letra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>T</td>
+<td></td>
+<td>8</td>
+<td>P</td>
+<td></td>
+<td>16</td>
+<td>Q</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>R</td>
+<td></td>
+<td>9</td>
+<td>D</td>
+<td></td>
+<td>17</td>
+<td>V</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>W</td>
+<td></td>
+<td>10</td>
+<td>X</td>
+<td></td>
+<td>18</td>
+<td>H</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>A</td>
+<td></td>
+<td>11</td>
+<td>B</td>
+<td></td>
+<td>19</td>
+<td>L</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>G</td>
+<td></td>
+<td>12</td>
+<td>N</td>
+<td></td>
+<td>20</td>
+<td>C</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>M</td>
+<td></td>
+<td>13</td>
+<td>J</td>
+<td></td>
+<td>21</td>
+<td>K</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>Y</td>
+<td></td>
+<td>14</td>
+<td>Z</td>
+<td></td>
+<td>22</td>
+<td>E</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>F</td>
+<td></td>
+<td>15</td>
+<td>S</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>La siguiente función permite obtener la letra del DNI:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DNI &lt;-<span class="st"> </span><span class="cf">function</span>(numero) {
+  letras &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;W&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;F&quot;</span>, 
+              <span class="st">&quot;P&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Z&quot;</span>, <span class="st">&quot;S&quot;</span>, 
+              <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;V&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;L&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;E&quot;</span>)
+  <span class="kw">return</span>(letras[numero <span class="op">%%</span><span class="st"> </span><span class="dv">23</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]) 
+}
+
+<span class="kw">DNI</span>(<span class="dv">50247828</span>)</code></pre></div>
+<pre><code>## [1] &quot;G&quot;</code></pre>
+</div>
+<div id="ejemplo-simulacion-del-lanzamiento-de-un-dado" class="section level4">
+<h4><span class="header-section-number">10.1.4.2</span> Ejemplo: simulación del lanzamiento de un dado</h4>
+<p>La siguiente función simula <span class="math inline">\(n\)</span> (por defecto <span class="math inline">\(n=100\)</span>) lanzamientos de un dado. La función devuelve la tabla de frecuencias y realiza el correspondiente gráfico:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dado &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">100</span>) {
+  lanzamientos &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, n, <span class="dt">rep =</span> <span class="ot">TRUE</span>)
+  frecuencias &lt;-<span class="st"> </span><span class="kw">table</span>(lanzamientos) <span class="op">/</span><span class="st"> </span>n
+  <span class="kw">barplot</span>(frecuencias, <span class="dt">main =</span> <span class="kw">paste</span>(<span class="st">&quot;Número de lanzamientos=&quot;</span>, n))
+  <span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">6</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+  <span class="kw">return</span>(frecuencias)
+}</code></pre></div>
+<p>A continuación se muestran los resultados obtendidos para varias simulaciones:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dado</span>(<span class="dv">100</span>)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<pre><code>## lanzamientos
+##    1    2    3    4    5    6 
+## 0.14 0.16 0.20 0.22 0.17 0.11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dado</span>(<span class="dv">500</span>)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-23-2.png" width="70%" style="display: block; margin: auto;" /></p>
+<pre><code>## lanzamientos
+##     1     2     3     4     5     6 
+## 0.164 0.188 0.172 0.150 0.158 0.168</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dado</span>(<span class="dv">10000</span>)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-23-3.png" width="70%" style="display: block; margin: auto;" /></p>
+<pre><code>## lanzamientos
+##      1      2      3      4      5      6 
+## 0.1643 0.1630 0.1690 0.1647 0.1710 0.1680</code></pre>
+<p>Se puede comprobar que al aumentar el valor de <span class="math inline">\(n\)</span> las frecuencias se aproximan al valor teórico <span class="math inline">\(1/6=0.1667\)</span>.</p>
+</div>
+</div>
+<div id="variables-locales-y-globales" class="section level3">
+<h3><span class="header-section-number">10.1.5</span> Variables locales y globales</h3>
+<p>En <code>R</code> no es necesario declarar las variables usadas dentro de una función. Se utiliza la regla llamada “ámbito lexicográfico” para decidir si un objeto es local a una función o global.</p>
+<p>Para entender mejor esto se consideran los siguientes ejemplos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fun &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">print</span>(x)
+x &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="kw">fun</span>()</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>La variable <code>x</code> no está definida dentro de <code>fun</code>, así que <code>R</code> busca <code>x</code> en el entorno en el que se llamó a la función e imprimirá su valor.</p>
+<p>Si <code>x</code> es utilizado como el nombre de un objeto dentro de la función, el valor de <code>x</code> en el ambiente global (fuera de la función) no cambia.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>
+fun2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
+    x &lt;-<span class="st"> </span><span class="dv">2</span>
+    <span class="kw">print</span>(x)
+}
+
+<span class="kw">fun2</span>()</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Para que el valor “global” de una variable pueda ser cambidado dentro de una función se utiliza la doble asignación <code>&lt;&lt;-</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>
+y &lt;-<span class="st"> </span><span class="dv">3</span>
+fun2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
+    x &lt;-<span class="st"> </span><span class="dv">2</span>
+    y &lt;&lt;-<span class="st"> </span><span class="dv">5</span>
+    <span class="kw">print</span>(x)
+    <span class="kw">print</span>(y)
+}
+
+<span class="kw">fun2</span>()</code></pre></div>
+<pre><code>## [1] 2
+## [1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="co"># No cambió su valor</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y <span class="co"># Cambió su valor</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+</div>
+</div>
+<div id="ejecucion-condicional" class="section level2">
+<h2><span class="header-section-number">10.2</span> Ejecución condicional</h2>
+<p>Para hacer ejecuciones condicionales de código se usa el comando <code>if</code> con sintaxis:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (condicion1) {expresión1} <span class="cf">else</span> {expresión2}</code></pre></div>
+<p>La siguiente función comprueba si un número es múltiplo de dos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multiplo2 =<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="cf">if</span> (x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
+    <span class="kw">print</span>(<span class="kw">paste</span>(x,<span class="st">&#39;es múltiplo de dos&#39;</span>))
+  } <span class="cf">else</span> {
+    <span class="kw">print</span>(<span class="kw">paste</span>(x,<span class="st">&#39;no es múltiplo de dos&#39;</span>))
+  }
+}
+  
+<span class="kw">multiplo2</span>(<span class="dv">5</span>)</code></pre></div>
+<pre><code>## [1] &quot;5 no es múltiplo de dos&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">multiplo2</span>(<span class="op">-</span><span class="fl">2.3</span>)</code></pre></div>
+<pre><code>## [1] &quot;-2.3 no es múltiplo de dos&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">multiplo2</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] &quot;10 es múltiplo de dos&quot;</code></pre>
+</div>
+<div id="bucles-y-vectorizacion" class="section level2">
+<h2><span class="header-section-number">10.3</span> Bucles y vectorización</h2>
+<div id="bucles" class="section level3">
+<h3><span class="header-section-number">10.3.1</span> Bucles</h3>
+<p><code>R</code> permite crear bucles repetitivos (loops) y la ejecución condicional de sentencias. <code>R</code> admite bucles <code>for</code>, <code>repeat</code> and <code>while</code>.</p>
+<div id="el-bucle-for" class="section level4">
+<h4><span class="header-section-number">10.3.1.1</span> El bucle <code>for</code></h4>
+<p>La sintaxis de un bucle <code>for</code> es la que sigue:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> lista_de_valores)  { expresión }</code></pre></div>
+<p>Por ejemplo, dado un vector <span class="math inline">\(x\)</span> se puede calcular <span class="math inline">\(y=x^2\)</span> con el código:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="fl">0.5</span>)
+n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+y &lt;-<span class="st"> </span><span class="kw">numeric</span>(n) <span class="co"># Es necesario crear el objeto para acceder a los componentes...</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) { y[i] &lt;-<span class="st"> </span>x[i] <span class="op">^</span><span class="st"> </span><span class="dv">2</span> }
+x</code></pre></div>
+<pre><code>## [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y</code></pre></div>
+<pre><code>## [1] 4.00 2.25 1.00 0.25 0.00 0.25 1.00 2.25 4.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x<span class="op">^</span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1] 4.00 2.25 1.00 0.25 0.00 0.25 1.00 2.25 4.00</code></pre>
+<p>Otro ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="kw">print</span>(i)</code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+<p>El siguiente código simula gráficamente el segundero de un reloj:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">angulo &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dt">length =</span> <span class="dv">60</span>)
+radianes &lt;-<span class="st"> </span>angulo <span class="op">*</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="dv">180</span>
+x &lt;-<span class="st"> </span><span class="kw">cos</span>(radianes)
+y &lt;-<span class="st"> </span><span class="kw">sin</span>(radianes)
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">360</span>) {
+  <span class="kw">plot</span>(y, x, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>)
+  <span class="kw">arrows</span>(<span class="dv">0</span>, <span class="dv">0</span>, y[i], x[i], <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)
+  <span class="kw">Sys.sleep</span>(<span class="dv">1</span>) <span class="co"># espera un segundo</span>
+}</code></pre></div>
+</div>
+<div id="el-bucle-while" class="section level4">
+<h4><span class="header-section-number">10.3.1.2</span> El bucle <code>while</code></h4>
+<p>La sintaxis del bucle <code>while</code> es la que sigue:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span> (condición lógica)  { expresión }</code></pre></div>
+<p>Por ejemplo, si queremos calcular el primer número entero positivo cuyo cuadrado no excede de 5000, podemos hacer:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cuadrado &lt;-<span class="st"> </span><span class="dv">0</span>
+n &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="cf">while</span> (cuadrado <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5000</span>) {
+  n &lt;-<span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+  cuadrado &lt;-<span class="st"> </span>n<span class="op">^</span><span class="dv">2</span>
+}
+cuadrado</code></pre></div>
+<pre><code>## [1] 5041</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n</code></pre></div>
+<pre><code>## [1] 71</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n<span class="op">^</span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1] 5041</code></pre>
+<p><strong>Nota:</strong> Dentro de un bucle se puede emplear el comando <code>break</code> para terminarlo y el comando <code>next</code> para saltar a la siguiente iteración.</p>
+</div>
+</div>
+<div id="vectorizacion" class="section level3">
+<h3><span class="header-section-number">10.3.2</span> Vectorización</h3>
+<p>Como hemos visto en <code>R</code> se pueden hacer bucles. Sin embargo, es preferible evitar este tipo de estructuras y tratar de utilizar <strong>operaciones vectorizadas</strong> que son mucho más eficientes desde el punto de vista computacional.</p>
+<p>Por ejemplo para sumar dos vectores se puede hacer con un <code>for</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">1</span>)
+n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+z &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+  z[i] &lt;-<span class="st"> </span>x[i] <span class="op">+</span><span class="st"> </span>y[i]
+}
+z</code></pre></div>
+<pre><code>## [1] 1 2 8 5</code></pre>
+<p>Sin embargo, la operación anterior se podría hacer de modo más eficiente en modo vectorial:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y
+z</code></pre></div>
+<pre><code>## [1] 1 2 8 5</code></pre>
+</div>
+<div id="funciones-apply" class="section level3">
+<h3><span class="header-section-number">10.3.3</span> Funciones <code>apply</code></h3>
+<div id="la-funcion-apply" class="section level4">
+<h4><span class="header-section-number">10.3.3.1</span> La función <code>apply</code></h4>
+<p>Una forma de evitar la utilización de bucles es utilizando la sentica <code>apply</code> que permite evaluar una misma función en todas las filas, columnas, …. de un array de forma simultánea.</p>
+<p>La sintaxis de esta función es:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(X, MARGIN, FUN, ...)</code></pre></div>
+<ul>
+<li><code>X</code>: matriz (o array)</li>
+<li><code>MARGIN</code>: Un vector indicando las dimensiones donde se aplicará la función. 1 indica filas, 2 indica columnas, y <code>c(1,2)</code> indica filas y columnas.</li>
+<li><code>FUN</code>: función que será aplicada.</li>
+<li><code>...</code>: argumentos opcionales que serán usados por <code>FUN</code>.</li>
+</ul>
+<p>Veamos la utilización de la función <code>apply</code> con un ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)
+x</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(x, <span class="dv">1</span>, sum)    <span class="co"># Suma por filas</span></code></pre></div>
+<pre><code>## [1] 12 15 18</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(x, <span class="dv">2</span>, sum)    <span class="co"># Suma por columnas</span></code></pre></div>
+<pre><code>## [1]  6 15 24</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(x, <span class="dv">2</span>, min)    <span class="co"># Mínimo de las columnas</span></code></pre></div>
+<pre><code>## [1] 1 4 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(x, <span class="dv">2</span>, range)  <span class="co"># Rango (mínimo y máximo) de las columnas</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    3    6    9</code></pre>
+</div>
+<div id="la-funcion-tapply" class="section level4">
+<h4><span class="header-section-number">10.3.3.2</span> La función <code>tapply</code></h4>
+<p>La function <code>tapply</code> es similar a la función <code>apply</code> y permite aplicar una función a los datos desagregados, utilizando como criterio los distintos niveles de una variable factor. La sintaxis de esta función es como sigue:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">tapply</span>(X, INDEX, FUN, ...,)</code></pre></div>
+<ul>
+<li><code>X</code>: matriz (o array).</li>
+<li><code>INDEX</code>: factor indicando los grupos (niveles).</li>
+<li><code>FUN</code>: función que será aplicada.</li>
+<li><code>...</code>: argumentos opcionales .</li>
+</ul>
+<p>Consideremos, por ejemplo, el data.frame <code>ChickWeight</code> con datos de un experimento relacionado con la repercusión de varias dietas en el peso de pollos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ChickWeight)
+<span class="kw">head</span>(ChickWeight)</code></pre></div>
+<pre><code>##   weight Time Chick Diet
+## 1     42    0     1    1
+## 2     51    2     1    1
+## 3     59    4     1    1
+## 4     64    6     1    1
+## 5     76    8     1    1
+## 6     93   10     1    1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">peso &lt;-<span class="st"> </span>ChickWeight<span class="op">$</span>weight
+dieta &lt;-<span class="st"> </span>ChickWeight<span class="op">$</span>Diet
+<span class="kw">levels</span>(dieta) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Dieta 1&quot;</span>, <span class="st">&quot;Dieta 2&quot;</span>, <span class="st">&quot;Dieta 3&quot;</span>, <span class="st">&quot;Dieta 4&quot;</span>)
+<span class="kw">tapply</span>(peso, dieta, mean)  <span class="co"># Peso medio por dieta</span></code></pre></div>
+<pre><code>##  Dieta 1  Dieta 2  Dieta 3  Dieta 4 
+## 102.6455 122.6167 142.9500 135.2627</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(peso, dieta, summary)</code></pre></div>
+<pre><code>## $`Dieta 1`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   35.00   57.75   88.00  102.65  136.50  305.00 
+## 
+## $`Dieta 2`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    39.0    65.5   104.5   122.6   163.0   331.0 
+## 
+## $`Dieta 3`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    39.0    67.5   125.5   142.9   198.8   373.0 
+## 
+## $`Dieta 4`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   39.00   71.25  129.50  135.26  184.75  322.00</code></pre>
+<p>Otro ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">provincia &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))
+<span class="kw">levels</span>(provincia) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A Coruña&quot;</span>, <span class="st">&quot;Lugo&quot;</span>, <span class="st">&quot;Orense&quot;</span>, <span class="st">&quot;Pontevedra&quot;</span>)
+hijos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)
+<span class="kw">data.frame</span>(provincia, hijos)</code></pre></div>
+<pre><code>##     provincia hijos
+## 1    A Coruña     1
+## 2      Orense     2
+## 3  Pontevedra     0
+## 4        Lugo     3
+## 5  Pontevedra     4
+## 6      Orense     1
+## 7        Lugo     0
+## 8    A Coruña     0
+## 9  Pontevedra     2
+## 10     Orense     3
+## 11       Lugo     1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(hijos, provincia, mean) <span class="co"># Número medio de hijos por provincia</span></code></pre></div>
+<pre><code>##   A Coruña       Lugo     Orense Pontevedra 
+##   0.500000   1.333333   2.000000   2.000000</code></pre>
+</div>
+</div>
+</div>
+<div id="aplicacion-validacion-cruzada" class="section level2">
+<h2><span class="header-section-number">10.4</span> Aplicación: validación cruzada</h2>
+<p>Si deseamos evaluar la calidad predictiva de un modelo, lo ideal es disponer de suficientes datos para poder hacer dos grupos con ellos: una muestra de entrenamiento y otra de validación. Cuando hacer esto no es posible, disponemos como alternativa de la <em>validación cruzada</em>, una herramienta que permite estimar los errores de predicción utilizando una única muestra de datos. En su versión más simple (llamada en inglés <em>leave-one-out</em>):</p>
+<ul>
+<li><p>se utilizan todos los datos menos uno para realizar el ajuste, y se mide su error de predicción en el único dato no utilizado;</p></li>
+<li><p>a continuación se repite el proceso utilizando, uno a uno, todos los puntos de la muestra de datos;</p></li>
+<li><p>y finalmente se combinan todos los errores en un único error de predicción.</p></li>
+</ul>
+<p>El proceso anterior se puede generalizar repartiendo los datos en distintos grupos, más o menos del mismo tamaño, y sustituyendo en la explicación anterior dato por grupo.</p>
+<div id="primer-ejemplo" class="section level3">
+<h3><span class="header-section-number">10.4.1</span> Primer ejemplo</h3>
+<p>Cuando disponemos de unos datos y los queremos ajustar utilizando un modelo que depende de un parámetro, por ejemplo un modelo de regresión polinómico que depende del grado del polinomio, podemos utilizar la validación cruzada para seleccionar el grado del polinomio que debemos utilizar.</p>
+<p>Veámoslo utilizando las variables <em>income</em> y <em>prestige</em> de la base de datos <em>Prestige</em>, incluida en el paquete <em>car</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(car)
+<span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-42-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Representemos, gráficamente, los ajustes lineal, cuadrático y cúbico.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)
+<span class="co"># Ajuste lineal</span>
+<span class="kw">abline</span>(<span class="kw">lm</span>(prestige <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> Prestige))
+<span class="co"># Ajuste cuadrático</span>
+modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(prestige <span class="op">~</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> Prestige)
+parest &lt;-<span class="st"> </span><span class="kw">coef</span>(modelo)
+<span class="kw">curve</span>(parest[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>parest[<span class="dv">2</span>]<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>parest[<span class="dv">3</span>]<span class="op">*</span>x<span class="op">^</span><span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)
+<span class="co"># Ajuste cúbico</span>
+modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(prestige <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(income, <span class="dv">3</span>), <span class="dt">data =</span> Prestige)
+valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">26000</span>, <span class="dt">len =</span> <span class="dv">100</span>)
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))
+<span class="kw">lines</span>(valores, pred, <span class="dt">lty =</span> <span class="dv">3</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Lineal&quot;</span>,<span class="st">&quot;Cuadrático&quot;</span>,<span class="st">&quot;Cúbico&quot;), lty = 1:3)</span></code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-43-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Vamos a escribir una función que nos devuelva, para cada dato (fila) de <em>Prestige</em>, la predicción en ese punto ajustando el modelo con todos los demás puntos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cv.lm &lt;-<span class="st"> </span><span class="cf">function</span>(formula, datos) {
+      n &lt;-<span class="st"> </span><span class="kw">nrow</span>(datos)
+      cv.pred &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)
+      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+          modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, datos[<span class="op">-</span>i, ])
+          cv.pred[i] &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">newdata =</span> datos[i, ])
+      }
+      <span class="kw">return</span>(cv.pred)
+}</code></pre></div>
+<p>Por último, calculamos el error de predicción (en este caso el <em>error cuadrático medio</em>) en los datos de validación. Repetimos el proceso para cada valor del parámetro (grado del ajuste polinómico) y minimizamos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grado &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
+cv.error &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">5</span>)
+<span class="cf">for</span>(p <span class="cf">in</span> grado){
+  cv.pred &lt;-<span class="st"> </span><span class="kw">cv.lm</span>(prestige <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(income, p), Prestige)
+  cv.error[p] &lt;-<span class="st"> </span><span class="kw">mean</span>((cv.pred <span class="op">-</span><span class="st"> </span>Prestige<span class="op">$</span>prestige)<span class="op">^</span><span class="dv">2</span>)
+}
+<span class="kw">plot</span>(grado, cv.error, <span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-45-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grado[<span class="kw">which.min</span>(cv.error)]</code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="segundo-ejemplo" class="section level3">
+<h3><span class="header-section-number">10.4.2</span> Segundo ejemplo</h3>
+<p>En este segundo ejemplo vamos a aplicar una técnica de modelado <em>local</em> al problema de regresión del ejemplo anterior. El enfoque es <em>data-analytic</em> en el sentido de que no nos limitamos a una familia de funciones que dependen de unos parámetros (enfoque paramétrico), que son los que tenemos que determinar, sino que las funciones de regresión están determinadas por los datos. Aun así, sigue habiendo un parámetro que controla el proceso, cuyo valor debemos fijar siguiendo algún criterio de optimalidad.</p>
+<p>Vamos a realizar, utilizando la función <code>loess</code>, un <em>ajuste polinómico local robusto</em>, que depende del parámetro <code>span</code>, que podemos interpretar como la proporción de datos empleada en el ajuste.</p>
+<p>Utilizando un valor <code>span=0.25</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)
+fit &lt;-<span class="st"> </span><span class="kw">loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">span =</span> <span class="fl">0.25</span>)
+valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))
+<span class="kw">lines</span>(valores, pred)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-46-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Si utilizamos <code>span=0.5</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)
+fit &lt;-<span class="st"> </span><span class="kw">loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">span =</span> <span class="fl">0.5</span>)
+valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))
+<span class="kw">lines</span>(valores, pred)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-47-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Nuestro objetivo es seleccionar un valor razonable para <code>span</code>, y lo vamos a hacer utilizando validación cruzada y minimizando el error cuadrático medio de la predicción en los datos de validación.</p>
+<p>Utilizando la función</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cv.loess &lt;-<span class="st"> </span><span class="cf">function</span>(formula, datos, p) {
+  n &lt;-<span class="st"> </span><span class="kw">nrow</span>(datos)
+  cv.pred &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+    modelo &lt;-<span class="st"> </span><span class="kw">loess</span>(formula, datos[<span class="op">-</span>i, ], <span class="dt">span =</span> p, 
+                    <span class="dt">control =</span> <span class="kw">loess.control</span>(<span class="dt">surface =</span> <span class="st">&quot;direct&quot;</span>))
+    <span class="co"># control = loess.control(surface = &quot;direct&quot;) permite extrapolaciones</span>
+    cv.pred[i] &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">newdata =</span> datos[i, ])
+  }
+  <span class="kw">return</span>(cv.pred)
+}</code></pre></div>
+<p>y procediendo de modo similar al caso anterior:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ventanas &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.2</span>, <span class="dv">1</span>, <span class="dt">len =</span> <span class="dv">10</span>)
+np &lt;-<span class="st"> </span><span class="kw">length</span>(ventanas)
+cv.error &lt;-<span class="st"> </span><span class="kw">numeric</span>(np)
+<span class="cf">for</span>(p <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>np){
+  cv.pred &lt;-<span class="st"> </span><span class="kw">cv.loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, ventanas[p])
+  cv.error[p] &lt;-<span class="st"> </span><span class="kw">mean</span>((cv.pred <span class="op">-</span><span class="st"> </span>Prestige<span class="op">$</span>prestige)<span class="op">^</span><span class="dv">2</span>)
+  <span class="co"># cv.error[p] &lt;- median(abs(cv.pred - Prestige$prestige))</span>
+}
+
+<span class="kw">plot</span>(ventanas, cv.error)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-49-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>obtenemos la ventana “óptima” (en este caso el valor máximo):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">span &lt;-<span class="st"> </span>ventanas[<span class="kw">which.min</span>(cv.error)]
+span</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>y la correspondiente estimación:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)
+fit &lt;-<span class="st"> </span><span class="kw">loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">span =</span> span)
+valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))
+<span class="kw">lines</span>(valores, pred)</code></pre></div>
+<p><img src="11-Programacion_files/figure-html/unnamed-chunk-51-1.png" width="70%" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regresion-no-parametrica.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="generacion-de-informes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rubenfcasal/intror/edit/master/11-Programacion.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Intro_Analisis_Datos_R.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

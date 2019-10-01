@@ -1,0 +1,343 @@
+Análisis exploratorio de datos
+==============================
+
+
+```{r , child = '_global_options.Rmd'}
+```
+
+El objetivo del *análisis exploratorio de datos* es presentar una descripción de los
+mismos que faciliten su análisis mediante procedimientos que permitan:
+
+* Organizar los datos
+* Resumirlos
+* Representarlos gráficamente
+* Análizar la información
+
+Medidas resumen
+---------------
+
+### Datos de ejemplo
+El fichero *empleados.RData* contiene datos de empleados de un banco que utilizaremos,
+entre otros, a modo de ejemplo.
+
+```{r }
+load("datos/empleados.RData")
+data.frame(Etiquetas = attr(empleados, "variable.labels"))  # Listamos las etiquetas
+```
+
+Para hacer referencia directamente a las variables de *empleados*
+
+```{r }
+attach(empleados)
+```{r echo=FALSE}
+attr(empleados, "variable.labels") <- NULL                  # Eliminamos las etiquetas para que no molesten...
+```
+
+
+### Tablas de frecuencias
+
+```{r }
+table(sexo)
+prop.table(table(sexo))
+
+table(sexo,catlab)
+prop.table(table(sexo,catlab))
+prop.table(table(sexo,catlab), 1)
+prop.table(table(sexo,catlab), 2)
+
+table(catlab,educ,sexo)
+round(prop.table(table(catlab,educ,sexo)),2)
+```
+
+Si la variable es ordinal, entonces también son de interés las
+frecuencias acumuladas
+
+```{r }
+table(educ)
+prop.table(table(educ))
+cumsum(table(educ))
+cumsum(prop.table(table(educ)))
+```
+
+
+### Media y varianza
+La media es la medida de centralización por excelencia. Para su cálculo
+se utiliza la instrucción *mean*
+
+```{r }
+consumo<-c(6.9, 6.3, 6.2, 6.5 ,6.4, 6.8, 6.6)
+mean(consumo)
+
+dotchart(consumo,pch=16)
+text(mean(consumo),2.5, pos=3,expression(bar(X)==6.53))
+arrows(mean(consumo),0,mean(consumo),2.5,length = 0.15,col='red')
+
+mean(salario)
+mean(subset(empleados,catlab=='Directivo')$salario)
+```
+
+También se puede utilizar la función *tapply*, que se estudiará
+con detalle más adelante
+
+```{r }
+tapply(salario, catlab, mean)
+```
+
+La principal medida de dispersión es la varianza. En la práctica, cuando
+se trabaja con datos muestrales, se sustituye por la *cuasi*-varianza
+(también llamada varianza muestral corregida), que se calcula mediante
+el comando *var*
+
+```{r }
+var(consumo)
+var(salario)
+```
+
+La *cuasi*-desviación típica se calcula
+
+```{r }
+sd(consumo)
+sd(salario)
+```
+
+o, equivalentemente,
+
+```{r }
+sqrt(var(consumo))
+sqrt(var(salario))
+```
+
+La media de dispersión adimensional (relativa) más utilizada
+es el *coeficiente de variación* (de Pearson)
+
+```{r }
+sd(consumo)/abs(mean(consumo))
+```
+
+que también podemos expresar en tanto por cien
+
+```{r }
+100*sd(consumo)/abs(mean(consumo))
+```
+
+El coeficiente de variación nos permite, entre otras cosas, comparar dispersiones de
+variables medidas en diferentes unidades
+
+```{r }
+100*sd(salini)/abs(mean(salini))
+100*sd(salario)/abs(mean(salario))
+100*sd(expprev)/abs(mean(expprev))
+```
+
+
+### Mediana y cuantiles
+La mediana es una medida de centralización robusta. Se calcula mediante *median*
+
+```{r }
+diametro <- c(3.88,4.09,3.92,3.97,4.02,3.95, 4.03,3.92,3.98,5.60)
+dotchart(diametro,pch=16,xlab="diámetro")
+abline(v=mean(diametro),col='red',lwd=2)
+abline(v=median(diametro),col='blue',lty=2,lwd=2)
+legend("bottomright",c("media","mediana"),
+       col=c("red","blue"),lty=c(1,2),lwd=c(2,2),box.lty=0,cex=1.5)
+```
+
+Podemos comprobar que la variable *salario* presenta una
+asimetría derecha
+
+```{r }
+mean(salario); median(salario)
+```
+
+Calculemos cuántos empleados tienen un salario inferior al salario medio
+
+```{r }
+mean(salario < mean(salario))
+
+paste('El ', round(100*mean(salario < mean(salario)),0), '%',
+      ' de los empleados tienen un salario inferior al salario medio', sep='')
+```
+
+Como sabemos, la mitad de los empleados tienen un salario inferior a la mediana
+
+```{r }
+mean(salario < median(salario))
+```
+
+Los cuantiles son una generalización de la mediana, que se corresponde con el
+cuantil de orden 0.5. *R* contempla distintas formas
+de calcular los cuantiles
+
+```{r }
+median(c(1,2,3,4))
+quantile(c(1,2,3,4),0.5)
+quantile(c(1,2,3,4),0.5,type=1)
+```
+
+Calculemos los *cuartiles* y los *deciles* de la variable *salario*
+
+```{r }
+quantile(salario)
+quantile(salario, probs=c(0.25,0.5,0.75))
+quantile(salario, probs=seq(0.1, 0.9, 0.1))
+```
+
+El *rango* y el *rango intercuartílico*
+
+```{r }
+data.frame(Rango=max(salario)-min(salario),
+           RI=as.numeric(quantile(salario, 0.75) - quantile(salario, 0.25)))
+```
+
+
+### *Summary*
+
+```{r }
+summary(empleados)
+summary(subset(empleados,catlab=='Directivo'))
+```
+
+
+Gráficos
+--------
+
+### Diagrama de barras y gráfico de sectores
+
+```{r }
+table(catlab)
+par(mfrow = c(1, 3))
+barplot(table(catlab),main="frecuencia absoluta")
+barplot(100*prop.table(table(catlab)),main="frecuencia relativa (%)")
+pie(table(catlab))
+
+
+nj <- table(educ)
+fj <- prop.table(nj)
+Nj <- cumsum(nj)
+Fj <- cumsum(fj)
+layout(matrix(c(1,2,5,3,4,5), 2, 3, byrow=TRUE), respect=TRUE)
+barplot(nj,main="frecuencia absolutas",xlab='años de estudio')
+barplot(fj,main="frecuencia relativas",xlab='años de estudio')
+barplot(Nj,main="frecuencia absolutas acumuladas",xlab='años de estudio')
+barplot(Fj,main="frecuencia relativas acumuladas",xlab='años de estudio')
+pie(nj,col=rainbow(6),main='años de estudio')
+par(mfrow = c(1, 1))
+```
+
+Con datos continuos, podemos hacer uso de la función *cut*
+(más adelante veremos como se representa el histograma)
+
+```{r }
+table(cut(expprev, breaks=5))
+barplot(table(cut(expprev,breaks=5)),xlab="Experiencia previa",
+        main="Categorización en 5 clases")
+```
+
+Debemos ser muy cuidadosos a la hora de valorar gráficas como la siguiente
+
+```{r }
+tt <- table(cut(expprev, breaks=c(0,40,80,150,250,400)))
+barplot(tt,xlab="Experiencia previa", main="Categorización en 5 clases")
+```
+
+
+### Gráfico de puntos
+
+```{r }
+dotchart(salario, xlab='salarios')
+stripchart(salario~sexo, method='jitter')
+```
+
+
+### Árbol de tallo y hojas
+Esta representación puede ser útil cuando se dispone de pocos datos.
+
+```{r }
+stem(salario)
+stem(tiempemp)
+```
+
+
+### Histograma
+Este gráfico es uno de los más habituales para representar datos continuos
+
+```{r }
+hist(salario, main='número de clases por defecto')
+hist(salario, breaks=3, main='3 intervalos de clase')
+hist(salario, breaks=100, main='100 intervalos de clase')
+cl1 <- seq(15000,40000,5000)
+cl2 <- seq(50000,80000,10000)
+cl3 <- seq(100000,140000,20000)
+hist(salario, breaks=c(cl1,cl2,cl3),main='intervalos de clase de distinta amplitud')
+```
+
+
+### Gráfico de densidad
+Es una versión suavizada del histograma.
+
+```{r }
+plot(density(salario))
+hist(salario, freq=F, main='')
+lines(density(salario), lwd=3, col='red')
+```
+
+El paquete *car* nos da acceso a la instrucción *densityPlot*:
+
+```{r }
+library(car)  # help(car)
+densityPlot(salario~sexo)
+```
+
+
+### Diagrama de cajas
+Se trata de un gráfico muy polivalente
+
+```{r }
+boxplot(salario, horizontal=T, axes=F)
+axis(1)
+par(mfrow=c(1,2))
+boxplot(salario~catlab)
+boxplot(salario~sexo)
+par(mfrow=c(1,1))
+boxplot(salario~sexo*catlab)
+boxplot(salini, salario)
+
+hist(salario,probability=T,ylab="",col='grey',axes=F,main=""); axis(1)
+lines(density(salario),col='red',lwd=2)
+par(new=T)
+boxplot(salario,horizontal=T,axes=F,lwd=2)
+```
+
+
+### Gráfica de dispersión
+Permite ver la relación entre dos variables:
+
+```{r }
+plot(educ,salario)
+plot(tiempemp,salario)
+plot(salini,salario)
+```
+
+En el caso de una serie temporal
+
+```{r }
+AirPassengers
+plot(AirPassengers)
+```
+
+Y un último ejemplo utilizando los datos *iris* de Fisher:
+
+```{r }
+plot(iris[,3],iris[,4],main="Longitud y anchura de pétalos de lirios",
+     xlab="Longitud de pétalo",ylab="Anchura de pétalo")
+
+iris.color<-c("red","green","blue")[iris$Species]
+plot(iris[,3],iris[,4],col=iris.color,main="Longitud y anchura
+     de pétalo según especies",xlab="Longitud de pétalo",
+     ylab="Anchura de pétalo")
+legend("topleft",c("Setosa","Versicolor","Virginica"),pch=1,
+       col=c("red","green","blue"),box.lty=0)
+
+pairs(iris[,1:4],col=iris.color)
+```
+

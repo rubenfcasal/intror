@@ -1,0 +1,104 @@
+Modelado de datos
+=================
+
+La realidad puede ser muy compleja por lo que es habitual emplear un
+modelo para tratar de explicarla.
+
+-   Modelos estocásticos (con componente aleatoria).
+
+    -   Tienen en cuenta la incertidumbre debida a no disponer de la suficiente información 
+        sobre las variables que influyen en el fenómeno en estudio.
+
+    -   La inferencia estadística proporciona herramientas para ajustar y 
+        contrastar la validez del modelo a partir de los datos observados.
+        
+Sin embargo resultaría muy extraño que la realidad coincida exactamente con un modelo concreto.  
+
+-   [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) afirmó en su famoso aforismo:
+
+    > En esencia, todos los modelos son falsos, pero algunos son útiles.      
+    
+-   El objetivo de un modelo es disponer de una aproximación simple de la realidad que sea útil.
+
+
+Modelos de regresión
+--------------------
+
+Nos centraremos en los modelos de regresión:
+
+$$Y=f(X_{1},\cdots,X_{p})+\varepsilon$$ 
+donde:
+
+-   $Y\equiv$ **variable respuesta** (o dependiente).
+
+-   $\left(  X_{1},\cdots,X_{p}\right)  \equiv$ **variables
+    explicativas** (independientes, o covariables).
+
+-   $\varepsilon\equiv$ **error aleatorio.**
+
+### Herramientas disponibles en `R`
+
+`R` dispone de múltiples herramientas para trabajar con modelos de este tipo. Algunas de las funciones y paquetes disponibles se muestran a continuación:
+
+-   Modelos paramétricos:
+
+    -   Modelos lineales:
+
+        -   Regresión lineal: `lm()` (`aov()`, `lme()`, `biglm`, ...).
+        
+        -   Regresión lineal robusta: `MASS::rlm()`.
+
+        -   Métodos de regularización (Ridge regression, Lasso): `glmnet`, ...
+
+    -   Modelos lineales generalizados: `glm()` (`bigglm`, ...).
+    
+    -   Modelos paramétricos no lineales: `nls()` (`nlme`, ...).
+
+- Modelos no paramétricos:
+
+    -   Regresión local (métodos de suavizado): `loess()`, `KernSmooth`, `sm`, ...
+
+    -   Modelos aditivos generalizados (GAM): `gam`, `mgcv`, ...
+    
+    -   Arboles de decisión (Random Forest, Boosting): `rpart`, `randomForest`,  `xgboost`, ...
+
+    -   Redes neuronales, ...
+
+
+Desde el punto de vista de la programación, con todos estos modelos se trabaja de una forma muy similar  en `R`.
+
+    
+Fórmulas
+--------
+En `R` para especificar un modelo estadístico (realmente una familia) se suelen emplear fórmulas (también para generar gráficos). 
+Son de la forma:
+```{r, eval=FALSE}
+respuesta ~ modelo
+```
+`modelo` especifica los "términos" mediante operadores (tienen un significado especial en este contexto):
+
+Operador  |  Descripción
+--------  |   -------------------
+`a+b` |   incluye `a` y `b` (efectos principales)
+`-b`  |  excluye  `b` del modelo
+`a:b` |  interacción de `a` y `b`
+\     |  `b %in% a` efectos de `b` anidados en `a` (`a:b`)
+\     |  `a/b = a + b %in% a = a + a:b`
+`a*b = a+b+a:b`   |   efectos principales más interacciones
+`^n`  |   interacciones hasta nivel `n` (`(a+b)^2 = a+b+a:b`)
+`poly(a, n)`  |  polinomios de `a` hasta grado `n`
+`1`   |  término constante 
+`.`   |  todas las variables disponibles o modelo actual en actualizaciones
+
+Para realizar operaciones aritméticas (que incluyan `+`, `-`, `*`, `^`, `1`, ...) 
+es necesario "aislar" la operación
+dentro una función (e.g. `log(abs(x) + 1)`). 
+Por ejemplo, para realizar un ajuste cuadrático se debería utilizar `y ~ x + I(x^2)`, ya que  `y ~ x + x^2 = y ~ x` (la interacción `x:x = x`).
+
+-   `I()` función identidad.
+
+
+Ejemplo: regresión lineal simple
+--------------------------------
+Introducido en descriptiva y con referencias al tema siguiente
+

@@ -1,0 +1,666 @@
+Modelos lineales
+================
+
+Suponen que la función de regresión es lineal:
+
+$$Y=\beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}+\varepsilon$$
+
+El efecto de las variables explicativas sobre la respuesta es simple (proporcional a su valor).
+
+
+Ejemplo
+-------
+
+ El fichero *hatco.RData* contiene observaciones de clientes de la compañía de
+ distribución industrial (Compañía Hair, Anderson y Tatham).
+ Las variables se pueden clasificar en tres grupos:
+
+```{r }
+load('datos/hatco.RData')
+as.data.frame(attr(hatco, "variable.labels"))
+```
+
+Consideraremos como respuesta la variable *fidelida* y como variables explicativas
+el resto de variables continuas menos *satisfac*.
+```{r}
+datos <- hatco[, 6:13]  # Nota: realmente no copia el objeto...
+plot(datos)
+# cor(datos, use = "complete") # Por defecto 8 decimales...
+print(cor(datos, use = "complete"), digits = 2)
+```
+
+Ajuste: función `lm`
+-------------------
+Para el ajuste (estimación de los parámetros) de un modelo lineal a un conjunto de datos (por mínimos cuadrados) se emplea la función `lm`:
+```{r, eval=FALSE}
+ajuste <- lm(formula, datos, seleccion, pesos, na.action)
+```
+
+-   `formula` fórmula que especifica el modelo.
+-   `datos` data.frame opcional con las variables de la formula.
+-   `seleccion` especificación opcional de un subconjunto de observaciones.
+-   `pesos` vector opcional de pesos (WLS).
+-   `na.action` opción para manejar los datos faltantes (`na.omit`).
+
+
+```{r}
+modelo <- lm(fidelida ~ servconj, datos)
+modelo
+```
+
+Al imprimir el ajuste resultante se muestra un pequeño resumen del ajuste (aunque el objeto que contiene los resultados es una lista).
+```{r, eval=FALSE, include=FALSE}
+# str(modelo)
+names(modelo)
+```
+Para obtener un resumen más completo se puede utilizar la función `summary()`.
+```{r}
+summary(modelo)
+```
+
+```{r}
+plot(fidelida ~ servconj, datos)
+abline(modelo)
+```
+
+
+### Extracción de información
+
+Para la extracción de información se pueden acceder a los componentes del modelo ajustado o emplear funciones  (genéricas). Algunas de las más utilizadas son las siguientes:
+
+Función   |   Descripción
+-------   |   ---------------------------------------------------
+`fitted`  |   valores ajustados
+`coef`    |   coeficientes estimados (y errores estándar)
+`confint`   |   intervalos de confianza para los coeficientes
+`residuals` |   residuos
+`plot`    |   gráficos de diagnóstico
+`termplot` |  gráfico de efectos parciales
+`anova`   |   calcula tablas de análisis de varianza (también permite comparar modelos)
+`predict` |   calcula predicciones para nuevos datos
+
+Ejemplo:
+```{r }
+modelo2 <- lm(fidelida ~ servconj + flexprec, data = hatco)
+summary(modelo2)
+confint(modelo2)
+anova(modelo2)
+# anova(modelo2, modelo)
+# termplot(modelo2, partial.resid = TRUE)
+```
+
+
+Muchas de estas funciones genéricas son válidas para otros tipos de
+modelos (glm, ...).
+
+Algunas funciones como `summary()` devuelven información adicional:
+```{r}
+res <- summary(modelo2)
+names(res)
+res$sigma
+res$adj.r.squared
+```
+
+Predicción
+----------
+Para calcular predicciones (estimaciones de la media condicionada) se puede emplear la función `predict()` (ejecutar `help(predict.lm)` para ver todas las opciones disponibles).
+Por defecto obtiene las predicciones correspondientes a las observaciones (`modelo$fitted.values`). Para otros casos hay que emplear el argumento `newdata`:
+
+-   data.frame con los valores de (todas) las covariables, sus nombres 
+    deben coincidir con los originales.
+
+Ejemplo:
+```{r}
+valores <- 0:5
+pred <- predict(modelo, newdata = data.frame(servconj = valores))
+pred
+plot(fidelida ~ servconj, datos)
+lines(valores, pred)
+```
+
+
+Esta función también permite obtener intervalos de confianza y de predicción:
+```{r}
+valores <- seq(0, 5, len = 100)
+newdata <- data.frame(servconj = valores)
+pred <- predict(modelo, newdata = newdata, interval = c("confidence"))
+head(pred)
+plot(fidelida ~ servconj, datos)
+matlines(valores, pred, lty = c(1, 2, 2), col = 1)
+pred2 <- predict(modelo, newdata = newdata, interval = c("prediction"))
+matlines(valores, pred2[, -1], lty = 3, col = 1)
+legend("topleft", c("Ajuste", "Int. confianza", "Int. predicción"), lty = c(1, 2, 3))
+```
+
+
+Selección de variables explicativas
+-----------------------------------
+
+Cuando se dispone de un conjunto grande de posibles variables explicativas 
+suele ser especialmente importante determinar cuales de estas deberían ser 
+incluidas en el modelo de regresión.
+Si alguna de las variables no contiene información relevante sobre la respuesta 
+no se debería incluir (se simplificaría la interpretación del modelo, aumentaría 
+la precisión de la estimación y se evitarían problemas como la multicolinealidad).
+Se trataría entonces de conseguir un buen ajuste con el menor número de variables explicativas posible.
+
+Para actualizar un modelo (p.e. eliminando o añadiendo variables) se puede emplear la función `update`:
+```{r}
+modelo.completo <- lm(fidelida ~ . , data = datos)
+summary(modelo.completo)
+modelo.reducido <- update(modelo.completo, . ~ . - imgfabri)
+summary(modelo.reducido)
+```
+
+Para obtener el modelo "óptimo" lo ideal sería evaluar todos los modelos posibles.
+
+### Búsqueda exhaustiva
+
+La función `regsubsets` del paquete `leaps` permite seleccionar los mejores modelos
+fijando el número de variables explicativas. 
+Por defecto, evalúa todos los modelos posibles con un determinado número de
+parámetros (variando desde 1 hasta un máximo de `nvmax=8`) 
+y selecciona el mejor (`nbest=1`).
+```{r}
+library(leaps)
+res <- regsubsets(fidelida ~ . , data = datos)
+summary(res)
+# names(summary(res))
+```
+
+Al representar el resultado se obtiene un gráfico con los mejores modelos ordenados 
+según el criterio determinado por el argumento `scale = c("bic", "Cp", "adjr2", "r2")`.
+Por ejemplo, en este caso, empleando el coeficiente de determinación ajustado, obtendríamos:
+```{r}
+plot(res, scale = "adjr2")
+```
+
+En este caso (considerando que una mejora del 2% no es significativa), el modelo resultante sería:
+```{r}
+lm(fidelida ~ servconj + flexprec, data = hatco)
+```
+
+**Notas**:
+
+-   Si se emplea alguno de los criterios habituales, el mejor modelo con un determinado
+    número de variables no depende del criterio empleado. 
+    Pero estos criterios pueden diferir al comparar modelos con distinto número de 
+    variables explicativas.
+
+-   Si el número de variables explicativas es grande, en lugar de emplear una 
+    búsqueda exhaustiva se puede emplear un criterio por pasos, mediante el argumento 
+    `method = c("backward", "forward", "seqrep")`, pero puede ser recomendable 
+    emplear el paquete `MASS` para obtener directamente el modelo final.
+    
+### Selección por pasos
+
+Si el número de variables es grande (no sería práctico evaluar todas las posibilidades) 
+se suele utilizar alguno (o varios) de los siguientes métodos:
+
+-   **Selección progresiva** (forward): Se parte de una situación en la
+    que no hay ninguna variable y en cada paso se incluye una aplicando
+    un **criterio de entrada** (hasta que ninguna de las restantes lo
+    verifican).
+
+-   **Eliminación progresiva** (backward): Se parte del modelo con todas
+    las variables y en cada paso se elimina una aplicando un **criterio
+    de salida** (hasta que ninguna de las incluidas lo verifican).
+
+-   **Regresión paso a paso** (stepwise): El más utilizado, se combina
+    un criterio de entrada y uno de salida. Normalmente se parte sin
+    ninguna variable y **en cada paso puede haber una inclusión y una
+    exclusión** (forward/backward).
+
+La función `stepAIC` del paquete `MASS` permite seleccionar el modelo por pasos, 
+hacia delante o hacia atrás según criterio AIC o BIC (también esta disponible una función `step` del paquete base `stats` con menos opciones). 
+La función `stepwise` del paquete `RcmdrMisc` es una interfaz de `stepAIC` 
+que facilita su uso:
+```{r, message=FALSE}
+library(MASS)
+library(RcmdrMisc)
+modelo <- stepwise(modelo.completo, direction = "forward/backward", criterion = "BIC")
+summary(modelo)
+```
+Los métodos disponibles son `"backward/forward"`, `"forward/backward"`, `"backward"` y `"forward"`. 
+ 
+Cuando el número de variables explicativas es muy grande (o si el tamaño de la muestra es pequeño en comparación) pueden aparecer problemas al emplear los métodos anteriores (incluso pueden no ser aplicables). Una alternativa son los métodos de regularización (Ridge regression, Lasso) disponibles en el paquete `glmnet`.
+
+Regresión con variables categóricas
+-----------------------------------
+La función `lm()` admite también variables categóricas (factores), lo que equivaldría a modelos de análisis de la varianza o de la covarianza.
+
+Como ejemplo, en el resto del tema emplearemos los datos de empleados:
+```{r}
+load("datos/empleados.RData")
+datos <- with(empleados, data.frame(lnsal = log(salario), lnsalini = log(salini), catlab, sexo))
+```
+Al incluir variables categóricas la función `lm()` genera las variables indicadoras (variables dummy) que sean necesarias.
+Por ejemplo, la función `model.matrix()` construye la denominada matriz de diseño $X$ de un modelo lineal:
+$$\mathbf{Y}=X\mathbf{\beta}+\mathbf{\varepsilon}$$
+En el caso de una variable categórica, por defecto se toma la primera categoría como referencia y se generan variables indicadoras del resto de categorías:
+```{r}
+X <- model.matrix(lnsal ~ catlab, datos)
+head(X)
+```
+En el correspondiente ajuste (análisis de la varianza de un factor):
+```{r}
+modelo <- lm(lnsal ~ catlab, datos)
+summary(modelo)
+```
+el nivel de referencia no tiene asociado un coeficiente (su efecto se corresponde con `(Intercept)`). Los coeficientes del resto de niveles miden el cambio que se produce en la media al cambiar desde la categoría de referencia (diferencias de efectos respecto al nivel de referencia).
+
+Para contrastar el efecto de los factores, es preferible emplear la función `anova`:
+```{r}
+modelo <- lm(lnsal ~ catlab + sexo, datos)
+anova(modelo)
+```
+
+**Notas**:
+
+-   Para centrarse en las efectos de los factores, se puede emplear la función
+    `aov` (analysis of variance; ver también `model.tables()` y `TukeyHSD()`). Esta
+    función llama internamente a `lm()` (utilizando la misma parametrización).
+
+-   Para utilizar distintas parametrizaciones de los efectos se puede emplear 
+    el argumento `contrasts = c("contr.treatment", "contr.poly")` 
+    (ver `help(contrasts)`).
+
+
+Interacciones
+-------------
+
+Al emplear el operador `+` se considera que los efectos de las covariables son aditivos (independientes):
+```{r}
+modelo <- lm(lnsal ~ lnsalini + catlab, datos)
+anova(modelo)
+
+plot(lnsal ~ lnsalini, data = datos, pch = as.numeric(catlab), col = 'darkgray')
+parest <- coef(modelo)
+abline(a = parest[1], b = parest[2], lty = 1)
+abline(a = parest[1] + parest[3], b = parest[2], lty = 2)
+abline(a = parest[1] + parest[4], b = parest[2], lty = 3)
+legend("bottomright", levels(datos$catlab), pch = 1:3, lty = 1:3)
+
+```
+
+Para especificar que el efecto de una covariable depende de otra (interacción), 
+se pueden emplear los operadores `*` ó `:`.
+```{r}
+modelo2 <- lm(lnsal ~ lnsalini*catlab, datos)
+summary(modelo2)
+anova(modelo2)
+```
+En este caso las pendientes también varían dependiendo del nivel del factor:
+```{r}
+plot(lnsal ~ lnsalini, data = datos, pch = as.numeric(catlab), col = 'darkgray')
+parest <- coef(modelo2)
+abline(a = parest[1], b = parest[2], lty = 1)
+abline(a = parest[1] + parest[3], b = parest[2] + parest[5], lty = 2)
+abline(a = parest[1] + parest[4], b = parest[2] + parest[6], lty = 3)
+legend("bottomright", levels(datos$catlab), pch = 1:3, lty = 1:3)
+
+```
+
+Por ejemplo, empleando la fórmula `lnsal ~ lnsalini:catlab` se considerarían distintas pendientes pero el mismo término independiente.
+
+    
+Diagnosis del modelo
+--------------------
+
+Las conclusiones obtenidas con este método se basan en las hipótesis básicas del modelo:
+
+-   Linealidad.
+
+-   Normalidad (y homogeneidad).
+
+-   Homocedasticidad.
+
+-   Independencia.
+
+-   Ninguna de las variables explicativas es combinación lineal de
+    las demás.
+
+Si alguna de estas hipótesis no es cierta, las conclusiones obtenidas pueden no ser
+fiables, o incluso totalmente erróneas. En el caso de regresión múltiple es 
+de especial interés el fenómeno de la multicolinealidad (o colinearidad)
+relacionado con la última de estas hipótesis.
+
+En esta sección consideraremos como ejemplo el modelo:
+```{r}
+modelo <- lm(salario ~ salini + expprev, data = empleados)
+summary(modelo)   
+```
+
+
+### Gráficas básicas de diagnóstico
+
+Con la función `plot` se pueden generar gráficos de interés para la diagnosis del modelo:
+```{r }
+oldpar <- par( mfrow=c(2,2))
+plot(modelo)
+par(oldpar)
+```
+Por defecto se muestran cuatro gráficos (ver `help(plot.lm)` para más detalles). El primero (residuos frente a predicciones) permite detectar falta de
+linealidad o heterocedasticidad (o el efecto de un factor omitido: mala
+especificación del modelo), lo ideal sería no observar ningún patrón.
+
+El segundo gráfico (gráfico QQ), permite diagnosticar la normalidad, los puntos del deberían estar cerca de la diagonal.
+
+El tercer gráfico de dispersión-nivel permite detectar heterocedasticidad y ayudar a seleccionar una transformación para corregirla (más adelante, en la sección *Alternativas*, se tratará este tema), la pendiente de los datos debería ser nula.
+
+El último gráfico permite detectar valores atípicos o influyentes. Representa los residuos estandarizados en función del valor de influencia (a priori) o leverage ($hii$ que depende de los valores de las variables explicativas, debería ser $< 2(p+1)/2$) y señala las observaciones atípicas (residuos fuera de [-2,2]) e influyentes a posteriori (estadístico de Cook >0.5 y >1).
+
+Si las conclusiones obtenidas dependen en gran medida de una
+observación (normalmente atípica), esta se denomina influyente (a
+posteriori) y debe ser examinada con cuidado por el experimentador.
+Para recalcular el modelo sin una de las observaciones puede ser útil la función update:
+```{r}
+# which.max(cooks.distance(modelo))
+modelo2 <- update(modelo, data = empleados[-29, ])
+```
+Si hay datos atípicos o influyentes, puede ser recomendable emplear regresión lineal robusta, por ejemplo mediante la función `rlm` del paquete `MASS`.
+
+En el ejemplo anterior, se observa claramente heterogeneidad de varianzas y falta de normalidad. Aparentemente no hay observaciones influyentes (a posteriori) aunque si algún dato atípico.
+
+### Gráficos parciales de residuos
+
+En regresión lineal múltiple, en lugar de generar gráficos de dispersión simple 
+(p.e. gráficos de dispersión matriciales) para detectar problemas (falta de 
+linealidad, ...) y analizar los efectos de las variables explicativas, 
+se pueden generar gráficos parciales de residuos, por ejemplo con el comando:
+```{r, eval=FALSE}
+termplot(modelo, partial.resid = TRUE)
+```
+Aunque puede ser preferible emplear las funciones `crPlots` ó `avPlots` del paquete `car`:
+```{r}
+library(car)
+crPlots(modelo)
+# avPlots(modelo)
+```
+Estas funciones permitirían además detectar puntos atípicos o influyentes 
+(mediante los argumentos `id.method` e `id.n`).
+
+
+### Estadísticos
+
+Para obtener medidas de diagnosis o resúmenes numéricos de interés se pueden emplear
+las siguientes funciones:
+
+Función  |  Descripción
+-------  |  --------------------------------------------------------------
+rstandard  |  residuos estandarizados
+rstudent  |  residuos estudentizados (eliminados)
+cooks.distance  |  valores del estadístico de Cook
+influence  |  valores de influencia, cambios en coeficientes y varianza residual al eliminar cada dato.
+
+Ejecutar `help(influence.measures)` para ver un listado de medidas de diagnóstico adicionales.
+
+Hay muchas herramientas adicionales disponibles en otros paquetes. 
+Por ejemplo, para la detección de multicolinealidad, se puede emplear la función
+`vif` del paquete `car` para calcular los factores de inflación de varianza para 
+las variables del modelo:
+```{r }
+# library(car)
+vif(modelo)
+```
+Valores grandes, por ejemplo > 10, indican la posible presencia de multicolinealidad.
+
+**Nota**: Las tolerancias (proporciones de variabilidad no explicada por las demás covariables) se pueden calcular con `1/vif(modelo)`.
+
+### Contrastes
+
+#### Normalidad
+
+Para realizar el contraste de normalidad de Shapiro-Wilk se puede emplear:
+
+```{r }
+shapiro.test(residuals(modelo))
+hist(residuals(modelo))
+```
+
+#### Homocedasticidad
+
+La librería `lmtest` proporciona herramientas adicionales para la diagnosis de modelos lineales, por ejemplo el test de Breusch-Pagan para heterocedasticidad:
+
+```{r, message=FALSE}
+library(lmtest)
+bptest(modelo, studentize = FALSE)
+```
+Si el p-valor es grande aceptaríamos que hay igualdad de varianzas.
+
+#### Autocorrelación
+Contraste de Durbin-Watson para detectar si hay correlación serial entre los errores:
+
+```{r }
+dwtest(modelo, alternative= "two.sided")
+```
+Si el p-valor es pequeño rechazaríamos la hipótesis de independencia.
+
+
+Métodos de regularización
+-------------------------
+[[Pasar a selección de variables explicativas?]]
+
+Estos métodos emplean también un modelo lineal: 
+$$Y=\beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}+\varepsilon$$
+
+En lugar de ajustarlo por mínimos cuadrados (estándar), minimizando:
+$$ RSS = \sum\limits_{i=1}^{n}\left(  y_{i} - \beta_0 - \beta_1 x_{1i} - \cdots - \beta_p x_{pi} \right)^{2}$$
+
+Se imponen restricciones adicionales a los parámetros que los
+"retraen" (shrink) hacia cero:
+
+-  Produce una reducción en la varianza de predicción (a
+   costa del sesgo).
+
+-  En principio se consideran todas las variables explicativas.
+
+**Ridge regression**
+
+-  Penalización cuadrática: $RSS+\lambda\sum_{j=1}^{p}\beta_{j}^{2}$.
+
+**Lasso**
+
+-  Penalización en valor absoluto: $RSS+\lambda\sum_{j=1}^{p}|\beta_{j}|$.
+
+-  Normalmente asigna peso nulo a algunas variables
+   (selección de variables).
+
+El parámetro de penalización se selecciona por **validación cruzada**.
+
+-  Normalmente estandarizan las variables explicativas
+   (coeficientes en la misma escala).
+
+
+### Datos
+
+ El fichero *hatco.RData* contiene observaciones de clientes de la compañía de
+ distribución industrial (Compañía Hair, Anderson y Tatham).
+ Las variables se pueden clasificar en tres grupos:
+
+```{r }
+load('datos/hatco.RData')
+as.data.frame(attr(hatco, "variable.labels"))
+```
+
+Consideraremos como respuesta la variable *fidelida* y como variables explicativas
+el resto de variables continuas menos *satisfac*.
+
+```{r message=FALSE}
+
+library(glmnet)
+```
+
+El paquete `glmnet` no emplea formulación de modelos, hay que establecer la respuesta
+`y` y las variables explicativas `x` (se puede emplear la función `model.matrix()` para construir `x`, 
+la matriz de diseño, a partir de una fórmula). 
+En este caso, eliminamos también la última fila por tener datos faltantes:
+
+```{r }
+x <- as.matrix(hatco[-100, 6:12])
+y <- hatco$fidelida[-100]
+```
+
+### Ridge Regression
+
+Ajustamos un modelo de regresión ridge con la función `glmnet` con `alpha=0` (ridge penalty).
+
+```{r }
+fit.ridge <- glmnet(x, y, alpha = 0)
+plot(fit.ridge, xvar = "lambda", label = TRUE)
+```
+
+Para seleccionar el parámetro de penalización por validación cruzada se puede emplear
+la función `cv.glmnet`.
+
+```{r }
+cv.ridge <- cv.glmnet(x, y, alpha = 0)
+plot(cv.ridge)
+```
+
+En este caso el parámetro sería:
+
+```{r }
+cv.ridge$lambda.1se
+```
+
+y el modelo resultante contiene todas las variables explicativas:
+
+```{r }
+coef(cv.ridge)
+```
+
+### Lasso
+
+Ajustamos un modelo lasso también con la función `glmnet` (con la opción por defecto `alpha=1`, lasso penalty).
+
+```{r }
+fit.lasso <- glmnet(x,y)
+plot(fit.lasso, xvar = "lambda", label = TRUE)
+```
+
+Seleccionamos el parámetro de penalización por validación cruzada.
+
+```{r }
+cv.lasso <- cv.glmnet(x,y)
+plot(cv.lasso)
+```
+
+En este caso el modelo resultante solo contiene 4 variables explicativas:
+
+```{r }
+coef(cv.lasso)
+```
+
+
+Alternativas
+------------
+
+### Transformación (modelos linealizables)
+
+Cuando no se satisfacen los supuestos básicos se puede intentar
+transformar los datos para corregir la falta de
+linealidad, la heterocedasticidad y/o la falta de normalidad
+(normalmente estas últimas "suelen ocurrir en la misma escala").
+Por ejemplo, la función `boxcox` del paquete `MASS` permite seleccionar la transformación de Box-Cox
+más adecuada:
+$$Y^{(\lambda)} =
+\begin{cases}
+\dfrac{Y^\lambda - 1}{\lambda} & \text{si } \lambda \neq 0 \\
+\ln{(Y)} & \text{si } \lambda = 0
+\end{cases}$$
+```{r}
+# library(MASS)
+boxcox(modelo)
+```
+
+En este caso una transformación logarítmica parece adecuada.
+
+En ocasiones para obtener una relación lineal (o heterocedasticidad) también es
+necesario transformar las covariables además de la respuesta. Algunas de 
+las relaciones fácilmente linealizables se muestran a continuación:
+
+modelo | ecuación | covariable  | respuesta
+--- | --- | --- | --- 
+logarítmico  |  $y = a + b\text{ }log(x)$  | $log(x)$  |  _
+inverso   |  $y = a + b/x$   |  $1/x$  |  _
+potencial   |  $y = ax^b$   |  $log(x)$   |  $log(y)$
+exponencial  |   $y = ae^{bx}$   |  _  |  $log(y)$
+curva-S   |  $y = ae^{b/x}$   |  $1/x$   |  $log(y)$
+
+#### Ejemplo:
+```{r}
+plot(salario ~ salini, data = empleados, col = 'darkgray')
+
+# Ajuste lineal
+abline(lm(salario ~ salini, data = empleados)) 
+
+# Modelo exponencial
+modelo1 <- lm(log(salario) ~ salini, data = empleados)
+parest <- coef(modelo1)
+curve(exp(parest[1] + parest[2]*x), lty = 2, add = TRUE)
+
+# Modelo logarítmico
+modelo2 <- lm(log(salario) ~ log(salini), data = empleados)
+parest <- coef(modelo2)
+curve(exp(parest[1]) * x^parest[2], lty = 3, add = TRUE)
+
+legend("bottomright", c("Lineal","Exponencial","Logarítmico"), lty = 1:3)
+```
+
+Con estos datos de ejemplo, el principal problema es la falta de homogeneidad de varianzas (y de normalidad) y se corrige sustancialmente con el segundo modelo:
+```{r}
+plot(log(salario) ~ log(salini), data = empleados)
+abline(modelo2)
+```
+
+
+### Ajuste polinómico
+
+En este apartado utilizaremos como ejemplo el conjunto de datos `Prestige` de la librería `car`. Al tratar de explicar `prestige` (puntuación de ocupaciones obtenidas a partir de una encuesta ) a partir de `income` (media de ingresos en la ocupación), un ajuste cuadrático puede parecer razonable: 
+```{r}
+# library(car)
+plot(prestige ~ income, data = Prestige, col = 'darkgray')
+# Ajuste lineal
+abline(lm(prestige ~ income, data = Prestige)) 
+# Ajuste cuadrático
+modelo <- lm(prestige ~ income + I(income^2), data = Prestige)
+parest <- coef(modelo)
+curve(parest[1] + parest[2]*x + parest[3]*x^2, lty = 2, add = TRUE)
+
+legend("bottomright", c("Lineal","Cuadrático"), lty = 1:2)
+```
+
+Alternativamente se podría emplear la función `poly`:
+```{r}
+plot(prestige ~ income, data = Prestige, col = 'darkgray')
+# Ajuste cúbico
+modelo <- lm(prestige ~ poly(income, 3), data = Prestige)
+valores <- seq(0, 26000, len = 100)
+pred <- predict(modelo, newdata = data.frame(income = valores))
+lines(valores, pred, lty = 3) 
+```
+
+### Ajuste polinómico local (robusto)
+
+Si no se logra un buen ajuste empleando los modelos anteriores se puede pensar en
+utilizar métodos no paramétricos (p.e. regresión aditiva no paramétrica). Por ejemplo,
+en`R` es habitual emplear la función `loess` (sobre todo en gráficos):
+
+```{r}
+plot(prestige ~ income, Prestige, col = 'darkgray')
+fit <- loess(prestige ~ income, Prestige, span = 0.75)
+valores <- seq(0, 25000, 100)
+pred <- predict(fit, newdata = data.frame(income = valores))
+lines(valores, pred)
+```
+
+Este tipo de modelos los trataremos con detalle más adelante...
+
+
+```{r, include=FALSE}
+# Descargar paquetes por si acaso
+# detach("package:MASS", unload=TRUE)
+```
+
+

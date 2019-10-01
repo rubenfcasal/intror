@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Capítulo 8 Modelos lineales generalizados | Introducción al Análisis de Datos con R</title>
+  <meta name="description" content="Este es un libro introductorio al análisis de datos con R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Capítulo 8 Modelos lineales generalizados | Introducción al Análisis de Datos con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este es un libro introductorio al análisis de datos con R" />
+  <meta name="github-repo" content="rubenfcasal/intror" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 8 Modelos lineales generalizados | Introducción al Análisis de Datos con R" />
+  
+  <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
+  
+
+<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa">
+
+
+<meta name="date" content="2019-10-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="modelos-lineales.html">
+<link rel="next" href="regresion-no-parametrica.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción al Análisis de Datos con R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prólogo</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#el-lenguaje-y-entorno-estadistico-r"><i class="fa fa-check"></i><b>1.1</b> El lenguaje y entorno estadístico <code>R</code></a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduccion.html"><a href="introduccion.html#principales-caracteristicas"><i class="fa fa-check"></i><b>1.1.1</b> Principales características</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduccion.html"><a href="introduccion.html#interfaces-graficas"><i class="fa fa-check"></i><b>1.1.2</b> Interfaces gráficas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#entorno-de-trabajo"><i class="fa fa-check"></i><b>1.2</b> Entorno de trabajo</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduccion.html"><a href="introduccion.html#ventana-de-consola"><i class="fa fa-check"></i><b>1.2.1</b> Ventana de Consola</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduccion.html"><a href="introduccion.html#ventana-de-script"><i class="fa fa-check"></i><b>1.2.2</b> Ventana de Script</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduccion.html"><a href="introduccion.html#ayuda-dentro-del-programa"><i class="fa fa-check"></i><b>1.2.3</b> Ayuda dentro del programa</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#librerias"><i class="fa fa-check"></i><b>1.3</b> Librerías</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="introduccion.html"><a href="introduccion.html#paquetes"><i class="fa fa-check"></i><b>1.3.1</b> Paquetes</a></li>
+<li class="chapter" data-level="1.3.2" data-path="introduccion.html"><a href="introduccion.html#instalacion-pkg"><i class="fa fa-check"></i><b>1.3.2</b> Instalación</a></li>
+<li class="chapter" data-level="1.3.3" data-path="introduccion.html"><a href="introduccion.html#carga"><i class="fa fa-check"></i><b>1.3.3</b> Carga</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#una-primera-sesion"><i class="fa fa-check"></i><b>1.4</b> Una primera sesión</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="introduccion.html"><a href="introduccion.html#inicio-de-una-sesion"><i class="fa fa-check"></i><b>1.4.1</b> Inicio de una sesión</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduccion.html"><a href="introduccion.html#objetos-basicos"><i class="fa fa-check"></i><b>1.5</b> Objetos básicos</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="introduccion.html"><a href="introduccion.html#objetos-numericos"><i class="fa fa-check"></i><b>1.5.1</b> Objetos numéricos</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduccion.html"><a href="introduccion.html#objetos-tipo-caracter"><i class="fa fa-check"></i><b>1.5.2</b> Objetos tipo carácter</a></li>
+<li class="chapter" data-level="1.5.3" data-path="introduccion.html"><a href="introduccion.html#objetos-logicos"><i class="fa fa-check"></i><b>1.5.3</b> Objetos lógicos</a></li>
+<li class="chapter" data-level="1.5.4" data-path="introduccion.html"><a href="introduccion.html#operadores-logicos"><i class="fa fa-check"></i><b>1.5.4</b> Operadores lógicos</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="introduccion.html"><a href="introduccion.html#area-de-trabajo"><i class="fa fa-check"></i><b>1.6</b> Área de trabajo</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="introduccion.html"><a href="introduccion.html#guardar-y-cargar-resultados"><i class="fa fa-check"></i><b>1.6.1</b> Guardar y cargar resultados</a></li>
+<li class="chapter" data-level="1.6.2" data-path="introduccion.html"><a href="introduccion.html#directorio-de-trabajo"><i class="fa fa-check"></i><b>1.6.2</b> Directorio de trabajo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>2</b> Estructuras de datos</a><ul>
+<li class="chapter" data-level="2.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>2.1</b> Vectores</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#generacion-de-secuencias"><i class="fa fa-check"></i><b>2.1.1</b> Generación de secuencias</a></li>
+<li class="chapter" data-level="2.1.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#generacion-secuencias-aleatorias"><i class="fa fa-check"></i><b>2.1.2</b> Generación secuencias aleatorias</a></li>
+<li class="chapter" data-level="2.1.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#seleccion-de-elementos-de-un-vector"><i class="fa fa-check"></i><b>2.1.3</b> Selección de elementos de un vector</a></li>
+<li class="chapter" data-level="2.1.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#ordenacion-de-vectores"><i class="fa fa-check"></i><b>2.1.4</b> Ordenación de vectores</a></li>
+<li class="chapter" data-level="2.1.5" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#valores-perdidos"><i class="fa fa-check"></i><b>2.1.5</b> Valores perdidos</a></li>
+<li class="chapter" data-level="2.1.6" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores-no-numericos"><i class="fa fa-check"></i><b>2.1.6</b> Vectores no numéricos</a></li>
+<li class="chapter" data-level="2.1.7" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#factores"><i class="fa fa-check"></i><b>2.1.7</b> Factores</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#matrices-y-arrays"><i class="fa fa-check"></i><b>2.2</b> Matrices y arrays</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#matrices"><i class="fa fa-check"></i><b>2.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#nombres-en-matrices"><i class="fa fa-check"></i><b>2.2.2</b> Nombres en matrices</a></li>
+<li class="chapter" data-level="2.2.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#acceso-a-los-elementos-de-una-matriz"><i class="fa fa-check"></i><b>2.2.3</b> Acceso a los elementos de una matriz</a></li>
+<li class="chapter" data-level="2.2.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#ordenacion-por-filas-y-columnas"><i class="fa fa-check"></i><b>2.2.4</b> Ordenación por filas y columnas</a></li>
+<li class="chapter" data-level="2.2.5" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#operaciones-con-matrices-y-arrays"><i class="fa fa-check"></i><b>2.2.5</b> Operaciones con Matrices y Arrays</a></li>
+<li class="chapter" data-level="2.2.6" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#ejemplos"><i class="fa fa-check"></i><b>2.2.6</b> Ejemplos</a></li>
+<li class="chapter" data-level="2.2.7" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#inversion-de-una-matriz"><i class="fa fa-check"></i><b>2.2.7</b> Inversión de una matriz</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>2.3</b> Data frames</a></li>
+<li class="chapter" data-level="2.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>2.4</b> Listas</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="graficos.html"><a href="graficos.html"><i class="fa fa-check"></i><b>3</b> Gráficos</a><ul>
+<li class="chapter" data-level="3.1" data-path="graficos.html"><a href="graficos.html#el-comando-plot"><i class="fa fa-check"></i><b>3.1</b> El comando plot</a></li>
+<li class="chapter" data-level="3.2" data-path="graficos.html"><a href="graficos.html#funciones-graficas-de-bajo-nivel"><i class="fa fa-check"></i><b>3.2</b> Funciones gráficas de bajo nivel</a></li>
+<li class="chapter" data-level="3.3" data-path="graficos.html"><a href="graficos.html#ejemplos-1"><i class="fa fa-check"></i><b>3.3</b> Ejemplos</a></li>
+<li class="chapter" data-level="3.4" data-path="graficos.html"><a href="graficos.html#parametros-graficos"><i class="fa fa-check"></i><b>3.4</b> Parámetros gráficos</a></li>
+<li class="chapter" data-level="3.5" data-path="graficos.html"><a href="graficos.html#multiples-graficos-por-ventana"><i class="fa fa-check"></i><b>3.5</b> Múltiples gráficos por ventana</a></li>
+<li class="chapter" data-level="3.6" data-path="graficos.html"><a href="graficos.html#exportar-graficos"><i class="fa fa-check"></i><b>3.6</b> Exportar gráficos</a></li>
+<li class="chapter" data-level="3.7" data-path="graficos.html"><a href="graficos.html#otras-librerias-graficas"><i class="fa fa-check"></i><b>3.7</b> Otras librerías gráficas</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="graficos.html"><a href="graficos.html#ejemplos-2"><i class="fa fa-check"></i><b>3.7.1</b> Ejemplos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html"><i class="fa fa-check"></i><b>4</b> Manipulación de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#lectura-importacion-y-exportacion-de-datos"><i class="fa fa-check"></i><b>4.1</b> Lectura, importación y exportación de datos</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#introduccion-directa"><i class="fa fa-check"></i><b>4.1.1</b> Introducción directa</a></li>
+<li class="chapter" data-level="4.1.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#lectura-desde-paquetes"><i class="fa fa-check"></i><b>4.1.2</b> Lectura desde paquetes</a></li>
+<li class="chapter" data-level="4.1.3" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#lectura-de-archivos-de-texto"><i class="fa fa-check"></i><b>4.1.3</b> Lectura de archivos de texto</a></li>
+<li class="chapter" data-level="4.1.4" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#importacion-desde-spss"><i class="fa fa-check"></i><b>4.1.4</b> Importación desde SPSS</a></li>
+<li class="chapter" data-level="4.1.5" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#importacion-desde-excel"><i class="fa fa-check"></i><b>4.1.5</b> Importación desde Excel</a></li>
+<li class="chapter" data-level="4.1.6" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#exportacion-de-datos"><i class="fa fa-check"></i><b>4.1.6</b> Exportación de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#manipulacion-de-datos-1"><i class="fa fa-check"></i><b>4.2</b> Manipulación de datos</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-variables"><i class="fa fa-check"></i><b>4.2.1</b> Operaciones con variables</a></li>
+<li class="chapter" data-level="4.2.2" data-path="manipulacion-de-datos.html"><a href="manipulacion-de-datos.html#operaciones-con-casos"><i class="fa fa-check"></i><b>4.2.2</b> Operaciones con casos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html"><i class="fa fa-check"></i><b>5</b> Análisis exploratorio de datos</a><ul>
+<li class="chapter" data-level="5.1" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#medidas-resumen"><i class="fa fa-check"></i><b>5.1</b> Medidas resumen</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#datos-de-ejemplo"><i class="fa fa-check"></i><b>5.1.1</b> Datos de ejemplo</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#tablas-de-frecuencias"><i class="fa fa-check"></i><b>5.1.2</b> Tablas de frecuencias</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#media-y-varianza"><i class="fa fa-check"></i><b>5.1.3</b> Media y varianza</a></li>
+<li class="chapter" data-level="5.1.4" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#mediana-y-cuantiles"><i class="fa fa-check"></i><b>5.1.4</b> Mediana y cuantiles</a></li>
+<li class="chapter" data-level="5.1.5" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#summary"><i class="fa fa-check"></i><b>5.1.5</b> <em>Summary</em></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#graficos-1"><i class="fa fa-check"></i><b>5.2</b> Gráficos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#diagrama-de-barras-y-grafico-de-sectores"><i class="fa fa-check"></i><b>5.2.1</b> Diagrama de barras y gráfico de sectores</a></li>
+<li class="chapter" data-level="5.2.2" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#grafico-de-puntos"><i class="fa fa-check"></i><b>5.2.2</b> Gráfico de puntos</a></li>
+<li class="chapter" data-level="5.2.3" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#arbol-de-tallo-y-hojas"><i class="fa fa-check"></i><b>5.2.3</b> Árbol de tallo y hojas</a></li>
+<li class="chapter" data-level="5.2.4" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#histograma"><i class="fa fa-check"></i><b>5.2.4</b> Histograma</a></li>
+<li class="chapter" data-level="5.2.5" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#grafico-de-densidad"><i class="fa fa-check"></i><b>5.2.5</b> Gráfico de densidad</a></li>
+<li class="chapter" data-level="5.2.6" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#diagrama-de-cajas"><i class="fa fa-check"></i><b>5.2.6</b> Diagrama de cajas</a></li>
+<li class="chapter" data-level="5.2.7" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#grafica-de-dispersion"><i class="fa fa-check"></i><b>5.2.7</b> Gráfica de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html"><i class="fa fa-check"></i><b>6</b> Modelado de datos</a><ul>
+<li class="chapter" data-level="6.1" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html#modelos-de-regresion"><i class="fa fa-check"></i><b>6.1</b> Modelos de regresión</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html#herramientas-disponibles-en-r"><i class="fa fa-check"></i><b>6.1.1</b> Herramientas disponibles en <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html#formulas"><i class="fa fa-check"></i><b>6.2</b> Fórmulas</a></li>
+<li class="chapter" data-level="6.3" data-path="modelado-de-datos.html"><a href="modelado-de-datos.html#ejemplo-regresion-lineal-simple"><i class="fa fa-check"></i><b>6.3</b> Ejemplo: regresión lineal simple</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>7</b> Modelos lineales</a><ul>
+<li class="chapter" data-level="7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ejemplo"><i class="fa fa-check"></i><b>7.1</b> Ejemplo</a></li>
+<li class="chapter" data-level="7.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ajuste-funcion-lm"><i class="fa fa-check"></i><b>7.2</b> Ajuste: función <code>lm</code></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#extraccion-de-informacion"><i class="fa fa-check"></i><b>7.2.1</b> Extracción de información</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#prediccion"><i class="fa fa-check"></i><b>7.3</b> Predicción</a></li>
+<li class="chapter" data-level="7.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#seleccion-de-variables-explicativas"><i class="fa fa-check"></i><b>7.4</b> Selección de variables explicativas</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#busqueda-exhaustiva"><i class="fa fa-check"></i><b>7.4.1</b> Búsqueda exhaustiva</a></li>
+<li class="chapter" data-level="7.4.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#seleccion-por-pasos"><i class="fa fa-check"></i><b>7.4.2</b> Selección por pasos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#regresion-con-variables-categoricas"><i class="fa fa-check"></i><b>7.5</b> Regresión con variables categóricas</a></li>
+<li class="chapter" data-level="7.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#interacciones"><i class="fa fa-check"></i><b>7.6</b> Interacciones</a></li>
+<li class="chapter" data-level="7.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#diagnosis-del-modelo"><i class="fa fa-check"></i><b>7.7</b> Diagnosis del modelo</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#graficas-basicas-de-diagnostico"><i class="fa fa-check"></i><b>7.7.1</b> Gráficas básicas de diagnóstico</a></li>
+<li class="chapter" data-level="7.7.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#graficos-parciales-de-residuos"><i class="fa fa-check"></i><b>7.7.2</b> Gráficos parciales de residuos</a></li>
+<li class="chapter" data-level="7.7.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estadisticos"><i class="fa fa-check"></i><b>7.7.3</b> Estadísticos</a></li>
+<li class="chapter" data-level="7.7.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#contrastes"><i class="fa fa-check"></i><b>7.7.4</b> Contrastes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#metodos-de-regularizacion"><i class="fa fa-check"></i><b>7.8</b> Métodos de regularización</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#datos"><i class="fa fa-check"></i><b>7.8.1</b> Datos</a></li>
+<li class="chapter" data-level="7.8.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ridge-regression"><i class="fa fa-check"></i><b>7.8.2</b> Ridge Regression</a></li>
+<li class="chapter" data-level="7.8.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#lasso"><i class="fa fa-check"></i><b>7.8.3</b> Lasso</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#alternativas"><i class="fa fa-check"></i><b>7.9</b> Alternativas</a><ul>
+<li class="chapter" data-level="7.9.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#transformacion-modelos-linealizables"><i class="fa fa-check"></i><b>7.9.1</b> Transformación (modelos linealizables)</a></li>
+<li class="chapter" data-level="7.9.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ajuste-polinomico"><i class="fa fa-check"></i><b>7.9.2</b> Ajuste polinómico</a></li>
+<li class="chapter" data-level="7.9.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#ajuste-polinomico-local-robusto"><i class="fa fa-check"></i><b>7.9.3</b> Ajuste polinómico local (robusto)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html"><i class="fa fa-check"></i><b>8</b> Modelos lineales generalizados</a><ul>
+<li class="chapter" data-level="8.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ajuste-funcion-glm"><i class="fa fa-check"></i><b>8.1</b> Ajuste: función <code>glm</code></a></li>
+<li class="chapter" data-level="8.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#regresion-logistica"><i class="fa fa-check"></i><b>8.2</b> Regresión logística</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ejemplo-2"><i class="fa fa-check"></i><b>8.2.1</b> Ejemplo</a></li>
+<li class="chapter" data-level="8.2.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#ajuste-de-un-modelo-de-regresion-logistica"><i class="fa fa-check"></i><b>8.2.2</b> Ajuste de un modelo de regresión logística</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#prediccion-1"><i class="fa fa-check"></i><b>8.3</b> Predicción</a></li>
+<li class="chapter" data-level="8.4" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#seleccion-de-variables-explicativas-1"><i class="fa fa-check"></i><b>8.4</b> Selección de variables explicativas</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#seleccion-por-pasos-1"><i class="fa fa-check"></i><b>8.4.1</b> Selección por pasos</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#diagnosis-del-modelo-1"><i class="fa fa-check"></i><b>8.5</b> Diagnosis del modelo</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#graficas-basicas-de-diagnostico-1"><i class="fa fa-check"></i><b>8.5.1</b> Gráficas básicas de diagnóstico</a></li>
+<li class="chapter" data-level="8.5.2" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#graficos-parciales-de-residuos-1"><i class="fa fa-check"></i><b>8.5.2</b> Gráficos parciales de residuos</a></li>
+<li class="chapter" data-level="8.5.3" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#estadisticos-1"><i class="fa fa-check"></i><b>8.5.3</b> Estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="modelos-lineales-generalizados.html"><a href="modelos-lineales-generalizados.html#alternativas-1"><i class="fa fa-check"></i><b>8.6</b> Alternativas</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html"><i class="fa fa-check"></i><b>9</b> Regresión no paramétrica</a><ul>
+<li class="chapter" data-level="9.1" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#modelos-aditivos"><i class="fa fa-check"></i><b>9.1</b> Modelos aditivos</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#ajuste-funcion-gam"><i class="fa fa-check"></i><b>9.1.1</b> Ajuste: función <code>gam</code></a></li>
+<li class="chapter" data-level="9.1.2" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#ejemplo-3"><i class="fa fa-check"></i><b>9.1.2</b> Ejemplo</a></li>
+<li class="chapter" data-level="9.1.3" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#superficie-de-prediccion"><i class="fa fa-check"></i><b>9.1.3</b> Superficie de predicción</a></li>
+<li class="chapter" data-level="9.1.4" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#comparacion-de-modelos"><i class="fa fa-check"></i><b>9.1.4</b> Comparación de modelos</a></li>
+<li class="chapter" data-level="9.1.5" data-path="regresion-no-parametrica.html"><a href="regresion-no-parametrica.html#diagnosis-del-modelo-2"><i class="fa fa-check"></i><b>9.1.5</b> Diagnosis del modelo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="programacion.html"><a href="programacion.html"><i class="fa fa-check"></i><b>10</b> Programación</a><ul>
+<li class="chapter" data-level="10.1" data-path="programacion.html"><a href="programacion.html#funciones"><i class="fa fa-check"></i><b>10.1</b> Funciones</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="programacion.html"><a href="programacion.html#ejemplo-progresion-geometrica"><i class="fa fa-check"></i><b>10.1.1</b> Ejemplo: progresión geométrica</a></li>
+<li class="chapter" data-level="10.1.2" data-path="programacion.html"><a href="programacion.html#argumentos-de-entrada"><i class="fa fa-check"></i><b>10.1.2</b> Argumentos de entrada</a></li>
+<li class="chapter" data-level="10.1.3" data-path="programacion.html"><a href="programacion.html#salida"><i class="fa fa-check"></i><b>10.1.3</b> Salida</a></li>
+<li class="chapter" data-level="10.1.4" data-path="programacion.html"><a href="programacion.html#otros-ejemplos"><i class="fa fa-check"></i><b>10.1.4</b> Otros ejemplos</a></li>
+<li class="chapter" data-level="10.1.5" data-path="programacion.html"><a href="programacion.html#variables-locales-y-globales"><i class="fa fa-check"></i><b>10.1.5</b> Variables locales y globales</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="programacion.html"><a href="programacion.html#ejecucion-condicional"><i class="fa fa-check"></i><b>10.2</b> Ejecución condicional</a></li>
+<li class="chapter" data-level="10.3" data-path="programacion.html"><a href="programacion.html#bucles-y-vectorizacion"><i class="fa fa-check"></i><b>10.3</b> Bucles y vectorización</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="programacion.html"><a href="programacion.html#bucles"><i class="fa fa-check"></i><b>10.3.1</b> Bucles</a></li>
+<li class="chapter" data-level="10.3.2" data-path="programacion.html"><a href="programacion.html#vectorizacion"><i class="fa fa-check"></i><b>10.3.2</b> Vectorización</a></li>
+<li class="chapter" data-level="10.3.3" data-path="programacion.html"><a href="programacion.html#funciones-apply"><i class="fa fa-check"></i><b>10.3.3</b> Funciones <code>apply</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="programacion.html"><a href="programacion.html#aplicacion-validacion-cruzada"><i class="fa fa-check"></i><b>10.4</b> Aplicación: validación cruzada</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="programacion.html"><a href="programacion.html#primer-ejemplo"><i class="fa fa-check"></i><b>10.4.1</b> Primer ejemplo</a></li>
+<li class="chapter" data-level="10.4.2" data-path="programacion.html"><a href="programacion.html#segundo-ejemplo"><i class="fa fa-check"></i><b>10.4.2</b> Segundo ejemplo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html"><i class="fa fa-check"></i><b>11</b> Generación de informes</a><ul>
+<li class="chapter" data-level="11.1" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#r-markdown"><i class="fa fa-check"></i><b>11.1</b> R Markdown</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#introduccion-1"><i class="fa fa-check"></i><b>11.1.1</b> Introducción</a></li>
+<li class="chapter" data-level="11.1.2" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#inclusion-de-codigo-r"><i class="fa fa-check"></i><b>11.1.2</b> Inclusión de código R</a></li>
+<li class="chapter" data-level="11.1.3" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#inclusion-de-graficos"><i class="fa fa-check"></i><b>11.1.3</b> Inclusión de gráficos</a></li>
+<li class="chapter" data-level="11.1.4" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#inclusion-de-tablas"><i class="fa fa-check"></i><b>11.1.4</b> Inclusión de tablas</a></li>
+<li class="chapter" data-level="11.1.5" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#extraccion-del-codigo-r"><i class="fa fa-check"></i><b>11.1.5</b> Extracción del código R</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="generacion-de-informes.html"><a href="generacion-de-informes.html#spin"><i class="fa fa-check"></i><b>11.2</b> Spin</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a><ul>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html#bibliografia-complementaria"><i class="fa fa-check"></i>Bibliografía complementaria</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apendices</b></span></li>
+<li class="chapter" data-level="A" data-path="links.html"><a href="links.html"><i class="fa fa-check"></i><b>A</b> Enlaces</a><ul>
+<li class="chapter" data-level="A.1" data-path="links.html"><a href="links.html#rstudio-links"><i class="fa fa-check"></i><b>A.1</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="instalacion.html"><a href="instalacion.html"><i class="fa fa-check"></i><b>B</b> Instalación de R</a><ul>
+<li class="chapter" data-level="B.1" data-path="instalacion.html"><a href="instalacion.html#instalacion-de-r-en-windows"><i class="fa fa-check"></i><b>B.1</b> Instalación de R en Windows</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="instalacion.html"><a href="instalacion.html#asistente-de-instalacion"><i class="fa fa-check"></i><b>B.1.1</b> Asistente de instalación</a></li>
+<li class="chapter" data-level="B.1.2" data-path="instalacion.html"><a href="instalacion.html#instalacion-de-paquetes"><i class="fa fa-check"></i><b>B.1.2</b> Instalación de paquetes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="interfaces.html"><a href="interfaces.html"><i class="fa fa-check"></i><b>C</b> Interfaces gráficas</a><ul>
+<li class="chapter" data-level="C.1" data-path="interfaces.html"><a href="interfaces.html#rstudio"><i class="fa fa-check"></i><b>C.1</b> RStudio</a></li>
+<li class="chapter" data-level="C.2" data-path="interfaces.html"><a href="interfaces.html#rcmdr"><i class="fa fa-check"></i><b>C.2</b> RCommander</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html"><i class="fa fa-check"></i><b>D</b> Manipulación de datos con dplyr</a><ul>
+<li class="chapter" data-level="D.1" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#el-paquete-dplyr"><i class="fa fa-check"></i><b>D.1</b> El paquete <strong>dplyr</strong></a><ul>
+<li class="chapter" data-level="D.1.1" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#datos-de-ejemplo-1"><i class="fa fa-check"></i><b>D.1.1</b> Datos de ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#operaciones-con-variables-columnas"><i class="fa fa-check"></i><b>D.2</b> Operaciones con variables (columnas)</a><ul>
+<li class="chapter" data-level="D.2.1" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#seleccionar-variables-con-select"><i class="fa fa-check"></i><b>D.2.1</b> Seleccionar variables con <strong>select()</strong></a></li>
+<li class="chapter" data-level="D.2.2" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#generar-nuevas-variables-con-mutate"><i class="fa fa-check"></i><b>D.2.2</b> Generar nuevas variables con <strong>mutate()</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#operaciones-con-casos-filas"><i class="fa fa-check"></i><b>D.3</b> Operaciones con casos (filas)</a><ul>
+<li class="chapter" data-level="D.3.1" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#seleccionar-casos-con-filter"><i class="fa fa-check"></i><b>D.3.1</b> Seleccionar casos con <strong>filter()</strong></a></li>
+<li class="chapter" data-level="D.3.2" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#organizar-casos-con-arrange"><i class="fa fa-check"></i><b>D.3.2</b> Organizar casos con <strong>arrange()</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="D.4" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#resumir-valores-con-summarise"><i class="fa fa-check"></i><b>D.4</b> Resumir valores con <strong>summarise()</strong></a></li>
+<li class="chapter" data-level="D.5" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#agrupar-casos-con-group_by"><i class="fa fa-check"></i><b>D.5</b> Agrupar casos con <strong>group_by()</strong></a></li>
+<li class="chapter" data-level="D.6" data-path="manipulacion-de-datos-con-dplyr.html"><a href="manipulacion-de-datos-con-dplyr.html#operador-pipe-tuberia-redireccion"><i class="fa fa-check"></i><b>D.6</b> Operador <em>pipe</em> <strong>%&gt;% </strong>(tubería, redirección)</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="companias-que-usan-r.html"><a href="companias-que-usan-r.html"><i class="fa fa-check"></i><b>E</b> Compañías que usan <code>R</code></a><ul>
+<li class="chapter" data-level="E.0.1" data-path="companias-que-usan-r.html"><a href="companias-que-usan-r.html#microsoft"><i class="fa fa-check"></i><b>E.0.1</b> Microsoft</a></li>
+<li class="chapter" data-level="E.0.2" data-path="companias-que-usan-r.html"><a href="companias-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.0.2</b> RStudio</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción al Análisis de Datos con <code>R</code></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelos-lineales-generalizados" class="section level1">
+<h1><span class="header-section-number">Capítulo 8</span> Modelos lineales generalizados</h1>
+<p>Los modelos lineales generalizados son una extensión de los modelos lineales para el caso de que la distribución condicional de la variable respuesta no sea normal (por ejemplo discreta: Bernouilli, Binomial, Poisson, …)</p>
+<p>En los modelo lineales se supone que: <span class="math display">\[E( Y | \mathbf{X} ) = \beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}\]</span> En los modelos lineales generalizados se introduce una función invertible <em>g</em>, denominada función enlace (o link): <span class="math display">\[g\left(E(Y | \mathbf{X} )\right) = \beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}\]</span></p>
+<div id="ajuste-funcion-glm" class="section level2">
+<h2><span class="header-section-number">8.1</span> Ajuste: función <code>glm</code></h2>
+<p>Para el ajuste (estimación de los parámetros) de un modelo lineal generalizado a un conjunto de datos (por máxima verosimilitud) se emplea la función <code>glm</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ajuste &lt;-<span class="st"> </span><span class="kw">glm</span>(formula, <span class="dt">family =</span> gaussian, datos, ...)</code></pre></div>
+<p>El parámetro <code>family</code> indica la distribución y el link. Por ejemplo:</p>
+<ul>
+<li><p><code>gaussian(link = &quot;identity&quot;)</code>, <code>gaussian(link = &quot;log&quot;)</code></p></li>
+<li><p><code>binomial(link = &quot;logit&quot;)</code>, <code>binomial(link = &quot;probit&quot;)</code></p></li>
+<li><p><code>poisson(link = &quot;log&quot;)</code></p></li>
+<li><p><code>Gamma(link = &quot;inverse&quot;)</code></p></li>
+</ul>
+<p>Para cada distribución se toma por defecto una función link (mostrada en primer lugar; ver <code>help(family)</code> para más detalles).</p>
+<p>Muchas de las herramientas y funciones genéricas disponibles para los modelos lineales son válidas también para este tipo de modelos: <code>summary</code>, <code>coef</code>, <code>confint</code>, <code>predict</code>, <code>anova</code>, ….</p>
+<p>Veremos con más detalle el caso particular de la regresión logística.</p>
+</div>
+<div id="regresion-logistica" class="section level2">
+<h2><span class="header-section-number">8.2</span> Regresión logística</h2>
+<div id="ejemplo-2" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Ejemplo</h3>
+<p>Como ejemplo emplearemos los datos de clientes de la compañía de distribución industrial (Compañía Hair, Anderson y Tatham).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;datos/hatco.RData&quot;</span>)
+<span class="kw">as.data.frame</span>(<span class="kw">attr</span>(hatco, <span class="st">&quot;variable.labels&quot;</span>))</code></pre></div>
+<pre><code>##          attr(hatco, &quot;variable.labels&quot;)
+## empresa                         Empresa
+## tamano             Tamaño de la empresa
+## adquisic      Estructura de adquisición
+## tindustr              Tipo de industria
+## tsitcomp    Tipo de situación de compra
+## velocida           Velocidad de entrega
+## precio                 Nivel de precios
+## flexprec        Flexibilidad de precios
+## imgfabri          Imagen del fabricante
+## servconj              Servicio conjunto
+## imgfvent     Imagen de fuerza de ventas
+## calidadp            Calidad de producto
+## fidelida   Porcentaje de compra a HATCO
+## satisfac            Satisfacción global
+## nfidelid        Nivel de compra a HATCO
+## nsatisfa          Nivel de satisfacción</code></pre>
+<p>Consideraremos como respuesta la variable <em>nsatisfa</em> y como variables explicativas el resto de variables continuas menos <em>fidelida</em> y <em>satisfac</em>. Eliminamos también la última fila por tener datos faltantes (realmente no sería necesario).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datos &lt;-<span class="st"> </span>hatco[<span class="op">-</span><span class="dv">100</span>, <span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">12</span>, <span class="dv">16</span>)]
+<span class="kw">plot</span>(datos, <span class="dt">pch =</span> <span class="kw">as.numeric</span>(datos<span class="op">$</span>nsatisfa), <span class="dt">col =</span> <span class="kw">as.numeric</span>(datos<span class="op">$</span>nsatisfa))</code></pre></div>
+<p><img src="09-ModelosGLM_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="ajuste-de-un-modelo-de-regresion-logistica" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> Ajuste de un modelo de regresión logística</h3>
+<p>Se emplea la función <code>glm</code> seleccionando <code>family = binomial</code> (la función de enlace por defecto será <em>logit</em>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo &lt;-<span class="st"> </span><span class="kw">glm</span>(nsatisfa <span class="op">~</span><span class="st"> </span>velocida <span class="op">+</span><span class="st"> </span>imgfabri , <span class="dt">family =</span> binomial, <span class="dt">data =</span> datos)
+modelo</code></pre></div>
+<pre><code>## 
+## Call:  glm(formula = nsatisfa ~ velocida + imgfabri, family = binomial, 
+##     data = datos)
+## 
+## Coefficients:
+## (Intercept)     velocida     imgfabri  
+##     -10.127        1.203        1.058  
+## 
+## Degrees of Freedom: 98 Total (i.e. Null);  96 Residual
+## Null Deviance:       136.4 
+## Residual Deviance: 88.64     AIC: 94.64</code></pre>
+<p>La razón de ventajas (OR) permite cuantificar el efecto de las variables explicativas en la respuesta (Incremento proporcional en la ventaja o probabilidad de éxito, al aumentar una unidad la variable manteniendo las demás fijas):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(modelo))  <span class="co"># Razones de ventajas (&quot;odds ratios&quot;)</span></code></pre></div>
+<pre><code>##  (Intercept)     velocida     imgfabri 
+## 3.997092e-05 3.329631e+00 2.881619e+00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">confint</span>(modelo))</code></pre></div>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<pre><code>##                    2.5 %      97.5 %
+## (Intercept) 3.828431e-07 0.001621259
+## velocida    2.061302e+00 5.976208357
+## imgfabri    1.737500e+00 5.247303813</code></pre>
+<p>Para obtener un resumen más completo del ajuste también se utiliza <code>summary()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(modelo)</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = nsatisfa ~ velocida + imgfabri, family = binomial, 
+##     data = datos)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.8941  -0.6697  -0.2098   0.7865   2.3378  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -10.1274     2.1062  -4.808 1.52e-06 ***
+## velocida      1.2029     0.2685   4.479 7.49e-06 ***
+## imgfabri      1.0584     0.2792   3.790 0.000151 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 136.42  on 98  degrees of freedom
+## Residual deviance:  88.64  on 96  degrees of freedom
+## AIC: 94.64
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>La desvianza (deviance) es una medida de la bondad del ajuste de un modelo lineal generalizado (sería equivalente a la suma de cuadrados residual de un modelo lineal; valores más altos indican peor ajuste). La <em>Null deviance</em> se correspondería con un modelo solo con la constante y la <em>Residual deviance</em> con el modelo ajustado. En este caso hay una reducción de 47.78 con una pérdida de 2 grados de libertad (una reducción significativa).</p>
+<p>Para contrastar globalmente el efecto de las covariables también podemos emplear:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo.null &lt;-<span class="st"> </span><span class="kw">glm</span>(nsatisfa <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, binomial, datos)
+<span class="kw">anova</span>(modelo.null, modelo, <span class="dt">test =</span> <span class="st">&quot;Chi&quot;</span>)</code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: nsatisfa ~ 1
+## Model 2: nsatisfa ~ velocida + imgfabri
+##   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+## 1        98     136.42                          
+## 2        96      88.64  2   47.783 4.207e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="prediccion-1" class="section level2">
+<h2><span class="header-section-number">8.3</span> Predicción</h2>
+<p>Las predicciones se obtienen también con la función <code>predict</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p.est &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</code></pre></div>
+<p>El parámetro <code>type = &quot;response&quot;</code> permite calcular las probabilidades estimadas de la segunda categoría.</p>
+<p>Podríamos obtener una tabla de clasificación:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat.est &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(p.est <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>)
+tabla &lt;-<span class="st"> </span><span class="kw">table</span>(datos<span class="op">$</span>nsatisfa, cat.est)
+tabla</code></pre></div>
+<pre><code>##       cat.est
+##         0  1
+##   bajo 44 10
+##   alto  7 38</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="dv">100</span><span class="op">*</span><span class="kw">prop.table</span>(tabla), <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>##       cat.est
+##           0    1
+##   bajo 44.4 10.1
+##   alto  7.1 38.4</code></pre>
+<p>Por defecto <code>predict</code> obtiene las predicciones correspondientes a las observaciones (<code>modelo$fitted.values</code>). Para otros casos hay que emplear el argumento <code>newdata</code>.</p>
+</div>
+<div id="seleccion-de-variables-explicativas-1" class="section level2">
+<h2><span class="header-section-number">8.4</span> Selección de variables explicativas</h2>
+<p>El objetivo sería conseguir un buen ajuste con el menor número de variables explicativas posible.</p>
+<p>Para actualizar un modelo (p.e. eliminando o añadiendo variables) se puede emplear la función <code>update</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo.completo &lt;-<span class="st"> </span><span class="kw">glm</span>(nsatisfa <span class="op">~</span><span class="st"> </span>. , <span class="dt">family =</span> binomial, <span class="dt">data =</span> datos)
+<span class="kw">summary</span>(modelo.completo)</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = nsatisfa ~ ., family = binomial, data = datos)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -2.01370  -0.31260  -0.02826   0.35423   1.74741  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -32.6317     7.7121  -4.231 2.32e-05 ***
+## velocida      3.9980     2.3362   1.711 0.087019 .  
+## precio        3.6042     2.3184   1.555 0.120044    
+## flexprec      1.5769     0.4433   3.557 0.000375 ***
+## imgfabri      2.1669     0.6857   3.160 0.001576 ** 
+## servconj     -4.2655     4.3526  -0.980 0.327096    
+## imgfvent     -1.1496     0.8937  -1.286 0.198318    
+## calidadp      0.1506     0.2495   0.604 0.546147    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 136.424  on 98  degrees of freedom
+## Residual deviance:  60.807  on 91  degrees of freedom
+## AIC: 76.807
+## 
+## Number of Fisher Scoring iterations: 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo.reducido &lt;-<span class="st"> </span><span class="kw">update</span>(modelo.completo, . <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>calidadp)
+<span class="kw">summary</span>(modelo.reducido)</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = nsatisfa ~ velocida + precio + flexprec + imgfabri + 
+##     servconj + imgfvent, family = binomial, data = datos)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.0920  -0.3518  -0.0280   0.3876   1.7885  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -31.6022     7.3962  -4.273 1.93e-05 ***
+## velocida      4.1831     2.2077   1.895 0.058121 .  
+## precio        3.8872     2.1685   1.793 0.073044 .  
+## flexprec      1.5452     0.4361   3.543 0.000396 ***
+## imgfabri      2.1984     0.6746   3.259 0.001119 ** 
+## servconj     -4.6985     4.0597  -1.157 0.247125    
+## imgfvent     -1.1387     0.8784  -1.296 0.194849    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 136.424  on 98  degrees of freedom
+## Residual deviance:  61.171  on 92  degrees of freedom
+## AIC: 75.171
+## 
+## Number of Fisher Scoring iterations: 7</code></pre>
+<p>Para obtener el modelo “óptimo” lo ideal sería evaluar todos los modelos posibles. En este caso no se puede emplear la función <code>regsubsets</code> del paquete <code>leaps</code> (sólo para modelos lineales), pero por ejemplo el paquete <a href="https://cran.r-project.org/web/packages/bestglm/vignettes/bestglm.pdf"><code>bestglm</code></a> proporciona una herramienta equivalente (<code>bestglm()</code>).</p>
+<div id="seleccion-por-pasos-1" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> Selección por pasos</h3>
+<p>La función <code>stepwise</code> del paquete <code>RcmdrMisc</code> (interfaz de <code>stepAIC</code> del paquete <code>MASS</code>) permite seleccionar el modelo por pasos según criterio AIC o BIC:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS)
+<span class="kw">library</span>(RcmdrMisc)
+modelo &lt;-<span class="st"> </span><span class="kw">stepwise</span>(modelo.completo, <span class="dt">direction=</span><span class="st">&#39;backward/forward&#39;</span>, <span class="dt">criterion=</span><span class="st">&#39;BIC&#39;</span>)</code></pre></div>
+<pre><code>## 
+## Direction:  backward/forward
+## Criterion:  BIC 
+## 
+## Start:  AIC=97.57
+## nsatisfa ~ velocida + precio + flexprec + imgfabri + servconj + 
+##     imgfvent + calidadp
+## 
+##            Df Deviance     AIC
+## - calidadp  1   61.171  93.337
+## - servconj  1   61.565  93.730
+## - imgfvent  1   62.668  94.834
+## - precio    1   62.712  94.878
+## - velocida  1   63.105  95.271
+## &lt;none&gt;          60.807  97.568
+## - imgfabri  1   76.251 108.416
+## - flexprec  1   82.443 114.609
+## 
+## Step:  AIC=93.34
+## nsatisfa ~ velocida + precio + flexprec + imgfabri + servconj + 
+##     imgfvent
+## 
+##            Df Deviance     AIC
+## - servconj  1   62.205  89.776
+## - imgfvent  1   63.055  90.625
+## - precio    1   63.698  91.269
+## - velocida  1   63.983  91.554
+## &lt;none&gt;          61.171  93.337
+## + calidadp  1   60.807  97.568
+## - imgfabri  1   77.823 105.394
+## - flexprec  1   82.461 110.032
+## 
+## Step:  AIC=89.78
+## nsatisfa ~ velocida + precio + flexprec + imgfabri + imgfvent
+## 
+##            Df Deviance     AIC
+## - imgfvent  1   64.646  87.622
+## &lt;none&gt;          62.205  89.776
+## + servconj  1   61.171  93.337
+## + calidadp  1   61.565  93.730
+## - imgfabri  1   78.425 101.401
+## - precio    1   79.699 102.675
+## - flexprec  1   82.978 105.954
+## - velocida  1   88.731 111.706
+## 
+## Step:  AIC=87.62
+## nsatisfa ~ velocida + precio + flexprec + imgfabri
+## 
+##            Df Deviance     AIC
+## &lt;none&gt;          64.646  87.622
+## + imgfvent  1   62.205  89.776
+## + servconj  1   63.055  90.625
+## + calidadp  1   63.890  91.460
+## - precio    1   80.474  98.854
+## - flexprec  1   83.663 102.044
+## - imgfabri  1   85.208 103.588
+## - velocida  1   89.641 108.021</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(modelo)</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = nsatisfa ~ velocida + precio + flexprec + imgfabri, 
+##     family = binomial, data = datos)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -1.99422  -0.36209  -0.03932   0.44249   1.80432  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -28.0825     6.4767  -4.336 1.45e-05 ***
+## velocida      1.6268     0.4268   3.812 0.000138 ***
+## precio        1.3749     0.4231   3.250 0.001155 ** 
+## flexprec      1.3364     0.3785   3.530 0.000415 ***
+## imgfabri      1.5168     0.4252   3.567 0.000361 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 136.424  on 98  degrees of freedom
+## Residual deviance:  64.646  on 94  degrees of freedom
+## AIC: 74.646
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+</div>
+</div>
+<div id="diagnosis-del-modelo-1" class="section level2">
+<h2><span class="header-section-number">8.5</span> Diagnosis del modelo</h2>
+<div id="graficas-basicas-de-diagnostico-1" class="section level3">
+<h3><span class="header-section-number">8.5.1</span> Gráficas básicas de diagnóstico</h3>
+<p>Con la función <code>plot</code> se pueden generar gráficos de interés para la diagnosis del modelo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">oldpar &lt;-<span class="st"> </span><span class="kw">par</span>( <span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(modelo)</code></pre></div>
+<p><img src="09-ModelosGLM_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(oldpar)</code></pre></div>
+<p>Aunque su interpretación difiere un poco de la de los modelos lineales…</p>
+</div>
+<div id="graficos-parciales-de-residuos-1" class="section level3">
+<h3><span class="header-section-number">8.5.2</span> Gráficos parciales de residuos</h3>
+<p>Se pueden generar gráficos parciales de residuos (p.e. <code>crPlots()</code> del paquete <code>car</code>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># library(car)</span>
+<span class="kw">crPlots</span>(modelo)</code></pre></div>
+<p><img src="09-ModelosGLM_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="estadisticos-1" class="section level3">
+<h3><span class="header-section-number">8.5.3</span> Estadísticos</h3>
+<p>Se pueden emplear las mismas funciones vistas en los modelos lineales para obtener medidas de diagnosis de interés (ver <code>help(influence.measures)</code>). Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">residuals</span>(model, <span class="dt">type =</span> <span class="st">&quot;deviance&quot;</span>) </code></pre></div>
+<p>proporciona los residuos deviance.</p>
+<p>En general, muchas de las herramientas para modelos lineales son también válidas para estos modelos. Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># library(car)</span>
+<span class="kw">vif</span>(modelo)</code></pre></div>
+<pre><code>## velocida   precio flexprec imgfabri 
+## 2.088609 2.653934 2.520042 1.930409</code></pre>
+</div>
+</div>
+<div id="alternativas-1" class="section level2">
+<h2><span class="header-section-number">8.6</span> Alternativas</h2>
+<p>Además de considerar ajustes polinómicos, pueden ser de interés emplear métodos no paramétricos. Por ejemplo, puede ser recomendable la función <code>gam</code> del paquete <code>mgcv</code>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelos-lineales.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regresion-no-parametrica.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rubenfcasal/intror/edit/master/09-ModelosGLM.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Intro_Analisis_Datos_R.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

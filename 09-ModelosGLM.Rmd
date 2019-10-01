@@ -1,0 +1,177 @@
+Modelos lineales generalizados
+==============================
+
+Los modelos lineales generalizados son una extensión de los modelos lineales para el caso de que la distribución condicional de la variable respuesta no sea normal (por ejemplo discreta: Bernouilli, Binomial, Poisson, ...)
+
+En los modelo lineales se supone que:
+$$E( Y | \mathbf{X} ) = \beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}$$
+En los modelos lineales generalizados se introduce una función invertible *g*, denominada función enlace (o link):
+$$g\left(E(Y | \mathbf{X} )\right) = \beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+\cdots+\beta_{p}X_{p}$$
+
+
+
+Ajuste: función `glm`
+---------------------
+Para el ajuste (estimación de los parámetros) de un modelo lineal generalizado a un conjunto de datos (por máxima verosimilitud) se emplea la función `glm`:
+```{r, eval=FALSE}
+ajuste <- glm(formula, family = gaussian, datos, ...)
+```
+
+El parámetro `family` indica la distribución y el link. Por ejemplo:
+
+-   `gaussian(link = "identity")`, `gaussian(link = "log")`
+
+-   `binomial(link = "logit")`, `binomial(link = "probit")`
+
+-   `poisson(link = "log")`
+
+-   `Gamma(link = "inverse")`
+
+Para cada distribución se toma por defecto una función link (mostrada en primer lugar; ver `help(family)` para más detalles).
+
+Muchas de las herramientas y funciones genéricas disponibles para los modelos lineales son válidas
+también para este tipo de modelos: `summary`, `coef`, `confint`, `predict`, `anova`, ....
+
+Veremos con más detalle el caso particular de la regresión logística.
+
+Regresión logística
+-------------------
+
+### Ejemplo
+
+Como ejemplo emplearemos los datos de clientes de la compañía de distribución industrial (Compañía Hair, Anderson y Tatham).
+```{r }
+load("datos/hatco.RData")
+as.data.frame(attr(hatco, "variable.labels"))
+```
+
+Consideraremos como respuesta la variable *nsatisfa* y como variables explicativas
+el resto de variables continuas menos *fidelida* y *satisfac*. 
+Eliminamos también la última fila por tener datos faltantes (realmente no sería necesario).
+```{r}
+datos <- hatco[-100, c(6:12, 16)]
+plot(datos, pch = as.numeric(datos$nsatisfa), col = as.numeric(datos$nsatisfa))
+```
+
+### Ajuste de un modelo de regresión logística
+
+Se emplea la función `glm` seleccionando `family = binomial` (la función de enlace por defecto será *logit*):
+
+```{r }
+modelo <- glm(nsatisfa ~ velocida + imgfabri , family = binomial, data = datos)
+modelo
+```
+
+La razón de ventajas (OR) permite cuantificar el efecto de las variables explicativas en la respuesta
+(Incremento proporcional en la ventaja o probabilidad de éxito, al aumentar una unidad la variable manteniendo las demás fijas):
+```{r}
+exp(coef(modelo))  # Razones de ventajas ("odds ratios")
+exp(confint(modelo))
+```
+
+Para obtener un resumen más completo del ajuste también se utiliza `summary()`
+```{r}
+summary(modelo)
+```
+
+La desvianza (deviance) es una medida de la bondad del ajuste de un modelo lineal generalizado (sería equivalente a la suma de cuadrados residual de un modelo lineal; valores más altos indican peor ajuste). La *Null deviance* se correspondería con un modelo solo con la constante y la *Residual deviance* con el modelo ajustado.
+En este caso hay una reducción de `r with(summary(modelo), round(null.deviance - deviance , 2))` con una pérdida de `r with(summary(modelo), df.null - df.residual)` grados de libertad (una reducción significativa).
+
+Para contrastar globalmente el efecto de las covariables también podemos emplear:
+```{r}
+modelo.null <- glm(nsatisfa ~ 1, binomial, datos)
+anova(modelo.null, modelo, test = "Chi")
+```
+
+
+Predicción
+----------
+
+Las predicciones se obtienen también con la función `predict`:
+```{r}
+p.est <- predict(modelo, type = "response")
+```
+El parámetro `type = "response"` permite calcular las probabilidades estimadas de la segunda categoría.
+
+Podríamos obtener una tabla de clasificación:
+```{r}
+cat.est <- as.numeric(p.est > 0.5)
+tabla <- table(datos$nsatisfa, cat.est)
+tabla
+print(100*prop.table(tabla), digits = 2)
+```
+
+Por defecto `predict` obtiene las predicciones correspondientes a las observaciones (`modelo$fitted.values`). Para otros casos hay que emplear el argumento `newdata`.
+
+Selección de variables explicativas
+-----------------------------------
+
+El objetivo sería conseguir un buen ajuste con el menor número de variables explicativas posible.
+
+Para actualizar un modelo (p.e. eliminando o añadiendo variables) se puede emplear la función `update`:
+```{r }
+modelo.completo <- glm(nsatisfa ~ . , family = binomial, data = datos)
+summary(modelo.completo)
+modelo.reducido <- update(modelo.completo, . ~ . - calidadp)
+summary(modelo.reducido)
+```
+
+Para obtener el modelo "óptimo" lo ideal sería evaluar todos los modelos posibles.
+En este caso no se puede emplear la función `regsubsets` del paquete `leaps` (sólo para modelos lineales),
+pero por ejemplo el paquete
+[`bestglm`](https://cran.r-project.org/web/packages/bestglm/vignettes/bestglm.pdf)
+proporciona una herramienta equivalente (`bestglm()`).
+
+### Selección por pasos
+
+La función `stepwise` del paquete `RcmdrMisc` (interfaz de `stepAIC` del paquete `MASS`)
+permite seleccionar el modelo por pasos según criterio AIC o BIC:
+
+```{r, message=FALSE}
+library(MASS)
+library(RcmdrMisc)
+modelo <- stepwise(modelo.completo, direction='backward/forward', criterion='BIC')
+summary(modelo)
+```
+
+
+Diagnosis del modelo
+--------------------
+
+### Gráficas básicas de diagnóstico
+
+Con la función `plot` se pueden generar gráficos de interés para la diagnosis del modelo:
+```{r }
+oldpar <- par( mfrow=c(2,2))
+plot(modelo)
+par(oldpar)
+```
+Aunque su interpretación difiere un poco de la de los modelos lineales...
+
+### Gráficos parciales de residuos
+
+Se pueden generar gráficos parciales de residuos (p.e. `crPlots()` del paquete `car`):
+```{r}
+# library(car)
+crPlots(modelo)
+```
+
+### Estadísticos
+
+Se pueden emplear las mismas funciones vistas en los modelos lineales para obtener medidas de diagnosis de interés (ver `help(influence.measures)`). Por ejemplo:
+```{r, eval=FALSE}
+residuals(model, type = "deviance") 
+```
+proporciona los residuos deviance.
+
+En general, muchas de las herramientas para modelos lineales son también válidas para estos modelos. Por ejemplo:
+```{r}
+# library(car)
+vif(modelo)
+```
+
+Alternativas
+------------
+
+Además de considerar ajustes polinómicos, pueden ser de interés emplear métodos no paramétricos. Por ejemplo, puede ser recomendable la función `gam` del paquete `mgcv`.
+

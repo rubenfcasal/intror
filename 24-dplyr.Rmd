@@ -1,0 +1,141 @@
+Manipulación de datos con dplyr
+===============================
+
+```{r , child = '_global_options.Rmd'}
+```
+
+
+El paquete **dplyr**
+--------------------
+
+```{r message=FALSE}
+library(dplyr)
+```
+
+**dplyr** Permite sustituir funciones base de R (como `split()`, `subset()`, 
+`apply()`, `sapply()`, `lapply()`, `tapply()` y `aggregate()`)
+mediante una "gramática" más sencilla para la manipulación de datos:
+
+* `select()` seleccionar variables/columnas (también `rename()`).
+* `mutate()` crear variables/columnas (también `transmute()`).
+* `filter()` seleccionar casos/filas (también `slice()`).
+* `arrange()`  ordenar o organizar casos/filas.
+* `summarise()` resumir valores.
+* `group_by()` permite operaciones por grupo empleando el concepto
+"dividir-aplicar-combinar" (`ungroup()` elimina el agrupamiento).
+
+Puede trabajar con conjuntos de datos en distintos formatos:
+     
+* `data.frame`, `data.table`, `tibble`, ...
+* bases de datos relacionales (lenguaje SQL), ...
+* bases de datos *Hadoop* (paquete `plyrmr`).
+
+En lugar de operar sobre vectores como las funciones base,
+opera sobre objetos de este tipo (solo nos centraremos en `data.frame`).
+
+### Datos de ejemplo
+El fichero *empleados.RData* contiene datos de empleados de un banco.
+Supongamos por ejemplo que estamos interesados en estudiar si hay
+discriminación por cuestión de sexo o raza.
+
+```{r}
+load("datos/empleados.RData")
+data.frame(Etiquetas = attr(empleados, "variable.labels"))  # Listamos las etiquetas
+attr(empleados, "variable.labels") <- NULL                  # Eliminamos las etiquetas para que no molesten...
+```
+
+
+Operaciones con variables (columnas)
+------------------------------------
+### Seleccionar variables con **select()**
+
+```{r }
+emplea2 <- select(empleados, id, sexo, minoria, tiempemp, salini, salario)
+head(emplea2)
+```
+
+Se puede cambiar el nombre (ver también *?rename()*)
+
+```{r }
+head(select(empleados, sexo, noblanca = minoria, salario))
+```
+
+Se pueden emplear los nombres de variables como índices:
+
+```{r }
+head(select(empleados, sexo:salario))
+head(select(empleados, -(sexo:salario)))
+```
+
+Hay opciones para considerar distintos criterios: `starts_with()`, `ends_with()`, 
+`contains()`, `matches()`, `one_of()` (ver *?select*).
+
+```{r }
+head(select(empleados, starts_with("s")))
+```
+
+### Generar nuevas variables con **mutate()**
+
+```{r }
+head(mutate(emplea2, incsal = salario - salini, tsal = incsal/tiempemp ))
+```
+
+
+Operaciones con casos (filas)
+-----------------------------
+### Seleccionar casos con **filter()**
+
+```{r }
+head(filter(emplea2, sexo == "Mujer", minoria == "Sí"))
+```
+
+### Organizar casos con **arrange()**
+
+```{r }
+head(arrange(emplea2, salario))
+head(arrange(emplea2, desc(salini), salario))
+```
+
+
+Resumir valores con **summarise()**
+-----------------------------------
+
+```{r }
+summarise(empleados, sal.med = mean(salario), n = n())
+```
+
+
+Agrupar casos con **group_by()**
+-----------------------------
+
+```{r }
+summarise(group_by(empleados, sexo, minoria), sal.med = mean(salario), n = n())
+```
+
+
+Operador *pipe* **%>% **(tubería, redirección)
+-----------------------------
+Este operador le permite canalizar la salida de una función a la entrada de otra función. 
+`segundo(primero(datos))` se traduce en `datos %>% primero %>% segundo`
+(lectura de funciones de izquierda a derecha).
+
+Ejemplos:
+
+```{r }
+empleados %>%  filter(catlab == "Directivo") %>%
+          group_by(sexo, minoria) %>%
+          summarise(sal.med = mean(salario), n = n())
+
+empleados %>% select(sexo, catlab, salario) %>%
+          filter(catlab != "Seguridad") %>%
+          group_by(catlab) %>%
+          mutate(saldif = salario - mean(salario)) %>%
+          ungroup() %>%
+          boxplot(saldif ~ sexo*droplevels(catlab), data = .)
+abline(h = 0, lty = 2)
+```
+
+
+--------------
+Para mas información sobre *dplyr* ver por ejemplo la 'vignette' del paquete:  
+[Introduction to dplyr](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).

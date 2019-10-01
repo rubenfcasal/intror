@@ -1,0 +1,148 @@
+Regresión no paramétrica
+========================
+
+No se supone ninguna forma concreta en el efecto de las variables explicativas:
+$$Y=f\left(  \mathbf{X}\right)  +\varepsilon,$$
+con *f* función "cualquiera" (suave).
+
+- Métodos disponibles en `R`:
+
+    -   Regresión local (métodos de suavizado): `loess()`, `KernSmooth`, `sm`, ...
+
+    -   Modelos aditivos generalizados (GAM): `gam`, `mgcv`, ...
+    
+    -   ...
+
+
+Modelos aditivos
+----------------
+
+Se supone que:
+$$Y=\beta_{0}+f_{1}\left(  \mathbf{X}_{1}\right)  +f_{2}\left(  \mathbf{X}_{2}\right)  +\cdots+f_{p}\left(  \mathbf{X}_{p}\right)  +\varepsilon\text{,}$$
+con $f_{i},$ $i=1,...,p,$ funciones cualesquiera.
+
+-   Los modelos lineales son un caso particular considerando $f_{i}(x) = \beta_{i}·x$.
+
+-   Adicionalmente se puede considerar una función link: **Modelos aditivos generalizados** (GAM)
+
+    -   Hastie, T.J. y Tibshirani, R.J. (1990). Generalized Additive Models. Chapman & Hall.
+        
+    -   Wood, S. N. (2006). Generalized Additive Models: An Introduction with R. Chapman & Hall/CRC
+    
+
+### Ajuste: función `gam` 
+
+La función `gam` del paquete `mgcv` permite ajustar modelos aditivos (generalizados) empleando regresión por splines (ver `help("mgcv-package")`):
+```{r, eval=FALSE}
+library(mgcv)
+ajuste <- gam(formula, family = gaussian, datos, pesos, seleccion, na.action, ...)
+```
+
+Algunas posibilidades de uso son las que siguen:
+
+-   Modelo lineal:
+    ```{r, eval=FALSE}
+    ajuste <- gam(y ~ x1 + x2 + x3)
+    ```
+
+-   Modelo aditivo con efectos no paramétricos para x1 y x2, y un efecto lineal para x3:
+    ```{r, eval=FALSE}
+    ajuste <- gam(y ~ s(x1) + s(x2) + x3)
+    ```
+
+-   Modelo no aditivo (con interacción):
+    ```{r, eval=FALSE}
+    ajuste <- gam(y ~ s(x1, x2))
+    ```
+
+-   Modelo con distintas combinaciones:
+    ```{r, eval=FALSE}
+    ajuste <- gam(y ~ s(x1, x2) + s(x3) + x4)
+    ```
+
+### Ejemplo
+En esta sección utilizaremos como ejemplo el conjunto de datos `Prestige` de la librería `car`. 
+Se tratará de explicar `prestige` (puntuación de ocupaciones obtenidas a partir de una encuesta ) 
+a partir de `income` (media de ingresos en la ocupación) y `education` (media de los años de
+educación).
+```{r, message=FALSE}
+library(mgcv)
+library(car)
+modelo <- gam(prestige ~ s(income) + s(education), data = Prestige)
+summary(modelo)
+```
+
+    
+En este caso la función `plot` representa los efectos (parciales) estimados de cada covariable:    
+```{r}
+par.old <- par(mfrow = c(1, 2))
+plot(modelo, shade = TRUE) # 
+par(par.old)
+
+```
+
+### Superficie de predicción
+
+Las predicciones se obtienen también con la función `predict`:
+```{r}
+pred <- predict(modelo)
+```
+Por defecto `predict` obtiene las predicciones correspondientes a las observaciones (`modelo$fitted.values`). Para otros casos hay que emplear el argumento `newdata`.
+
+Para representar las estimaciones (la superficie de predicción) obtenidas con el modelo se puede
+utilizar la función `persp`. Esta función necesita que los valores (x,y) de entrada estén 
+dispuestos en una rejilla bidimensional. Para generar esta rejilla se puede emplear la función `expand.grid(x,y)` que crea todas las combinaciones de los puntos dados en x e y.
+```{r}
+inc <- with(Prestige, seq(min(income), max(income), len = 25))
+ed <- with(Prestige, seq(min(education), max(education), len = 25))
+newdata <- expand.grid(income = inc, education = ed)
+# Representamos la rejilla
+plot(income ~ education, Prestige, pch = 16)
+abline(h = inc, v = ed, col = "grey")
+# Se calculan las predicciones
+pred <- predict(modelo, newdata)
+# Se representan
+pred <- matrix(pred, nrow = 25)
+persp(inc, ed, pred, theta = -40, phi = 30)
+```
+
+Alternativamente se podría emplear la función `contour` o `filled.contour`:
+```{r}
+# contour(inc, ed, pred, xlab = "Income", ylab = "Education")
+filled.contour(inc, ed, pred, xlab = "Income", ylab = "Education", key.title = title("Prestige"))
+```
+
+
+Puede ser más cómodo emplear el paquete [`modelr`](https://github.com/hadley/modelr) junto a los gráficos `ggplot2` para trabajar con modelos y predicciones.
+
+### Comparación de modelos
+
+Además de las medidas de bondad de ajuste como el coeficiente de determinación ajustado, también se puede emplear la función `anova` para la comparación de modelos.
+Por ejemplo, viendo el gráfico de los efectos se podría pensar que el efecto de `education` podría ser lineal:
+```{r}
+# plot(modelo)
+modelo0 <- gam(prestige ~ s(income) + education, data = Prestige)
+summary(modelo0)
+anova(modelo0, modelo, test="F")
+```
+En este caso aceptaríamos que el modelo original es significativamente mejor.
+
+Alternativamente, podríamos pensar que hay interacción:
+```{r}
+modelo2 <- gam(prestige ~ s(income, education), data = Prestige)
+summary(modelo2)
+# plot(modelo2, se = FALSE)
+```
+En este caso el coeficiente de determinación ajustado es menor...
+
+
+### Diagnosis del modelo
+La función `gam.check` realiza una diagnosis del modelo: 
+```{r}
+gam.check(modelo)
+```
+Lo ideal sería observar normalidad en los dos gráficos de la izquierda, falta de patrón en el superior derecho, y ajuste a una recta en el inferior derecho. En este caso parece que el modelo se comporta adecuadamente.
+
+
+
+
