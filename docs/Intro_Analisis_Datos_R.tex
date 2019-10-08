@@ -125,7 +125,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-10-01}
+    \date{2019-10-08}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -211,7 +211,7 @@ Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional}
 (esperamos poder liberarlo bajo una licencia menos restrictiva más
 adelante\ldots{}).
 
-\includegraphics[width=1.22in]{by-nc-nd-88x31}
+\includegraphics{by-nc-nd-88x31.png}
 
 \chapter{Introducción}\label{introduccion}
 
@@ -681,7 +681,7 @@ Veamos ahora un ejemplo un poco más avanzado. Con el siguiente código
 
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   99.13  103.64  105.09  105.07  106.54  110.96
+##   99.98  103.58  104.86  104.88  106.09  110.53
 \end{verbatim}
 
 \begin{Shaded}
@@ -1311,7 +1311,7 @@ A continuación se obtiene una simulación de 10 lanzamientos de un dado
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 3 6 3 6 2 5 2 3 1
+##  [1] 2 6 2 5 3 2 3 5 5 6
 \end{verbatim}
 
 Para simular el lanzamiento de una moneda podemos escribir
@@ -1367,8 +1367,8 @@ Para simular el lanzamiento de una moneda podemos escribir
 \end{Shaded}
 
 \begin{verbatim}
-## cara cruz cara cara cruz cara cruz cruz cara cruz 
-##    1    0    1    1    0    1    0    0    1    0
+## cruz cruz cruz cara cara cara cruz cara cara cara 
+##    0    0    0    1    1    1    0    1    1    1
 \end{verbatim}
 
 \begin{Shaded}
@@ -1380,7 +1380,7 @@ Para simular el lanzamiento de una moneda podemos escribir
 \begin{verbatim}
 ## lanz
 ## 0 1 
-## 5 5
+## 4 6
 \end{verbatim}
 
 Otros ejemplos
@@ -1392,8 +1392,8 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] -1.2260986  0.7000235 -0.6844091 -1.9278476  0.3442728 -2.7137350
-##  [7]  1.7216775 -0.5801234 -0.4646442 -0.1996467
+##  [1]  1.81672331  0.28272885  1.37998085 -1.14793281  0.57300112
+##  [6] -0.13322448 -0.01888086 -0.75931548 -1.05542046 -0.63950320
 \end{verbatim}
 
 \begin{Shaded}
@@ -1403,9 +1403,9 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 8.430526 7.892005 3.185115 7.059754 9.041696 9.047843 8.851946
-##  [8] 4.767540 4.053399 2.977448 7.903762 4.163080 6.134317 4.991602
-## [15] 7.656488
+##  [1] 2.091023 2.878620 3.149225 7.993995 4.245259 5.600789 2.337401
+##  [8] 6.334728 7.308744 9.672955 7.449776 9.626397 5.684742 5.790047
+## [15] 4.737164
 \end{verbatim}
 
 El lector puede utilizar la función \texttt{help()} para obtener la
@@ -2736,18 +2736,20 @@ Graphics}
 
 \begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-11-2} \end{center}
 
-\chapter{Manipulación de datos}\label{manipulacion-de-datos}
+\chapter{Manipulación de datos con R}\label{manipulacion-de-datos-con-r}
+
+La mayoría de los estudios estadísticos requieren disponer de un
+conjunto de datos.
 
 \section{Lectura, importación y exportación de
 datos}\label{lectura-importacion-y-exportacion-de-datos}
 
-La mayoría de los estudios estadísticos requieren disponer de un
-conjunto de datos. Además de la introducción directa, \texttt{R} es
-capaz de importar datos externos en múltiples formatos:
+Además de la introducción directa, R es capaz de importar datos externos
+en múltiples formatos:
 
 \begin{itemize}
 \item
-  bases de datos disponibles en librerías de \texttt{R}
+  bases de datos disponibles en librerías de R
 \item
   archivos de texto en formato ASCII
 \item
@@ -2760,233 +2762,92 @@ capaz de importar datos externos en múltiples formatos:
   \ldots{}.
 \end{itemize}
 
-\subsection{Introducción directa}\label{introduccion-directa}
+\subsection{Formato de datos de R}\label{formato-de-datos-de-r}
 
-Si los datos son pocos, se pueden teclear directamente en un vector o en
-un data.frame. Por ejemplo:
+El formato de archivo en el que habitualmente se almacena objetos
+(datos) R es binario y está comprimido (en formato \texttt{"gzip"} por
+defecto). Para cargar un fichero de datos se emplea normalmente
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load}{\texttt{load()}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{producto <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{)}
-\NormalTok{precio <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1200}\NormalTok{, }\DecValTok{560}\NormalTok{, }\DecValTok{740}\NormalTok{)}
-\NormalTok{datos <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(producto, precio)}
-\NormalTok{datos}
+\NormalTok{res <-}\StringTok{ }\KeywordTok{load}\NormalTok{(}\StringTok{"datos/empleados.RData"}\NormalTok{)}
+\NormalTok{res}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   producto precio
-## 1        A   1200
-## 2        B    560
-## 3        C    740
+## [1] "empleados"
 \end{verbatim}
 
-En ocasiones, tanto para matrices como para data.frames, será de
-utilidad la función \texttt{edit}. Por ejemplo, una sentencia como:
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{datos2 <-}\StringTok{ }\KeywordTok{edit}\NormalTok{(datos)}
+\KeywordTok{ls}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-abre una hoja de cálculo ``muy básica'' con la que podremos editar los
-elementos del data.frame, cambiar sus dimensiones añadiendo filas y/o
-columnas, \ldots{}
-
-\textbf{Nota}: Hay que destacar que \texttt{datos} tiene que existir
-antes de emplear la función \texttt{edit}. Para modificar directamente
-el objeto puede ser más cómodo emplear la función \texttt{fix()}.
-
-\subsection{Lectura desde paquetes}\label{lectura-desde-paquetes}
-
-El programa \texttt{R} dispone de múltiples conjuntos de datos. Al
-teclear:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-se obtiene un listado de las bases de datos disponibles.
 
 \begin{verbatim}
-Data sets in package "datasets":
-
-AirPassengers           Monthly Airline Passenger Numbers 1949-1960
-BJsales                 Sales Data with Leading Indicator
-BJsales.lead (BJsales)
-                        Sales Data with Leading Indicator
-BOD                     Biochemical Oxygen Demand
-CO2                     Carbon Dioxide Uptake in Grass Plants
-ChickWeight             Weight versus age of chicks on different diets
-
-.....
+##  [1] "citefig"   "citefig2"  "empleados" "fig.path"  "inline"   
+##  [6] "inline2"   "is_html"   "is_latex"  "latexfig"  "res"
 \end{verbatim}
+
+y para guardar
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save}{\texttt{save()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Guardar}
+\KeywordTok{save}\NormalTok{(empleados, }\DataTypeTok{file =} \StringTok{"datos/empleados_new.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+El objeto empleado normalmente en R para almacenar datos en memoria es
+el
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame}{\texttt{data.frame}}.
+
+\subsection{Acceso a datos en
+paquetes}\label{acceso-a-datos-en-paquetes}
+
+R dispone de múltiples conjuntos de datos en distintos paquetes,
+especialmente en el paquete \texttt{datasets} que se carga por defecto
+al abrir R. Con el comando \texttt{data()} podemos obtener un listado de
+las bases de datos disponibles.
 
 Para cargar una base de datos concreta se utiliza el comando
-\texttt{data(nombre)} (aunque en algunos casos se cargan
-automáticamente). Por ejemplo, la base de datos llamada \texttt{cars} se
-carga con:
+\texttt{data(nombre)} (aunque en algunos casos se cargan automáticamente
+al emplearlos). Por ejemplo, \texttt{data(cars)} carga la base de datos
+llamada \texttt{cars} en el entorno de trabajo (\texttt{".GlobalEnv"}) y
+\texttt{?cars} muestra la ayuda correspondiente con la descripición de
+la base de datos.
+
+\subsection{Lectura de archivos de texto}\label{cap4-texto}
+
+En R para leer archivos de texto se suele utilizar la función
+\texttt{read.table()}. Supóngase, por ejemplo, que en el directorio
+actual está el fichero \emph{empleados.txt}. La lectura de este fichero
+vendría dada por el código:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{data}\NormalTok{(cars)}
-\end{Highlighting}
-\end{Shaded}
-
-Una vez cargado el objeto \texttt{cars} (\texttt{R} lo carga como un
-data.frame), se podrán utilizar las correspondientes sentencias para
-realizar resúmenes numéricos y gráficos.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(cars)  }\CommentTok{# Primeros valores}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   speed dist
-## 1     4    2
-## 2     4   10
-## 3     7    4
-## 4     7   22
-## 5     8   16
-## 6     9   10
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{help}\NormalTok{(cars)  }\CommentTok{# Obtención de ayuda}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-...
-
-Speed and Stopping Distances of Cars
-
-Description:
-     The data give the speed of cars and the distances taken to stop.
-     Note that the data were recorded in the 1920s.
-
-...  
-
-Format:
-     A data frame with 50 observations on 2 variables.
-       [,1]  speed  numeric  Speed (mph)            
-       [,2]  dist   numeric  Stopping distance (ft) 
-      
-Source:
-     Ezekiel, M. (1930) _Methods of Correlation Analysis_.  Wiley.
-     
-...  
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{names}\NormalTok{(cars)      }\CommentTok{# Nombres}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "speed" "dist"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cars}\OperatorTok{$}\NormalTok{speed[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{] }\CommentTok{# Primeros 10 valores de velocidad}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1]  4  4  7  7  8  9 10 10 10 11
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cars}\OperatorTok{$}\NormalTok{dist[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{] }\CommentTok{# Primeros 10 valores de distancia}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1]  2 10  4 22 16 10 18 26 34 17
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{names}\NormalTok{(cars) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"velocidad"}\NormalTok{, }\StringTok{"distancia"}\NormalTok{)  }\CommentTok{# Nombres en español}
-\KeywordTok{head}\NormalTok{(cars)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   velocidad distancia
-## 1         4         2
-## 2         4        10
-## 3         7         4
-## 4         7        22
-## 5         8        16
-## 6         9        10
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(cars)   }\CommentTok{# Resumen estadístico}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    velocidad      distancia     
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(cars)             }\CommentTok{# Gráfico de dispersión de los datos}
-\KeywordTok{hist}\NormalTok{(cars}\OperatorTok{$}\NormalTok{velocidad)    }\CommentTok{# Histograma de velocidad}
-\KeywordTok{boxplot}\NormalTok{(cars}\OperatorTok{$}\NormalTok{distancia) }\CommentTok{# Boxplot de distancia}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{Lectura de archivos de
-texto}\label{lectura-de-archivos-de-texto}
-
-En \texttt{R} para leer archivos de texto se suele utilizar la función
-\texttt{read.table()}.
-
-Supóngase, por ejemplo, que en el directorio actual está el fichero
-\emph{empleados.txt}. La lectura de este fichero vendría dada por el
-código:
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\CommentTok{# Session > Set Working Directory > To Source...?}
 \NormalTok{datos <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\DataTypeTok{file =} \StringTok{"datos/empleados.txt"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
-\KeywordTok{head}\NormalTok{(datos)}
+\CommentTok{# head(datos)}
+\KeywordTok{str}\NormalTok{(datos)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   id   sexo   fechnac educ         catlab salario salini tiempemp expprev
-## 1  1 Hombre  2/3/1952   15      Directivo   57000  27000       98     144
-## 2  2 Hombre 5/23/1958   16 Administrativo   40200  18750       98      36
-## 3  3  Mujer 7/26/1929   12 Administrativo   21450  12000       98     381
-## 4  4  Mujer 4/15/1947    8 Administrativo   21900  13200       98     190
-## 5  5 Hombre  2/9/1955   15 Administrativo   45000  21000       98     138
-## 6  6 Hombre 8/22/1958   15 Administrativo   32100  13500       98      67
-##   minoria
-## 1      No
-## 2      No
-## 3      No
-## 4      No
-## 5      No
-## 6      No
+## 'data.frame':    474 obs. of  10 variables:
+##  $ id      : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ sexo    : Factor w/ 2 levels "Hombre","Mujer": 1 1 2 2 1 1 1 2 2 2 ...
+##  $ fechnac : Factor w/ 462 levels " ","1/10/1964",..: 166 275 362 228 176 397 240 290 36 143 ...
+##  $ educ    : int  15 16 12 8 15 15 15 12 15 12 ...
+##  $ catlab  : Factor w/ 3 levels "Administrativo",..: 2 1 1 1 1 1 1 1 1 1 ...
+##  $ salario : num  57000 40200 21450 21900 45000 ...
+##  $ salini  : int  27000 18750 12000 13200 21000 13500 18750 9750 12750 13500 ...
+##  $ tiempemp: int  98 98 98 98 98 98 98 98 98 98 ...
+##  $ expprev : int  144 36 381 190 138 67 114 0 115 244 ...
+##  $ minoria : Factor w/ 2 levels "No","Sí": 1 1 1 1 1 1 1 1 1 1 ...
 \end{verbatim}
 
 Si el fichero estuviese en el directorio \emph{c:\textbackslash{}datos}
@@ -3036,11 +2897,21 @@ separados por tabuladores se puede utilizar \texttt{read.delim()} o
 \end{Highlighting}
 \end{Shaded}
 
+\subsection{\texorpdfstring{Alternativa
+\texttt{tidyverse}}{Alternativa tidyverse}}\label{alternativa-tidyverse}
+
+Para leer archivos de texto en distintos formatos también se puede
+emplear el paquete \href{https://readr.tidyverse.org}{\texttt{readr}}
+(colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}), para
+lo que se recomienda consultar el
+\href{https://r4ds.had.co.nz/data-import.html}{Capítulo 11} del libro
+\href{http://r4ds.had.co.nz}{R for Data Science}.
+
 \subsection{Importación desde SPSS}\label{importacion-desde-spss}
 
-El programa \texttt{R} permite lectura de ficheros de datos en formato
-SPSS (extensión \emph{.sav}) sin necesidad de tener instalado dicho
-programa en el ordenador. Para ello se necesita:
+El programa R permite lectura de ficheros de datos en formato SPSS
+(extensión \emph{.sav}) sin necesidad de tener instalado dicho programa
+en el ordenador. Para ello se necesita:
 
 \begin{itemize}
 \item
@@ -3055,25 +2926,26 @@ Por ejemplo:
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(foreign)}
 \NormalTok{datos <-}\StringTok{ }\KeywordTok{read.spss}\NormalTok{(}\DataTypeTok{file =} \StringTok{"datos/Employee data.sav"}\NormalTok{, }\DataTypeTok{to.data.frame =} \OtherTok{TRUE}\NormalTok{)}
-\KeywordTok{head}\NormalTok{(datos)}
+\CommentTok{# head(datos)}
+\KeywordTok{str}\NormalTok{(datos)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   id   sexo     fechnac educ         catlab salario salini tiempemp
-## 1  1 Hombre 11654150400   15      Directivo   57000  27000       98
-## 2  2 Hombre 11852956800   16 Administrativo   40200  18750       98
-## 3  3  Mujer 10943337600   12 Administrativo   21450  12000       98
-## 4  4  Mujer 11502518400    8 Administrativo   21900  13200       98
-## 5  5 Hombre 11749363200   15 Administrativo   45000  21000       98
-## 6  6 Hombre 11860819200   15 Administrativo   32100  13500       98
-##   expprev minoria
-## 1     144      No
-## 2      36      No
-## 3     381      No
-## 4     190      No
-## 5     138      No
-## 6      67      No
+## 'data.frame':    474 obs. of  10 variables:
+##  $ id      : num  1 2 3 4 5 6 7 8 9 10 ...
+##  $ sexo    : Factor w/ 2 levels "Hombre","Mujer": 1 1 2 2 1 1 1 2 2 2 ...
+##  $ fechnac : num  1.17e+10 1.19e+10 1.09e+10 1.15e+10 1.17e+10 ...
+##  $ educ    : Factor w/ 10 levels "8","12","14",..: 4 5 2 1 4 4 4 2 4 2 ...
+##  $ catlab  : Factor w/ 3 levels "Administrativo",..: 3 1 1 1 1 1 1 1 1 1 ...
+##  $ salario : Factor w/ 221 levels "15750","15900",..: 179 137 28 31 150 101 121 31 71 45 ...
+##  $ salini  : Factor w/ 90 levels "9000","9750",..: 60 42 13 21 48 23 42 2 18 23 ...
+##  $ tiempemp: Factor w/ 36 levels "63","64","65",..: 36 36 36 36 36 36 36 36 36 36 ...
+##  $ expprev : Factor w/ 208 levels "Ausente","10",..: 38 131 139 64 34 181 13 1 14 91 ...
+##  $ minoria : Factor w/ 2 levels "No","Sí": 1 1 1 1 1 1 1 1 1 1 ...
+##  - attr(*, "variable.labels")= Named chr  "Código de empleado" "Sexo" "Fecha de nacimiento" "Nivel educativo" ...
+##   ..- attr(*, "names")= chr  "id" "sexo" "fechnac" "educ" ...
+##  - attr(*, "codepage")= int 1252
 \end{verbatim}
 
 \textbf{Nota}: Si hay fechas, puede ser recomendable emplear la función
@@ -3081,13 +2953,20 @@ Por ejemplo:
 
 \subsection{Importación desde Excel}\label{importacion-desde-excel}
 
-Se pueden leer fichero de Excel (con extensión \emph{.xls}) utilizando
-por ejemplo funciones de las librerías \texttt{openxlsx},
-\texttt{XLConnect} o \texttt{RODBC}. Sin embargo, puede ser recomendable
-exportar los datos desde Excel a un archivo de texto separado por
-tabuladores (extensión \emph{.csv}).
+Se pueden leer fichero de Excel (con extensión \emph{.xlsx}) utilizando
+por ejemplo los paquetes
+\href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}},
+\href{https://readxl.tidyverse.org}{\texttt{readxl}} (colección
+\href{https://www.tidyverse.org/}{\texttt{tidyverse}}),
+\texttt{XLConnect} o
+\href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}}
+(este paquete se empleará más adelante para acceder a bases de datos),
+entre otros.
 
-Por ejemplo, supongamos que queremos leer el fichero \emph{coches.xls}:
+Sin embargo, un procedimiento sencillo consiste en exportar los datos
+desde Excel a un archivo de texto separado por tabuladores (extensión
+\emph{.csv}). Por ejemplo, supongamos que queremos leer el fichero
+\emph{coches.xls}:
 
 \begin{itemize}
 \item
@@ -3104,14 +2983,14 @@ Por ejemplo, supongamos que queremos leer el fichero \emph{coches.xls}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{datos <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"datos/coches.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\NormalTok{datos <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"coches.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 \end{itemize}
 
 Otra posibilidad es utilizar la función \texttt{read.csv2}, que es una
-adaptación de la función general \texttt{read.table} con la siguiente
-configuración.
+adaptación de la función general \texttt{read.table} con las siguientes
+opciones:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3120,21 +2999,20 @@ configuración.
 \end{Shaded}
 
 Por lo tanto, la lectura del fichero \emph{coches.csv} se puede hacer de
-modo más directo con
+modo más directo con:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{datos <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"datos/coches.csv"}\NormalTok{)}
+\NormalTok{datos <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"coches.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \subsection{Exportación de datos}\label{exportacion-de-datos}
 
-Es evidente que además de la lectura e importación de datos también será
-de gran interés la exportación de datos para que puedan leídos con otros
-programas. Para ello, es de gran utilidad la función
-\texttt{write.table}. Esta función es similar, pero funcionando en
-sentido inverso, a la ya vista \texttt{read.table}.
+Puede ser de interés la exportación de datos para que puedan leídos con
+otros programas. Para ello, se puede emplear la función
+\texttt{write.table()}. Esta función es similar, pero funcionando en
+sentido inverso, a \texttt{read.table()} (Sección \ref{cap4-texto}).
 
 Veamos un ejemplo:
 
@@ -3155,7 +3033,7 @@ Veamos un ejemplo:
 \end{verbatim}
 
 Para guardar el data.frame \texttt{datos} en un fichero de texto se
-utiliza se puede utilizar
+puede utilizar:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3163,7 +3041,7 @@ utiliza se puede utilizar
 \end{Highlighting}
 \end{Shaded}
 
-Otra posibilidad es utilizar la función
+Otra posibilidad es utilizar la función:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3174,7 +3052,7 @@ Otra posibilidad es utilizar la función
 que dará lugar al fichero \emph{datos.csv} importable directamente desde
 Excel.
 
-\section{Manipulación de datos}\label{manipulacion-de-datos-1}
+\section{Manipulación de datos}\label{manipulacion-de-datos}
 
 Una vez cargada una (o varias) bases de datos hay una series de
 operaciones que serán de interés para el tratamiento de datos:
@@ -3187,9 +3065,9 @@ operaciones que serán de interés para el tratamiento de datos:
   \begin{itemize}
   \tightlist
   \item
-    creación
+    crear
   \item
-    recodificación (e.g.~categorización)
+    recodificar (e.g.~categorizar)
   \item
     \ldots{}
   \end{itemize}
@@ -3199,15 +3077,15 @@ operaciones que serán de interés para el tratamiento de datos:
   \begin{itemize}
   \tightlist
   \item
-    ordenación
+    ordenar
   \item
-    filtrado de datos
+    filtrar
   \item
     \ldots{}
   \end{itemize}
 \end{itemize}
 
-A continuación se tratan las operaciones más básicas.
+A continuación se tratan algunas operaciones \emph{básicas}.
 
 \subsection{Operaciones con variables}\label{operaciones-con-variables}
 
@@ -3215,11 +3093,12 @@ A continuación se tratan las operaciones más básicas.
 variables}\label{creacion-y-eliminacion-de-variables}
 
 Consideremos de nuevo la base de datos \texttt{cars} incluida en el
-paquete \texttt{datasets}.
+paquete \texttt{datasets}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{data}\NormalTok{(cars)}
+\CommentTok{# str(cars)}
 \KeywordTok{head}\NormalTok{(cars)}
 \end{Highlighting}
 \end{Shaded}
@@ -3274,10 +3153,9 @@ directamente con su nombre o bien utilizando notación ``matricial''.
 Supongamos ahora que queremos transformar la variable original
 \texttt{speed} (millas por hora) en una nueva variable
 \texttt{velocidad} (kilómetros por hora) y añadir esta nueva variable al
-data.frame \texttt{cars}.
-
-La transformación que permite pasar millas a kilómetros es
-kilómetros=millas/0.62137 que en \texttt{R} se hace directamente con:
+data.frame \texttt{cars}. La transformación que permite pasar millas a
+kilómetros es \texttt{kilómetros=millas/0.62137} que en R se hace
+directamente con:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3286,7 +3164,7 @@ kilómetros=millas/0.62137 que en \texttt{R} se hace directamente con:
 \end{Shaded}
 
 Finalmente, incluimos la nueva variable que llamaremos
-\texttt{velocidad} en \texttt{cars}.
+\texttt{velocidad} en \texttt{cars}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3307,7 +3185,7 @@ Finalmente, incluimos la nueva variable que llamaremos
 
 También transformaremos la variable \texttt{dist} (en pies) en una nueva
 variable \texttt{distancia} (en metros). Ahora la transformación deseada
-es \texttt{metros=pies/3.2808}.
+es \texttt{metros=pies/3.2808}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3329,7 +3207,7 @@ es \texttt{metros=pies/3.2808}.
 Ahora, eliminaremos las variables originales \texttt{speed} y
 \texttt{dist}, y guardaremos el data.frame resultante con el nombre
 \texttt{coches}. En primer lugar, veamos varias formas de acceder a las
-variables de interés
+variables de interés:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3339,24 +3217,21 @@ variables de interés
 \end{Highlighting}
 \end{Shaded}
 
-Utilizando alguna de las opciones anteriores se obtiene el data.frame
-deseado.
+Utilizando alguna de las opciones anteriores se obtiene el
+\texttt{data.frame} deseado:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{coches <-}\StringTok{ }\NormalTok{cars[, }\KeywordTok{c}\NormalTok{(}\StringTok{"velocidad"}\NormalTok{, }\StringTok{"distancia"}\NormalTok{)]}
-\KeywordTok{head}\NormalTok{(coches)}
+\CommentTok{# head(coches)}
+\KeywordTok{str}\NormalTok{(coches)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   velocidad distancia
-## 1  6.437388 0.6096074
-## 2  6.437388 3.0480371
-## 3 11.265430 1.2192148
-## 4 11.265430 6.7056815
-## 5 12.874777 4.8768593
-## 6 14.484124 3.0480371
+## 'data.frame':    50 obs. of  2 variables:
+##  $ velocidad: num  6.44 6.44 11.27 11.27 12.87 ...
+##  $ distancia: num  0.61 3.05 1.22 6.71 4.88 ...
 \end{verbatim}
 
 Finalmente los datos anteriores podrían ser guardados en un fichero
@@ -3376,11 +3251,9 @@ Continuemos con el data.frame \texttt{cars}. Se puede comprobar que los
 datos disponibles están ordenados por los valores de \texttt{speed}. A
 continuación haremos la ordenación utilizando los valores de
 \texttt{dist}. Para ello utilizaremos el conocido como vector de índices
-de ordenación.
-
-El vector de índices de ordenación establece el orden en que tienen que
-ser elegidos los elementos de un vector para obtener la ordenación
-deseada. Veamos un ejemplo sencillo:
+de ordenación. Este vector establece el orden en que tienen que ser
+elegidos los elementos para obtener la ordenación deseada. Veamos un
+ejemplo sencillo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3439,9 +3312,10 @@ vector de índices de ordenación. A continuación, los datos de
 
 El filtrado de datos consiste en elegir una submuestra que cumpla
 determinadas condiciones. Para ello se puede utilizar la función
-\texttt{subset}.
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset}{\texttt{subset()}}
+(que además permite seleccionar variables).
 
-A continuación están dos ejemplos para comprender su utilización:
+A continuación se muestran un par de ejemplos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3470,7 +3344,7 @@ A continuación están dos ejemplos para comprender su utilización:
 \end{verbatim}
 
 También se pueden hacer el filtrado empleando directamente los
-correspondientes vectores de índices.
+correspondientes vectores de índices:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3499,6 +3373,55 @@ correspondientes vectores de índices.
 ## 22    14   60  22.53086  18.28822
 ## 23    14   80  22.53086  24.38430
 \end{verbatim}
+
+En este caso puede ser de utilidad la función
+\href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which}{\texttt{which()}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{it <-}\StringTok{ }\KeywordTok{which}\NormalTok{(ii)}
+\KeywordTok{str}\NormalTok{(it)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  int [1:3] 19 22 23
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars[it, }\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    speed dist
+## 19    13   46
+## 22    14   60
+## 23    14   80
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# rownames(cars[it, 1:2])}
+
+\NormalTok{id <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\OperatorTok{!}\NormalTok{ii)}
+\KeywordTok{str}\NormalTok{(cars[id, }\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    47 obs. of  2 variables:
+##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
+##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed}
+\CommentTok{# ?which.min}
+\end{Highlighting}
+\end{Shaded}
 
 \chapter{Análisis exploratorio de
 datos}\label{analisis-exploratorio-de-datos}
@@ -6177,6 +6100,15 @@ determinado número de parámetros (variando desde 1 hasta un máximo de
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(leaps)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'leaps' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{res <-}\StringTok{ }\KeywordTok{regsubsets}\NormalTok{(fidelida }\OperatorTok{~}\StringTok{ }\NormalTok{. , }\DataTypeTok{data =}\NormalTok{ datos)}
 \KeywordTok{summary}\NormalTok{(res)}
 \end{Highlighting}
@@ -6297,6 +6229,27 @@ del paquete base \texttt{stats} con menos opciones). La función
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(MASS)}
 \KeywordTok{library}\NormalTok{(RcmdrMisc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'RcmdrMisc' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'car' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'carData' was built under R version 3.5.2
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'sandwich' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{modelo <-}\StringTok{ }\KeywordTok{stepwise}\NormalTok{(modelo.completo, }\DataTypeTok{direction =} \StringTok{"forward/backward"}\NormalTok{, }\DataTypeTok{criterion =} \StringTok{"BIC"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -6882,6 +6835,15 @@ heterocedasticidad:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(lmtest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'lmtest' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{bptest}\NormalTok{(modelo, }\DataTypeTok{studentize =} \OtherTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -7011,6 +6973,10 @@ variables explicativas el resto de variables continuas menos
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## Warning: package 'glmnet' was built under R version 3.5.3
+\end{verbatim}
+
 El paquete \texttt{glmnet} no emplea formulación de modelos, hay que
 establecer la respuesta \texttt{y} y las variables explicativas
 \texttt{x} (se puede emplear la función \texttt{model.matrix()} para
@@ -7119,14 +7085,14 @@ explicativas:
 
 \begin{verbatim}
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                     1
-## (Intercept) 4.4757712
-## velocida    0.1020531
-## precio      .        
-## flexprec    2.7202485
-## imgfabri    .        
-## servconj    6.4044378
-## imgfvent    0.4651076
+##                      1
+## (Intercept) 3.49567686
+## velocida    0.09986511
+## precio      .         
+## flexprec    2.78200584
+## imgfabri    .         
+## servconj    6.48863850
+## imgfvent    0.56085667
 ## calidadp    .
 \end{verbatim}
 
@@ -7653,6 +7619,27 @@ modelo por pasos según criterio AIC o BIC:
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(MASS)}
 \KeywordTok{library}\NormalTok{(RcmdrMisc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'RcmdrMisc' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'car' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'carData' was built under R version 3.5.2
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'sandwich' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{modelo <-}\StringTok{ }\KeywordTok{stepwise}\NormalTok{(modelo.completo, }\DataTypeTok{direction=}\StringTok{'backward/forward'}\NormalTok{, }\DataTypeTok{criterion=}\StringTok{'BIC'}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -7938,6 +7925,19 @@ ocupación) y \texttt{education} (media de los años de educación).
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(mgcv)}
 \KeywordTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'car' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'carData' was built under R version 3.5.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{modelo <-}\StringTok{ }\KeywordTok{gam}\NormalTok{(prestige }\OperatorTok{~}\StringTok{ }\KeywordTok{s}\NormalTok{(income) }\OperatorTok{+}\StringTok{ }\KeywordTok{s}\NormalTok{(education), }\DataTypeTok{data =}\NormalTok{ Prestige)}
 \KeywordTok{summary}\NormalTok{(modelo)}
 \end{Highlighting}
@@ -8175,8 +8175,8 @@ La función \texttt{gam.check} realiza una diagnosis del modelo:
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
 ##                k'  edf k-index p-value
-## s(income)    9.00 3.12    0.98    0.46
-## s(education) 9.00 3.18    1.03    0.59
+## s(income)    9.00 3.12    0.98    0.36
+## s(education) 9.00 3.18    1.03    0.55
 \end{verbatim}
 
 Lo ideal sería observar normalidad en los dos gráficos de la izquierda,
@@ -8562,7 +8562,7 @@ contenido:
 ## function(a1, r, n) {
 ##         a1 * r^(n - 1)
 ##       }
-## <bytecode: 0x000000001d3f4ba0>
+## <bytecode: 0x00000000198b7480>
 \end{verbatim}
 
 \subsection{Salida}\label{salida}
@@ -8756,7 +8756,7 @@ simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##    1    2    3    4    5    6 
-## 0.11 0.22 0.15 0.18 0.14 0.20
+## 0.20 0.20 0.10 0.17 0.21 0.12
 \end{verbatim}
 
 \begin{Shaded}
@@ -8770,7 +8770,7 @@ simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##     1     2     3     4     5     6 
-## 0.154 0.176 0.178 0.190 0.152 0.150
+## 0.138 0.180 0.168 0.200 0.180 0.134
 \end{verbatim}
 
 \begin{Shaded}
@@ -8784,7 +8784,7 @@ simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##      1      2      3      4      5      6 
-## 0.1677 0.1698 0.1669 0.1631 0.1694 0.1631
+## 0.1699 0.1638 0.1700 0.1661 0.1659 0.1643
 \end{verbatim}
 
 Se puede comprobar que al aumentar el valor de \(n\) las frecuencias se

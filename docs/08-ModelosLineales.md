@@ -407,6 +407,13 @@ y selecciona el mejor (`nbest=1`).
 
 ```r
 library(leaps)
+```
+
+```
+## Warning: package 'leaps' was built under R version 3.5.3
+```
+
+```r
 res <- regsubsets(fidelida ~ . , data = datos)
 summary(res)
 ```
@@ -504,6 +511,25 @@ que facilita su uso:
 ```r
 library(MASS)
 library(RcmdrMisc)
+```
+
+```
+## Warning: package 'RcmdrMisc' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'car' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'carData' was built under R version 3.5.2
+```
+
+```
+## Warning: package 'sandwich' was built under R version 3.5.3
+```
+
+```r
 modelo <- stepwise(modelo.completo, direction = "forward/backward", criterion = "BIC")
 ```
 
@@ -961,6 +987,13 @@ La librería `lmtest` proporciona herramientas adicionales para la diagnosis de 
 
 ```r
 library(lmtest)
+```
+
+```
+## Warning: package 'lmtest' was built under R version 3.5.3
+```
+
+```r
 bptest(modelo, studentize = FALSE)
 ```
 
@@ -1067,6 +1100,10 @@ el resto de variables continuas menos *satisfac*.
 library(glmnet)
 ```
 
+```
+## Warning: package 'glmnet' was built under R version 3.5.3
+```
+
 El paquete `glmnet` no emplea formulación de modelos, hay que establecer la respuesta
 `y` y las variables explicativas `x` (se puede emplear la función `model.matrix()` para construir `x`, 
 la matriz de diseño, a partir de una fórmula). 
@@ -1163,14 +1200,14 @@ coef(cv.lasso)
 
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                     1
-## (Intercept) 4.4757712
-## velocida    0.1020531
-## precio      .        
-## flexprec    2.7202485
-## imgfabri    .        
-## servconj    6.4044378
-## imgfvent    0.4651076
+##                      1
+## (Intercept) 3.49567686
+## velocida    0.09986511
+## precio      .         
+## flexprec    2.78200584
+## imgfabri    .         
+## servconj    6.48863850
+## imgfvent    0.56085667
 ## calidadp    .
 ```
 

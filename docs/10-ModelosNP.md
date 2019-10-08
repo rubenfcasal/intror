@@ -74,6 +74,17 @@ educación).
 ```r
 library(mgcv)
 library(car)
+```
+
+```
+## Warning: package 'car' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'carData' was built under R version 3.5.2
+```
+
+```r
 modelo <- gam(prestige ~ s(income) + s(education), data = Prestige)
 summary(modelo)
 ```
@@ -274,8 +285,8 @@ gam.check(modelo)
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
 ##                k'  edf k-index p-value
-## s(income)    9.00 3.12    0.98    0.46
-## s(education) 9.00 3.18    1.03    0.59
+## s(income)    9.00 3.12    0.98    0.36
+## s(education) 9.00 3.18    1.03    0.55
 ```
 Lo ideal sería observar normalidad en los dos gráficos de la izquierda, falta de patrón en el superior derecho, y ajuste a una recta en el inferior derecho. En este caso parece que el modelo se comporta adecuadamente.
 

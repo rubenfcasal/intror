@@ -1,7 +1,7 @@
 --- 
 title: "Introducción al Análisis de Datos con `R`"
 author: "Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa"
-date: "2019-10-01"
+date: "2019-10-08"
 output: bookdown::gitbook
 site: bookdown::bookdown_site
 documentclass: book
@@ -60,8 +60,7 @@ para lo que se recomendaría consultar el libro de ["Escritura de libros con boo
 Este obra está bajo una licencia de [Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional ](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES) 
 (esperamos poder liberarlo bajo una licencia menos restrictiva más adelante...).
 
-
-\includegraphics[width=1.22in]{by-nc-nd-88x31} 
+![](by-nc-nd-88x31.png)<!-- --> 
 
 
 

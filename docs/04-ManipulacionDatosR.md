@@ -1,20 +1,19 @@
-Manipulación de datos
-=====================
+Manipulación de datos con R
+===========================
 
 
 
 
-
+La mayoría de los estudios estadísticos
+requieren disponer de un conjunto de datos. 
 
 Lectura, importación y exportación de datos
 -------------------------------------------
 
-
-La mayoría de los estudios estadísticos
-requieren disponer de un conjunto de datos. Además de la introducción directa, `R` es capaz de
+Además de la introducción directa, R es capaz de
 importar datos externos en múltiples formatos:
 
--   bases de datos disponibles en librerías de `R`
+-   bases de datos disponibles en librerías de R
 
 -   archivos de texto en formato ASCII
 
@@ -26,211 +25,78 @@ importar datos externos en múltiples formatos:
 
 -   ....
 
+### Formato de datos de R
 
-### Introducción directa
-
-Si los datos son pocos, se
-pueden teclear directamente en un vector o en un data.frame. Por ejemplo:
-
-
-```r
-producto <- c("A", "B", "C")
-precio <- c(1200, 560, 740)
-datos <- data.frame(producto, precio)
-datos
-```
-
-```
-##   producto precio
-## 1        A   1200
-## 2        B    560
-## 3        C    740
-```
-En ocasiones, tanto para matrices como para data.frames, será de
-utilidad la función `edit`. Por ejemplo, una sentencia como:
-
+El formato de archivo en el que habitualmente se almacena objetos (datos)
+R es binario y está comprimido (en formato `"gzip"` por defecto).
+Para cargar un fichero de datos se emplea normalmente [`load()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load):
 
 ```r
-datos2 <- edit(datos)
-```
-
-abre una hoja de cálculo “muy básica” con la que podremos editar los
-elementos del data.frame, cambiar sus dimensiones añadiendo filas y/o
-columnas, ...
-
-**Nota**: Hay que destacar que `datos` tiene que existir antes de emplear la función `edit`. 
-Para modificar directamente el objeto puede ser más cómodo emplear la función `fix()`.
-
-
-### Lectura desde paquetes
-
-El programa `R`
-dispone de múltiples conjuntos de datos. Al teclear:
-
-
-```r
-data()
-```
-
-se obtiene un listado de las bases de datos disponibles.
-
-    Data sets in package "datasets":
-
-    AirPassengers           Monthly Airline Passenger Numbers 1949-1960
-    BJsales                 Sales Data with Leading Indicator
-    BJsales.lead (BJsales)
-                            Sales Data with Leading Indicator
-    BOD                     Biochemical Oxygen Demand
-    CO2                     Carbon Dioxide Uptake in Grass Plants
-    ChickWeight             Weight versus age of chicks on different diets
-
-    .....
-
- Para cargar una base de datos concreta se utiliza el comando
-`data(nombre)` (aunque en algunos casos se cargan automáticamente). 
-Por ejemplo, la base de datos llamada `cars`
-se carga con:
-
-
-```r
-data(cars)
-```
-
-Una vez cargado el objeto `cars` (`R` lo carga como un data.frame),
-se podrán utilizar las correspondientes sentencias para realizar
-resúmenes numéricos y gráficos.
-
-
-```r
-head(cars)  # Primeros valores
+res <- load("datos/empleados.RData")
+res
 ```
 
 ```
-##   speed dist
-## 1     4    2
-## 2     4   10
-## 3     7    4
-## 4     7   22
-## 5     8   16
-## 6     9   10
-```
-
-
-```r
-help(cars)  # Obtención de ayuda
-```
-
-    ...
-
-    Speed and Stopping Distances of Cars
-
-    Description:
-         The data give the speed of cars and the distances taken to stop.
-         Note that the data were recorded in the 1920s.
-
-    ...  
-
-    Format:
-         A data frame with 50 observations on 2 variables.
-           [,1]  speed  numeric  Speed (mph)            
-           [,2]  dist   numeric  Stopping distance (ft) 
-          
-    Source:
-         Ezekiel, M. (1930) _Methods of Correlation Analysis_.  Wiley.
-         
-    ...  
-
-
-
-
-```r
-names(cars)      # Nombres
-```
-
-```
-## [1] "speed" "dist"
+## [1] "empleados"
 ```
 
 ```r
-cars$speed[1:10] # Primeros 10 valores de velocidad
+ls()
 ```
 
 ```
-##  [1]  4  4  7  7  8  9 10 10 10 11
+##  [1] "citefig"   "citefig2"  "empleados" "fig.path"  "inline"   
+##  [6] "inline2"   "is_html"   "is_latex"  "latexfig"  "res"
 ```
-
-```r
-cars$dist[1:10] # Primeros 10 valores de distancia
-```
-
-```
-##  [1]  2 10  4 22 16 10 18 26 34 17
-```
+y para guardar [`save()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save):
 
 ```r
-names(cars) <- c("velocidad", "distancia")  # Nombres en español
-head(cars)
+# Guardar
+save(empleados, file = "datos/empleados_new.RData")
 ```
 
-```
-##   velocidad distancia
-## 1         4         2
-## 2         4        10
-## 3         7         4
-## 4         7        22
-## 5         8        16
-## 6         9        10
-```
-
-```r
-summary(cars)   # Resumen estadístico
-```
-
-```
-##    velocidad      distancia     
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-```
+El objeto empleado normalmente en R para almacenar datos en memoria 
+es el [`data.frame`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame).
 
 
-```r
-plot(cars)             # Gráfico de dispersión de los datos
-hist(cars$velocidad)    # Histograma de velocidad
-boxplot(cars$distancia) # Boxplot de distancia
-```
+### Acceso a datos en paquetes
 
-### Lectura de archivos de texto
+R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete `datasets` 
+que se carga por defecto al abrir R. 
+Con el comando `data()` podemos obtener un listado de las bases de datos disponibles.
 
-En `R` para leer archivos de texto se suele utilizar la función `read.table()`.
+Para cargar una base de datos concreta se utiliza el comando
+`data(nombre)` (aunque en algunos casos se cargan automáticamente al emplearlos). 
+Por ejemplo, `data(cars)` carga la base de datos llamada `cars` en el entorno de trabajo (`".GlobalEnv"`)
+y `?cars` muestra la ayuda correspondiente con la descripición de la base de datos.
 
+
+### Lectura de archivos de texto {#cap4-texto}
+
+En R para leer archivos de texto se suele utilizar la función `read.table()`.
 Supóngase, por ejemplo, que en el directorio actual está el fichero
 *empleados.txt*. La lectura de este fichero vendría dada por el código:
 
 
 ```r
+# Session > Set Working Directory > To Source...?
 datos <- read.table(file = "datos/empleados.txt", header = TRUE)
-head(datos)
+# head(datos)
+str(datos)
 ```
 
 ```
-##   id   sexo   fechnac educ         catlab salario salini tiempemp expprev
-## 1  1 Hombre  2/3/1952   15      Directivo   57000  27000       98     144
-## 2  2 Hombre 5/23/1958   16 Administrativo   40200  18750       98      36
-## 3  3  Mujer 7/26/1929   12 Administrativo   21450  12000       98     381
-## 4  4  Mujer 4/15/1947    8 Administrativo   21900  13200       98     190
-## 5  5 Hombre  2/9/1955   15 Administrativo   45000  21000       98     138
-## 6  6 Hombre 8/22/1958   15 Administrativo   32100  13500       98      67
-##   minoria
-## 1      No
-## 2      No
-## 3      No
-## 4      No
-## 5      No
-## 6      No
+## 'data.frame':	474 obs. of  10 variables:
+##  $ id      : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ sexo    : Factor w/ 2 levels "Hombre","Mujer": 1 1 2 2 1 1 1 2 2 2 ...
+##  $ fechnac : Factor w/ 462 levels " ","1/10/1964",..: 166 275 362 228 176 397 240 290 36 143 ...
+##  $ educ    : int  15 16 12 8 15 15 15 12 15 12 ...
+##  $ catlab  : Factor w/ 3 levels "Administrativo",..: 2 1 1 1 1 1 1 1 1 1 ...
+##  $ salario : num  57000 40200 21450 21900 45000 ...
+##  $ salini  : int  27000 18750 12000 13200 21000 13500 18750 9750 12750 13500 ...
+##  $ tiempemp: int  98 98 98 98 98 98 98 98 98 98 ...
+##  $ expprev : int  144 36 381 190 138 67 114 0 115 244 ...
+##  $ minoria : Factor w/ 2 levels "No","Sí": 1 1 1 1 1 1 1 1 1 1 ...
 ```
 Si el fichero estuviese en el directorio *c:\\datos* bastaría con especificar
 `file = "c:/datos/empleados.txt"`.
@@ -245,11 +111,11 @@ Los argumentos utilizados habitualmente para esta función son:
 
 -   `sep`: carácter separador de columnas que por defecto es un espacio
     en blanco (`sep=""`). Otras opciones serían: `sep=","` si el separador es
-    un “;”, `sep="*"` si el separador es un “\*”, etc.
+    un ";", `sep="*"` si el separador es un "\*", etc.
 
 -   `dec`: carácter utilizado en el fichero para los números decimales.
     Por defecto se establece `dec = "."`. Si los decimales vienen dados
-    por “,” se utiliza `dec = ","`
+    por "," se utiliza `dec = ","`
 
 Resumiendo, los (principales) argumentos por defecto de la función
 `read.table` son los que se muestran en la siguiente línea:
@@ -271,10 +137,16 @@ read.delim(file, header = TRUE, sep = "\t", dec = ".")
 read.delim2(file, header = TRUE, sep = "\t", dec = ",")
 ```
 
+### Alternativa `tidyverse`
+
+Para leer archivos de texto en distintos formatos también se puede emplear el paquete [`readr`](https://readr.tidyverse.org) 
+(colección [`tidyverse`](https://www.tidyverse.org/)), para lo que se recomienda
+consultar el [Capítulo 11](https://r4ds.had.co.nz/data-import.html) del libro [R for Data Science](http://r4ds.had.co.nz).
+
 
 ### Importación desde SPSS
 
-El programa `R` permite
+El programa R permite
 lectura de ficheros de datos en formato SPSS (extensión *.sav*) sin
 necesidad de tener instalado dicho programa en el ordenador. Para ello
 se necesita:
@@ -289,24 +161,25 @@ Por ejemplo:
 ```r
 library(foreign)
 datos <- read.spss(file = "datos/Employee data.sav", to.data.frame = TRUE)
-head(datos)
+# head(datos)
+str(datos)
 ```
 
 ```
-##   id   sexo     fechnac educ         catlab salario salini tiempemp
-## 1  1 Hombre 11654150400   15      Directivo   57000  27000       98
-## 2  2 Hombre 11852956800   16 Administrativo   40200  18750       98
-## 3  3  Mujer 10943337600   12 Administrativo   21450  12000       98
-## 4  4  Mujer 11502518400    8 Administrativo   21900  13200       98
-## 5  5 Hombre 11749363200   15 Administrativo   45000  21000       98
-## 6  6 Hombre 11860819200   15 Administrativo   32100  13500       98
-##   expprev minoria
-## 1     144      No
-## 2      36      No
-## 3     381      No
-## 4     190      No
-## 5     138      No
-## 6      67      No
+## 'data.frame':	474 obs. of  10 variables:
+##  $ id      : num  1 2 3 4 5 6 7 8 9 10 ...
+##  $ sexo    : Factor w/ 2 levels "Hombre","Mujer": 1 1 2 2 1 1 1 2 2 2 ...
+##  $ fechnac : num  1.17e+10 1.19e+10 1.09e+10 1.15e+10 1.17e+10 ...
+##  $ educ    : Factor w/ 10 levels "8","12","14",..: 4 5 2 1 4 4 4 2 4 2 ...
+##  $ catlab  : Factor w/ 3 levels "Administrativo",..: 3 1 1 1 1 1 1 1 1 1 ...
+##  $ salario : Factor w/ 221 levels "15750","15900",..: 179 137 28 31 150 101 121 31 71 45 ...
+##  $ salini  : Factor w/ 90 levels "9000","9750",..: 60 42 13 21 48 23 42 2 18 23 ...
+##  $ tiempemp: Factor w/ 36 levels "63","64","65",..: 36 36 36 36 36 36 36 36 36 36 ...
+##  $ expprev : Factor w/ 208 levels "Ausente","10",..: 38 131 139 64 34 181 13 1 14 91 ...
+##  $ minoria : Factor w/ 2 levels "No","Sí": 1 1 1 1 1 1 1 1 1 1 ...
+##  - attr(*, "variable.labels")= Named chr  "Código de empleado" "Sexo" "Fecha de nacimiento" "Nivel educativo" ...
+##   ..- attr(*, "names")= chr  "id" "sexo" "fechnac" "educ" ...
+##  - attr(*, "codepage")= int 1252
 ```
 
 **Nota**: Si hay fechas, puede ser recomendable emplear la función `spss.get()` del paquete `Hmisc`.
@@ -315,10 +188,12 @@ head(datos)
 ### Importación desde Excel
 
 Se pueden leer fichero de
-Excel (con extensión *.xls*) utilizando por ejemplo funciones de las librerías `openxlsx`, `XLConnect` o `RODBC`.
-Sin embargo, puede ser recomendable exportar los datos desde Excel a un archivo
-de texto separado por tabuladores (extensión *.csv*).
+Excel (con extensión *.xlsx*) utilizando por ejemplo los paquetes [`openxlsx`](https://cran.r-project.org/web/packages/openxlsx/index.html), [`readxl`](https://readxl.tidyverse.org) (colección [`tidyverse`](https://www.tidyverse.org/)), `XLConnect` o 
+[`RODBC`](https://cran.r-project.org/web/packages/RODBC/index.html) (este paquete se empleará más adelante para acceder a bases de datos),
+entre otros.
 
+Sin embargo, un procedimiento sencillo consiste en  exportar los datos desde Excel a un archivo
+de texto separado por tabuladores (extensión *.csv*).
 Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
 
 -   Desde Excel se selecciona el menú
@@ -327,39 +202,38 @@ Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
     *coches.csv*.
 
 -   El fichero *coches.csv* es un fichero de texto plano (se puede
-    editar con Notepad), con cabecera, las columnas separadas por “;”, y
-    siendo “,” el carácter decimal.
+    editar con Notepad), con cabecera, las columnas separadas por ";", y
+    siendo "," el carácter decimal.
 
 -   Por lo tanto, la lectura de este fichero se puede hacer con:
 
     
     ```r
-    datos <- read.table("datos/coches.csv", header = TRUE, sep = ";", dec = ",")
+    datos <- read.table("coches.csv", header = TRUE, sep = ";", dec = ",")
     ```
 
- Otra posibilidad es utilizar la función `read.csv2`, que es
-una adaptación de la función general `read.table` con la siguiente
-configuración.
-
+Otra posibilidad es utilizar la función `read.csv2`, que es
+una adaptación de la función general `read.table` con las siguientes
+opciones:
 
 ```r
 read.csv2(file, header = TRUE, sep = ";", dec = ",")
 ```
+
 Por lo tanto, la lectura del fichero *coches.csv* se puede hacer de modo
-más directo con
+más directo con:
 
 ```r
-datos <- read.csv2("datos/coches.csv")
+datos <- read.csv2("coches.csv")
 ```
 
 ### Exportación de datos
 
-Es evidente que además de
-la lectura e importación de datos también será de gran interés la
+Puede ser de interés la
 exportación de datos para que puedan leídos con otros programas. Para
-ello, es de gran utilidad la función `write.table`. Esta función es
-similar, pero funcionando en sentido inverso, a la ya vista
-`read.table`.
+ello, se puede emplear la función `write.table()`. Esta función es
+similar, pero funcionando en sentido inverso, a `read.table()` 
+(Sección \@ref(cap4-texto)).
 
 Veamos un ejemplo:
 
@@ -377,13 +251,13 @@ datos
 ## 2    B    99.45
 ## 3    C   115.67
 ```
-Para guardar el data.frame `datos` en un fichero de texto se utiliza se
-puede utilizar
+Para guardar el data.frame `datos` en un fichero de texto se
+puede utilizar:
 
 ```r
 write.table(datos, file = "datos.txt")
 ```
-Otra posibilidad es utilizar la función
+Otra posibilidad es utilizar la función:
 
 ```r
 write.csv2(datos, file = "datos.csv")
@@ -399,26 +273,28 @@ de datos hay una series de operaciones que serán de interés para el
 tratamiento de datos: 
 
 -   Operaciones con variables: 
-    - creación
-    - recodificación (e.g. categorización)
+    - crear
+    - recodificar (e.g. categorizar)
     - ...
 
 -   Operaciones con casos:
-    - ordenación
-    - filtrado de datos
+    - ordenar
+    - filtrar
     - ...
 
-A continuación se tratan las operaciones más básicas.
 
-    
+A continuación se tratan algunas operaciones *básicas*.
+
 ### Operaciones con variables
 
 #### Creación (y eliminación) de variables
+
 Consideremos de nuevo la
-base de datos `cars` incluida en el paquete `datasets`.
+base de datos `cars` incluida en el paquete `datasets`:
 
 ```r
 data(cars)
+# str(cars)
 head(cars)
 ```
 
@@ -440,7 +316,7 @@ variables:
 
 -   `dist`: tiempo hasta detenerse (pies)
 
- Recordemos que, para acceder a la variable `speed` se puede
+Recordemos que, para acceder a la variable `speed` se puede
 hacer directamente con su nombre o bien utilizando notación
 "matricial".
 
@@ -466,9 +342,8 @@ cars[, 1]  # Equivalente
 Supongamos ahora que queremos transformar la variable original `speed`
 (millas por hora) en una nueva variable `velocidad` (kilómetros por
 hora) y añadir esta nueva variable al data.frame `cars`.
-
 La transformación que permite pasar millas a kilómetros es
-kilómetros=millas/0.62137 que en `R` se hace directamente con:
+`kilómetros=millas/0.62137` que en R se hace directamente con:
 
 
 ```r
@@ -476,7 +351,7 @@ cars$speed/0.62137
 ```
 
  Finalmente, incluimos la nueva variable que llamaremos
-`velocidad` en `cars`.
+`velocidad` en `cars`:
 
 ```r
 cars$velocidad <- cars$speed / 0.62137
@@ -495,7 +370,7 @@ head(cars)
 
 También transformaremos la variable `dist` (en pies) en una nueva
 variable `distancia` (en metros). Ahora la transformación deseada es
-`metros=pies/3.2808`.
+`metros=pies/3.2808`:
 
 
 ```r
@@ -516,7 +391,7 @@ head(cars)
  Ahora, eliminaremos las variables originales `speed` y
 `dist`, y guardaremos el data.frame resultante con el nombre `coches`.
 En primer lugar, veamos varias formas de acceder a las variables de
-interés
+interés:
 
 ```r
 cars[, c(3, 4)]
@@ -524,22 +399,19 @@ cars[, c("velocidad", "distancia")]
 cars[, -c(1, 2)]
 ```
 
-Utilizando alguna de las opciones anteriores se obtiene el data.frame
-deseado.
+Utilizando alguna de las opciones anteriores se obtiene el `data.frame`
+deseado:
 
 ```r
 coches <- cars[, c("velocidad", "distancia")]
-head(coches)
+# head(coches)
+str(coches)
 ```
 
 ```
-##   velocidad distancia
-## 1  6.437388 0.6096074
-## 2  6.437388 3.0480371
-## 3 11.265430 1.2192148
-## 4 11.265430 6.7056815
-## 5 12.874777 4.8768593
-## 6 14.484124 3.0480371
+## 'data.frame':	50 obs. of  2 variables:
+##  $ velocidad: num  6.44 6.44 11.27 11.27 12.87 ...
+##  $ distancia: num  0.61 3.05 1.22 6.71 4.88 ...
 ```
 
 Finalmente los datos anteriores podrían ser guardados en un fichero
@@ -552,16 +424,15 @@ write.csv2(coches, file = "coches.csv")
 ### Operaciones con casos
 
 #### Ordenación
+
 Continuemos con el data.frame `cars`. 
 Se puede comprobar que los datos disponibles están ordenados por
 los valores de `speed`. A continuación haremos la ordenación utilizando
 los valores de `dist`. Para ello utilizaremos el conocido como vector de
 índices de ordenación.
-
-El vector de índices de 
-ordenación establece el orden en que tienen que ser elegidos los
-elementos de un vector para obtener la ordenación deseada. Veamos un
-ejemplo sencillo:
+Este vector establece el orden en que tienen que ser elegidos los
+elementos para obtener la ordenación deseada. 
+Veamos un ejemplo sencillo:
 
 ```r
 x <- c(2.5, 4.3, 1.2, 3.1, 5.0) # valores originales
@@ -611,9 +482,10 @@ head(cars2)
 
 El filtrado de datos consiste en
 elegir una submuestra que cumpla determinadas condiciones. Para ello se
-puede utilizar la función `subset`.
+puede utilizar la función [`subset()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset) 
+(que además permite seleccionar variables).
 
-A continuación están dos ejemplos para comprender su utilización:
+A continuación se muestran un par de ejemplos:
 
 ```r
 subset(cars, dist > 85) # datos con dis>85
@@ -636,8 +508,10 @@ subset(cars, speed > 10 & speed < 15 & dist > 45) # speed en (10,15) y dist>45
 ## 22    14   60  22.53086  18.28822
 ## 23    14   80  22.53086  24.38430
 ```
+
 También se pueden hacer el filtrado empleando directamente los
-correspondientes vectores de índices.
+correspondientes vectores de índices:
+
 
 ```r
 ii <- cars$dist > 85
@@ -662,3 +536,45 @@ cars[ii, ]  # speed en (10,15) y dist>45
 ## 22    14   60  22.53086  18.28822
 ## 23    14   80  22.53086  24.38430
 ```
+
+En este caso puede ser de utilidad la función [`which()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which):
+
+
+```r
+it <- which(ii)
+str(it)
+```
+
+```
+##  int [1:3] 19 22 23
+```
+
+```r
+cars[it, 1:2]
+```
+
+```
+##    speed dist
+## 19    13   46
+## 22    14   60
+## 23    14   80
+```
+
+```r
+# rownames(cars[it, 1:2])
+
+id <- which(!ii)
+str(cars[id, 1:2])
+```
+
+```
+## 'data.frame':	47 obs. of  2 variables:
+##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
+##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...
+```
+
+```r
+# Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed
+# ?which.min
+```
+
