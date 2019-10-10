@@ -320,19 +320,15 @@ library(RcmdrMisc)
 ```
 
 ```
-## Warning: package 'RcmdrMisc' was built under R version 3.5.3
+## Warning: package 'RcmdrMisc' was built under R version 3.6.1
 ```
 
 ```
-## Warning: package 'car' was built under R version 3.5.3
+## Warning: package 'car' was built under R version 3.6.1
 ```
 
 ```
-## Warning: package 'carData' was built under R version 3.5.2
-```
-
-```
-## Warning: package 'sandwich' was built under R version 3.5.3
+## Warning: package 'sandwich' was built under R version 3.6.1
 ```
 
 ```r

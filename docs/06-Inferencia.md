@@ -47,17 +47,6 @@ as.data.frame(attr(hatco, "variable.labels"))
 ## nsatisfa          Nivel de satisfacción
 ```
 
-Por comodidad, para poder referenciar directamente las variables de *hatco* de ahora en adelante:
-
-
-```r
-# attach(hatco) # No se recomienda, mejor emplear with(hatco, ...)
-satisfac <- hatco$satisfac
-nsatisfa <- hatco$nsatisfa
-fidelida <- hatco$fidelida
-nfidelid <- hatco$nfidelid
-```
-
 
 Normalidad
 ----------
@@ -67,30 +56,30 @@ simétricos y si se pueden ajustar por una distribución normal
 
 
 ```r
-hist(satisfac) # hist(hatco$satisfac)
+hist(hatco$satisfac)
 ```
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-5-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 ```r
-qqnorm(satisfac)
+qqnorm(hatco$satisfac)
 ```
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-5-2} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-4-2} \end{center}
 
 ```r
-shapiro.test(satisfac)
+shapiro.test(hatco$satisfac)
 ```
 
 ```
 ## 
 ## 	Shapiro-Wilk normality test
 ## 
-## data:  satisfac
+## data:  hatco$satisfac
 ## W = 0.97608, p-value = 0.06813
 ```
 
@@ -99,18 +88,19 @@ Contrastes
 ----------
 
 ### Una muestra
+
 Obtenemos un intervalo de confianza de *satisfac*
 
 
 ```r
-t.test(satisfac) # t.test(hatco$satisfac)
+t.test(hatco$satisfac)  # with(hatco, t.test(satisfac))
 ```
 
 ```
 ## 
 ## 	One Sample t-test
 ## 
-## data:  satisfac
+## data:  hatco$satisfac
 ## t = 55.301, df = 98, p-value < 2.2e-16
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
@@ -124,14 +114,14 @@ Contrastamos si es razonable suponer que la media es 5
 
 
 ```r
-t.test(satisfac, mu = 5)
+t.test(hatco$satisfac, mu=5)
 ```
 
 ```
 ## 
 ## 	One Sample t-test
 ## 
-## data:  satisfac
+## data:  hatco$satisfac
 ## t = -2.6089, df = 98, p-value = 0.01051
 ## alternative hypothesis: true mean is not equal to 5
 ## 95 percent confidence interval:
@@ -145,14 +135,14 @@ Utilizando una confianza del 99%
 
 
 ```r
-t.test(satisfac, mu = 5, conf.level = 0.99)
+t.test(hatco$satisfac, mu=5, conf.level=0.99)
 ```
 
 ```
 ## 
 ## 	One Sample t-test
 ## 
-## data:  satisfac
+## data:  hatco$satisfac
 ## t = -2.6089, df = 98, p-value = 0.01051
 ## alternative hypothesis: true mean is not equal to 5
 ## 99 percent confidence interval:
@@ -166,14 +156,14 @@ Veamos si podemos afirmar que la media es menor que 5
 
 
 ```r
-t.test(satisfac, mu = 5, alternative = 'less')
+t.test(hatco$satisfac, mu=5, alternative = 'less')
 ```
 
 ```
 ## 
 ## 	One Sample t-test
 ## 
-## data:  satisfac
+## data:  hatco$satisfac
 ## t = -2.6089, df = 98, p-value = 0.005253
 ## alternative hypothesis: true mean is less than 5
 ## 95 percent confidence interval:
@@ -187,14 +177,14 @@ t.test(satisfac, mu = 5, alternative = 'less')
 
 
 ```r
-t.test(satisfac, mu = 4.65, alternative = 'greater')
+t.test(hatco$satisfac, mu=4.65, alternative = 'greater')
 ```
 
 ```
 ## 
 ## 	One Sample t-test
 ## 
-## data:  satisfac
+## data:  hatco$satisfac
 ## t = 1.4448, df = 98, p-value = 0.07585
 ## alternative hypothesis: true mean is greater than 4.65
 ## 95 percent confidence interval:
@@ -210,7 +200,7 @@ alternativa al contraste *t* de Student
 
 
 ```r
-wilcox.test(satisfac, mu = 5)
+with(hatco, wilcox.test(satisfac, mu=5))
 ```
 
 ```
@@ -231,7 +221,7 @@ y asumimos que las varianzas son iguales
 
 
 ```r
-t.test(fidelida ~ nsatisfa, data = hatco, var.equal = TRUE)
+t.test(fidelida ~ nsatisfa, data = hatco, var.equal=TRUE)
 ```
 
 ```
@@ -278,7 +268,7 @@ boxplot(fidelida ~ nsatisfa, data = hatco)
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-14-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 La comparación de las varianzas puede hacerse con el test *F*
 
@@ -337,14 +327,14 @@ de fuerza de ventas
 
 
 ```r
-t.test(hatco$precio, hatco$imgfvent, paired = TRUE)
+with(hatco, t.test(precio, imgfvent, paired = TRUE))
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  hatco$precio and hatco$imgfvent
+## data:  precio and imgfvent
 ## t = -2.2347, df = 98, p-value = 0.02771
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
@@ -354,28 +344,20 @@ t.test(hatco$precio, hatco$imgfvent, paired = TRUE)
 ##              -0.2919192
 ```
 
-```r
-# with(hatco, t.test(precio, imgfvent, paired = TRUE)) # Alternativa empleando with
-```
-
 Y la correspondiente alternativa no paramétrica
 
 
 ```r
-wilcox.test(hatco$precio, hatco$imgfvent, paired = TRUE)
+with(hatco, wilcox.test(precio, imgfvent, paired = TRUE))
 ```
 
 ```
 ## 
 ## 	Wilcoxon signed rank test with continuity correction
 ## 
-## data:  hatco$precio and hatco$imgfvent
+## data:  precio and imgfvent
 ## V = 1789.5, p-value = 0.02431
 ## alternative hypothesis: true location shift is not equal to 0
-```
-
-```r
-# with(hatco, wilcox.test(precio, imgfvent, paired = TRUE)) # Alternativa empleando with
 ```
 
 
@@ -430,8 +412,7 @@ summary(modelo)
 ```
 
 ```r
-plot(fidelida, satisfac)                  # Cuidado con el orden de las variables
-# plot(hatco$fidelida, hatco$satisfac)    
+plot(hatco$fidelida, hatco$satisfac)      # Cuidado con el orden de las variables
 # with(hatco, plot(fidelida, satisfac))   # Alternativa empleando with
 # plot(satisfac ~ fidelida, data = hatco) # Alternativa empleando fórmulas
 abline(modelo)
@@ -439,7 +420,7 @@ abline(modelo)
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-20-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-19-1} \end{center}
 
 Valores ajustados
 
@@ -495,7 +476,7 @@ qqnorm(resid(modelo))
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-22-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-21-1} \end{center}
 
 ```r
 shapiro.test(resid(modelo))
@@ -510,28 +491,24 @@ shapiro.test(resid(modelo))
 ```
 
 ```r
-plot(fidelida, satisfac)
-# plot(hatco$fidelida, hatco$satisfac)    
-# with(hatco, plot(fidelida, satisfac))
+plot(hatco$fidelida, hatco$satisfac)    
 
 abline(modelo)
-segments(fidelida, fitted(modelo), fidelida, satisfac)
+# segments(hatco$fidelida, fitted(modelo), hatco$fidelida, hatco$satisfac)
+with(hatco, segments(fidelida, fitted(modelo), fidelida, satisfac))
 ```
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-22-2} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-21-2} \end{center}
 
 ```r
-# segments(hatco$fidelida, fitted(modelo), hatco$fidelida, hatco$satisfac)
-# with(hatco, segments(fidelida, fitted(modelo), fidelida, satisfac))
-
 plot(fitted(modelo), resid(modelo))
 ```
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-22-3} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-21-3} \end{center}
 
 Banda de confianza
 
@@ -668,15 +645,14 @@ Representación gráfica de las bandas
 bandas.frame <- data.frame(fidelida=24:66)
 bc <- predict(modelo, interval = 'confidence', newdata = bandas.frame)
 bp <- predict(modelo, interval = 'prediction', newdata = bandas.frame)
-plot(fidelida, satisfac, ylim = range(satisfac, bp, na.rm = TRUE))
-# plot(hatco$fidelida, hatco$satisfac, ylim = range(hatco$satisfac, bp, na.rm = TRUE))
+plot(hatco$fidelida, hatco$satisfac, ylim = range(hatco$satisfac, bp, na.rm = TRUE))
 matlines(bandas.frame$fidelida, bc, lty=c(1,2,2), col='black')
 matlines(bandas.frame$fidelida, bp, lty=c(0,3,3), col='red')
 ```
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-25-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-24-1} \end{center}
 
 
 ### Correlación
@@ -685,7 +661,7 @@ Coeficiente de correlación de Pearson
 
 
 ```r
-cor(fidelida, satisfac, use='complete.obs')
+cor(hatco$fidelida, hatco$satisfac, use='complete.obs')
 ```
 
 ```
@@ -720,14 +696,14 @@ cor(hatco[,6:14], use='complete.obs')
 ```
 
 ```r
-cor.test(fidelida, satisfac)
+cor.test(hatco$fidelida, hatco$satisfac)
 ```
 
 ```
 ## 
 ## 	Pearson's product-moment correlation
 ## 
-## data:  fidelida and satisfac
+## data:  hatco$fidelida and hatco$satisfac
 ## t = 10.003, df = 97, p-value < 2.2e-16
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
@@ -741,14 +717,14 @@ El coeficiente de correlación de Spearman es una variante no paramétrica
 
 
 ```r
-cor.test(fidelida, satisfac, method='spearman')
+cor.test(hatco$fidelida, hatco$satisfac, method='spearman')
 ```
 
 ```
 ## 
 ## 	Spearman's rank correlation rho
 ## 
-## data:  fidelida and satisfac
+## data:  hatco$fidelida and hatco$satisfac
 ## S = 46601, p-value < 2.2e-16
 ## alternative hypothesis: true rho is not equal to 0
 ## sample estimates:
@@ -769,17 +745,17 @@ varianza. Este procedimiento exige normalidad y homocedasticidad.
 
 
 ```r
-table(nfidelid)
+table(hatco$nfidelid)
 ```
 
 ```
-## nfidelid
+## 
 ##  bajo medio  alto 
 ##     3    64    33
 ```
 
 ```r
-tapply(satisfac, nfidelid, mean, na.rm = TRUE)
+tapply(hatco$satisfac, hatco$nfidelid, mean, na.rm = TRUE)
 ```
 
 ```
@@ -794,7 +770,7 @@ está etiquetada *nfidelid*, y la variación dentro de los grupos como
 
 
 ```r
-anova(lm(satisfac ~ nfidelid))
+anova(lm(satisfac~nfidelid, data = hatco))
 ```
 
 ```
@@ -812,12 +788,12 @@ Como alternativa, se puede utilizar la función *aov*
 
 
 ```r
-aov(satisfac ~ nfidelid)
+aov(satisfac~nfidelid, data = hatco)
 ```
 
 ```
 ## Call:
-##    aov(formula = satisfac ~ nfidelid)
+##    aov(formula = satisfac ~ nfidelid, data = hatco)
 ## 
 ## Terms:
 ##                 nfidelid Residuals
@@ -830,7 +806,7 @@ aov(satisfac ~ nfidelid)
 ```
 
 ```r
-summary(aov(satisfac ~ nfidelid))
+summary(aov(satisfac~nfidelid, data = hatco))
 ```
 
 ```
@@ -846,14 +822,14 @@ Comparaciones entre pares de variables
 
 
 ```r
-pairwise.t.test(satisfac, nfidelid)
+pairwise.t.test(hatco$satisfac, hatco$nfidelid)
 ```
 
 ```
 ## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
-## data:  satisfac and nfidelid 
+## data:  hatco$satisfac and hatco$nfidelid 
 ## 
 ##       bajo    medio  
 ## medio 0.024   -      
@@ -866,7 +842,7 @@ Relajamos la hipótesis de varianzas iguales
 
 
 ```r
-oneway.test(satisfac ~ nfidelid)
+oneway.test(satisfac~nfidelid, data = hatco)
 ```
 
 ```
@@ -882,7 +858,7 @@ Podemos utilizar el test de Bartlett para contrastar la igualdad de varianzas
 
 
 ```r
-bartlett.test(satisfac ~ nfidelid)
+bartlett.test(satisfac~nfidelid, data = hatco)
 ```
 
 ```
@@ -897,18 +873,18 @@ Representación gráfica
 
 
 ```r
-medias <- tapply(satisfac, nfidelid, mean, na.rm = TRUE)
-desviaciones <- tapply(satisfac, nfidelid, sd, na.rm = TRUE)
-n <- tapply(satisfac[!is.na(satisfac)], nfidelid[!is.na(satisfac)], length)
+medias <- tapply(hatco$satisfac, hatco$nfidelid, mean, na.rm = TRUE)
+desviaciones <- tapply(hatco$satisfac, hatco$nfidelid, sd, na.rm = TRUE)
+n <- tapply(hatco$satisfac[!is.na(hatco$satisfac)], hatco$nfidelid[!is.na(hatco$satisfac)], length)
 errores <- desviaciones/sqrt(n)
-stripchart(satisfac ~ nfidelid, method='jitter', jit=0.01, pch=18, col='grey', vertical = TRUE)
+stripchart(hatco$satisfac~hatco$nfidelid, method='jitter', jit=0.01, pch=18, col='grey', vertical = TRUE)
 arrows(1:3, medias+errores, 1:3, medias-errores, angle=90, code=3, lwd=2, col='orange')
 points(1:3, medias, pch=4, lwd=2, cex=2, col='orange')
 ```
 
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-34-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{06-Inferencia_files/figure-latex/unnamed-chunk-33-1} \end{center}
 
 
 ### Test de Kruskal-Wallis
@@ -917,7 +893,7 @@ Alternativa no paramétrica al análisis de la varianza con un factor
 
 
 ```r
-kruskal.test(satisfac ~ nfidelid)
+kruskal.test(satisfac~nfidelid, data = hatco)
 ```
 
 ```
@@ -927,4 +903,3 @@ kruskal.test(satisfac ~ nfidelid)
 ## data:  satisfac by nfidelid
 ## Kruskal-Wallis chi-squared = 31.073, df = 2, p-value = 1.789e-07
 ```
-

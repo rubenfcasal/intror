@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 3 Gráficos | Introducción al Análisis de Datos con R</title>
   <meta name="description" content="Este es un libro introductorio al análisis de datos con R" />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 3 Gráficos | Introducción al Análisis de Datos con R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa" />
 
 
-<meta name="date" content="2019-10-08" />
+<meta name="date" content="2019-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,41 +50,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -366,32 +391,41 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="graficos" class="section level1">
 <h1><span class="header-section-number">Capítulo 3</span> Gráficos</h1>
-<p><code>R</code> dispone de varias funciones que permiten la realización de gráficos. Estas funciones se dividen en dos grandes grupos</p>
+<p><code>R</code> dispone de varias funciones que permiten la
+realización de gráficos. Estas funciones se dividen en dos grandes
+grupos</p>
 <ul>
 <li><p>Gráficos de <strong>alto nivel</strong>: Crean un gráfico nuevo.</p>
 <ul>
 <li><code>plot, hist, boxplot, ...</code></li>
 </ul></li>
-<li><p>Gráficos de <strong>bajo nivel</strong>: Permiten añadir elementos (líneas, puntos, …) a un gráfico ya existente</p>
+<li><p>Gráficos de <strong>bajo nivel</strong>: Permiten añadir elementos (líneas, puntos, …) a un
+gráfico ya existente</p>
 <ul>
 <li><p><code>points, lines, legend, text, ...</code></p></li>
 <li><p>El parámetro <code>add=TRUE</code> convierte una función de nivel alto a bajo.</p></li>
 </ul></li>
 </ul>
-<p>Dentro de las funciones gráficas de alto nivel destaca la función <code>plot</code> que tiene muchas variantes y dependiendo del tipo de datos que se le pasen como argumento actuará de modo distinto.</p>
+<p>Dentro de las funciones gráficas de alto nivel destaca la función <code>plot</code>
+que tiene muchas variantes y dependiendo del tipo de datos que se le
+pasen como argumento actuará de modo distinto.</p>
 <div id="el-comando-plot" class="section level2">
 <h2><span class="header-section-number">3.1</span> El comando plot</h2>
-<p>Si escribimos <code>plot(x, y)</code> donde <code>x</code> e <code>y</code> son vectores, entonces <code>R</code> hará directamente el conocido como <strong>gráfico de dispersión</strong> que representa en un sistema coordenado los pares de valores <span class="math inline">\((x,y)\)</span>.</p>
+<p>Si escribimos <code>plot(x, y)</code> donde <code>x</code> e <code>y</code> son vectores, entonces <code>R</code>
+hará directamente el conocido como <strong>gráfico de dispersión</strong> que
+representa en un sistema coordenado los pares de valores <span class="math inline">\((x,y)\)</span>.</p>
 <p>Por ejemplo, utilizando el siguiente código</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(cars)
-<span class="kw">plot</span>(cars<span class="op">$</span>speed, cars<span class="op">$</span>dist)    <span class="co"># otra posibilidad plot(cars)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" title="1"><span class="kw">data</span>(cars)</a>
+<a class="sourceLine" id="cb266-2" title="2"><span class="kw">plot</span>(cars<span class="op">$</span>speed, cars<span class="op">$</span>dist)    <span class="co"># otra posibilidad plot(cars)</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cars1"></span>
 <img src="03-Graficos_files/figure-html/cars1-1.png" alt="Gráfico de dispersión de distancia frente a velocidad" width="70%" />
 <p class="caption">
 Figura 3.1: Gráfico de dispersión de distancia frente a velocidad
 </p>
 </div>
-<p>El comando <code>plot</code> incluye por defecto una elección automáticas de títulos, ejes, escalas, etiquetas, etc., que pueden ser modificados añadiendo parámetros gráficos al comando:</p>
+<p>El comando <code>plot</code> incluye por defecto una elección automáticas de
+títulos, ejes, escalas, etiquetas, etc., que pueden ser modificados
+añadiendo parámetros gráficos al comando:</p>
 <table>
 <thead>
 <tr class="header">
@@ -404,62 +438,29 @@ Figura 3.1: Gráfico de dispersión de distancia frente a velocidad
 <td><code>type</code></td>
 <td>tipo de gráfico:</td>
 </tr>
-<tr class="even">
-<td></td>
-<td><code>p</code>: puntos, <code>l</code>: líneas, <code>b</code>: puntos y líneas, <code>n</code>: gráfico en blanco, …</td>
-</tr>
-<tr class="odd">
-<td><code>xlim</code>, <code>ylim</code></td>
-<td>límites de los ejes (e.g. <code>xlim=c(1, 10)</code> o <code>xlim=range(x)</code>)</td>
-</tr>
-<tr class="even">
-<td><code>xlab</code>, <code>ylab</code></td>
-<td>títulos de los ejes</td>
-</tr>
-<tr class="odd">
-<td><code>main, sub</code></td>
-<td>título principal y subtítulo</td>
-</tr>
-<tr class="even">
-<td><code>col</code></td>
-<td>color de los símbolos (véase <code>colors()</code>)</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>véase <code>col.axis</code>, <code>col.lab</code>, <code>col.main</code>, <code>col.sub</code></td>
-</tr>
-<tr class="even">
-<td><code>lty</code></td>
-<td>tipo de línea</td>
-</tr>
-<tr class="odd">
-<td><code>lwd</code></td>
-<td>anchura de línea</td>
-</tr>
-<tr class="even">
-<td><code>pch</code></td>
-<td>tipo de símbolo</td>
-</tr>
-<tr class="odd">
-<td><code>cex</code></td>
-<td>tamaño de los símbolos</td>
-</tr>
-<tr class="even">
-<td><code>bg</code></td>
-<td>color de relleno (para <code>pch = 21:25</code>)</td>
-</tr>
 </tbody>
 </table>
+<p> <code>p</code>: puntos, <code>l</code>: líneas, <code>b</code>: puntos y líneas, <code>n</code>: gráfico en blanco, …
+<code>xlim</code>, <code>ylim</code> | límites de los ejes (e.g. <code>xlim=c(1, 10)</code> o <code>xlim=range(x)</code>)
+<code>xlab</code>, <code>ylab</code> | títulos de los ejes
+<code>main, sub</code> | título principal y subtítulo
+<code>col</code> | color de los símbolos (véase <code>colors()</code>)
+ véase <code>col.axis</code>, <code>col.lab</code>, <code>col.main</code>, <code>col.sub</code>
+<code>lty</code> | tipo de línea
+<code>lwd</code> | anchura de línea
+<code>pch</code> | tipo de símbolo
+<code>cex</code> | tamaño de los símbolos
+<code>bg</code> | color de relleno (para <code>pch = 21:25</code>)</p>
 <p>Para obtener ayuda sobre estos parámetros ejecutar <code>help(par)</code>.</p>
 <p>Veamos algún ejemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cars, <span class="dt">xlab =</span> <span class="st">&quot;velocidad&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;distancia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Título&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" title="1"><span class="kw">plot</span>(cars, <span class="dt">xlab =</span> <span class="st">&quot;velocidad&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;distancia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Título&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cars2"></span>
 <img src="03-Graficos_files/figure-html/cars2-1.png" alt="Gráfico de dispersión de distancia frente a velocidad, especificando título y etiquetas de los ejes" width="70%" />
 <p class="caption">
 Figura 3.2: Gráfico de dispersión de distancia frente a velocidad, especificando título y etiquetas de los ejes
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;pch=16&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1"><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">main =</span> <span class="st">&#39;pch=16&#39;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:cars3"></span>
 <img src="03-Graficos_files/figure-html/cars3-1.png" alt="Gráfico de dispersión de distancia frente a velocidad, cambiando el color y el tipo de símbolo" width="70%" />
 <p class="caption">
@@ -527,32 +528,35 @@ Figura 3.3: Gráfico de dispersión de distancia frente a velocidad, cambiando e
 </div>
 <div id="ejemplos-1" class="section level2">
 <h2><span class="header-section-number">3.3</span> Ejemplos</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cars)
-<span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">40</span>), <span class="dt">lty =</span> <span class="dv">2</span>) <span class="co"># líneas verticales discontinuas (lty=2)</span>
-<span class="co"># selecciona puntos y los dibuja en azul sólido</span>
-<span class="kw">points</span>(<span class="kw">subset</span>(cars, dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span>dist <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>) </code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" title="1"><span class="kw">plot</span>(cars)</a>
+<a class="sourceLine" id="cb269-2" title="2"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">40</span>), <span class="dt">lty =</span> <span class="dv">2</span>) <span class="co"># líneas verticales discontinuas (lty=2)</span></a>
+<a class="sourceLine" id="cb269-3" title="3"><span class="co"># selecciona puntos y los dibuja en azul sólido</span></a>
+<a class="sourceLine" id="cb269-4" title="4"><span class="kw">points</span>(<span class="kw">subset</span>(cars, dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span>dist <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>) </a></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi, <span class="dt">length =</span> <span class="dv">100</span>)
-y1 &lt;-<span class="st"> </span><span class="kw">cos</span>(x)
-y2 &lt;-<span class="st"> </span><span class="kw">sin</span>(x)
-<span class="kw">plot</span>( x, y1, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">xlab =</span> <span class="st">&quot;[0,2pi]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Seno y Coseno&quot;</span>)
-<span class="kw">lines</span>(x, y2, <span class="dt">col =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">lty =</span> <span class="dv">2</span>)
-<span class="kw">points</span>(pi, <span class="dv">0</span>, <span class="dt">pch =</span> <span class="dv">17</span>, <span class="dt">col =</span> <span class="dv">4</span>)
-<span class="kw">legend</span>(<span class="dv">0</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="kw">c</span>(<span class="st">&quot;Coseno&quot;</span>, <span class="st">&quot;Seno&quot;</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)
-
-<span class="kw">abline</span>(<span class="dt">v =</span> pi, <span class="dt">lty =</span> <span class="dv">3</span>)
-<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lty =</span> <span class="dv">3</span>)
-<span class="kw">text</span>(pi, <span class="dv">0</span>, <span class="st">&quot;(pi,0)&quot;</span>, <span class="dt">adj =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi, <span class="dt">length =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb270-2" title="2">y1 &lt;-<span class="st"> </span><span class="kw">cos</span>(x)</a>
+<a class="sourceLine" id="cb270-3" title="3">y2 &lt;-<span class="st"> </span><span class="kw">sin</span>(x)</a>
+<a class="sourceLine" id="cb270-4" title="4"><span class="kw">plot</span>( x, y1, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">xlab =</span> <span class="st">&quot;[0,2pi]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Seno y Coseno&quot;</span>)</a>
+<a class="sourceLine" id="cb270-5" title="5"><span class="kw">lines</span>(x, y2, <span class="dt">col =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb270-6" title="6"><span class="kw">points</span>(pi, <span class="dv">0</span>, <span class="dt">pch =</span> <span class="dv">17</span>, <span class="dt">col =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb270-7" title="7"><span class="kw">legend</span>(<span class="dv">0</span>, <span class="fl">-0.5</span>, <span class="kw">c</span>(<span class="st">&quot;Coseno&quot;</span>, <span class="st">&quot;Seno&quot;</span>), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb270-8" title="8"></a>
+<a class="sourceLine" id="cb270-9" title="9"><span class="kw">abline</span>(<span class="dt">v =</span> pi, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb270-10" title="10"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb270-11" title="11"><span class="kw">text</span>(pi, <span class="dv">0</span>, <span class="st">&quot;(pi,0)&quot;</span>, <span class="dt">adj =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</a></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Alternativamente se podría usar <code>curve()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">curve</span>(cos, <span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>pi, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, 
-      <span class="dt">xlab =</span> <span class="st">&quot;[0,2pi]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Seno y Coseno&quot;</span>)
-<span class="kw">curve</span>(sin, <span class="dt">col =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" title="1"><span class="kw">curve</span>(cos, <span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>pi, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb271-2" title="2">      <span class="dt">xlab =</span> <span class="st">&quot;[0,2pi]&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Seno y Coseno&quot;</span>)</a>
+<a class="sourceLine" id="cb271-3" title="3"><span class="kw">curve</span>(sin, <span class="dt">col =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="parametros-graficos" class="section level2">
 <h2><span class="header-section-number">3.4</span> Parámetros gráficos</h2>
-<p>Como ya hemos visto, muchas funciones gráficas permiten establecer (temporalmente) opciones gráficas mediante estos parámetros. Con la función <code>par()</code> se pueden obtener y establecer (de forma permanente) todas las opciones gráficas. Algunas más de estas opciones son:</p>
+<p>Como ya hemos visto, muchas funciones gráficas permiten establecer (temporalmente)
+opciones gráficas mediante estos parámetros.
+Con la función <code>par()</code> se pueden obtener y establecer (de forma permanente) todas las opciones gráficas.
+Algunas más de estas opciones son:</p>
 <table>
 <thead>
 <tr class="header">
@@ -582,7 +586,7 @@ y2 &lt;-<span class="st"> </span><span class="kw">sin</span>(x)
 <td>estilo del texto</td>
 </tr>
 <tr class="even">
-<td></td>
+<td>\</td>
 <td>(1: normal, 2: cursiva, 3:negrita, 4: negrita cursiva)</td>
 </tr>
 <tr class="odd">
@@ -607,33 +611,41 @@ y2 &lt;-<span class="st"> </span><span class="kw">sin</span>(x)
 </div>
 <div id="multiples-graficos-por-ventana" class="section level2">
 <h2><span class="header-section-number">3.5</span> Múltiples gráficos por ventana</h2>
-<p>En <code>R</code> se pueden hacer varios gráficos por ventana. Para ello, antes de ejecutar la función <code>plot</code>, se puede utilizar la función:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(filas, columnas))</code></pre></div>
-<p>Los gráficos se irán mostrando en pantalla por filas. En caso de que se quieran mostrar por columnas en la función anterior se sustituye <code>mfrow</code> por <code>mfcol</code>.</p>
-<p>Por ejemplo, con el siguiente código se obtiene el gráfico de la siguiente transparencia.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))
-<span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">1</span>, <span class="dt">main =</span> <span class="st">&quot;pch = 1&quot;</span>)
-<span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">2</span>, <span class="dt">main =</span> <span class="st">&quot;pch = 2&quot;</span>)
-<span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">3</span>, <span class="dt">main =</span> <span class="st">&quot;pch = 3&quot;</span>)
-
-<span class="kw">plot</span>(cars, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;col = red&quot;</span>)
-<span class="kw">plot</span>(cars, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;col = blue&quot;</span>)
-<span class="kw">plot</span>(cars, <span class="dt">col =</span> <span class="st">&quot;brown&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;col = brown&quot;</span>)</code></pre></div>
+<p>En <code>R</code> se pueden
+hacer varios gráficos por ventana. Para ello, antes de ejecutar la
+función <code>plot</code>, se puede utilizar la función:</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(filas, columnas))</a></code></pre></div>
+<p>Los gráficos se irán mostrando en pantalla por filas. En caso de que se
+quieran mostrar por columnas en la función anterior se sustituye <code>mfrow</code>
+por <code>mfcol</code>.</p>
+<p>Por ejemplo, con el siguiente código se obtiene el gráfico de la
+siguiente transparencia.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb273-2" title="2"><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">1</span>, <span class="dt">main =</span> <span class="st">&quot;pch = 1&quot;</span>)</a>
+<a class="sourceLine" id="cb273-3" title="3"><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">2</span>, <span class="dt">main =</span> <span class="st">&quot;pch = 2&quot;</span>)</a>
+<a class="sourceLine" id="cb273-4" title="4"><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">3</span>, <span class="dt">main =</span> <span class="st">&quot;pch = 3&quot;</span>)</a>
+<a class="sourceLine" id="cb273-5" title="5"></a>
+<a class="sourceLine" id="cb273-6" title="6"><span class="kw">plot</span>(cars, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;col = red&quot;</span>)</a>
+<a class="sourceLine" id="cb273-7" title="7"><span class="kw">plot</span>(cars, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;col = blue&quot;</span>)</a>
+<a class="sourceLine" id="cb273-8" title="8"><span class="kw">plot</span>(cars, <span class="dt">col =</span> <span class="st">&quot;brown&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;col = brown&quot;</span>)</a></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Para estructuras gráficas más complicadas véase <code>help(layout)</code>.</p>
 </div>
 <div id="exportar-graficos" class="section level2">
 <h2><span class="header-section-number">3.6</span> Exportar gráficos</h2>
-<p>Para guardar gráficos, en Windows, se puede usar el menú <code>Archivo -&gt; Guardar como</code> de la ventana gráfica (seleccionando el formato deseado: bitmap, postscript,…) y también mediante código ejecutando <code>savePlot(filename, type)</code>. Alternativamente, se pueden emplear ficheros como dispositivos gráficos. Por ejemplo, a continuación guardamos un gráfico en el fichero <em>car.pdf</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="st">&quot;cars.pdf&quot;</span>)   <span class="co"># abrimos el dispositivo gráfico</span>
-<span class="kw">plot</span>(cars)
-<span class="kw">dev.off</span>()         <span class="co"># cerramos el dispositivo</span></code></pre></div>
+<p>Para guardar gráficos, en
+Windows, se puede usar el menú <code>Archivo -&gt; Guardar como</code> de la ventana gráfica (seleccionando el formato deseado: bitmap, postscript,…) y también
+mediante código ejecutando <code>savePlot(filename, type)</code>.
+Alternativamente, se pueden emplear ficheros como dispositivos gráficos. Por ejemplo, a continuación guardamos un gráfico en el fichero <em>car.pdf</em>:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" title="1"><span class="kw">pdf</span>(<span class="st">&quot;cars.pdf&quot;</span>)   <span class="co"># abrimos el dispositivo gráfico</span></a>
+<a class="sourceLine" id="cb274-2" title="2"><span class="kw">plot</span>(cars)</a>
+<a class="sourceLine" id="cb274-3" title="3"><span class="kw">dev.off</span>()         <span class="co"># cerramos el dispositivo</span></a></code></pre></div>
 <p>Con el siguiente código guardaremos el gráfico en formato jpeg:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">jgeg</span>(<span class="st">&quot;cars.jpg&quot;</span>)  <span class="co"># abrimos el dispositivo gráfico</span>
-<span class="kw">plot</span>(cars)
-<span class="kw">dev.off</span>()         <span class="co"># cerramos el dispositivo</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="kw">jgeg</span>(<span class="st">&quot;cars.jpg&quot;</span>)  <span class="co"># abrimos el dispositivo gráfico</span></a>
+<a class="sourceLine" id="cb275-2" title="2"><span class="kw">plot</span>(cars)</a>
+<a class="sourceLine" id="cb275-3" title="3"><span class="kw">dev.off</span>()         <span class="co"># cerramos el dispositivo</span></a></code></pre></div>
 <p>Otros formatos disponibles son <code>bmp</code>, <code>png</code> y <code>tiff</code>. Para más detalles ejecutar:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(Devices)</code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1"><span class="kw">help</span>(Devices)</a></code></pre></div>
 </div>
 <div id="otras-librerias-graficas" class="section level2">
 <h2><span class="header-section-number">3.7</span> Otras librerías gráficas</h2>
@@ -660,18 +672,18 @@ y2 &lt;-<span class="st"> </span><span class="kw">sin</span>(x)
 <p>Para más detalles ver <a href="http://cran.r-project.org/web/views/Graphics.html">CRAN Task View: Graphics</a></p>
 <div id="ejemplos-2" class="section level3">
 <h3><span class="header-section-number">3.7.1</span> Ejemplos</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)
-<span class="kw">library</span>(lattice)
-<span class="kw">xyplot</span>(<span class="kw">log</span>(salario) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(salini) <span class="op">|</span><span class="st"> </span>sexoraza, <span class="dt">data =</span> empleados)</code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1"><span class="kw">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb277-2" title="2"><span class="kw">library</span>(lattice)</a>
+<a class="sourceLine" id="cb277-3" title="3"><span class="kw">xyplot</span>(<span class="kw">log</span>(salario) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(salini) <span class="op">|</span><span class="st"> </span>sexoraza, <span class="dt">data =</span> empleados)</a></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Equivalente a xyplot(log(salario) ~ log(salini) | sexo*minoria, data = empleados)</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(empleados, <span class="kw">aes</span>(<span class="kw">log</span>(salini), <span class="kw">log</span>(salario), <span class="dt">col =</span> sexo)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" title="1"><span class="co"># Equivalente a xyplot(log(salario) ~ log(salini) | sexo*minoria, data = empleados)</span></a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb279-2" title="2"><span class="kw">ggplot</span>(empleados, <span class="kw">aes</span>(<span class="kw">log</span>(salini), <span class="kw">log</span>(salario), <span class="dt">col =</span> sexo)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb279-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb279-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(empleados, <span class="kw">aes</span>(salario, <span class="dt">fill =</span> sexo)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span>.<span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">ggplot</span>(empleados, <span class="kw">aes</span>(salario, <span class="dt">fill =</span> sexo)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb280-2" title="2"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span>.<span class="dv">5</span>)</a></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-11-2.png" width="70%" style="display: block; margin: auto;" /></p>
 
 </div>
@@ -733,7 +745,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

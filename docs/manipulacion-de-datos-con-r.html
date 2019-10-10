@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 4 Manipulación de datos con R | Introducción al Análisis de Datos con R</title>
   <meta name="description" content="Este es un libro introductorio al análisis de datos con R" />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 4 Manipulación de datos con R | Introducción al Análisis de Datos con R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa" />
 
 
-<meta name="date" content="2019-10-08" />
+<meta name="date" content="2019-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,41 +50,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -366,10 +391,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="manipulacion-de-datos-con-r" class="section level1">
 <h1><span class="header-section-number">Capítulo 4</span> Manipulación de datos con R</h1>
-<p>La mayoría de los estudios estadísticos requieren disponer de un conjunto de datos.</p>
+<p>La mayoría de los estudios estadísticos
+requieren disponer de un conjunto de datos.</p>
 <div id="lectura-importacion-y-exportacion-de-datos" class="section level2">
 <h2><span class="header-section-number">4.1</span> Lectura, importación y exportación de datos</h2>
-<p>Además de la introducción directa, R es capaz de importar datos externos en múltiples formatos:</p>
+<p>Además de la introducción directa, R es capaz de
+importar datos externos en múltiples formatos:</p>
 <ul>
 <li><p>bases de datos disponibles en librerías de R</p></li>
 <li><p>archivos de texto en formato ASCII</p></li>
@@ -380,30 +407,40 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <div id="formato-de-datos-de-r" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Formato de datos de R</h3>
-<p>El formato de archivo en el que habitualmente se almacena objetos (datos) R es binario y está comprimido (en formato <code>&quot;gzip&quot;</code> por defecto). Para cargar un fichero de datos se emplea normalmente <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load"><code>load()</code></a>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)
-res</code></pre></div>
+<p>El formato de archivo en el que habitualmente se almacena objetos (datos)
+R es binario y está comprimido (en formato <code>"gzip"</code> por defecto).
+Para cargar un fichero de datos se emplea normalmente <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load"><code>load()</code></a>:</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1">res &lt;-<span class="st"> </span><span class="kw">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb281-2" title="2">res</a></code></pre></div>
 <pre><code>## [1] &quot;empleados&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" title="1"><span class="kw">ls</span>()</a></code></pre></div>
 <pre><code>##  [1] &quot;citefig&quot;   &quot;citefig2&quot;  &quot;empleados&quot; &quot;fig.path&quot;  &quot;inline&quot;   
 ##  [6] &quot;inline2&quot;   &quot;is_html&quot;   &quot;is_latex&quot;  &quot;latexfig&quot;  &quot;res&quot;</code></pre>
 <p>y para guardar <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save"><code>save()</code></a>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Guardar</span>
-<span class="kw">save</span>(empleados, <span class="dt">file =</span> <span class="st">&quot;datos/empleados_new.RData&quot;</span>)</code></pre></div>
-<p>El objeto empleado normalmente en R para almacenar datos en memoria es el <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame"><code>data.frame</code></a>.</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" title="1"><span class="co"># Guardar</span></a>
+<a class="sourceLine" id="cb285-2" title="2"><span class="kw">save</span>(empleados, <span class="dt">file =</span> <span class="st">&quot;datos/empleados_new.RData&quot;</span>)</a></code></pre></div>
+<p>El objeto empleado normalmente en R para almacenar datos en memoria
+es el <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame"><code>data.frame</code></a>.</p>
 </div>
 <div id="acceso-a-datos-en-paquetes" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Acceso a datos en paquetes</h3>
-<p>R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete <code>datasets</code> que se carga por defecto al abrir R. Con el comando <code>data()</code> podemos obtener un listado de las bases de datos disponibles.</p>
-<p>Para cargar una base de datos concreta se utiliza el comando <code>data(nombre)</code> (aunque en algunos casos se cargan automáticamente al emplearlos). Por ejemplo, <code>data(cars)</code> carga la base de datos llamada <code>cars</code> en el entorno de trabajo (<code>&quot;.GlobalEnv&quot;</code>) y <code>?cars</code> muestra la ayuda correspondiente con la descripición de la base de datos.</p>
+<p>R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete <code>datasets</code>
+que se carga por defecto al abrir R.
+Con el comando <code>data()</code> podemos obtener un listado de las bases de datos disponibles.</p>
+<p>Para cargar una base de datos concreta se utiliza el comando
+<code>data(nombre)</code> (aunque en algunos casos se cargan automáticamente al emplearlos).
+Por ejemplo, <code>data(cars)</code> carga la base de datos llamada <code>cars</code> en el entorno de trabajo (<code>".GlobalEnv"</code>)
+y <code>?cars</code> muestra la ayuda correspondiente con la descripición de la base de datos.</p>
 </div>
 <div id="cap4-texto" class="section level3">
 <h3><span class="header-section-number">4.1.3</span> Lectura de archivos de texto</h3>
-<p>En R para leer archivos de texto se suele utilizar la función <code>read.table()</code>. Supóngase, por ejemplo, que en el directorio actual está el fichero <em>empleados.txt</em>. La lectura de este fichero vendría dada por el código:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Session &gt; Set Working Directory &gt; To Source...?</span>
-datos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;datos/empleados.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
-<span class="co"># head(datos)</span>
-<span class="kw">str</span>(datos)</code></pre></div>
+<p>En R para leer archivos de texto se suele utilizar la función <code>read.table()</code>.
+Supóngase, por ejemplo, que en el directorio actual está el fichero
+<em>empleados.txt</em>. La lectura de este fichero vendría dada por el código:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1"><span class="co"># Session &gt; Set Working Directory &gt; To Source...?</span></a>
+<a class="sourceLine" id="cb286-2" title="2">datos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;datos/empleados.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb286-3" title="3"><span class="co"># head(datos)</span></a>
+<a class="sourceLine" id="cb286-4" title="4"><span class="kw">str</span>(datos)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    474 obs. of  10 variables:
 ##  $ id      : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ sexo    : Factor w/ 2 levels &quot;Hombre&quot;,&quot;Mujer&quot;: 1 1 2 2 1 1 1 2 2 2 ...
@@ -415,36 +452,54 @@ datos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span cla
 ##  $ tiempemp: int  98 98 98 98 98 98 98 98 98 98 ...
 ##  $ expprev : int  144 36 381 190 138 67 114 0 115 244 ...
 ##  $ minoria : Factor w/ 2 levels &quot;No&quot;,&quot;Sí&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
-<p>Si el fichero estuviese en el directorio <em>c:\datos</em> bastaría con especificar <code>file = &quot;c:/datos/empleados.txt&quot;</code>. Nótese también que para la lectura del fichero anterior se ha establecido el argumento <code>header=TRUE</code> para indicar que la primera línea del fichero contiene los nombres de las variables.</p>
+<p>Si el fichero estuviese en el directorio <em>c:\datos</em> bastaría con especificar
+<code>file = "c:/datos/empleados.txt"</code>.
+Nótese también que para la lectura del fichero anterior se ha
+establecido el argumento <code>header=TRUE</code> para indicar que la primera línea del
+fichero contiene los nombres de las variables.</p>
 <p>Los argumentos utilizados habitualmente para esta función son:</p>
 <ul>
-<li><p><code>header</code>: indica si el fichero tiene cabecera (<code>header=TRUE</code>) o no (<code>header=FALSE</code>). Por defecto toma el valor <code>header=FALSE</code>.</p></li>
-<li><p><code>sep</code>: carácter separador de columnas que por defecto es un espacio en blanco (<code>sep=&quot;&quot;</code>). Otras opciones serían: <code>sep=&quot;,&quot;</code> si el separador es un “;”, <code>sep=&quot;*&quot;</code> si el separador es un “*”, etc.</p></li>
-<li><p><code>dec</code>: carácter utilizado en el fichero para los números decimales. Por defecto se establece <code>dec = &quot;.&quot;</code>. Si los decimales vienen dados por “,” se utiliza <code>dec = &quot;,&quot;</code></p></li>
+<li><p><code>header</code>: indica si el fichero tiene cabecera (<code>header=TRUE</code>) o no
+(<code>header=FALSE</code>). Por defecto toma el valor <code>header=FALSE</code>.</p></li>
+<li><p><code>sep</code>: carácter separador de columnas que por defecto es un espacio
+en blanco (<code>sep=""</code>). Otras opciones serían: <code>sep=","</code> si el separador es
+un “;”, <code>sep="*"</code> si el separador es un “*”, etc.</p></li>
+<li><p><code>dec</code>: carácter utilizado en el fichero para los números decimales.
+Por defecto se establece <code>dec = "."</code>. Si los decimales vienen dados
+por “,” se utiliza <code>dec = ","</code></p></li>
 </ul>
-<p>Resumiendo, los (principales) argumentos por defecto de la función <code>read.table</code> son los que se muestran en la siguiente línea:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.table</span>(file, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)  </code></pre></div>
-<p>Para más detalles sobre esta función véase <code>help(read.table)</code>.</p>
-<p>Estan disponibles otras funciones con valores por defecto de los parámetros adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores se puede utilizar <code>read.delim()</code> o <code>read.delim2()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.delim</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)
-<span class="kw">read.delim2</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
+<p>Resumiendo, los (principales) argumentos por defecto de la función
+<code>read.table</code> son los que se muestran en la siguiente línea:</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1"><span class="kw">read.table</span>(file, <span class="dt">header =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)  </a></code></pre></div>
+<p>Para más detalles sobre esta función véase
+<code>help(read.table)</code>.</p>
+<p>Estan disponibles otras funciones con valores por defecto de los parámetros
+adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores
+se puede utilizar <code>read.delim()</code> o <code>read.delim2()</code>:</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" title="1"><span class="kw">read.delim</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)</a>
+<a class="sourceLine" id="cb289-2" title="2"><span class="kw">read.delim2</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
 </div>
 <div id="alternativa-tidyverse" class="section level3">
 <h3><span class="header-section-number">4.1.4</span> Alternativa <code>tidyverse</code></h3>
-<p>Para leer archivos de texto en distintos formatos también se puede emplear el paquete <a href="https://readr.tidyverse.org"><code>readr</code></a> (colección <a href="https://www.tidyverse.org/"><code>tidyverse</code></a>), para lo que se recomienda consultar el <a href="https://r4ds.had.co.nz/data-import.html">Capítulo 11</a> del libro <a href="http://r4ds.had.co.nz">R for Data Science</a>.</p>
+<p>Para leer archivos de texto en distintos formatos también se puede emplear el paquete <a href="https://readr.tidyverse.org"><code>readr</code></a>
+(colección <a href="https://www.tidyverse.org/"><code>tidyverse</code></a>), para lo que se recomienda
+consultar el <a href="https://r4ds.had.co.nz/data-import.html">Capítulo 11</a> del libro <a href="http://r4ds.had.co.nz">R for Data Science</a>.</p>
 </div>
 <div id="importacion-desde-spss" class="section level3">
 <h3><span class="header-section-number">4.1.5</span> Importación desde SPSS</h3>
-<p>El programa R permite lectura de ficheros de datos en formato SPSS (extensión <em>.sav</em>) sin necesidad de tener instalado dicho programa en el ordenador. Para ello se necesita:</p>
+<p>El programa R permite
+lectura de ficheros de datos en formato SPSS (extensión <em>.sav</em>) sin
+necesidad de tener instalado dicho programa en el ordenador. Para ello
+se necesita:</p>
 <ul>
 <li><p>cargar la librería <code>foreign</code></p></li>
 <li><p>utilizar la función <code>read.spss</code></p></li>
 </ul>
 <p>Por ejemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(foreign)
-datos &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="dt">file =</span> <span class="st">&quot;datos/Employee data.sav&quot;</span>, <span class="dt">to.data.frame =</span> <span class="ot">TRUE</span>)
-<span class="co"># head(datos)</span>
-<span class="kw">str</span>(datos)</code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" title="1"><span class="kw">library</span>(foreign)</a>
+<a class="sourceLine" id="cb290-2" title="2">datos &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="dt">file =</span> <span class="st">&quot;datos/Employee data.sav&quot;</span>, <span class="dt">to.data.frame =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb290-3" title="3"><span class="co"># head(datos)</span></a>
+<a class="sourceLine" id="cb290-4" title="4"><span class="kw">str</span>(datos)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    474 obs. of  10 variables:
 ##  $ id      : num  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ sexo    : Factor w/ 2 levels &quot;Hombre&quot;,&quot;Mujer&quot;: 1 1 2 2 1 1 1 2 2 2 ...
@@ -463,41 +518,61 @@ datos &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span clas
 </div>
 <div id="importacion-desde-excel" class="section level3">
 <h3><span class="header-section-number">4.1.6</span> Importación desde Excel</h3>
-<p>Se pueden leer fichero de Excel (con extensión <em>.xlsx</em>) utilizando por ejemplo los paquetes <a href="https://cran.r-project.org/web/packages/openxlsx/index.html"><code>openxlsx</code></a>, <a href="https://readxl.tidyverse.org"><code>readxl</code></a> (colección <a href="https://www.tidyverse.org/"><code>tidyverse</code></a>), <code>XLConnect</code> o <a href="https://cran.r-project.org/web/packages/RODBC/index.html"><code>RODBC</code></a> (este paquete se empleará más adelante para acceder a bases de datos), entre otros.</p>
-<p>Sin embargo, un procedimiento sencillo consiste en exportar los datos desde Excel a un archivo de texto separado por tabuladores (extensión <em>.csv</em>). Por ejemplo, supongamos que queremos leer el fichero <em>coches.xls</em>:</p>
+<p>Se pueden leer fichero de
+Excel (con extensión <em>.xlsx</em>) utilizando por ejemplo los paquetes <a href="https://cran.r-project.org/web/packages/openxlsx/index.html"><code>openxlsx</code></a>, <a href="https://readxl.tidyverse.org"><code>readxl</code></a> (colección <a href="https://www.tidyverse.org/"><code>tidyverse</code></a>), <code>XLConnect</code> o
+<a href="https://cran.r-project.org/web/packages/RODBC/index.html"><code>RODBC</code></a> (este paquete se empleará más adelante para acceder a bases de datos),
+entre otros.</p>
+<p>Sin embargo, un procedimiento sencillo consiste en exportar los datos desde Excel a un archivo
+de texto separado por tabuladores (extensión <em>.csv</em>).
+Por ejemplo, supongamos que queremos leer el fichero <em>coches.xls</em>:</p>
 <ul>
-<li><p>Desde Excel se selecciona el menú <code>Archivo -&gt; Guardar como -&gt; Guardar como</code> y en <code>Tipo</code> se escoge la opción de archivo CSV. De esta forma se guardarán los datos en el archivo <em>coches.csv</em>.</p></li>
-<li><p>El fichero <em>coches.csv</em> es un fichero de texto plano (se puede editar con Notepad), con cabecera, las columnas separadas por “;”, y siendo “,” el carácter decimal.</p></li>
+<li><p>Desde Excel se selecciona el menú
+<code>Archivo -&gt; Guardar como -&gt; Guardar como</code> y en <code>Tipo</code> se escoge la opción de
+archivo CSV. De esta forma se guardarán los datos en el archivo
+<em>coches.csv</em>.</p></li>
+<li><p>El fichero <em>coches.csv</em> es un fichero de texto plano (se puede
+editar con Notepad), con cabecera, las columnas separadas por “;”, y
+siendo “,” el carácter decimal.</p></li>
 <li><p>Por lo tanto, la lectura de este fichero se puede hacer con:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;coches.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div></li>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" title="1">datos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;coches.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div></li>
 </ul>
-<p>Otra posibilidad es utilizar la función <code>read.csv2</code>, que es una adaptación de la función general <code>read.table</code> con las siguientes opciones:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.csv2</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
-<p>Por lo tanto, la lectura del fichero <em>coches.csv</em> se puede hacer de modo más directo con:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datos &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;coches.csv&quot;</span>)</code></pre></div>
+<p>Otra posibilidad es utilizar la función <code>read.csv2</code>, que es
+una adaptación de la función general <code>read.table</code> con las siguientes
+opciones:</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" title="1"><span class="kw">read.csv2</span>(file, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
+<p>Por lo tanto, la lectura del fichero <em>coches.csv</em> se puede hacer de modo
+más directo con:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" title="1">datos &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;coches.csv&quot;</span>)</a></code></pre></div>
 </div>
 <div id="exportacion-de-datos" class="section level3">
 <h3><span class="header-section-number">4.1.7</span> Exportación de datos</h3>
-<p>Puede ser de interés la exportación de datos para que puedan leídos con otros programas. Para ello, se puede emplear la función <code>write.table()</code>. Esta función es similar, pero funcionando en sentido inverso, a <code>read.table()</code> (Sección <a href="manipulacion-de-datos-con-r.html#cap4-texto">4.1.3</a>).</p>
+<p>Puede ser de interés la
+exportación de datos para que puedan leídos con otros programas. Para
+ello, se puede emplear la función <code>write.table()</code>. Esta función es
+similar, pero funcionando en sentido inverso, a <code>read.table()</code>
+(Sección <a href="manipulacion-de-datos-con-r.html#cap4-texto">4.1.3</a>).</p>
 <p>Veamos un ejemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tipo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)
-longitud &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">120.34</span>, <span class="fl">99.45</span>, <span class="fl">115.67</span>)
-datos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(tipo, longitud)
-datos</code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1">tipo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb295-2" title="2">longitud &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">120.34</span>, <span class="fl">99.45</span>, <span class="fl">115.67</span>)</a>
+<a class="sourceLine" id="cb295-3" title="3">datos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(tipo, longitud)</a>
+<a class="sourceLine" id="cb295-4" title="4">datos</a></code></pre></div>
 <pre><code>##   tipo longitud
 ## 1    A   120.34
 ## 2    B    99.45
 ## 3    C   115.67</code></pre>
-<p>Para guardar el data.frame <code>datos</code> en un fichero de texto se puede utilizar:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(datos, <span class="dt">file =</span> <span class="st">&quot;datos.txt&quot;</span>)</code></pre></div>
+<p>Para guardar el data.frame <code>datos</code> en un fichero de texto se
+puede utilizar:</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1"><span class="kw">write.table</span>(datos, <span class="dt">file =</span> <span class="st">&quot;datos.txt&quot;</span>)</a></code></pre></div>
 <p>Otra posibilidad es utilizar la función:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv2</span>(datos, <span class="dt">file =</span> <span class="st">&quot;datos.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="kw">write.csv2</span>(datos, <span class="dt">file =</span> <span class="st">&quot;datos.csv&quot;</span>)</a></code></pre></div>
 <p>que dará lugar al fichero <em>datos.csv</em> importable directamente desde Excel.</p>
 </div>
 </div>
 <div id="manipulacion-de-datos" class="section level2">
 <h2><span class="header-section-number">4.2</span> Manipulación de datos</h2>
-<p>Una vez cargada una (o varias) bases de datos hay una series de operaciones que serán de interés para el tratamiento de datos:</p>
+<p>Una vez cargada una (o varias) bases
+de datos hay una series de operaciones que serán de interés para el
+tratamiento de datos:</p>
 <ul>
 <li>Operaciones con variables:
 <ul>
@@ -517,10 +592,11 @@ datos</code></pre></div>
 <h3><span class="header-section-number">4.2.1</span> Operaciones con variables</h3>
 <div id="creacion-y-eliminacion-de-variables" class="section level4">
 <h4><span class="header-section-number">4.2.1.1</span> Creación (y eliminación) de variables</h4>
-<p>Consideremos de nuevo la base de datos <code>cars</code> incluida en el paquete <code>datasets</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(cars)
-<span class="co"># str(cars)</span>
-<span class="kw">head</span>(cars)</code></pre></div>
+<p>Consideremos de nuevo la
+base de datos <code>cars</code> incluida en el paquete <code>datasets</code>:</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" title="1"><span class="kw">data</span>(cars)</a>
+<a class="sourceLine" id="cb299-2" title="2"><span class="co"># str(cars)</span></a>
+<a class="sourceLine" id="cb299-3" title="3"><span class="kw">head</span>(cars)</a></code></pre></div>
 <pre><code>##   speed dist
 ## 1     4    2
 ## 2     4   10
@@ -528,25 +604,34 @@ datos</code></pre></div>
 ## 4     7   22
 ## 5     8   16
 ## 6     9   10</code></pre>
-<p>Utilizando el comando <code>help(cars)</code> se obtiene que <code>cars</code> es un data.frame con 50 observaciones y dos variables:</p>
+<p>Utilizando el comando <code>help(cars)</code>
+se obtiene que <code>cars</code> es un data.frame con 50 observaciones y dos
+variables:</p>
 <ul>
 <li><p><code>speed</code>: Velocidad (millas por hora)</p></li>
 <li><p><code>dist</code>: tiempo hasta detenerse (pies)</p></li>
 </ul>
-<p>Recordemos que, para acceder a la variable <code>speed</code> se puede hacer directamente con su nombre o bien utilizando notación “matricial”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars<span class="op">$</span>speed</code></pre></div>
+<p>Recordemos que, para acceder a la variable <code>speed</code> se puede
+hacer directamente con su nombre o bien utilizando notación
+“matricial”.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" title="1">cars<span class="op">$</span>speed</a></code></pre></div>
 <pre><code>##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
 ## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
 ## [47] 24 24 24 25</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars[, <span class="dv">1</span>]  <span class="co"># Equivalente</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1">cars[, <span class="dv">1</span>]  <span class="co"># Equivalente</span></a></code></pre></div>
 <pre><code>##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
 ## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
 ## [47] 24 24 24 25</code></pre>
-<p>Supongamos ahora que queremos transformar la variable original <code>speed</code> (millas por hora) en una nueva variable <code>velocidad</code> (kilómetros por hora) y añadir esta nueva variable al data.frame <code>cars</code>. La transformación que permite pasar millas a kilómetros es <code>kilómetros=millas/0.62137</code> que en R se hace directamente con:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars<span class="op">$</span>speed<span class="op">/</span><span class="fl">0.62137</span></code></pre></div>
-<p>Finalmente, incluimos la nueva variable que llamaremos <code>velocidad</code> en <code>cars</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars<span class="op">$</span>velocidad &lt;-<span class="st"> </span>cars<span class="op">$</span>speed <span class="op">/</span><span class="st"> </span><span class="fl">0.62137</span>
-<span class="kw">head</span>(cars)</code></pre></div>
+<p>Supongamos ahora que queremos transformar la variable original <code>speed</code>
+(millas por hora) en una nueva variable <code>velocidad</code> (kilómetros por
+hora) y añadir esta nueva variable al data.frame <code>cars</code>.
+La transformación que permite pasar millas a kilómetros es
+<code>kilómetros=millas/0.62137</code> que en R se hace directamente con:</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" title="1">cars<span class="op">$</span>speed<span class="op">/</span><span class="fl">0.62137</span></a></code></pre></div>
+<p>Finalmente, incluimos la nueva variable que llamaremos
+<code>velocidad</code> en <code>cars</code>:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" title="1">cars<span class="op">$</span>velocidad &lt;-<span class="st"> </span>cars<span class="op">$</span>speed <span class="op">/</span><span class="st"> </span><span class="fl">0.62137</span></a>
+<a class="sourceLine" id="cb306-2" title="2"><span class="kw">head</span>(cars)</a></code></pre></div>
 <pre><code>##   speed dist velocidad
 ## 1     4    2  6.437388
 ## 2     4   10  6.437388
@@ -554,9 +639,11 @@ datos</code></pre></div>
 ## 4     7   22 11.265430
 ## 5     8   16 12.874777
 ## 6     9   10 14.484124</code></pre>
-<p>También transformaremos la variable <code>dist</code> (en pies) en una nueva variable <code>distancia</code> (en metros). Ahora la transformación deseada es <code>metros=pies/3.2808</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars<span class="op">$</span>distancia &lt;-<span class="st"> </span>cars<span class="op">$</span>dis <span class="op">/</span><span class="st"> </span><span class="fl">3.2808</span>
-<span class="kw">head</span>(cars)</code></pre></div>
+<p>También transformaremos la variable <code>dist</code> (en pies) en una nueva
+variable <code>distancia</code> (en metros). Ahora la transformación deseada es
+<code>metros=pies/3.2808</code>:</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" title="1">cars<span class="op">$</span>distancia &lt;-<span class="st"> </span>cars<span class="op">$</span>dis <span class="op">/</span><span class="st"> </span><span class="fl">3.2808</span></a>
+<a class="sourceLine" id="cb308-2" title="2"><span class="kw">head</span>(cars)</a></code></pre></div>
 <pre><code>##   speed dist velocidad distancia
 ## 1     4    2  6.437388 0.6096074
 ## 2     4   10  6.437388 3.0480371
@@ -564,38 +651,53 @@ datos</code></pre></div>
 ## 4     7   22 11.265430 6.7056815
 ## 5     8   16 12.874777 4.8768593
 ## 6     9   10 14.484124 3.0480371</code></pre>
-<p>Ahora, eliminaremos las variables originales <code>speed</code> y <code>dist</code>, y guardaremos el data.frame resultante con el nombre <code>coches</code>. En primer lugar, veamos varias formas de acceder a las variables de interés:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]
-cars[, <span class="kw">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]
-cars[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</code></pre></div>
-<p>Utilizando alguna de las opciones anteriores se obtiene el <code>data.frame</code> deseado:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coches &lt;-<span class="st"> </span>cars[, <span class="kw">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]
-<span class="co"># head(coches)</span>
-<span class="kw">str</span>(coches)</code></pre></div>
+<p>Ahora, eliminaremos las variables originales <code>speed</code> y
+<code>dist</code>, y guardaremos el data.frame resultante con el nombre <code>coches</code>.
+En primer lugar, veamos varias formas de acceder a las variables de
+interés:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" title="1">cars[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]</a>
+<a class="sourceLine" id="cb310-2" title="2">cars[, <span class="kw">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]</a>
+<a class="sourceLine" id="cb310-3" title="3">cars[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</a></code></pre></div>
+<p>Utilizando alguna de las opciones anteriores se obtiene el <code>data.frame</code>
+deseado:</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" title="1">coches &lt;-<span class="st"> </span>cars[, <span class="kw">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]</a>
+<a class="sourceLine" id="cb311-2" title="2"><span class="co"># head(coches)</span></a>
+<a class="sourceLine" id="cb311-3" title="3"><span class="kw">str</span>(coches)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    50 obs. of  2 variables:
 ##  $ velocidad: num  6.44 6.44 11.27 11.27 12.87 ...
 ##  $ distancia: num  0.61 3.05 1.22 6.71 4.88 ...</code></pre>
-<p>Finalmente los datos anteriores podrían ser guardados en un fichero exportable a Excel con el siguiente comando:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv2</span>(coches, <span class="dt">file =</span> <span class="st">&quot;coches.csv&quot;</span>)</code></pre></div>
+<p>Finalmente los datos anteriores podrían ser guardados en un fichero
+exportable a Excel con el siguiente comando:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1"><span class="kw">write.csv2</span>(coches, <span class="dt">file =</span> <span class="st">&quot;coches.csv&quot;</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="operaciones-con-casos" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Operaciones con casos</h3>
 <div id="ordenacion" class="section level4">
 <h4><span class="header-section-number">4.2.2.1</span> Ordenación</h4>
-<p>Continuemos con el data.frame <code>cars</code>. Se puede comprobar que los datos disponibles están ordenados por los valores de <code>speed</code>. A continuación haremos la ordenación utilizando los valores de <code>dist</code>. Para ello utilizaremos el conocido como vector de índices de ordenación. Este vector establece el orden en que tienen que ser elegidos los elementos para obtener la ordenación deseada. Veamos un ejemplo sencillo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.5</span>, <span class="fl">4.3</span>, <span class="fl">1.2</span>, <span class="fl">3.1</span>, <span class="fl">5.0</span>) <span class="co"># valores originales</span>
-ii &lt;-<span class="st"> </span><span class="kw">order</span>(x)
-ii    <span class="co"># vector de ordenación</span></code></pre></div>
+<p>Continuemos con el data.frame <code>cars</code>.
+Se puede comprobar que los datos disponibles están ordenados por
+los valores de <code>speed</code>. A continuación haremos la ordenación utilizando
+los valores de <code>dist</code>. Para ello utilizaremos el conocido como vector de
+índices de ordenación.
+Este vector establece el orden en que tienen que ser elegidos los
+elementos para obtener la ordenación deseada.
+Veamos un ejemplo sencillo:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.5</span>, <span class="fl">4.3</span>, <span class="fl">1.2</span>, <span class="fl">3.1</span>, <span class="fl">5.0</span>) <span class="co"># valores originales</span></a>
+<a class="sourceLine" id="cb314-2" title="2">ii &lt;-<span class="st"> </span><span class="kw">order</span>(x)</a>
+<a class="sourceLine" id="cb314-3" title="3">ii    <span class="co"># vector de ordenación</span></a></code></pre></div>
 <pre><code>## [1] 3 1 4 2 5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[ii] <span class="co"># valores ordenados</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1">x[ii] <span class="co"># valores ordenados</span></a></code></pre></div>
 <pre><code>## [1] 1.2 2.5 3.1 4.3 5.0</code></pre>
-<p>En el caso de vectores, el procedimiento anterior se podría hacer directamente con:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(x)</code></pre></div>
-<p>Sin embargo, para ordenar data.frames será necesario la utilización del vector de índices de ordenación. A continuación, los datos de <code>cars</code> ordenados por <code>dist</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="kw">order</span>(cars<span class="op">$</span>dist) <span class="co"># Vector de índices de ordenación</span>
-cars2 &lt;-<span class="st"> </span>cars[ii, ]    <span class="co"># Datos ordenados por dist</span>
-<span class="kw">head</span>(cars2)</code></pre></div>
+<p>En el caso de vectores, el procedimiento anterior se podría
+hacer directamente con:</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"><span class="kw">sort</span>(x)</a></code></pre></div>
+<p>Sin embargo, para ordenar data.frames será necesario la utilización del
+vector de índices de ordenación. A continuación, los datos de <code>cars</code>
+ordenados por <code>dist</code>:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" title="1">ii &lt;-<span class="st"> </span><span class="kw">order</span>(cars<span class="op">$</span>dist) <span class="co"># Vector de índices de ordenación</span></a>
+<a class="sourceLine" id="cb319-2" title="2">cars2 &lt;-<span class="st"> </span>cars[ii, ]    <span class="co"># Datos ordenados por dist</span></a>
+<a class="sourceLine" id="cb319-3" title="3"><span class="kw">head</span>(cars2)</a></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 1      4    2  6.437388 0.6096074
 ## 3      7    4 11.265430 1.2192148
@@ -606,49 +708,53 @@ cars2 &lt;-<span class="st"> </span>cars[ii, ]    <span class="co"># Datos orden
 </div>
 <div id="filtrado" class="section level4">
 <h4><span class="header-section-number">4.2.2.2</span> Filtrado</h4>
-<p>El filtrado de datos consiste en elegir una submuestra que cumpla determinadas condiciones. Para ello se puede utilizar la función <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset"><code>subset()</code></a> (que además permite seleccionar variables).</p>
+<p>El filtrado de datos consiste en
+elegir una submuestra que cumpla determinadas condiciones. Para ello se
+puede utilizar la función <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset"><code>subset()</code></a>
+(que además permite seleccionar variables).</p>
 <p>A continuación se muestran un par de ejemplos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">subset</span>(cars, dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">85</span>) <span class="co"># datos con dis&gt;85</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1"><span class="kw">subset</span>(cars, dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">85</span>) <span class="co"># datos con dis&gt;85</span></a></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 47    24   92  38.62433  28.04194
 ## 48    24   93  38.62433  28.34674
 ## 49    24  120  38.62433  36.57644</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">subset</span>(cars, speed <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>speed <span class="op">&lt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">45</span>) <span class="co"># speed en (10,15) y dist&gt;45</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" title="1"><span class="kw">subset</span>(cars, speed <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>speed <span class="op">&lt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">45</span>) <span class="co"># speed en (10,15) y dist&gt;45</span></a></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 19    13   46  20.92151  14.02097
 ## 22    14   60  22.53086  18.28822
 ## 23    14   80  22.53086  24.38430</code></pre>
-<p>También se pueden hacer el filtrado empleando directamente los correspondientes vectores de índices:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span>cars<span class="op">$</span>dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">85</span>
-cars[ii, ]   <span class="co"># dis&gt;85</span></code></pre></div>
+<p>También se pueden hacer el filtrado empleando directamente los
+correspondientes vectores de índices:</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" title="1">ii &lt;-<span class="st"> </span>cars<span class="op">$</span>dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">85</span></a>
+<a class="sourceLine" id="cb325-2" title="2">cars[ii, ]   <span class="co"># dis&gt;85</span></a></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 47    24   92  38.62433  28.04194
 ## 48    24   93  38.62433  28.34674
 ## 49    24  120  38.62433  36.57644</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span>cars<span class="op">$</span>speed <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>cars<span class="op">$</span>speed <span class="op">&lt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>cars<span class="op">$</span>dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">45</span>
-cars[ii, ]  <span class="co"># speed en (10,15) y dist&gt;45</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" title="1">ii &lt;-<span class="st"> </span>cars<span class="op">$</span>speed <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>cars<span class="op">$</span>speed <span class="op">&lt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>cars<span class="op">$</span>dist <span class="op">&gt;</span><span class="st"> </span><span class="dv">45</span></a>
+<a class="sourceLine" id="cb327-2" title="2">cars[ii, ]  <span class="co"># speed en (10,15) y dist&gt;45</span></a></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 19    13   46  20.92151  14.02097
 ## 22    14   60  22.53086  18.28822
 ## 23    14   80  22.53086  24.38430</code></pre>
 <p>En este caso puede ser de utilidad la función <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which"><code>which()</code></a>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">it &lt;-<span class="st"> </span><span class="kw">which</span>(ii)
-<span class="kw">str</span>(it)</code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" title="1">it &lt;-<span class="st"> </span><span class="kw">which</span>(ii)</a>
+<a class="sourceLine" id="cb329-2" title="2"><span class="kw">str</span>(it)</a></code></pre></div>
 <pre><code>##  int [1:3] 19 22 23</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars[it, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" title="1">cars[it, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
 <pre><code>##    speed dist
 ## 19    13   46
 ## 22    14   60
 ## 23    14   80</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># rownames(cars[it, 1:2])</span>
-
-id &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span>ii)
-<span class="kw">str</span>(cars[id, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1"><span class="co"># rownames(cars[it, 1:2])</span></a>
+<a class="sourceLine" id="cb333-2" title="2"></a>
+<a class="sourceLine" id="cb333-3" title="3">id &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="op">!</span>ii)</a>
+<a class="sourceLine" id="cb333-4" title="4"><span class="kw">str</span>(cars[id, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    47 obs. of  2 variables:
 ##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
 ##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed</span>
-<span class="co"># ?which.min</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"><span class="co"># Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed</span></a>
+<a class="sourceLine" id="cb335-2" title="2"><span class="co"># ?which.min</span></a></code></pre></div>
 
 </div>
 </div>
@@ -710,7 +816,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

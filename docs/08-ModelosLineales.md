@@ -410,7 +410,7 @@ library(leaps)
 ```
 
 ```
-## Warning: package 'leaps' was built under R version 3.5.3
+## Warning: package 'leaps' was built under R version 3.6.1
 ```
 
 ```r
@@ -514,19 +514,15 @@ library(RcmdrMisc)
 ```
 
 ```
-## Warning: package 'RcmdrMisc' was built under R version 3.5.3
+## Warning: package 'RcmdrMisc' was built under R version 3.6.1
 ```
 
 ```
-## Warning: package 'car' was built under R version 3.5.3
+## Warning: package 'car' was built under R version 3.6.1
 ```
 
 ```
-## Warning: package 'carData' was built under R version 3.5.2
-```
-
-```
-## Warning: package 'sandwich' was built under R version 3.5.3
+## Warning: package 'sandwich' was built under R version 3.6.1
 ```
 
 ```r
@@ -990,7 +986,7 @@ library(lmtest)
 ```
 
 ```
-## Warning: package 'lmtest' was built under R version 3.5.3
+## Warning: package 'lmtest' was built under R version 3.6.1
 ```
 
 ```r
@@ -1101,7 +1097,7 @@ library(glmnet)
 ```
 
 ```
-## Warning: package 'glmnet' was built under R version 3.5.3
+## Warning: package 'glmnet' was built under R version 3.6.1
 ```
 
 El paquete `glmnet` no emplea formulación de modelos, hay que establecer la respuesta
@@ -1146,7 +1142,7 @@ cv.ridge$lambda.1se
 ```
 
 ```
-## [1] 3.312225
+## [1] 3.635163
 ```
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -1158,15 +1154,15 @@ coef(cv.ridge)
 
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                     1
-## (Intercept) 4.3005429
-## velocida    1.5909337
-## precio      0.7281074
-## flexprec    2.3156790
-## imgfabri    0.3078243
-## servconj    3.8426594
-## imgfvent    1.0901008
-## calidadp    0.0858432
+##                      1
+## (Intercept) 5.26333438
+## velocida    1.58051175
+## precio      0.70395775
+## flexprec    2.24798481
+## imgfabri    0.31897738
+## servconj    3.76988236
+## imgfvent    1.07304993
+## calidadp    0.06641356
 ```
 
 ### Lasso
@@ -1200,14 +1196,14 @@ coef(cv.lasso)
 
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                      1
-## (Intercept) 3.49567686
-## velocida    0.09986511
-## precio      .         
-## flexprec    2.78200584
-## imgfabri    .         
-## servconj    6.48863850
-## imgfvent    0.56085667
+##                     1
+## (Intercept) 6.7318222
+## velocida    0.1070413
+## precio      .        
+## flexprec    2.5781037
+## imgfabri    .        
+## servconj    6.2106583
+## imgfvent    0.2446890
 ## calidadp    .
 ```
 

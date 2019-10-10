@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B Instalación de R | Introducción al Análisis de Datos con R</title>
   <meta name="description" content="Este es un libro introductorio al análisis de datos con R" />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B Instalación de R | Introducción al Análisis de Datos con R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa" />
 
 
-<meta name="date" content="2019-10-08" />
+<meta name="date" content="2019-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,41 +50,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -366,7 +391,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="instalacion" class="section level1">
 <h1><span class="header-section-number">B</span> Instalación de R</h1>
-<p>En la web del proyecto R (<a href="http://www.r-project.org">www.r-project.org</a>) está disponible mucha información sobre este entorno estadístico.</p>
+<p>En la web del proyecto R
+(<a href="http://www.r-project.org">www.r-project.org</a>) está disponible
+mucha información sobre este entorno estadístico.</p>
 <table>
 <tbody>
 <tr class="odd">
@@ -379,21 +406,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>Las descargas se realizan a través de la web del CRAN (The Comprehensive R Archive Network), con múltiples mirrors:</p>
+<p>Las descargas se realizan a través de la web del CRAN (The Comprehensive
+R Archive Network), con múltiples mirrors:</p>
 <ul>
 <li><em>Oficina de software libre</em> (CIXUG) <a href="http://ftp.cixug.es/CRAN/">ftp.cixug.es/CRAN</a>.</li>
-<li><em>Spanish National Research Network (Madrid)</em> (RedIRIS) es <a href="http://cran.es.r-project.org/">cran.es.r-project.org</a>.</li>
+<li><em>Spanish National Research Network (Madrid)</em> (RedIRIS) es
+<a href="http://cran.es.r-project.org/">cran.es.r-project.org</a>.</li>
 </ul>
 <div id="instalacion-de-r-en-windows" class="section level2">
 <h2><span class="header-section-number">B.1</span> Instalación de R en Windows</h2>
-<p>Seleccionando <a href="http://ftp.cixug.es/CRAN/bin/windows/">Download R for Windows</a> y posteriormente <a href="http://ftp.cixug.es/CRAN/bin/windows/base/">base</a> accedemos al enlace con el instalador de R para Windows (actualmente de la versión <a href="http://ftp.cixug.es/CRAN/bin/windows/base/R-3.6.1-win.exe">3.6.1</a>).</p>
-<div class="figure">
-<img src="figuras/R351.png" style="width:40.0%" />
-
-</div>
+<p>Seleccionando <a href="http://ftp.cixug.es/CRAN/bin/windows/">Download R for Windows</a> y posteriormente
+<a href="http://ftp.cixug.es/CRAN/bin/windows/base/">base</a> accedemos
+al enlace con el instalador de R para Windows (actualmente de la versión
+<a href="http://ftp.cixug.es/CRAN/bin/windows/base/R-3.6.1-win.exe">3.6.1</a>).</p>
+<p><img src="figuras/R351.png" style="width:40.0%" /></p>
 <div id="asistente-de-instalacion" class="section level3">
 <h3><span class="header-section-number">B.1.1</span> Asistente de instalación</h3>
-<p>Durante el proceso de instalación la recomendación (para evitar posibles problemas) es seleccionar ventanas simples SDI en lugar de múltiples ventanas MDI (hay que <em>utilizar opciones de configuración</em>).</p>
+<p>Durante el proceso de instalación la recomendación (para evitar posibles
+problemas) es seleccionar ventanas simples SDI en lugar de múltiples
+ventanas MDI (hay que <em>utilizar opciones de configuración</em>).</p>
 <table>
 <tbody>
 <tr class="odd">
@@ -406,27 +437,49 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>Una vez terminada la instalación, al abrir el programa <code>R</code>, aparece la ventana de la consola (simula una ventana de comandos de Unix) que permite ejecutar comandos de R al irlos introduciendo.</p>
+<p>Una vez terminada la instalación, al abrir el programa <code>R</code>, aparece la
+ventana de la consola (simula una ventana de comandos de Unix) que permite
+ejecutar comandos de R al irlos introduciendo.</p>
 </div>
 <div id="instalacion-de-paquetes" class="section level3">
 <h3><span class="header-section-number">B.1.2</span> Instalación de paquetes</h3>
-<p>Después de la instalación de R, puede ser necesario instalar paquetes adicionales.</p>
-<p>Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes: <a href="https://cran.r-project.org/web/packages/lattice/index.html"><code>lattice</code></a>, <a href="https://cran.r-project.org/web/packages/ggplot2/index.html"><code>ggplot2</code></a>, <a href="https://cran.r-project.org/web/packages/foreign/index.html"><code>foreign</code></a>, <a href="https://cran.r-project.org/web/packages/car/index.html"><code>car</code></a>, <a href="https://cran.r-project.org/web/packages/leaps/index.html"><code>leaps</code></a>, <a href="https://cran.r-project.org/web/packages/MASS/index.html"><code>MASS</code></a>, <a href="https://cran.r-project.org/web/packages/RcmdrMisc/index.html"><code>RcmdrMisc</code></a>, <a href="https://cran.r-project.org/web/packages/lmtest/index.html"><code>lmtest</code></a>, <a href="https://cran.r-project.org/web/packages/glmnet/index.html"><code>glmnet</code></a>, <a href="https://cran.r-project.org/web/packages/mgcv/index.html"><code>mgcv</code></a>, <a href="https://cran.r-project.org/web/packages/rmarkdown/index.html"><code>rmarkdown</code></a>, <a href="https://cran.r-project.org/web/packages/knitr/index.html"><code>knitr</code></a>, <a href="https://cran.r-project.org/web/packages/dplyr/index.html"><code>dplyr</code></a>. Por ejemplo mediante el comando:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pkgs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;lattice&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;foreign&quot;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;leaps&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;RcmdrMisc&quot;</span>, 
-          <span class="st">&quot;lmtest&quot;</span>, <span class="st">&quot;glmnet&quot;</span>, <span class="st">&quot;mgcv&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)
-
-<span class="kw">install.packages</span>(<span class="kw">setdiff</span>(pkgs, <span class="kw">installed.packages</span>()[,<span class="st">&quot;Package&quot;</span>]), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
-<span class="co"># Si aparecen errores debidos a incompatibilidades entre las versiones de los paquetes, </span>
-<span class="co"># probar a ejecutar en lugar de lo anterior:</span>
-<span class="co"># install.packages(pkgs, dependencies=TRUE) # Instala todos...</span></code></pre></div>
-<p>(puede que haya que seleccionar el repositorio de descarga, e.g. <em>Spain (Madrid)</em>).</p>
+<p>Después de la instalación de R, puede ser necesario instalar paquetes
+adicionales.</p>
+<p>Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes:
+<a href="https://cran.r-project.org/web/packages/lattice/index.html"><code>lattice</code></a>,
+<a href="https://cran.r-project.org/web/packages/ggplot2/index.html"><code>ggplot2</code></a>,
+<a href="https://cran.r-project.org/web/packages/foreign/index.html"><code>foreign</code></a>,
+<a href="https://cran.r-project.org/web/packages/car/index.html"><code>car</code></a>,
+<a href="https://cran.r-project.org/web/packages/leaps/index.html"><code>leaps</code></a>,
+<a href="https://cran.r-project.org/web/packages/MASS/index.html"><code>MASS</code></a>,
+<a href="https://cran.r-project.org/web/packages/RcmdrMisc/index.html"><code>RcmdrMisc</code></a>,
+<a href="https://cran.r-project.org/web/packages/lmtest/index.html"><code>lmtest</code></a>,
+<a href="https://cran.r-project.org/web/packages/glmnet/index.html"><code>glmnet</code></a>,
+<a href="https://cran.r-project.org/web/packages/mgcv/index.html"><code>mgcv</code></a>,
+<a href="https://cran.r-project.org/web/packages/rmarkdown/index.html"><code>rmarkdown</code></a>,
+<a href="https://cran.r-project.org/web/packages/knitr/index.html"><code>knitr</code></a>,
+<a href="https://cran.r-project.org/web/packages/dplyr/index.html"><code>dplyr</code></a>.
+Por ejemplo mediante el comando:</p>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb859-1" title="1">pkgs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;lattice&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;foreign&quot;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;leaps&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;RcmdrMisc&quot;</span>, </a>
+<a class="sourceLine" id="cb859-2" title="2">          <span class="st">&quot;lmtest&quot;</span>, <span class="st">&quot;glmnet&quot;</span>, <span class="st">&quot;mgcv&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb859-3" title="3"></a>
+<a class="sourceLine" id="cb859-4" title="4"><span class="kw">install.packages</span>(<span class="kw">setdiff</span>(pkgs, <span class="kw">installed.packages</span>()[,<span class="st">&quot;Package&quot;</span>]), <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb859-5" title="5"><span class="co"># Si aparecen errores debidos a incompatibilidades entre las versiones de los paquetes, </span></a>
+<a class="sourceLine" id="cb859-6" title="6"><span class="co"># probar a ejecutar en lugar de lo anterior:</span></a>
+<a class="sourceLine" id="cb859-7" title="7"><span class="co"># install.packages(pkgs, dependencies=TRUE) # Instala todos...</span></a></code></pre></div>
+<p>(puede que haya que seleccionar el repositorio de descarga, e.g. <em>Spain
+(Madrid)</em>).</p>
 <p>La forma tradicional es esta:</p>
 <ol style="list-style-type: decimal">
 <li><p>Se inicia R y se selecciona <em>Paquetes &gt; Instalar paquetes</em></p></li>
 <li><p>Se selecciona el repositorio.</p></li>
 <li><p>Se selecciona el paquete y automáticamente se instala.</p></li>
 </ol>
-<p>Alternativamente se podrían instalar los siguientes paquetes: <code>Rcmdr</code>, <code>RcmdrPlugin.FactoMineR</code>, <code>dplyr</code> y <code>rattle</code>, ya que sus dependencias incluyen los empleados en este libro. La instalación de los paquetes <code>Rcmdr</code> y <code>rattle</code> (que incluyen interfaces gráficas) se describe en el Apéndice <a href="interfaces.html#interfaces">C</a>.</p>
+<p>Alternativamente se podrían instalar los siguientes paquetes: <code>Rcmdr</code>,
+<code>RcmdrPlugin.FactoMineR</code>, <code>dplyr</code> y <code>rattle</code>, ya que sus dependencias
+incluyen los empleados en este libro.
+La instalación de los paquetes <code>Rcmdr</code> y <code>rattle</code> (que incluyen interfaces gráficas) se describe
+en el Apéndice <a href="interfaces.html#interfaces">C</a>.</p>
 
 </div>
 </div>
@@ -487,7 +540,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
