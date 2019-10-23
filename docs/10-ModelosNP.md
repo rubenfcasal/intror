@@ -77,7 +77,11 @@ library(car)
 ```
 
 ```
-## Warning: package 'car' was built under R version 3.6.1
+## Warning: package 'car' was built under R version 3.5.3
+```
+
+```
+## Warning: package 'carData' was built under R version 3.5.2
 ```
 
 ```r
@@ -282,7 +286,7 @@ gam.check(modelo)
 ## 
 ##                k'  edf k-index p-value
 ## s(income)    9.00 3.12    0.98    0.42
-## s(education) 9.00 3.18    1.03    0.63
+## s(education) 9.00 3.18    1.03    0.55
 ```
 Lo ideal sería observar normalidad en los dos gráficos de la izquierda, falta de patrón en el superior derecho, y ajuste a una recta en el inferior derecho. En este caso parece que el modelo se comporta adecuadamente.
 

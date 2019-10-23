@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 2 Estructuras de datos | Introducción al Análisis de Datos con R</title>
   <meta name="description" content="Este es un libro introductorio al análisis de datos con R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 2 Estructuras de datos | Introducción al Análisis de Datos con R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa" />
 
 
-<meta name="date" content="2019-10-10" />
+<meta name="date" content="2019-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,66 +50,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -391,11 +366,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="estructuras-de-datos" class="section level1">
 <h1><span class="header-section-number">Capítulo 2</span> Estructuras de datos</h1>
-<p>En los ejemplos que hemos visto hasta ahora los objetos
-de <code>R</code> almacenaban un único valor cada uno. Sin embargo, las estructuras
-de datos que proporciona <code>R</code> permiten
-almacenar en un mismo objeto varios valores. Las principales estructuras
-son:</p>
+<p>En los ejemplos que hemos visto hasta ahora los objetos de <code>R</code> almacenaban un único valor cada uno. Sin embargo, las estructuras de datos que proporciona <code>R</code> permiten almacenar en un mismo objeto varios valores. Las principales estructuras son:</p>
 <ul>
 <li><p>Vectores</p></li>
 <li><p>Matrices y Arrays</p></li>
@@ -404,122 +375,114 @@ son:</p>
 </ul>
 <div id="vectores" class="section level2">
 <h2><span class="header-section-number">2.1</span> Vectores</h2>
-<p>Un vector es un conjunto de valores básicos del mismo tipo.
-La forma más sencilla de crear vectores es a
-través de la función <code>c()</code> que se usa para combinar (concatenar) valores.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb102-2" title="2">x</a></code></pre></div>
+<p>Un vector es un conjunto de valores básicos del mismo tipo. La forma más sencilla de crear vectores es a través de la función <code>c()</code> que se usa para combinar (concatenar) valores.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)
+x</code></pre></div>
 <pre><code>## [1] 3 5 7</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb104-2" title="2">y</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)
+y</code></pre></div>
 <pre><code>## [1] 8 9</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">c</span>(x, y)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(x, y)</code></pre></div>
 <pre><code>## [1] 3 5 7 8 9</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hola&quot;</span>, <span class="st">&quot;Adios&quot;</span>)</a>
-<a class="sourceLine" id="cb108-2" title="2">z</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hola&quot;</span>, <span class="st">&quot;Adios&quot;</span>)
+z</code></pre></div>
 <pre><code>## [1] &quot;Hola&quot;  &quot;Adios&quot;</code></pre>
 <div id="generacion-de-secuencias" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Generación de secuencias</h3>
 <p>Existen varias funciones que pemiten obtener secuencias de números</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb110-2" title="2">x</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
+x</code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="fl">0.5</span>)</code></pre></div>
 <pre><code>## [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>, <span class="dt">to=</span><span class="dv">5</span>, <span class="dt">length=</span><span class="dv">9</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>, <span class="dt">to=</span><span class="dv">5</span>, <span class="dt">length=</span><span class="dv">9</span>)</code></pre></div>
 <pre><code>## [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)</code></pre></div>
 <pre><code>## [1] 1 1 1 1 1</code></pre>
 </div>
 <div id="generacion-secuencias-aleatorias" class="section level3">
 <h3><span class="header-section-number">2.1.2</span> Generación secuencias aleatorias</h3>
 <p>A continuación se obtiene una simulación de 10 lanzamientos de un dado</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">replace =</span> T) <span class="co">#lanzamiento de un dado</span></a></code></pre></div>
-<pre><code>##  [1] 3 3 3 5 2 2 3 4 3 6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">replace =</span> T) <span class="co">#lanzamiento de un dado</span></code></pre></div>
+<pre><code>##  [1] 2 5 6 6 6 6 1 2 6 5</code></pre>
 <p>Para simular el lanzamiento de una moneda podemos escribir</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">resultado &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">cara=</span><span class="dv">1</span>,<span class="dt">cruz=</span><span class="dv">0</span>) <span class="co"># se le han asignado nombres al objeto</span></a>
-<a class="sourceLine" id="cb120-2" title="2"><span class="kw">print</span>(resultado)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">resultado &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">cara=</span><span class="dv">1</span>,<span class="dt">cruz=</span><span class="dv">0</span>) <span class="co"># se le han asignado nombres al objeto</span>
+<span class="kw">print</span>(resultado)</code></pre></div>
 <pre><code>## cara cruz 
 ##    1    0</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="kw">class</span>(resultado)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(resultado)</code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="kw">attributes</span>(resultado)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attributes</span>(resultado)</code></pre></div>
 <pre><code>## $names
 ## [1] &quot;cara&quot; &quot;cruz&quot;</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="kw">names</span>(resultado)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(resultado)</code></pre></div>
 <pre><code>## [1] &quot;cara&quot; &quot;cruz&quot;</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">lanz &lt;-<span class="st"> </span><span class="kw">sample</span>(resultado, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">replace =</span> T)</a>
-<a class="sourceLine" id="cb128-2" title="2">lanz</a></code></pre></div>
-<pre><code>## cara cruz cara cruz cruz cara cara cruz cruz cruz 
-##    1    0    1    0    0    1    1    0    0    0</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1"><span class="kw">table</span>(lanz)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lanz &lt;-<span class="st"> </span><span class="kw">sample</span>(resultado, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">replace =</span> T)
+lanz</code></pre></div>
+<pre><code>## cara cara cara cara cara cara cara cruz cruz cruz 
+##    1    1    1    1    1    1    1    0    0    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(lanz)</code></pre></div>
 <pre><code>## lanz
 ## 0 1 
-## 6 4</code></pre>
+## 3 7</code></pre>
 <p>Otros ejemplos</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="kw">rnorm</span>(<span class="dv">10</span>)  <span class="co"># rnorm(10, mean = 0, sd = 1)</span></a></code></pre></div>
-<pre><code>##  [1]  2.1201482 -1.3104383  0.3943384 -1.2532541 -0.6949062  1.0884658
-##  [7]  0.6094051 -1.4667318 -0.1086539  0.0171718</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="kw">runif</span>(<span class="dv">15</span>, <span class="dt">min =</span> <span class="dv">2</span>, <span class="dt">max =</span> <span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##  [1] 9.456334 2.689034 5.859671 4.010036 3.785976 3.085025 6.283892
-##  [8] 9.170275 7.001756 2.401019 5.961403 8.173054 6.415395 4.154863
-## [15] 8.922290</code></pre>
-<p>El lector puede utilizar la función <code>help()</code> para obtener la ayuda de las funciones
-anteriores.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)  <span class="co"># rnorm(10, mean = 0, sd = 1)</span></code></pre></div>
+<pre><code>##  [1]  0.42726360  1.52131190 -0.04373130 -0.37831847 -1.36549894
+##  [6] -0.12835890  0.63024688 -0.08254184 -0.12947153  0.09814812</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dv">15</span>, <span class="dt">min =</span> <span class="dv">2</span>, <span class="dt">max =</span> <span class="dv">10</span>)</code></pre></div>
+<pre><code>##  [1] 2.315040 4.807003 4.944253 4.225459 2.264189 4.364218 6.104534
+##  [8] 2.925380 5.731339 4.127043 4.138951 2.440303 5.184995 3.209740
+## [15] 2.802742</code></pre>
+<p>El lector puede utilizar la función <code>help()</code> para obtener la ayuda de las funciones anteriores.</p>
 </div>
 <div id="seleccion-de-elementos-de-un-vector" class="section level3">
 <h3><span class="header-section-number">2.1.3</span> Selección de elementos de un vector</h3>
-<p>Para acceder a los elementos de un vector se indica entre corchetes el
-correspondiente vector de subíndices (enteros positivos).</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb136-2" title="2">x</a></code></pre></div>
+<p>Para acceder a los elementos de un vector se indica entre corchetes el correspondiente vector de subíndices (enteros positivos).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>)
+x</code></pre></div>
 <pre><code>## [1] -3 -2 -1  0  1  2  3</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">x[<span class="dv">1</span>] <span class="co"># primer elemento</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">1</span>] <span class="co"># primer elemento</span></code></pre></div>
 <pre><code>## [1] -3</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1">ii &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb140-2" title="2">x[ii] <span class="co">#posiciones 1, 5 y 7</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">7</span>)
+x[ii] <span class="co">#posiciones 1, 5 y 7</span></code></pre></div>
 <pre><code>## [1] -3  1  3</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1">ii &lt;-<span class="st"> </span>x<span class="op">&gt;</span><span class="dv">0</span>; ii</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span>x<span class="op">&gt;</span><span class="dv">0</span>; ii</code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1">x[ii]  <span class="co"># valores positivos</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[ii]  <span class="co"># valores positivos</span></code></pre></div>
 <pre><code>## [1] 1 2 3</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1">ii &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb146-2" title="2">x[<span class="op">-</span>ii]  <span class="co"># elementos de x salvo los 3 primeros</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+x[<span class="op">-</span>ii]  <span class="co"># elementos de x salvo los 3 primeros</span></code></pre></div>
 <pre><code>## [1] 0 1 2 3</code></pre>
 </div>
 <div id="ordenacion-de-vectores" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Ordenación de vectores</h3>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">18</span>, <span class="dv">59</span>, <span class="dv">18</span>, <span class="dv">6</span>, <span class="dv">94</span>, <span class="dv">26</span>)</a>
-<a class="sourceLine" id="cb148-2" title="2"><span class="kw">sort</span>(x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">18</span>, <span class="dv">59</span>, <span class="dv">18</span>, <span class="dv">6</span>, <span class="dv">94</span>, <span class="dv">26</span>)
+<span class="kw">sort</span>(x)</code></pre></div>
 <pre><code>## [1]  6 18 18 26 59 65 94</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">sort</span>(x, <span class="dt">decreasing =</span> T)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(x, <span class="dt">decreasing =</span> T)</code></pre></div>
 <pre><code>## [1] 94 65 59 26 18 18  6</code></pre>
 <p>Otra posibilidad es utilizar un índice de ordenación.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1">ii &lt;-<span class="st"> </span><span class="kw">order</span>(x)</a>
-<a class="sourceLine" id="cb152-2" title="2">ii  <span class="co"># índice de ordenación</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="kw">order</span>(x)
+ii  <span class="co"># índice de ordenación</span></code></pre></div>
 <pre><code>## [1] 5 2 4 7 3 1 6</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1">x[ii]  <span class="co"># valores ordenados</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[ii]  <span class="co"># valores ordenados</span></code></pre></div>
 <pre><code>## [1]  6 18 18 26 59 65 94</code></pre>
 <p>La función <code>rev()</code> devuelve los valores del vector en orden inverso.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">rev</span>(x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rev</span>(x)</code></pre></div>
 <pre><code>## [1] 26 94  6 18 59 18 65</code></pre>
 </div>
 <div id="valores-perdidos" class="section level3">
 <h3><span class="header-section-number">2.1.5</span> Valores perdidos</h3>
-<p>Los valore perdidos aparecen normalmente cuando algún dato no ha sido registrado. Este tipo de
-valores se registran como <code>NA</code> (abreviatura de <em>Not Available</em>).</p>
-<p>Por ejemplo, supongamos que tenemos registrado las alturas de 5 personas
-pero desconocemos la altura de la cuarta persona. El vector sería
-registrado como sigue:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1">altura &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">165</span>, <span class="dv">178</span>, <span class="dv">184</span>, <span class="ot">NA</span>, <span class="dv">175</span>)</a>
-<a class="sourceLine" id="cb158-2" title="2">altura</a></code></pre></div>
+<p>Los valore perdidos aparecen normalmente cuando algún dato no ha sido registrado. Este tipo de valores se registran como <code>NA</code> (abreviatura de <em>Not Available</em>).</p>
+<p>Por ejemplo, supongamos que tenemos registrado las alturas de 5 personas pero desconocemos la altura de la cuarta persona. El vector sería registrado como sigue:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">altura &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">165</span>, <span class="dv">178</span>, <span class="dv">184</span>, <span class="ot">NA</span>, <span class="dv">175</span>)
+altura</code></pre></div>
 <pre><code>## [1] 165 178 184  NA 175</code></pre>
-<p>Es importante notar que cualquier operación aritmética sobre un vector
-que contiene algún <code>NA</code> dará como resultado otro <code>NA</code>.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1"><span class="kw">mean</span>(altura)</a></code></pre></div>
+<p>Es importante notar que cualquier operación aritmética sobre un vector que contiene algún <code>NA</code> dará como resultado otro <code>NA</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(altura)</code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>Para forzar a <code>R</code> a que ignore los valores perdidos se utliza la opción <code>na.rm = TRUE</code>.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1"><span class="kw">mean</span>(altura, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(altura, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] 175.5</code></pre>
 <p><code>R</code> permite gestionar otros tipos de valores especiales:</p>
 <ul>
@@ -527,69 +490,60 @@ que contiene algún <code>NA</code> dará como resultado otro <code>NA</code>.</
 <li><p><code>Inf</code>: <code>R</code> representa valores no finitos <span class="math inline">\(\pm \infty\)</span> como <code>Inf</code> y <code>-Inf</code>.</p></li>
 </ul>
 <p><br> </p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="dv">5</span><span class="op">/</span><span class="dv">0</span>  <span class="co"># Infinito</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="op">/</span><span class="dv">0</span>  <span class="co"># Infinito</span></code></pre></div>
 <pre><code>## [1] Inf</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">log</span>(<span class="dv">0</span>)  <span class="co"># -Infinito</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">0</span>)  <span class="co"># -Infinito</span></code></pre></div>
 <pre><code>## [1] -Inf</code></pre>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="dv">0</span><span class="op">/</span><span class="dv">0</span>  <span class="co"># Not a Number</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">0</span><span class="op">/</span><span class="dv">0</span>  <span class="co"># Not a Number</span></code></pre></div>
 <pre><code>## [1] NaN</code></pre>
 </div>
 <div id="vectores-no-numericos" class="section level3">
 <h3><span class="header-section-number">2.1.6</span> Vectores no numéricos</h3>
 <p>Los vectores pueden ser no numéricos, aunque todas las componentes deben ser del mismo tipo:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A Coruña&quot;</span>, <span class="st">&quot;Lugo&quot;</span>, <span class="st">&quot;Ourense&quot;</span>, <span class="st">&quot;Pontevedra&quot;</span>)</a>
-<a class="sourceLine" id="cb170-2" title="2">a</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A Coruña&quot;</span>, <span class="st">&quot;Lugo&quot;</span>, <span class="st">&quot;Ourense&quot;</span>, <span class="st">&quot;Pontevedra&quot;</span>)
+a</code></pre></div>
 <pre><code>## [1] &quot;A Coruña&quot;   &quot;Lugo&quot;       &quot;Ourense&quot;    &quot;Pontevedra&quot;</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]  <span class="co"># primeras 10 letas del abecedario</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]  <span class="co"># primeras 10 letas del abecedario</span></code></pre></div>
 <pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot;</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1">LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]  <span class="co"># lo mismo en mayúscula</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]  <span class="co"># lo mismo en mayúscula</span></code></pre></div>
 <pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot;</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1">month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]  <span class="co"># primeros 6 meses del año en inglés</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]  <span class="co"># primeros 6 meses del año en inglés</span></code></pre></div>
 <pre><code>## [1] &quot;January&quot;  &quot;February&quot; &quot;March&quot;    &quot;April&quot;    &quot;May&quot;      &quot;June&quot;</code></pre>
 </div>
 <div id="factores" class="section level3">
 <h3><span class="header-section-number">2.1.7</span> Factores</h3>
-<p>Los factores se utilizan para representar datos categóricos. Se
-puede pensar en ellos como vectores de enteros en los que cada entero
-tiene asociada una etiqueta (<em>label</em>). Los factores son muy importantes
-en la modelización estadística ya que <code>R</code>los trata de forma especial.</p>
-<p>Utilizar factores con etiquetas es preferible a utilizar enteros porque
-las etiquetas son auto-descriptivas.</p>
-<p>Veamos un ejemplo. Supongamos que el vector <code>sexo</code> indica el sexo de un
-persona codificado como 0 si hombre y 1 si mujer</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1">sexo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb178-2" title="2">sexo</a></code></pre></div>
+<p>Los factores se utilizan para representar datos categóricos. Se puede pensar en ellos como vectores de enteros en los que cada entero tiene asociada una etiqueta (<em>label</em>). Los factores son muy importantes en la modelización estadística ya que <code>R</code>los trata de forma especial.</p>
+<p>Utilizar factores con etiquetas es preferible a utilizar enteros porque las etiquetas son auto-descriptivas.</p>
+<p>Veamos un ejemplo. Supongamos que el vector <code>sexo</code> indica el sexo de un persona codificado como 0 si hombre y 1 si mujer</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sexo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)
+sexo</code></pre></div>
 <pre><code>## [1] 0 1 1 1 0 0 1 0 1</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="kw">table</span>(sexo)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(sexo)</code></pre></div>
 <pre><code>## sexo
 ## 0 1 
 ## 4 5</code></pre>
-<p>El problema de introducir así los datos es que no queda reflejado la
-etiquetación de los mismos. Para ello guardaremos los datos en una
-estructura tipo factor:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1">sexo2 &lt;-<span class="st"> </span><span class="kw">factor</span>(sexo, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;hombre&quot;</span>, <span class="st">&quot;mujer&quot;</span>)); sexo2</a></code></pre></div>
+<p>El problema de introducir así los datos es que no queda reflejado la etiquetación de los mismos. Para ello guardaremos los datos en una estructura tipo factor:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sexo2 &lt;-<span class="st"> </span><span class="kw">factor</span>(sexo, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;hombre&quot;</span>, <span class="st">&quot;mujer&quot;</span>)); sexo2</code></pre></div>
 <pre><code>## [1] hombre mujer  mujer  mujer  hombre hombre mujer  hombre mujer 
 ## Levels: hombre mujer</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="kw">levels</span>(sexo2)  <span class="co"># devuelve los niveles de un factor</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(sexo2)  <span class="co"># devuelve los niveles de un factor</span></code></pre></div>
 <pre><code>## [1] &quot;hombre&quot; &quot;mujer&quot;</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="kw">unclass</span>(sexo2)  <span class="co"># representación subyacente del factor</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unclass</span>(sexo2)  <span class="co"># representación subyacente del factor</span></code></pre></div>
 <pre><code>## [1] 1 2 2 2 1 1 2 1 2
 ## attr(,&quot;levels&quot;)
 ## [1] &quot;hombre&quot; &quot;mujer&quot;</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="kw">table</span>(sexo2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(sexo2)</code></pre></div>
 <pre><code>## sexo2
 ## hombre  mujer 
 ##      4      5</code></pre>
-<p>Veamos otro ejemplo, en el que inicialmente tenemos datos categóricos. Los
-niveles se toman automáticamente por orden alfabético</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1">respuestas &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;si&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>, <span class="st">&#39;no&#39;</span>))</a>
-<a class="sourceLine" id="cb190-2" title="2">respuestas</a></code></pre></div>
+<p>Veamos otro ejemplo, en el que inicialmente tenemos datos categóricos. Los niveles se toman automáticamente por orden alfabético</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">respuestas &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;si&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>, <span class="st">&#39;no&#39;</span>))
+respuestas</code></pre></div>
 <pre><code>## [1] si si no si si no no
 ## Levels: no si</code></pre>
-<p>Si deseásemos otro orden (lo cual puede ser importante en algunos casos, por ejemplo
-para representaciones gráficas), habría que indicarlo expresamente</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1">respuestas &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;si&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>, <span class="st">&#39;no&#39;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>))</a>
-<a class="sourceLine" id="cb192-2" title="2">respuestas</a></code></pre></div>
+<p>Si deseásemos otro orden (lo cual puede ser importante en algunos casos, por ejemplo para representaciones gráficas), habría que indicarlo expresamente</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">respuestas &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;si&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>, <span class="st">&#39;no&#39;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&#39;si&#39;</span>, <span class="st">&#39;no&#39;</span>))
+respuestas</code></pre></div>
 <pre><code>## [1] si si no si si no no
 ## Levels: si no</code></pre>
 </div>
@@ -598,38 +552,33 @@ para representaciones gráficas), habría que indicarlo expresamente</p>
 <h2><span class="header-section-number">2.2</span> Matrices y arrays</h2>
 <div id="matrices" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Matrices</h3>
-<p>Las <em>matrices</em> son la extensión natural de los vectores a dos dimensiones.
-Su generalización a más dimensiones se llama <em>array</em>.</p>
-<p>Las matrices se pueden crear concatenando vectores
-con las funciones <code>cbind</code> o <code>rbind</code>:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb194-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb194-3" title="3"><span class="kw">cbind</span>(x, y)  <span class="co"># por columnas</span></a></code></pre></div>
+<p>Las <em>matrices</em> son la extensión natural de los vectores a dos dimensiones. Su generalización a más dimensiones se llama <em>array</em>.</p>
+<p>Las matrices se pueden crear concatenando vectores con las funciones <code>cbind</code> o <code>rbind</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">4</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)
+<span class="kw">cbind</span>(x, y)  <span class="co"># por columnas</span></code></pre></div>
 <pre><code>##      x y
 ## [1,] 3 7
 ## [2,] 7 5
 ## [3,] 1 2
 ## [4,] 8 1
 ## [5,] 4 0</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">rbind</span>(x, y)  <span class="co"># por filas</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbind</span>(x, y)  <span class="co"># por filas</span></code></pre></div>
 <pre><code>##   [,1] [,2] [,3] [,4] [,5]
 ## x    3    7    1    8    4
 ## y    7    5    2    1    0</code></pre>
-<p>Una matriz se puede crear con la función <code>matrix</code> donde el parámetro
-<code>nrow</code> indica el número de filas y <code>ncol</code> el número de columnas.
-Por defecto, los valores se colocan por columnas.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)  <span class="co"># equivalente a matrix(1:8, nrow=2)</span></a></code></pre></div>
+<p>Una matriz se puede crear con la función <code>matrix</code> donde el parámetro <code>nrow</code> indica el número de filas y <code>ncol</code> el número de columnas. Por defecto, los valores se colocan por columnas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)  <span class="co"># equivalente a matrix(1:8, nrow=2)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    3    5    7
 ## [2,]    2    4    6    8</code></pre>
-<p>Los nombres de los parámetros se pueden acortar siempre y cuando no haya
-ambigüedad, por lo que es habitual escribir</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">nr =</span> <span class="dv">2</span>, <span class="dt">nc =</span> <span class="dv">4</span>)</a></code></pre></div>
+<p>Los nombres de los parámetros se pueden acortar siempre y cuando no haya ambigüedad, por lo que es habitual escribir</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">nr =</span> <span class="dv">2</span>, <span class="dt">nc =</span> <span class="dv">4</span>)</code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    3    5    7
 ## [2,]    2    4    6    8</code></pre>
 <p>Si queremos indicar que los valores se escriban por filas</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">nr =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">nr =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    2    3    4
 ## [2,]    5    6    7    8</code></pre>
@@ -637,23 +586,23 @@ ambigüedad, por lo que es habitual escribir</p>
 <div id="nombres-en-matrices" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Nombres en matrices</h3>
 <p>Se pueden dar nombres a las filas y columnas de una matriz.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb204-2" title="2">x</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
+x</code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    2    3
 ## [2,]   11   12   13</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">rownames</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fila 1&quot;</span>, <span class="st">&quot;fila 2&quot;</span>)</a>
-<a class="sourceLine" id="cb206-2" title="2"><span class="kw">colnames</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;col 1&quot;</span>, <span class="st">&quot;col 2&quot;</span>, <span class="st">&quot;col 3&quot;</span>)</a>
-<a class="sourceLine" id="cb206-3" title="3">x </a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fila 1&quot;</span>, <span class="st">&quot;fila 2&quot;</span>)
+<span class="kw">colnames</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;col 1&quot;</span>, <span class="st">&quot;col 2&quot;</span>, <span class="st">&quot;col 3&quot;</span>)
+x </code></pre></div>
 <pre><code>##        col 1 col 2 col 3
 ## fila 1     1     2     3
 ## fila 2    11    12    13</code></pre>
 <p>Obtenemos el mismo resultado si escribimos</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">colnames</span>(x) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;col&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(x), <span class="dt">sep=</span><span class="st">&quot; &quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(x) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;col&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(x), <span class="dt">sep=</span><span class="st">&quot; &quot;</span>)</code></pre></div>
 <p>Internamente, las matrices son vectores con un atributo especial: la <em>dimensión</em>.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1"><span class="kw">dim</span>(x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(x)</code></pre></div>
 <pre><code>## [1] 2 3</code></pre>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="kw">attributes</span>(x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attributes</span>(x)</code></pre></div>
 <pre><code>## $dim
 ## [1] 2 3
 ## 
@@ -666,43 +615,41 @@ ambigüedad, por lo que es habitual escribir</p>
 </div>
 <div id="acceso-a-los-elementos-de-una-matriz" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> Acceso a los elementos de una matriz</h3>
-<p>El acceso a los elementos de una matriz se realiza de forma análoga al acceso ya
-comentado para los vectores.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">3</span>); x</a></code></pre></div>
+<p>El acceso a los elementos de una matriz se realiza de forma análoga al acceso ya comentado para los vectores.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">3</span>); x</code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    3    5
 ## [2,]    2    4    6</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1">x[<span class="dv">1</span>, <span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">1</span>, <span class="dv">1</span>]</code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1">x[<span class="dv">2</span>, <span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">2</span>, <span class="dv">2</span>]</code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" title="1">x[<span class="dv">2</span>, ]  <span class="co"># segunda fila</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">2</span>, ]  <span class="co"># segunda fila</span></code></pre></div>
 <pre><code>## [1] 2 4 6</code></pre>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1">x[ ,<span class="dv">2</span>]  <span class="co"># segunda columna</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[ ,<span class="dv">2</span>]  <span class="co"># segunda columna</span></code></pre></div>
 <pre><code>## [1] 3 4</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1">x[<span class="dv">1</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]  <span class="co"># primera fila, columnas 1ª y 2ª </span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">1</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]  <span class="co"># primera fila, columnas 1ª y 2ª </span></code></pre></div>
 <pre><code>## [1] 1 3</code></pre>
 </div>
 <div id="ordenacion-por-filas-y-columnas" class="section level3">
 <h3><span class="header-section-number">2.2.4</span> Ordenación por filas y columnas</h3>
-<p>En ocasiones, interesará ordenar los elementos de una matriz por los valores de una
-determinada columna o fila.</p>
+<p>En ocasiones, interesará ordenar los elementos de una matriz por los valores de una determinada columna o fila.</p>
 <p>Por ejemplo, supongamos la matriz</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>, <span class="dv">100</span>, <span class="dv">116</span>, <span class="dv">121</span>, <span class="dv">52</span>, <span class="dv">134</span>, <span class="dv">123</span>, <span class="dv">109</span>, <span class="dv">80</span>, <span class="dv">107</span>, <span class="dv">66</span>, <span class="dv">118</span>)</a>
-<a class="sourceLine" id="cb225-2" title="2">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(x, <span class="dt">ncol=</span><span class="dv">4</span>, <span class="dt">byrow=</span>T); x</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>, <span class="dv">100</span>, <span class="dv">116</span>, <span class="dv">121</span>, <span class="dv">52</span>, <span class="dv">134</span>, <span class="dv">123</span>, <span class="dv">109</span>, <span class="dv">80</span>, <span class="dv">107</span>, <span class="dv">66</span>, <span class="dv">118</span>)
+x &lt;-<span class="st"> </span><span class="kw">matrix</span>(x, <span class="dt">ncol=</span><span class="dv">4</span>, <span class="dt">byrow=</span>T); x</code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]   79  100  116  121
 ## [2,]   52  134  123  109
 ## [3,]   80  107   66  118</code></pre>
 <p>La matriz ordenada por los valores de la primera columna viene dada por</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1">ii &lt;-<span class="st"> </span><span class="kw">order</span>(x[ ,<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb227-2" title="2">x[ii, ]  <span class="co"># ordenación columna 1</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="kw">order</span>(x[ ,<span class="dv">1</span>])
+x[ii, ]  <span class="co"># ordenación columna 1</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]   52  134  123  109
 ## [2,]   79  100  116  121
 ## [3,]   80  107   66  118</code></pre>
 <p>De igual modo, si queremos ordenar por los valores de la cuarta columna:</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1">ii &lt;-<span class="st"> </span><span class="kw">order</span>(x[ ,<span class="dv">4</span>]); x[ii, ]  <span class="co"># ordenación columna 4</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="kw">order</span>(x[ ,<span class="dv">4</span>]); x[ii, ]  <span class="co"># ordenación columna 4</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]   52  134  123  109
 ## [2,]   80  107   66  118
@@ -710,8 +657,7 @@ determinada columna o fila.</p>
 </div>
 <div id="operaciones-con-matrices-y-arrays" class="section level3">
 <h3><span class="header-section-number">2.2.5</span> Operaciones con Matrices y Arrays</h3>
-<p>A continuación se muestran algunas funciones que se pueden emplear con
-matrices</p>
+<p>A continuación se muestran algunas funciones que se pueden emplear con matrices</p>
 <table>
 <thead>
 <tr class="header">
@@ -769,31 +715,31 @@ matrices</p>
 </div>
 <div id="ejemplos" class="section level3">
 <h3><span class="header-section-number">2.2.6</span> Ejemplos</h3>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb231-2" title="2">x</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)
+x</code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    3    5
 ## [2,]    2    4    6</code></pre>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1"><span class="kw">t</span>(x)  <span class="co"># matriz transpuesta</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(x)  <span class="co"># matriz transpuesta</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    2
 ## [2,]    3    4
 ## [3,]    5    6</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1"><span class="kw">dim</span>(x)  <span class="co"># dimensiones de la matriz</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(x)  <span class="co"># dimensiones de la matriz</span></code></pre></div>
 <pre><code>## [1] 2 3</code></pre>
 </div>
 <div id="inversion-de-una-matriz" class="section level3">
 <h3><span class="header-section-number">2.2.7</span> Inversión de una matriz</h3>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" title="1">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>); A</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>); A</code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    2    0
 ## [2,]    4    2</code></pre>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1">B &lt;-<span class="st"> </span><span class="kw">solve</span>(A)</a>
-<a class="sourceLine" id="cb239-2" title="2">B  <span class="co"># inversa</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B &lt;-<span class="st"> </span><span class="kw">solve</span>(A)
+B  <span class="co"># inversa</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]  0.5  0.0
 ## [2,] -1.0  0.5</code></pre>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1">A <span class="op">%*%</span><span class="st"> </span>B  <span class="co"># comprobamos que está bien</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A <span class="op">%*%</span><span class="st"> </span>B  <span class="co"># comprobamos que está bien</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    0
 ## [2,]    0    1</code></pre>
@@ -801,54 +747,44 @@ matrices</p>
 </div>
 <div id="data-frames" class="section level2">
 <h2><span class="header-section-number">2.3</span> Data frames</h2>
-<p>Los <code>data.fames</code> (<em>marcos de datos</em>) son el objeto más habitual para el
-almacenamiento de datos. En este tipo de objetos cada individuo de la muestra
-se corresponde con una fila y cada una de las variables con una columna.
-Para la creación de estas estructuras se utiliza la función
-<code>data.frame()</code>.</p>
-<p>Este tipo de estructuras son en apariencia muy similares a las matrices, con la
-ventaja de que permiten que los valores de las distintas columnas sean de tipos
-diferentes. Por ejemplo, supongamos que tenemos registrados los siguientes valores</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1">Producto &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Zumo&quot;</span>, <span class="st">&quot;Queso&quot;</span>, <span class="st">&quot;Yogourt&quot;</span>)</a>
-<a class="sourceLine" id="cb243-2" title="2">Seccion &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Bebidas&quot;</span>, <span class="st">&quot;Lácteos&quot;</span>, <span class="st">&quot;Lácteos&quot;</span>)</a>
-<a class="sourceLine" id="cb243-3" title="3">Unidades &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">10</span>)</a></code></pre></div>
+<p>Los <code>data.fames</code> (<em>marcos de datos</em>) son el objeto más habitual para el almacenamiento de datos. En este tipo de objetos cada individuo de la muestra se corresponde con una fila y cada una de las variables con una columna. Para la creación de estas estructuras se utiliza la función <code>data.frame()</code>.</p>
+<p>Este tipo de estructuras son en apariencia muy similares a las matrices, con la ventaja de que permiten que los valores de las distintas columnas sean de tipos diferentes. Por ejemplo, supongamos que tenemos registrados los siguientes valores</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Producto &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Zumo&quot;</span>, <span class="st">&quot;Queso&quot;</span>, <span class="st">&quot;Yogourt&quot;</span>)
+Seccion &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Bebidas&quot;</span>, <span class="st">&quot;Lácteos&quot;</span>, <span class="st">&quot;Lácteos&quot;</span>)
+Unidades &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">10</span>)</code></pre></div>
 <p>Los valores anteriores se podrían guardar en una única matriz</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1">x &lt;-<span class="st"> </span><span class="kw">cbind</span>(Producto, Seccion, Unidades)</a>
-<a class="sourceLine" id="cb244-2" title="2"><span class="kw">class</span>(x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">cbind</span>(Producto, Seccion, Unidades)
+<span class="kw">class</span>(x)</code></pre></div>
 <pre><code>## [1] &quot;matrix&quot;</code></pre>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1">x</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x</code></pre></div>
 <pre><code>##      Producto  Seccion   Unidades
 ## [1,] &quot;Zumo&quot;    &quot;Bebidas&quot; &quot;2&quot;     
 ## [2,] &quot;Queso&quot;   &quot;Lácteos&quot; &quot;1&quot;     
 ## [3,] &quot;Yogourt&quot; &quot;Lácteos&quot; &quot;10&quot;</code></pre>
-<p>Sin embargo, el resultado anterior no es satisfactorio ya que todos
-los valores se han transformado en caracteres. Una solución mejor es
-utilizar un <code>data.frame</code>, con lo cual se mantiene el tipo original de las variables.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1">lista.compra &lt;-<span class="st"> </span><span class="kw">data.frame</span>(Producto, Seccion, Unidades)</a>
-<a class="sourceLine" id="cb248-2" title="2"><span class="kw">class</span>(lista.compra)</a></code></pre></div>
+<p>Sin embargo, el resultado anterior no es satisfactorio ya que todos los valores se han transformado en caracteres. Una solución mejor es utilizar un <code>data.frame</code>, con lo cual se mantiene el tipo original de las variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista.compra &lt;-<span class="st"> </span><span class="kw">data.frame</span>(Producto, Seccion, Unidades)
+<span class="kw">class</span>(lista.compra)</code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1">lista.compra</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista.compra</code></pre></div>
 <pre><code>##   Producto Seccion Unidades
 ## 1     Zumo Bebidas        2
 ## 2    Queso Lácteos        1
 ## 3  Yogourt Lácteos       10</code></pre>
-<p>A continuación se muestran ejemplos que ilustran la manera de acceder
-a los valores de un data.frame.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1">lista.compra<span class="op">$</span>Unidades</a></code></pre></div>
+<p>A continuación se muestran ejemplos que ilustran la manera de acceder a los valores de un data.frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista.compra<span class="op">$</span>Unidades</code></pre></div>
 <pre><code>## [1]  2  1 10</code></pre>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1">lista.compra[ ,<span class="dv">3</span>]  <span class="co"># de manera equivalente</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista.compra[ ,<span class="dv">3</span>]  <span class="co"># de manera equivalente</span></code></pre></div>
 <pre><code>## [1]  2  1 10</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1">lista.compra<span class="op">$</span>Seccion</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista.compra<span class="op">$</span>Seccion</code></pre></div>
 <pre><code>## [1] Bebidas Lácteos Lácteos
 ## Levels: Bebidas Lácteos</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1">lista.compra<span class="op">$</span>Unidades[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]  <span class="co"># primeros dos valores de Unidades</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista.compra<span class="op">$</span>Unidades[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]  <span class="co"># primeros dos valores de Unidades</span></code></pre></div>
 <pre><code>## [1] 2 1</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1">lista.compra[<span class="dv">2</span>,]  <span class="co"># segunda fila</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista.compra[<span class="dv">2</span>,]  <span class="co"># segunda fila</span></code></pre></div>
 <pre><code>##   Producto Seccion Unidades
 ## 2    Queso Lácteos        1</code></pre>
-<p>La función <code>summary()</code> permite hacer un resumen estadístico de las
-variables (columnas) del data.frame.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" title="1"><span class="kw">summary</span>(lista.compra)</a></code></pre></div>
+<p>La función <code>summary()</code> permite hacer un resumen estadístico de las variables (columnas) del data.frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lista.compra)</code></pre></div>
 <pre><code>##     Producto    Seccion     Unidades     
 ##  Queso  :1   Bebidas:1   Min.   : 1.000  
 ##  Yogourt:1   Lácteos:2   1st Qu.: 1.500  
@@ -859,15 +795,12 @@ variables (columnas) del data.frame.</p>
 </div>
 <div id="listas" class="section level2">
 <h2><span class="header-section-number">2.4</span> Listas</h2>
-<p>Las listas son colecciones ordenadas de cualquier tipo de objetos (en <code>R</code> las
-listas son un tipo especial de vectores). Así, mientras que los elementos de
-los vectores, matrices y arrays deben ser del mismo tipo, en el caso de las
-listas se pueden tener elementos de tipos distintos.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb264-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>)</a>
-<a class="sourceLine" id="cb264-3" title="3">z &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb264-4" title="4">datos &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">A=</span>x, <span class="dt">B=</span>y, <span class="dt">C=</span>z)</a>
-<a class="sourceLine" id="cb264-5" title="5">datos</a></code></pre></div>
+<p>Las listas son colecciones ordenadas de cualquier tipo de objetos (en <code>R</code> las listas son un tipo especial de vectores). Así, mientras que los elementos de los vectores, matrices y arrays deben ser del mismo tipo, en el caso de las listas se pueden tener elementos de tipos distintos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>)
+z &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
+datos &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">A=</span>x, <span class="dt">B=</span>y, <span class="dt">C=</span>z)
+datos</code></pre></div>
 <pre><code>## $A
 ## [1] 1 2 3 4
 ## 
@@ -938,7 +871,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

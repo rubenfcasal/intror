@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 11 Programación | Introducción al Análisis de Datos con R</title>
   <meta name="description" content="Este es un libro introductorio al análisis de datos con R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 11 Programación | Introducción al Análisis de Datos con R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa" />
 
 
-<meta name="date" content="2019-10-10" />
+<meta name="date" content="2019-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,66 +50,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -394,145 +369,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>En este capítulo se introducirán los comandos básicos de programación en R…</p>
 <div id="funciones" class="section level2">
 <h2><span class="header-section-number">11.1</span> Funciones</h2>
-<p>El lenguaje <code>R</code> permite al usuario
-definir sus propias funciones. El esquema de una función es el que
-sigue:</p>
-<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb706-1" title="1">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, arg2, ... ) {expresión}</a></code></pre></div>
+<p>El lenguaje <code>R</code> permite al usuario definir sus propias funciones. El esquema de una función es el que sigue:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, arg2, ... ) {expresión}</code></pre></div>
 <ul>
-<li><p>En la expresión anterior <code>arg1, arg2, ...</code> son los
-argumentos de entrada (también llamados parámetros).</p></li>
-<li><p>La <code>expresión</code> está compuesta de comandos que utilizan los
-argumentos de entrada para dar la <strong>salida</strong> deseada.</p></li>
-<li><p>La salida de una función puese ser un número, un vector, una
-grafica, un mensaje, etc.</p></li>
+<li><p>En la expresión anterior <code>arg1, arg2, ...</code> son los argumentos de entrada (también llamados parámetros).</p></li>
+<li><p>La <code>expresión</code> está compuesta de comandos que utilizan los argumentos de entrada para dar la <strong>salida</strong> deseada.</p></li>
+<li><p>La salida de una función puese ser un número, un vector, una grafica, un mensaje, etc.</p></li>
 </ul>
 <div id="ejemplo-progresion-geometrica" class="section level3">
 <h3><span class="header-section-number">11.1.1</span> Ejemplo: progresión geométrica</h3>
-<p>Para introducirnos en las
-funciones, vamos a escribir una función que permita trabajar con las
-llamadas <strong>progresiones geométricas</strong>.</p>
-<p>Una progresión geométrica es una sucesión de números <span class="math inline">\(a_1, a_2, a_3\ldots\)</span>
-tales que cada uno de ellos (salvo el primero) es igual al anterior
-multiplicado por una constante llamada <strong>razón</strong>, que representaremos
-por <span class="math inline">\(r\)</span>. Ejemplos:</p>
+<p>Para introducirnos en las funciones, vamos a escribir una función que permita trabajar con las llamadas <strong>progresiones geométricas</strong>.</p>
+<p>Una progresión geométrica es una sucesión de números <span class="math inline">\(a_1, a_2, a_3\ldots\)</span> tales que cada uno de ellos (salvo el primero) es igual al anterior multiplicado por una constante llamada <strong>razón</strong>, que representaremos por <span class="math inline">\(r\)</span>. Ejemplos:</p>
 <ul>
 <li><p><span class="math inline">\(a_1=1\)</span>, <span class="math inline">\(r=2\)</span>:</p>
 <p>1, 2, 4, 8, 16,…</p></li>
 <li><p><span class="math inline">\(a_1=-1\)</span>, <span class="math inline">\(r=-2\)</span>:</p>
 <p>1, -2, 4, -8, 16,…</p></li>
 </ul>
-<p>Según la definición anterior, se verifica que:
-<span class="math display">\[a_2=a_1\cdot r; \quad a_3=a_2\cdot r=a_1\cdot r^2; \quad ...\]</span> y
-generalizando este proceso se obtiene el llamado término general:</p>
+<p>Según la definición anterior, se verifica que: <span class="math display">\[a_2=a_1\cdot r; \quad a_3=a_2\cdot r=a_1\cdot r^2; \quad ...\]</span> y generalizando este proceso se obtiene el llamado término general:</p>
 <p><span class="math display">\[a_n=a_1\cdot r^{n-1}\]</span></p>
-<p>También se puede comprobar que la suma de los <span class="math inline">\(n\)</span> términos de la
-progresión es:</p>
+<p>También se puede comprobar que la suma de los <span class="math inline">\(n\)</span> términos de la progresión es:</p>
 <p><span class="math display">\[S_n=a_1+\ldots_+a_n=\frac{a_1(r^n-1)}{r-1}\]</span></p>
-<p>La siguiente función, que llamaremos <code>an</code> calcula el término
-<span class="math inline">\(a_n\)</span> de una progresión geométrica pasando como entrada el primer
-elemento <code>a1</code>, la razón <code>r</code> y el valor <code>n</code>:</p>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb707-1" title="1">an &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) {</a>
-<a class="sourceLine" id="cb707-2" title="2">        a1 <span class="op">*</span><span class="st"> </span>r<span class="op">^</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb707-3" title="3">      }</a></code></pre></div>
+<p>La siguiente función, que llamaremos <code>an</code> calcula el término <span class="math inline">\(a_n\)</span> de una progresión geométrica pasando como entrada el primer elemento <code>a1</code>, la razón <code>r</code> y el valor <code>n</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">an &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) {
+        a1 <span class="op">*</span><span class="st"> </span>r<span class="op">^</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
+      }</code></pre></div>
 <p>A continuación algún ejemplo para comprobar su funcionamiento:</p>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb708-1" title="1"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb710-1" title="1"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">4</span>, <span class="dt">r =</span> <span class="dv">-2</span>, <span class="dt">n =</span> <span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">4</span>, <span class="dt">r =</span> <span class="op">-</span><span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">6</span>)</code></pre></div>
 <pre><code>## [1] -128</code></pre>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb712-1" title="1"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">-50</span>, <span class="dt">r =</span> <span class="dv">4</span>, <span class="dt">n =</span> <span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="op">-</span><span class="dv">50</span>, <span class="dt">r =</span> <span class="dv">4</span>, <span class="dt">n =</span> <span class="dv">6</span>)</code></pre></div>
 <pre><code>## [1] -51200</code></pre>
-<p>Con la función anterior se pueden obtener, con una sola llamada, varios valores de
-la progresión:</p>
-<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb714-1" title="1"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)    <span class="co"># a1, ..., a5</span></a></code></pre></div>
+<p>Con la función anterior se pueden obtener, con una sola llamada, varios valores de la progresión:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)    <span class="co"># a1, ..., a5</span></code></pre></div>
 <pre><code>## [1]  1  2  4  8 16</code></pre>
-<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb716-1" title="1"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">10</span><span class="op">:</span><span class="dv">15</span>)  <span class="co"># a10, ..., a15</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">10</span><span class="op">:</span><span class="dv">15</span>)  <span class="co"># a10, ..., a15</span></code></pre></div>
 <pre><code>## [1]   512  1024  2048  4096  8192 16384</code></pre>
-<p>La función <code>Sn</code> calcula la suma de los primeros <code>n</code>
-elementos de la progresión:</p>
-<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb718-1" title="1">Sn &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) {</a>
-<a class="sourceLine" id="cb718-2" title="2">        a1 <span class="op">*</span><span class="st"> </span>(r<span class="op">^</span>n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>(r <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb718-3" title="3">      }</a>
-<a class="sourceLine" id="cb718-4" title="4">  </a>
-<a class="sourceLine" id="cb718-5" title="5"><span class="kw">Sn</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<p>La función <code>Sn</code> calcula la suma de los primeros <code>n</code> elementos de la progresión:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Sn &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) {
+        a1 <span class="op">*</span><span class="st"> </span>(r<span class="op">^</span>n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>(r <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
+      }
+  
+<span class="kw">Sn</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
 <pre><code>## [1] 31</code></pre>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb720-1" title="1"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)    <span class="co"># Valores de la progresión</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)    <span class="co"># Valores de la progresión</span></code></pre></div>
 <pre><code>## [1]  1  2  4  8 16</code></pre>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb722-1" title="1"><span class="kw">Sn</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)    <span class="co"># Suma de los valores</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sn</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)    <span class="co"># Suma de los valores</span></code></pre></div>
 <pre><code>## [1]  1  3  7 15 31</code></pre>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb724-1" title="1"><span class="co"># cumsum(an(a1 = 1, r = 2, n = 1:5))</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cumsum(an(a1 = 1, r = 2, n = 1:5))</span></code></pre></div>
 </div>
 <div id="argumentos-de-entrada" class="section level3">
 <h3><span class="header-section-number">11.1.2</span> Argumentos de entrada</h3>
-<p>Como ya hemos comentado, los
-argumentos son los valores de entrada de una función.</p>
+<p>Como ya hemos comentado, los argumentos son los valores de entrada de una función.</p>
 <ul>
 <li><p>Por ejemplo, en la función anterior:</p>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb725-1" title="1">an &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) {a1 <span class="op">*</span><span class="st"> </span>r<span class="op">^</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">an &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) {a1 <span class="op">*</span><span class="st"> </span>r<span class="op">^</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)}</code></pre></div>
 <p>los argumentos de entrada son <code>a1</code>, <code>r</code> y <code>n</code>.</p></li>
 </ul>
 <p>Veamos alguna consideración sobre los argumentos:</p>
 <ul>
-<li><p>No es necesario utilizar el nombre de los argumentos. En este caso
-es obligatorio mantener el orden de entrada.
-Por ejemplo, las siguientes llamadas son equivalentes:</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb726-1" title="1"><span class="kw">an</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)</a></code></pre></div>
+<li><p>No es necesario utilizar el nombre de los argumentos. En este caso es obligatorio mantener el orden de entrada. Por ejemplo, las siguientes llamadas son equivalentes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)</code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb728-1" title="1"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
 <pre><code>## [1] 16</code></pre></li>
 <li><p>Si se nombran los argumentos, se pueden pasar en cualquier orden:</p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb730-1" title="1"><span class="kw">an</span>(<span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">a1 =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">a1 =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" title="1"><span class="kw">an</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">a1 =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">an</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">a1 =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>## [1] 16</code></pre></li>
 </ul>
 <div id="argumentos-por-defecto" class="section level4">
 <h4><span class="header-section-number">11.1.2.1</span> Argumentos por defecto</h4>
-<p>En muchas ocasiones
-resulta muy interesante que las funciones tengan argumentos por defecto.</p>
+<p>En muchas ocasiones resulta muy interesante que las funciones tengan argumentos por defecto.</p>
 <p>Por ejemplo, si se quiere que en una función:</p>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb734-1" title="1">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, arg2, arg3, arg4, ...) { expresión }</a></code></pre></div>
-<p>los argumento <code>arg2</code> y <code>arg3</code> tomen por defecto los valores <code>a</code> y <code>b</code>
-respectivamentebastaría con escribir:</p>
-<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb735-1" title="1">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, <span class="dt">arg2 =</span> a, <span class="dt">arg3 =</span> b, arg4, ...) { expresión }</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, arg2, arg3, arg4, ...) { expresión }</code></pre></div>
+<p>los argumento <code>arg2</code> y <code>arg3</code> tomen por defecto los valores <code>a</code> y <code>b</code> respectivamentebastaría con escribir:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nombre &lt;-<span class="st"> </span><span class="cf">function</span>(arg1, <span class="dt">arg2 =</span> a, <span class="dt">arg3 =</span> b, arg4, ...) { expresión }</code></pre></div>
 <p>Para comprender mejor esto considérese el siguiente ejemplo ilustrativo:</p>
-<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb736-1" title="1">xy2 &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">3</span>) { x <span class="op">*</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span> }</a>
-<a class="sourceLine" id="cb736-2" title="2"><span class="kw">xy2</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xy2 &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">3</span>) { x <span class="op">*</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span> }
+<span class="kw">xy2</span>()</code></pre></div>
 <pre><code>## [1] 18</code></pre>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb738-1" title="1"><span class="kw">xy2</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xy2</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">4</span>)</code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb740-1" title="1"><span class="kw">xy2</span>(<span class="dt">y =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xy2</span>(<span class="dt">y =</span> <span class="dv">4</span>)</code></pre></div>
 <pre><code>## [1] 32</code></pre>
 </div>
 <div id="el-argumento-..." class="section level4">
 <h4><span class="header-section-number">11.1.2.2</span> El argumento <code>...</code></h4>
-<p>El argumento “<code>...</code>” permite
-pasar de manera “libre” argumentos adicionales para ser utilizados por otra “subfunción”
-dentro de la función principal.</p>
+<p>El argumento “<code>...</code>” permite pasar de manera “libre” argumentos adicionales para ser utilizados por otra “subfunción” dentro de la función principal.</p>
 <p>Por ejemplo, en la función:</p>
-<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb742-1" title="1">Density.Plot &lt;-<span class="st"> </span><span class="cf">function</span>(datos, ...) { <span class="kw">plot</span>(<span class="kw">density</span>(datos), ...) }</a></code></pre></div>
-<p>a partir del primer argumento, los argumentos se incluirán en <code>...</code>
-y serán utilizados por la función <code>plot</code>.</p>
-<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb743-1" title="1"><span class="kw">data</span>(cars)</a>
-<a class="sourceLine" id="cb743-2" title="2"><span class="kw">Density.Plot</span>(cars<span class="op">$</span>speed)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Density.Plot &lt;-<span class="st"> </span><span class="cf">function</span>(datos, ...) { <span class="kw">plot</span>(<span class="kw">density</span>(datos), ...) }</code></pre></div>
+<p>a partir del primer argumento, los argumentos se incluirán en <code>...</code> y serán utilizados por la función <code>plot</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(cars)
+<span class="kw">Density.Plot</span>(cars<span class="op">$</span>speed)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb744-1" title="1"><span class="kw">Density.Plot</span>(cars<span class="op">$</span>speed, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">xlab =</span> <span class="st">&quot;velocidad&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;distancia&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Density.Plot</span>(cars<span class="op">$</span>speed, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">xlab =</span> <span class="st">&quot;velocidad&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;distancia&quot;</span>)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-14-2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Los argumentos de entrada de una función se obtienen ejecutando <code>args(funcion)</code>:</p>
-<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb745-1" title="1"><span class="kw">args</span>(an)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(an)</code></pre></div>
 <pre><code>## function (a1, r, n) 
 ## NULL</code></pre>
-<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb747-1" title="1"><span class="kw">args</span>(xy2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(xy2)</code></pre></div>
 <pre><code>## function (x = 2, y = 3) 
 ## NULL</code></pre>
-<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb749-1" title="1"><span class="kw">str</span>(<span class="kw">args</span>(Density.Plot))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">args</span>(Density.Plot))</code></pre></div>
 <pre><code>## function (datos, ...)</code></pre>
-<p>Por otro lado, al escribir el nombre de una función se obtiene su
-contenido:</p>
-<div class="sourceCode" id="cb751"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb751-1" title="1">an</a></code></pre></div>
+<p>Por otro lado, al escribir el nombre de una función se obtiene su contenido:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">an</code></pre></div>
 <pre><code>## function(a1, r, n) {
 ##         a1 * r^(n - 1)
 ##       }
-## &lt;bytecode: 0x0000000019619588&gt;</code></pre>
+## &lt;bytecode: 0x000000001983a940&gt;</code></pre>
 </div>
 </div>
 <div id="salida" class="section level3">
@@ -542,33 +491,29 @@ contenido:</p>
 <li><p>el último objeto evaluado dentro de ella, o</p></li>
 <li><p>lo indicado dentro de la sentencia <code>return</code>.</p></li>
 </ul>
-<p>Como las funciones pueden devolver objetos de varios tipos es hatibual
-que la salida sea una lista.</p>
-<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb753-1" title="1">an &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) { a1 <span class="op">*</span><span class="st"> </span>r<span class="op">^</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) }</a>
-<a class="sourceLine" id="cb753-2" title="2">Sn &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) { a1 <span class="op">*</span><span class="st"> </span>(r<span class="op">^</span>n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>(r <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) }</a>
-<a class="sourceLine" id="cb753-3" title="3">  </a>
-<a class="sourceLine" id="cb753-4" title="4">asn &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb753-5" title="5">  A &lt;-<span class="st"> </span><span class="kw">an</span>(a1, r, n)</a>
-<a class="sourceLine" id="cb753-6" title="6">  S &lt;-<span class="st"> </span><span class="kw">Sn</span>(a1, r, n)</a>
-<a class="sourceLine" id="cb753-7" title="7">  ii &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>n</a>
-<a class="sourceLine" id="cb753-8" title="8">  AA &lt;-<span class="st"> </span><span class="kw">an</span>(a1, r, ii)</a>
-<a class="sourceLine" id="cb753-9" title="9">  SS &lt;-<span class="st"> </span><span class="kw">Sn</span>(a1, r, ii)</a>
-<a class="sourceLine" id="cb753-10" title="10">  <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">an =</span> A, <span class="dt">Sn =</span> S, <span class="dt">salida =</span> <span class="kw">data.frame</span>(<span class="dt">valores =</span> AA, <span class="dt">suma =</span> SS)))</a>
-<a class="sourceLine" id="cb753-11" title="11">}</a></code></pre></div>
-<p>La función <code>asn</code> utiliza las funiones <code>an</code> y <code>Sn</code>
-programadas antes y devuelve como salida una lista con las siguientes
-componentes:</p>
+<p>Como las funciones pueden devolver objetos de varios tipos es hatibual que la salida sea una lista.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">an &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) { a1 <span class="op">*</span><span class="st"> </span>r<span class="op">^</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) }
+Sn &lt;-<span class="st"> </span><span class="cf">function</span>(a1, r, n) { a1 <span class="op">*</span><span class="st"> </span>(r<span class="op">^</span>n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>(r <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) }
+  
+asn &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">a1 =</span> <span class="dv">1</span>, <span class="dt">r =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">5</span>) {
+  A &lt;-<span class="st"> </span><span class="kw">an</span>(a1, r, n)
+  S &lt;-<span class="st"> </span><span class="kw">Sn</span>(a1, r, n)
+  ii &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>n
+  AA &lt;-<span class="st"> </span><span class="kw">an</span>(a1, r, ii)
+  SS &lt;-<span class="st"> </span><span class="kw">Sn</span>(a1, r, ii)
+  <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">an =</span> A, <span class="dt">Sn =</span> S, <span class="dt">salida =</span> <span class="kw">data.frame</span>(<span class="dt">valores =</span> AA, <span class="dt">suma =</span> SS)))
+}</code></pre></div>
+<p>La función <code>asn</code> utiliza las funiones <code>an</code> y <code>Sn</code> programadas antes y devuelve como salida una lista con las siguientes componentes:</p>
 <ul>
 <li><code>an</code>: valor de <span class="math inline">\(a_n\)</span></li>
 <li><code>Sn</code>: valor de <span class="math inline">\(S_n\)</span></li>
 <li><code>salida</code>: data.frame con dos variables
 <ul>
-<li><code>salida</code>: vector con las <span class="math inline">\(n\)</span> primeras componentes de la
-progresión</li>
+<li><code>salida</code>: vector con las <span class="math inline">\(n\)</span> primeras componentes de la progresión</li>
 <li><code>suma</code>: suma de las <span class="math inline">\(n\)</span> primeras componentes</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb754-1" title="1"><span class="kw">asn</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">asn</span>()</code></pre></div>
 <pre><code>## $an
 ## [1] 16
 ## 
@@ -582,14 +527,13 @@ progresión</li>
 ## 3       4    7
 ## 4       8   15
 ## 5      16   31</code></pre>
-<p>La salida de la función anterior es una lista y se puede
-acceder a los elementos de la misma:</p>
-<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb756-1" title="1">res &lt;-<span class="st"> </span><span class="kw">asn</span>()</a>
-<a class="sourceLine" id="cb756-2" title="2">res<span class="op">$</span>an</a></code></pre></div>
+<p>La salida de la función anterior es una lista y se puede acceder a los elementos de la misma:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">asn</span>()
+res<span class="op">$</span>an</code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb758-1" title="1">res<span class="op">$</span>Sn</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res<span class="op">$</span>Sn</code></pre></div>
 <pre><code>## [1] 31</code></pre>
-<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb760-1" title="1">res<span class="op">$</span>salida</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res<span class="op">$</span>salida</code></pre></div>
 <pre><code>##   valores suma
 ## 1       1    1
 ## 2       2    3
@@ -601,11 +545,7 @@ acceder a los elementos de la misma:</p>
 <h3><span class="header-section-number">11.1.4</span> Otros ejemplos</h3>
 <div id="ejemplo-letra-del-dni" class="section level4">
 <h4><span class="header-section-number">11.1.4.1</span> Ejemplo: letra del DNI</h4>
-<p>A continuación se
-calculará la letra del DNI a partir de su correspondiente número. El
-método utilizado para obtener la letra del DNI consiste en dividir el
-número entre 23 y según el resto obtenido adjudicar la letra que figura
-en la siguiente tabla:</p>
+<p>A continuación se calculará la letra del DNI a partir de su correspondiente número. El método utilizado para obtener la letra del DNI consiste en dividir el número entre 23 y según el resto obtenido adjudicar la letra que figura en la siguiente tabla:</p>
 <table>
 <thead>
 <tr class="header">
@@ -703,256 +643,225 @@ en la siguiente tabla:</p>
 </tbody>
 </table>
 <p>La siguiente función permite obtener la letra del DNI:</p>
-<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb762-1" title="1">DNI &lt;-<span class="st"> </span><span class="cf">function</span>(numero) {</a>
-<a class="sourceLine" id="cb762-2" title="2">  letras &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;W&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;F&quot;</span>, </a>
-<a class="sourceLine" id="cb762-3" title="3">              <span class="st">&quot;P&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Z&quot;</span>, <span class="st">&quot;S&quot;</span>, </a>
-<a class="sourceLine" id="cb762-4" title="4">              <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;V&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;L&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;E&quot;</span>)</a>
-<a class="sourceLine" id="cb762-5" title="5">  <span class="kw">return</span>(letras[numero <span class="op">%%</span><span class="st"> </span><span class="dv">23</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]) </a>
-<a class="sourceLine" id="cb762-6" title="6">}</a>
-<a class="sourceLine" id="cb762-7" title="7"></a>
-<a class="sourceLine" id="cb762-8" title="8"><span class="kw">DNI</span>(<span class="dv">50247828</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DNI &lt;-<span class="st"> </span><span class="cf">function</span>(numero) {
+  letras &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;R&quot;</span>, <span class="st">&quot;W&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;F&quot;</span>, 
+              <span class="st">&quot;P&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Z&quot;</span>, <span class="st">&quot;S&quot;</span>, 
+              <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;V&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;L&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;E&quot;</span>)
+  <span class="kw">return</span>(letras[numero <span class="op">%%</span><span class="st"> </span><span class="dv">23</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]) 
+}
+
+<span class="kw">DNI</span>(<span class="dv">50247828</span>)</code></pre></div>
 <pre><code>## [1] &quot;G&quot;</code></pre>
 </div>
 <div id="ejemplo-simulacion-del-lanzamiento-de-un-dado" class="section level4">
 <h4><span class="header-section-number">11.1.4.2</span> Ejemplo: simulación del lanzamiento de un dado</h4>
-<p>La siguiente función simula <span class="math inline">\(n\)</span> (por defecto <span class="math inline">\(n=100\)</span>) lanzamientos de un
-dado. La función devuelve la tabla de frecuencias y realiza el
-correspondiente gráfico:</p>
-<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb764-1" title="1">dado &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">100</span>) {</a>
-<a class="sourceLine" id="cb764-2" title="2">  lanzamientos &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, n, <span class="dt">rep =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb764-3" title="3">  frecuencias &lt;-<span class="st"> </span><span class="kw">table</span>(lanzamientos) <span class="op">/</span><span class="st"> </span>n</a>
-<a class="sourceLine" id="cb764-4" title="4">  <span class="kw">barplot</span>(frecuencias, <span class="dt">main =</span> <span class="kw">paste</span>(<span class="st">&quot;Número de lanzamientos=&quot;</span>, n))</a>
-<a class="sourceLine" id="cb764-5" title="5">  <span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">6</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb764-6" title="6">  <span class="kw">return</span>(frecuencias)</a>
-<a class="sourceLine" id="cb764-7" title="7">}</a></code></pre></div>
-<p>A continuación se muestran los resultados obtendidos para
-varias simulaciones:</p>
-<div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb765-1" title="1"><span class="kw">dado</span>(<span class="dv">100</span>)</a></code></pre></div>
+<p>La siguiente función simula <span class="math inline">\(n\)</span> (por defecto <span class="math inline">\(n=100\)</span>) lanzamientos de un dado. La función devuelve la tabla de frecuencias y realiza el correspondiente gráfico:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dado &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">100</span>) {
+  lanzamientos &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, n, <span class="dt">rep =</span> <span class="ot">TRUE</span>)
+  frecuencias &lt;-<span class="st"> </span><span class="kw">table</span>(lanzamientos) <span class="op">/</span><span class="st"> </span>n
+  <span class="kw">barplot</span>(frecuencias, <span class="dt">main =</span> <span class="kw">paste</span>(<span class="st">&quot;Número de lanzamientos=&quot;</span>, n))
+  <span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">6</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+  <span class="kw">return</span>(frecuencias)
+}</code></pre></div>
+<p>A continuación se muestran los resultados obtendidos para varias simulaciones:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dado</span>(<span class="dv">100</span>)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre><code>## lanzamientos
 ##    1    2    3    4    5    6 
-## 0.16 0.19 0.13 0.15 0.23 0.14</code></pre>
-<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb767-1" title="1"><span class="kw">dado</span>(<span class="dv">500</span>)</a></code></pre></div>
+## 0.11 0.17 0.14 0.18 0.23 0.17</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dado</span>(<span class="dv">500</span>)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-23-2.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre><code>## lanzamientos
 ##     1     2     3     4     5     6 
-## 0.194 0.194 0.124 0.144 0.158 0.186</code></pre>
-<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb769-1" title="1"><span class="kw">dado</span>(<span class="dv">10000</span>)</a></code></pre></div>
+## 0.148 0.206 0.158 0.168 0.154 0.166</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dado</span>(<span class="dv">10000</span>)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-23-3.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre><code>## lanzamientos
 ##      1      2      3      4      5      6 
-## 0.1656 0.1626 0.1652 0.1676 0.1723 0.1667</code></pre>
-<p>Se puede comprobar que al aumentar el valor de <span class="math inline">\(n\)</span> las frecuencias se
-aproximan al valor teórico <span class="math inline">\(1/6=0.1667\)</span>.</p>
+## 0.1689 0.1684 0.1681 0.1655 0.1666 0.1625</code></pre>
+<p>Se puede comprobar que al aumentar el valor de <span class="math inline">\(n\)</span> las frecuencias se aproximan al valor teórico <span class="math inline">\(1/6=0.1667\)</span>.</p>
 </div>
 </div>
 <div id="variables-locales-y-globales" class="section level3">
 <h3><span class="header-section-number">11.1.5</span> Variables locales y globales</h3>
-<p>En <code>R</code> no es
-necesario declarar las variables usadas dentro de una función. Se
-utiliza la regla llamada “ámbito lexicográfico” para decidir si un
-objeto es local a una función o global.</p>
+<p>En <code>R</code> no es necesario declarar las variables usadas dentro de una función. Se utiliza la regla llamada “ámbito lexicográfico” para decidir si un objeto es local a una función o global.</p>
 <p>Para entender mejor esto se consideran los siguientes ejemplos:</p>
-<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb771-1" title="1">fun &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">print</span>(x)</a>
-<a class="sourceLine" id="cb771-2" title="2">x &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb771-3" title="3"><span class="kw">fun</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fun &lt;-<span class="st"> </span><span class="cf">function</span>() <span class="kw">print</span>(x)
+x &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="kw">fun</span>()</code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<p>La variable <code>x</code> no está definida dentro de <code>fun</code>, así que <code>R</code> busca
-<code>x</code> en el entorno en el que se llamó a la función e imprimirá su valor.</p>
-<p>Si <code>x</code> es utilizado como el nombre de un objeto dentro de la
-función, el valor de <code>x</code> en el ambiente global (fuera de la función) no
-cambia.</p>
-<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb773-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb773-2" title="2">fun2 &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb773-3" title="3">    x &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb773-4" title="4">    <span class="kw">print</span>(x)</a>
-<a class="sourceLine" id="cb773-5" title="5">}</a>
-<a class="sourceLine" id="cb773-6" title="6"></a>
-<a class="sourceLine" id="cb773-7" title="7"><span class="kw">fun2</span>()</a></code></pre></div>
+<p>La variable <code>x</code> no está definida dentro de <code>fun</code>, así que <code>R</code> busca <code>x</code> en el entorno en el que se llamó a la función e imprimirá su valor.</p>
+<p>Si <code>x</code> es utilizado como el nombre de un objeto dentro de la función, el valor de <code>x</code> en el ambiente global (fuera de la función) no cambia.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>
+fun2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
+    x &lt;-<span class="st"> </span><span class="dv">2</span>
+    <span class="kw">print</span>(x)
+}
+
+<span class="kw">fun2</span>()</code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb775-1" title="1">x</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x</code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<p>Para que el valor “global” de una variable pueda ser cambidado dentro de
-una función se utiliza la doble asignación <code>&lt;&lt;-</code>.</p>
-<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb777-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb777-2" title="2">y &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb777-3" title="3">fun2 &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb777-4" title="4">    x &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb777-5" title="5">    y &lt;&lt;-<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb777-6" title="6">    <span class="kw">print</span>(x)</a>
-<a class="sourceLine" id="cb777-7" title="7">    <span class="kw">print</span>(y)</a>
-<a class="sourceLine" id="cb777-8" title="8">}</a>
-<a class="sourceLine" id="cb777-9" title="9"></a>
-<a class="sourceLine" id="cb777-10" title="10"><span class="kw">fun2</span>()</a></code></pre></div>
+<p>Para que el valor “global” de una variable pueda ser cambidado dentro de una función se utiliza la doble asignación <code>&lt;&lt;-</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>
+y &lt;-<span class="st"> </span><span class="dv">3</span>
+fun2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
+    x &lt;-<span class="st"> </span><span class="dv">2</span>
+    y &lt;&lt;-<span class="st"> </span><span class="dv">5</span>
+    <span class="kw">print</span>(x)
+    <span class="kw">print</span>(y)
+}
+
+<span class="kw">fun2</span>()</code></pre></div>
 <pre><code>## [1] 2
 ## [1] 5</code></pre>
-<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb779-1" title="1">x <span class="co"># No cambió su valor</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="co"># No cambió su valor</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb781-1" title="1">y <span class="co"># Cambió su valor</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y <span class="co"># Cambió su valor</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 </div>
 </div>
 <div id="ejecucion-condicional" class="section level2">
 <h2><span class="header-section-number">11.2</span> Ejecución condicional</h2>
-<p>Para hacer ejecuciones
-condicionales de código se usa el comando <code>if</code> con sintaxis:</p>
-<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb783-1" title="1"><span class="cf">if</span> (condicion1) {expresión1} <span class="cf">else</span> {expresión2}</a></code></pre></div>
+<p>Para hacer ejecuciones condicionales de código se usa el comando <code>if</code> con sintaxis:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (condicion1) {expresión1} <span class="cf">else</span> {expresión2}</code></pre></div>
 <p>La siguiente función comprueba si un número es múltiplo de dos:</p>
-<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb784-1" title="1">multiplo2 =<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb784-2" title="2">  <span class="cf">if</span> (x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb784-3" title="3">    <span class="kw">print</span>(<span class="kw">paste</span>(x,<span class="st">&#39;es múltiplo de dos&#39;</span>))</a>
-<a class="sourceLine" id="cb784-4" title="4">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb784-5" title="5">    <span class="kw">print</span>(<span class="kw">paste</span>(x,<span class="st">&#39;no es múltiplo de dos&#39;</span>))</a>
-<a class="sourceLine" id="cb784-6" title="6">  }</a>
-<a class="sourceLine" id="cb784-7" title="7">}</a>
-<a class="sourceLine" id="cb784-8" title="8">  </a>
-<a class="sourceLine" id="cb784-9" title="9"><span class="kw">multiplo2</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multiplo2 =<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="cf">if</span> (x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
+    <span class="kw">print</span>(<span class="kw">paste</span>(x,<span class="st">&#39;es múltiplo de dos&#39;</span>))
+  } <span class="cf">else</span> {
+    <span class="kw">print</span>(<span class="kw">paste</span>(x,<span class="st">&#39;no es múltiplo de dos&#39;</span>))
+  }
+}
+  
+<span class="kw">multiplo2</span>(<span class="dv">5</span>)</code></pre></div>
 <pre><code>## [1] &quot;5 no es múltiplo de dos&quot;</code></pre>
-<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb786-1" title="1"><span class="kw">multiplo2</span>(<span class="op">-</span><span class="fl">2.3</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">multiplo2</span>(<span class="op">-</span><span class="fl">2.3</span>)</code></pre></div>
 <pre><code>## [1] &quot;-2.3 no es múltiplo de dos&quot;</code></pre>
-<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb788-1" title="1"><span class="kw">multiplo2</span>(<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">multiplo2</span>(<span class="dv">10</span>)</code></pre></div>
 <pre><code>## [1] &quot;10 es múltiplo de dos&quot;</code></pre>
 </div>
 <div id="bucles-y-vectorizacion" class="section level2">
 <h2><span class="header-section-number">11.3</span> Bucles y vectorización</h2>
 <div id="bucles" class="section level3">
 <h3><span class="header-section-number">11.3.1</span> Bucles</h3>
-<p><code>R</code> permite crear bucles repetitivos
-(loops) y la ejecución condicional de sentencias. <code>R</code> admite bucles
-<code>for</code>, <code>repeat</code> and <code>while</code>.</p>
+<p><code>R</code> permite crear bucles repetitivos (loops) y la ejecución condicional de sentencias. <code>R</code> admite bucles <code>for</code>, <code>repeat</code> and <code>while</code>.</p>
 <div id="el-bucle-for" class="section level4">
 <h4><span class="header-section-number">11.3.1.1</span> El bucle <code>for</code></h4>
 <p>La sintaxis de un bucle <code>for</code> es la que sigue:</p>
-<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb790-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> lista_de_valores)  { expresión }</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> lista_de_valores)  { expresión }</code></pre></div>
 <p>Por ejemplo, dado un vector <span class="math inline">\(x\)</span> se puede calcular <span class="math inline">\(y=x^2\)</span> con el código:</p>
-<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb791-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb791-2" title="2">n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb791-3" title="3">y &lt;-<span class="st"> </span><span class="kw">numeric</span>(n) <span class="co"># Es necesario crear el objeto para acceder a los componentes...</span></a>
-<a class="sourceLine" id="cb791-4" title="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) { y[i] &lt;-<span class="st"> </span>x[i] <span class="op">^</span><span class="st"> </span><span class="dv">2</span> }</a>
-<a class="sourceLine" id="cb791-5" title="5">x</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="fl">0.5</span>)
+n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+y &lt;-<span class="st"> </span><span class="kw">numeric</span>(n) <span class="co"># Es necesario crear el objeto para acceder a los componentes...</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) { y[i] &lt;-<span class="st"> </span>x[i] <span class="op">^</span><span class="st"> </span><span class="dv">2</span> }
+x</code></pre></div>
 <pre><code>## [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0</code></pre>
-<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb793-1" title="1">y</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y</code></pre></div>
 <pre><code>## [1] 4.00 2.25 1.00 0.25 0.00 0.25 1.00 2.25 4.00</code></pre>
-<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb795-1" title="1">x<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x<span class="op">^</span><span class="dv">2</span></code></pre></div>
 <pre><code>## [1] 4.00 2.25 1.00 0.25 0.00 0.25 1.00 2.25 4.00</code></pre>
 <p>Otro ejemplo:</p>
-<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb797-1" title="1"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="kw">print</span>(i)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="kw">print</span>(i)</code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
 ## [1] 4
 ## [1] 5</code></pre>
-<p>El siguiente código simula gráficamente el segundero de un
-reloj:</p>
-<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb799-1" title="1">angulo &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dt">length =</span> <span class="dv">60</span>)</a>
-<a class="sourceLine" id="cb799-2" title="2">radianes &lt;-<span class="st"> </span>angulo <span class="op">*</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="dv">180</span></a>
-<a class="sourceLine" id="cb799-3" title="3">x &lt;-<span class="st"> </span><span class="kw">cos</span>(radianes)</a>
-<a class="sourceLine" id="cb799-4" title="4">y &lt;-<span class="st"> </span><span class="kw">sin</span>(radianes)</a>
-<a class="sourceLine" id="cb799-5" title="5"></a>
-<a class="sourceLine" id="cb799-6" title="6"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">360</span>) {</a>
-<a class="sourceLine" id="cb799-7" title="7">  <span class="kw">plot</span>(y, x, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>)</a>
-<a class="sourceLine" id="cb799-8" title="8">  <span class="kw">arrows</span>(<span class="dv">0</span>, <span class="dv">0</span>, y[i], x[i], <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</a>
-<a class="sourceLine" id="cb799-9" title="9">  <span class="kw">Sys.sleep</span>(<span class="dv">1</span>) <span class="co"># espera un segundo</span></a>
-<a class="sourceLine" id="cb799-10" title="10">}</a></code></pre></div>
+<p>El siguiente código simula gráficamente el segundero de un reloj:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">angulo &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dt">length =</span> <span class="dv">60</span>)
+radianes &lt;-<span class="st"> </span>angulo <span class="op">*</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span><span class="dv">180</span>
+x &lt;-<span class="st"> </span><span class="kw">cos</span>(radianes)
+y &lt;-<span class="st"> </span><span class="kw">sin</span>(radianes)
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">360</span>) {
+  <span class="kw">plot</span>(y, x, <span class="dt">axes =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">col =</span> <span class="st">&#39;grey&#39;</span>)
+  <span class="kw">arrows</span>(<span class="dv">0</span>, <span class="dv">0</span>, y[i], x[i], <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)
+  <span class="kw">Sys.sleep</span>(<span class="dv">1</span>) <span class="co"># espera un segundo</span>
+}</code></pre></div>
 </div>
 <div id="el-bucle-while" class="section level4">
 <h4><span class="header-section-number">11.3.1.2</span> El bucle <code>while</code></h4>
-<p>La sintaxis del bucle <code>while</code>
-es la que sigue:</p>
-<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb800-1" title="1"><span class="cf">while</span> (condición lógica)  { expresión }</a></code></pre></div>
-<p>Por ejemplo, si queremos calcular el primer número entero positivo cuyo
-cuadrado no excede de 5000, podemos hacer:</p>
-<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb801-1" title="1">cuadrado &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb801-2" title="2">n &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb801-3" title="3"><span class="cf">while</span> (cuadrado <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5000</span>) {</a>
-<a class="sourceLine" id="cb801-4" title="4">  n &lt;-<span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb801-5" title="5">  cuadrado &lt;-<span class="st"> </span>n<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb801-6" title="6">}</a>
-<a class="sourceLine" id="cb801-7" title="7">cuadrado</a></code></pre></div>
+<p>La sintaxis del bucle <code>while</code> es la que sigue:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span> (condición lógica)  { expresión }</code></pre></div>
+<p>Por ejemplo, si queremos calcular el primer número entero positivo cuyo cuadrado no excede de 5000, podemos hacer:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cuadrado &lt;-<span class="st"> </span><span class="dv">0</span>
+n &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="cf">while</span> (cuadrado <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5000</span>) {
+  n &lt;-<span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+  cuadrado &lt;-<span class="st"> </span>n<span class="op">^</span><span class="dv">2</span>
+}
+cuadrado</code></pre></div>
 <pre><code>## [1] 5041</code></pre>
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb803-1" title="1">n</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n</code></pre></div>
 <pre><code>## [1] 71</code></pre>
-<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb805-1" title="1">n<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n<span class="op">^</span><span class="dv">2</span></code></pre></div>
 <pre><code>## [1] 5041</code></pre>
 <p><strong>Nota:</strong> Dentro de un bucle se puede emplear el comando <code>break</code> para terminarlo y el comando <code>next</code> para saltar a la siguiente iteración.</p>
 </div>
 </div>
 <div id="vectorizacion" class="section level3">
 <h3><span class="header-section-number">11.3.2</span> Vectorización</h3>
-<p>Como hemos visto en <code>R</code> se pueden
-hacer bucles. Sin embargo, es preferible evitar este tipo de estructuras
-y tratar de utilizar <strong>operaciones vectorizadas</strong> que son mucho más
-eficientes desde el punto de vista computacional.</p>
+<p>Como hemos visto en <code>R</code> se pueden hacer bucles. Sin embargo, es preferible evitar este tipo de estructuras y tratar de utilizar <strong>operaciones vectorizadas</strong> que son mucho más eficientes desde el punto de vista computacional.</p>
 <p>Por ejemplo para sumar dos vectores se puede hacer con un <code>for</code>:</p>
-<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb807-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb807-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb807-3" title="3">n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb807-4" title="4">z &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)</a>
-<a class="sourceLine" id="cb807-5" title="5"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
-<a class="sourceLine" id="cb807-6" title="6">  z[i] &lt;-<span class="st"> </span>x[i] <span class="op">+</span><span class="st"> </span>y[i]</a>
-<a class="sourceLine" id="cb807-7" title="7">}</a>
-<a class="sourceLine" id="cb807-8" title="8">z</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">1</span>)
+n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+z &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+  z[i] &lt;-<span class="st"> </span>x[i] <span class="op">+</span><span class="st"> </span>y[i]
+}
+z</code></pre></div>
 <pre><code>## [1] 1 2 8 5</code></pre>
-<p>Sin embargo, la operación anterior se podría hacer de modo más eficiente
-en modo vectorial:</p>
-<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb809-1" title="1">z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</a>
-<a class="sourceLine" id="cb809-2" title="2">z</a></code></pre></div>
+<p>Sin embargo, la operación anterior se podría hacer de modo más eficiente en modo vectorial:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y
+z</code></pre></div>
 <pre><code>## [1] 1 2 8 5</code></pre>
 </div>
 <div id="funciones-apply" class="section level3">
 <h3><span class="header-section-number">11.3.3</span> Funciones <code>apply</code></h3>
 <div id="la-funcion-apply" class="section level4">
 <h4><span class="header-section-number">11.3.3.1</span> La función <code>apply</code></h4>
-<p>Una forma de evitar la
-utilización de bucles es utilizando la sentica <code>apply</code> que permite
-evaluar una misma función en todas las filas, columnas, …. de un array
-de forma simultánea.</p>
+<p>Una forma de evitar la utilización de bucles es utilizando la sentica <code>apply</code> que permite evaluar una misma función en todas las filas, columnas, …. de un array de forma simultánea.</p>
 <p>La sintaxis de esta función es:</p>
-<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb811-1" title="1"><span class="kw">apply</span>(X, MARGIN, FUN, ...)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(X, MARGIN, FUN, ...)</code></pre></div>
 <ul>
 <li><code>X</code>: matriz (o array)</li>
-<li><code>MARGIN</code>: Un vector indicando las dimensiones donde se aplicará
-la función. 1 indica filas, 2 indica columnas, y <code>c(1,2)</code> indica
-filas y columnas.</li>
+<li><code>MARGIN</code>: Un vector indicando las dimensiones donde se aplicará la función. 1 indica filas, 2 indica columnas, y <code>c(1,2)</code> indica filas y columnas.</li>
 <li><code>FUN</code>: función que será aplicada.</li>
 <li><code>...</code>: argumentos opcionales que serán usados por <code>FUN</code>.</li>
 </ul>
 <p>Veamos la utilización de la función <code>apply</code> con un ejemplo:</p>
-<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb812-1" title="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb812-2" title="2">x</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)
+x</code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    4    7
 ## [2,]    2    5    8
 ## [3,]    3    6    9</code></pre>
-<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb814-1" title="1"><span class="kw">apply</span>(x, <span class="dv">1</span>, sum)    <span class="co"># Suma por filas</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(x, <span class="dv">1</span>, sum)    <span class="co"># Suma por filas</span></code></pre></div>
 <pre><code>## [1] 12 15 18</code></pre>
-<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb816-1" title="1"><span class="kw">apply</span>(x, <span class="dv">2</span>, sum)    <span class="co"># Suma por columnas</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(x, <span class="dv">2</span>, sum)    <span class="co"># Suma por columnas</span></code></pre></div>
 <pre><code>## [1]  6 15 24</code></pre>
-<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb818-1" title="1"><span class="kw">apply</span>(x, <span class="dv">2</span>, min)    <span class="co"># Mínimo de las columnas</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(x, <span class="dv">2</span>, min)    <span class="co"># Mínimo de las columnas</span></code></pre></div>
 <pre><code>## [1] 1 4 7</code></pre>
-<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb820-1" title="1"><span class="kw">apply</span>(x, <span class="dv">2</span>, range)  <span class="co"># Rango (mínimo y máximo) de las columnas</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(x, <span class="dv">2</span>, range)  <span class="co"># Rango (mínimo y máximo) de las columnas</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    4    7
 ## [2,]    3    6    9</code></pre>
 </div>
 <div id="la-funcion-tapply" class="section level4">
 <h4><span class="header-section-number">11.3.3.2</span> La función <code>tapply</code></h4>
-<p>La function <code>tapply</code> es
-similar a la función <code>apply</code> y permite aplicar una función a los datos desagregados,
-utilizando como criterio los distintos niveles de una variable factor.
-La sintaxis de esta función es como sigue:</p>
-<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb822-1" title="1">    <span class="kw">tapply</span>(X, INDEX, FUN, ...,)</a></code></pre></div>
+<p>La function <code>tapply</code> es similar a la función <code>apply</code> y permite aplicar una función a los datos desagregados, utilizando como criterio los distintos niveles de una variable factor. La sintaxis de esta función es como sigue:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">tapply</span>(X, INDEX, FUN, ...,)</code></pre></div>
 <ul>
 <li><code>X</code>: matriz (o array).</li>
 <li><code>INDEX</code>: factor indicando los grupos (niveles).</li>
 <li><code>FUN</code>: función que será aplicada.</li>
 <li><code>...</code>: argumentos opcionales .</li>
 </ul>
-<p>Consideremos, por ejemplo, el data.frame <code>ChickWeight</code> con datos de un
-experimento relacionado con la repercusión de varias dietas en el peso
-de pollos.</p>
-<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb823-1" title="1"><span class="kw">data</span>(ChickWeight)</a>
-<a class="sourceLine" id="cb823-2" title="2"><span class="kw">head</span>(ChickWeight)</a></code></pre></div>
+<p>Consideremos, por ejemplo, el data.frame <code>ChickWeight</code> con datos de un experimento relacionado con la repercusión de varias dietas en el peso de pollos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ChickWeight)
+<span class="kw">head</span>(ChickWeight)</code></pre></div>
 <pre><code>##   weight Time Chick Diet
 ## 1     42    0     1    1
 ## 2     51    2     1    1
@@ -960,13 +869,13 @@ de pollos.</p>
 ## 4     64    6     1    1
 ## 5     76    8     1    1
 ## 6     93   10     1    1</code></pre>
-<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb825-1" title="1">peso &lt;-<span class="st"> </span>ChickWeight<span class="op">$</span>weight</a>
-<a class="sourceLine" id="cb825-2" title="2">dieta &lt;-<span class="st"> </span>ChickWeight<span class="op">$</span>Diet</a>
-<a class="sourceLine" id="cb825-3" title="3"><span class="kw">levels</span>(dieta) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Dieta 1&quot;</span>, <span class="st">&quot;Dieta 2&quot;</span>, <span class="st">&quot;Dieta 3&quot;</span>, <span class="st">&quot;Dieta 4&quot;</span>)</a>
-<a class="sourceLine" id="cb825-4" title="4"><span class="kw">tapply</span>(peso, dieta, mean)  <span class="co"># Peso medio por dieta</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">peso &lt;-<span class="st"> </span>ChickWeight<span class="op">$</span>weight
+dieta &lt;-<span class="st"> </span>ChickWeight<span class="op">$</span>Diet
+<span class="kw">levels</span>(dieta) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Dieta 1&quot;</span>, <span class="st">&quot;Dieta 2&quot;</span>, <span class="st">&quot;Dieta 3&quot;</span>, <span class="st">&quot;Dieta 4&quot;</span>)
+<span class="kw">tapply</span>(peso, dieta, mean)  <span class="co"># Peso medio por dieta</span></code></pre></div>
 <pre><code>##  Dieta 1  Dieta 2  Dieta 3  Dieta 4 
 ## 102.6455 122.6167 142.9500 135.2627</code></pre>
-<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb827-1" title="1"><span class="kw">tapply</span>(peso, dieta, summary)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(peso, dieta, summary)</code></pre></div>
 <pre><code>## $`Dieta 1`
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   35.00   57.75   88.00  102.65  136.50  305.00 
@@ -983,10 +892,10 @@ de pollos.</p>
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   39.00   71.25  129.50  135.26  184.75  322.00</code></pre>
 <p>Otro ejemplo:</p>
-<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb829-1" title="1">provincia &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb829-2" title="2"><span class="kw">levels</span>(provincia) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A Coruña&quot;</span>, <span class="st">&quot;Lugo&quot;</span>, <span class="st">&quot;Orense&quot;</span>, <span class="st">&quot;Pontevedra&quot;</span>)</a>
-<a class="sourceLine" id="cb829-3" title="3">hijos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb829-4" title="4"><span class="kw">data.frame</span>(provincia, hijos)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">provincia &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))
+<span class="kw">levels</span>(provincia) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A Coruña&quot;</span>, <span class="st">&quot;Lugo&quot;</span>, <span class="st">&quot;Orense&quot;</span>, <span class="st">&quot;Pontevedra&quot;</span>)
+hijos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)
+<span class="kw">data.frame</span>(provincia, hijos)</code></pre></div>
 <pre><code>##     provincia hijos
 ## 1    A Coruña     1
 ## 2      Orense     2
@@ -999,7 +908,7 @@ de pollos.</p>
 ## 9  Pontevedra     2
 ## 10     Orense     3
 ## 11       Lugo     1</code></pre>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb831-1" title="1"><span class="kw">tapply</span>(hijos, provincia, mean) <span class="co"># Número medio de hijos por provincia</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(hijos, provincia, mean) <span class="co"># Número medio de hijos por provincia</span></code></pre></div>
 <pre><code>##   A Coruña       Lugo     Orense Pontevedra 
 ##   0.500000   1.333333   2.000000   2.000000</code></pre>
 </div>
@@ -1007,136 +916,110 @@ de pollos.</p>
 </div>
 <div id="aplicacion-validacion-cruzada" class="section level2">
 <h2><span class="header-section-number">11.4</span> Aplicación: validación cruzada</h2>
-<p>Si deseamos evaluar la calidad predictiva de un modelo, lo ideal es disponer de
-suficientes datos para poder hacer dos grupos con ellos: una muestra de entrenamiento
-y otra de validación. Cuando hacer esto no es posible, disponemos como alternativa
-de la <em>validación cruzada</em>, una herramienta que permite estimar los errores de
-predicción utilizando una única muestra de datos. En su versión más simple (llamada
-en inglés <em>leave-one-out</em>):</p>
+<p>Si deseamos evaluar la calidad predictiva de un modelo, lo ideal es disponer de suficientes datos para poder hacer dos grupos con ellos: una muestra de entrenamiento y otra de validación. Cuando hacer esto no es posible, disponemos como alternativa de la <em>validación cruzada</em>, una herramienta que permite estimar los errores de predicción utilizando una única muestra de datos. En su versión más simple (llamada en inglés <em>leave-one-out</em>):</p>
 <ul>
-<li><p>se utilizan todos los datos menos uno para realizar el ajuste, y se mide su error de
-predicción en el único dato no utilizado;</p></li>
-<li><p>a continuación se repite el proceso
-utilizando, uno a uno, todos los puntos de la muestra de datos;</p></li>
+<li><p>se utilizan todos los datos menos uno para realizar el ajuste, y se mide su error de predicción en el único dato no utilizado;</p></li>
+<li><p>a continuación se repite el proceso utilizando, uno a uno, todos los puntos de la muestra de datos;</p></li>
 <li><p>y finalmente se combinan todos los errores en un único error de predicción.</p></li>
 </ul>
-<p>El proceso anterior se puede generalizar repartiendo los datos en distintos grupos,
-más o menos del mismo tamaño, y sustituyendo en la explicación anterior dato por grupo.</p>
+<p>El proceso anterior se puede generalizar repartiendo los datos en distintos grupos, más o menos del mismo tamaño, y sustituyendo en la explicación anterior dato por grupo.</p>
 <div id="primer-ejemplo" class="section level3">
 <h3><span class="header-section-number">11.4.1</span> Primer ejemplo</h3>
-<p>Cuando disponemos de unos datos y los queremos ajustar utilizando un modelo que
-depende de un parámetro, por ejemplo un modelo
-de regresión polinómico que depende del grado del polinomio, podemos utilizar
-la validación cruzada para seleccionar el grado del polinomio que debemos utilizar.</p>
-<p>Veámoslo utilizando las variables <em>income</em> y <em>prestige</em> de la
-base de datos <em>Prestige</em>, incluida en el paquete <em>car</em>.</p>
-<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb833-1" title="1"><span class="kw">library</span>(car)</a>
-<a class="sourceLine" id="cb833-2" title="2"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)</a></code></pre></div>
+<p>Cuando disponemos de unos datos y los queremos ajustar utilizando un modelo que depende de un parámetro, por ejemplo un modelo de regresión polinómico que depende del grado del polinomio, podemos utilizar la validación cruzada para seleccionar el grado del polinomio que debemos utilizar.</p>
+<p>Veámoslo utilizando las variables <em>income</em> y <em>prestige</em> de la base de datos <em>Prestige</em>, incluida en el paquete <em>car</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(car)
+<span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-42-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Representemos, gráficamente, los ajustes lineal, cuadrático y cúbico.</p>
-<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb834-1" title="1"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)</a>
-<a class="sourceLine" id="cb834-2" title="2"><span class="co"># Ajuste lineal</span></a>
-<a class="sourceLine" id="cb834-3" title="3"><span class="kw">abline</span>(<span class="kw">lm</span>(prestige <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> Prestige))</a>
-<a class="sourceLine" id="cb834-4" title="4"><span class="co"># Ajuste cuadrático</span></a>
-<a class="sourceLine" id="cb834-5" title="5">modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(prestige <span class="op">~</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> Prestige)</a>
-<a class="sourceLine" id="cb834-6" title="6">parest &lt;-<span class="st"> </span><span class="kw">coef</span>(modelo)</a>
-<a class="sourceLine" id="cb834-7" title="7"><span class="kw">curve</span>(parest[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>parest[<span class="dv">2</span>]<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>parest[<span class="dv">3</span>]<span class="op">*</span>x<span class="op">^</span><span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb834-8" title="8"><span class="co"># Ajuste cúbico</span></a>
-<a class="sourceLine" id="cb834-9" title="9">modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(prestige <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(income, <span class="dv">3</span>), <span class="dt">data =</span> Prestige)</a>
-<a class="sourceLine" id="cb834-10" title="10">valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">26000</span>, <span class="dt">len =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb834-11" title="11">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))</a>
-<a class="sourceLine" id="cb834-12" title="12"><span class="kw">lines</span>(valores, pred, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb834-13" title="13"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Lineal&quot;</span>,<span class="st">&quot;Cuadrático&quot;</span>,<span class="st">&quot;Cúbico&quot;), lty = 1:3)</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)
+<span class="co"># Ajuste lineal</span>
+<span class="kw">abline</span>(<span class="kw">lm</span>(prestige <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> Prestige))
+<span class="co"># Ajuste cuadrático</span>
+modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(prestige <span class="op">~</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> Prestige)
+parest &lt;-<span class="st"> </span><span class="kw">coef</span>(modelo)
+<span class="kw">curve</span>(parest[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>parest[<span class="dv">2</span>]<span class="op">*</span>x <span class="op">+</span><span class="st"> </span>parest[<span class="dv">3</span>]<span class="op">*</span>x<span class="op">^</span><span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>)
+<span class="co"># Ajuste cúbico</span>
+modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(prestige <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(income, <span class="dv">3</span>), <span class="dt">data =</span> Prestige)
+valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">26000</span>, <span class="dt">len =</span> <span class="dv">100</span>)
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))
+<span class="kw">lines</span>(valores, pred, <span class="dt">lty =</span> <span class="dv">3</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Lineal&quot;</span>,<span class="st">&quot;Cuadrático&quot;</span>,<span class="st">&quot;Cúbico&quot;), lty = 1:3)</span></code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-43-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Vamos a escribir una función que nos devuelva, para cada dato (fila) de
-<em>Prestige</em>, la predicción en ese punto ajustando el modelo con todos los demás puntos.</p>
-<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb835-1" title="1">cv.lm &lt;-<span class="st"> </span><span class="cf">function</span>(formula, datos) {</a>
-<a class="sourceLine" id="cb835-2" title="2">      n &lt;-<span class="st"> </span><span class="kw">nrow</span>(datos)</a>
-<a class="sourceLine" id="cb835-3" title="3">      cv.pred &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)</a>
-<a class="sourceLine" id="cb835-4" title="4">      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
-<a class="sourceLine" id="cb835-5" title="5">          modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, datos[<span class="op">-</span>i, ])</a>
-<a class="sourceLine" id="cb835-6" title="6">          cv.pred[i] &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">newdata =</span> datos[i, ])</a>
-<a class="sourceLine" id="cb835-7" title="7">      }</a>
-<a class="sourceLine" id="cb835-8" title="8">      <span class="kw">return</span>(cv.pred)</a>
-<a class="sourceLine" id="cb835-9" title="9">}</a></code></pre></div>
-<p>Por último, calculamos el error de predicción (en este caso el <em>error cuadrático medio</em>)
-en los datos de validación. Repetimos el proceso para cada valor del parámetro (grado del
-ajuste polinómico) y minimizamos.</p>
-<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb836-1" title="1">grado &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb836-2" title="2">cv.error &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb836-3" title="3"><span class="cf">for</span>(p <span class="cf">in</span> grado){</a>
-<a class="sourceLine" id="cb836-4" title="4">  cv.pred &lt;-<span class="st"> </span><span class="kw">cv.lm</span>(prestige <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(income, p), Prestige)</a>
-<a class="sourceLine" id="cb836-5" title="5">  cv.error[p] &lt;-<span class="st"> </span><span class="kw">mean</span>((cv.pred <span class="op">-</span><span class="st"> </span>Prestige<span class="op">$</span>prestige)<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb836-6" title="6">}</a>
-<a class="sourceLine" id="cb836-7" title="7"><span class="kw">plot</span>(grado, cv.error, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
+<p>Vamos a escribir una función que nos devuelva, para cada dato (fila) de <em>Prestige</em>, la predicción en ese punto ajustando el modelo con todos los demás puntos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cv.lm &lt;-<span class="st"> </span><span class="cf">function</span>(formula, datos) {
+      n &lt;-<span class="st"> </span><span class="kw">nrow</span>(datos)
+      cv.pred &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)
+      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+          modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, datos[<span class="op">-</span>i, ])
+          cv.pred[i] &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">newdata =</span> datos[i, ])
+      }
+      <span class="kw">return</span>(cv.pred)
+}</code></pre></div>
+<p>Por último, calculamos el error de predicción (en este caso el <em>error cuadrático medio</em>) en los datos de validación. Repetimos el proceso para cada valor del parámetro (grado del ajuste polinómico) y minimizamos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grado &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
+cv.error &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">5</span>)
+<span class="cf">for</span>(p <span class="cf">in</span> grado){
+  cv.pred &lt;-<span class="st"> </span><span class="kw">cv.lm</span>(prestige <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(income, p), Prestige)
+  cv.error[p] &lt;-<span class="st"> </span><span class="kw">mean</span>((cv.pred <span class="op">-</span><span class="st"> </span>Prestige<span class="op">$</span>prestige)<span class="op">^</span><span class="dv">2</span>)
+}
+<span class="kw">plot</span>(grado, cv.error, <span class="dt">pch=</span><span class="dv">16</span>)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-45-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb837-1" title="1">grado[<span class="kw">which.min</span>(cv.error)]</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grado[<span class="kw">which.min</span>(cv.error)]</code></pre></div>
 <pre><code>## [1] 2</code></pre>
 </div>
 <div id="segundo-ejemplo" class="section level3">
 <h3><span class="header-section-number">11.4.2</span> Segundo ejemplo</h3>
-<p>En este segundo ejemplo vamos a aplicar una técnica de modelado <em>local</em> al problema de
-regresión del ejemplo anterior.
-El enfoque es <em>data-analytic</em> en el sentido de que no nos limitamos a una
-familia de funciones que dependen de unos parámetros (enfoque paramétrico),
-que son los que tenemos que determinar, sino que las funciones de
-regresión están determinadas por los datos. Aun así, sigue habiendo un
-parámetro que controla el proceso, cuyo valor debemos fijar siguiendo
-algún criterio de optimalidad.</p>
-<p>Vamos a realizar, utilizando la función <code>loess</code>, un <em>ajuste polinómico local
-robusto</em>, que depende del parámetro <code>span</code>, que podemos interpretar como la
-proporción de datos empleada en el ajuste.</p>
+<p>En este segundo ejemplo vamos a aplicar una técnica de modelado <em>local</em> al problema de regresión del ejemplo anterior. El enfoque es <em>data-analytic</em> en el sentido de que no nos limitamos a una familia de funciones que dependen de unos parámetros (enfoque paramétrico), que son los que tenemos que determinar, sino que las funciones de regresión están determinadas por los datos. Aun así, sigue habiendo un parámetro que controla el proceso, cuyo valor debemos fijar siguiendo algún criterio de optimalidad.</p>
+<p>Vamos a realizar, utilizando la función <code>loess</code>, un <em>ajuste polinómico local robusto</em>, que depende del parámetro <code>span</code>, que podemos interpretar como la proporción de datos empleada en el ajuste.</p>
 <p>Utilizando un valor <code>span=0.25</code>:</p>
-<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb839-1" title="1"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)</a>
-<a class="sourceLine" id="cb839-2" title="2">fit &lt;-<span class="st"> </span><span class="kw">loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">span =</span> <span class="fl">0.25</span>)</a>
-<a class="sourceLine" id="cb839-3" title="3">valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb839-4" title="4">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))</a>
-<a class="sourceLine" id="cb839-5" title="5"><span class="kw">lines</span>(valores, pred)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)
+fit &lt;-<span class="st"> </span><span class="kw">loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">span =</span> <span class="fl">0.25</span>)
+valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))
+<span class="kw">lines</span>(valores, pred)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-46-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Si utilizamos <code>span=0.5</code>:</p>
-<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb840-1" title="1"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)</a>
-<a class="sourceLine" id="cb840-2" title="2">fit &lt;-<span class="st"> </span><span class="kw">loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">span =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb840-3" title="3">valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb840-4" title="4">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))</a>
-<a class="sourceLine" id="cb840-5" title="5"><span class="kw">lines</span>(valores, pred)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)
+fit &lt;-<span class="st"> </span><span class="kw">loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">span =</span> <span class="fl">0.5</span>)
+valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))
+<span class="kw">lines</span>(valores, pred)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-47-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Nuestro objetivo es seleccionar un valor razonable para <code>span</code>, y lo vamos a
-hacer utilizando validación cruzada y minimizando el error cuadrático medio
-de la predicción en los datos de validación.</p>
+<p>Nuestro objetivo es seleccionar un valor razonable para <code>span</code>, y lo vamos a hacer utilizando validación cruzada y minimizando el error cuadrático medio de la predicción en los datos de validación.</p>
 <p>Utilizando la función</p>
-<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb841-1" title="1">cv.loess &lt;-<span class="st"> </span><span class="cf">function</span>(formula, datos, p) {</a>
-<a class="sourceLine" id="cb841-2" title="2">  n &lt;-<span class="st"> </span><span class="kw">nrow</span>(datos)</a>
-<a class="sourceLine" id="cb841-3" title="3">  cv.pred &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)</a>
-<a class="sourceLine" id="cb841-4" title="4">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</a>
-<a class="sourceLine" id="cb841-5" title="5">    modelo &lt;-<span class="st"> </span><span class="kw">loess</span>(formula, datos[<span class="op">-</span>i, ], <span class="dt">span =</span> p, </a>
-<a class="sourceLine" id="cb841-6" title="6">                    <span class="dt">control =</span> <span class="kw">loess.control</span>(<span class="dt">surface =</span> <span class="st">&quot;direct&quot;</span>))</a>
-<a class="sourceLine" id="cb841-7" title="7">    <span class="co"># control = loess.control(surface = &quot;direct&quot;) permite extrapolaciones</span></a>
-<a class="sourceLine" id="cb841-8" title="8">    cv.pred[i] &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">newdata =</span> datos[i, ])</a>
-<a class="sourceLine" id="cb841-9" title="9">  }</a>
-<a class="sourceLine" id="cb841-10" title="10">  <span class="kw">return</span>(cv.pred)</a>
-<a class="sourceLine" id="cb841-11" title="11">}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cv.loess &lt;-<span class="st"> </span><span class="cf">function</span>(formula, datos, p) {
+  n &lt;-<span class="st"> </span><span class="kw">nrow</span>(datos)
+  cv.pred &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {
+    modelo &lt;-<span class="st"> </span><span class="kw">loess</span>(formula, datos[<span class="op">-</span>i, ], <span class="dt">span =</span> p, 
+                    <span class="dt">control =</span> <span class="kw">loess.control</span>(<span class="dt">surface =</span> <span class="st">&quot;direct&quot;</span>))
+    <span class="co"># control = loess.control(surface = &quot;direct&quot;) permite extrapolaciones</span>
+    cv.pred[i] &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo, <span class="dt">newdata =</span> datos[i, ])
+  }
+  <span class="kw">return</span>(cv.pred)
+}</code></pre></div>
 <p>y procediendo de modo similar al caso anterior:</p>
-<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb842-1" title="1">ventanas &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.2</span>, <span class="dv">1</span>, <span class="dt">len =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb842-2" title="2">np &lt;-<span class="st"> </span><span class="kw">length</span>(ventanas)</a>
-<a class="sourceLine" id="cb842-3" title="3">cv.error &lt;-<span class="st"> </span><span class="kw">numeric</span>(np)</a>
-<a class="sourceLine" id="cb842-4" title="4"><span class="cf">for</span>(p <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>np){</a>
-<a class="sourceLine" id="cb842-5" title="5">  cv.pred &lt;-<span class="st"> </span><span class="kw">cv.loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, ventanas[p])</a>
-<a class="sourceLine" id="cb842-6" title="6">  cv.error[p] &lt;-<span class="st"> </span><span class="kw">mean</span>((cv.pred <span class="op">-</span><span class="st"> </span>Prestige<span class="op">$</span>prestige)<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb842-7" title="7">  <span class="co"># cv.error[p] &lt;- median(abs(cv.pred - Prestige$prestige))</span></a>
-<a class="sourceLine" id="cb842-8" title="8">}</a>
-<a class="sourceLine" id="cb842-9" title="9"></a>
-<a class="sourceLine" id="cb842-10" title="10"><span class="kw">plot</span>(ventanas, cv.error)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ventanas &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.2</span>, <span class="dv">1</span>, <span class="dt">len =</span> <span class="dv">10</span>)
+np &lt;-<span class="st"> </span><span class="kw">length</span>(ventanas)
+cv.error &lt;-<span class="st"> </span><span class="kw">numeric</span>(np)
+<span class="cf">for</span>(p <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>np){
+  cv.pred &lt;-<span class="st"> </span><span class="kw">cv.loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, ventanas[p])
+  cv.error[p] &lt;-<span class="st"> </span><span class="kw">mean</span>((cv.pred <span class="op">-</span><span class="st"> </span>Prestige<span class="op">$</span>prestige)<span class="op">^</span><span class="dv">2</span>)
+  <span class="co"># cv.error[p] &lt;- median(abs(cv.pred - Prestige$prestige))</span>
+}
+
+<span class="kw">plot</span>(ventanas, cv.error)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-49-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>obtenemos la ventana “óptima” (en este caso el valor máximo):</p>
-<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb843-1" title="1">span &lt;-<span class="st"> </span>ventanas[<span class="kw">which.min</span>(cv.error)]</a>
-<a class="sourceLine" id="cb843-2" title="2">span</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">span &lt;-<span class="st"> </span>ventanas[<span class="kw">which.min</span>(cv.error)]
+span</code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>y la correspondiente estimación:</p>
-<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb845-1" title="1"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)</a>
-<a class="sourceLine" id="cb845-2" title="2">fit &lt;-<span class="st"> </span><span class="kw">loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">span =</span> span)</a>
-<a class="sourceLine" id="cb845-3" title="3">valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb845-4" title="4">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))</a>
-<a class="sourceLine" id="cb845-5" title="5"><span class="kw">lines</span>(valores, pred)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>)
+fit &lt;-<span class="st"> </span><span class="kw">loess</span>(prestige <span class="op">~</span><span class="st"> </span>income, Prestige, <span class="dt">span =</span> span)
+valores &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)
+pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">income =</span> valores))
+<span class="kw">lines</span>(valores, pred)</code></pre></div>
 <p><img src="11-Programacion_files/figure-html/unnamed-chunk-51-1.png" width="70%" style="display: block; margin: auto;" /></p>
 
 </div>
@@ -1198,7 +1081,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

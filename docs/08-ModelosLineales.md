@@ -410,7 +410,7 @@ library(leaps)
 ```
 
 ```
-## Warning: package 'leaps' was built under R version 3.6.1
+## Warning: package 'leaps' was built under R version 3.5.3
 ```
 
 ```r
@@ -514,15 +514,19 @@ library(RcmdrMisc)
 ```
 
 ```
-## Warning: package 'RcmdrMisc' was built under R version 3.6.1
+## Warning: package 'RcmdrMisc' was built under R version 3.5.3
 ```
 
 ```
-## Warning: package 'car' was built under R version 3.6.1
+## Warning: package 'car' was built under R version 3.5.3
 ```
 
 ```
-## Warning: package 'sandwich' was built under R version 3.6.1
+## Warning: package 'carData' was built under R version 3.5.2
+```
+
+```
+## Warning: package 'sandwich' was built under R version 3.5.3
 ```
 
 ```r
@@ -986,7 +990,7 @@ library(lmtest)
 ```
 
 ```
-## Warning: package 'lmtest' was built under R version 3.6.1
+## Warning: package 'lmtest' was built under R version 3.5.3
 ```
 
 ```r
@@ -1097,7 +1101,7 @@ library(glmnet)
 ```
 
 ```
-## Warning: package 'glmnet' was built under R version 3.6.1
+## Warning: package 'glmnet' was built under R version 3.5.3
 ```
 
 El paquete `glmnet` no emplea formulación de modelos, hay que establecer la respuesta
@@ -1197,13 +1201,13 @@ coef(cv.lasso)
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
 ##                     1
-## (Intercept) 6.7318222
-## velocida    0.1070413
+## (Intercept) 5.5514217
+## velocida    0.1044538
 ## precio      .        
-## flexprec    2.5781037
+## flexprec    2.6524703
 ## imgfabri    .        
-## servconj    6.2106583
-## imgfvent    0.2446890
+## servconj    6.3120283
+## imgfvent    0.3600231
 ## calidadp    .
 ```
 

@@ -5,6 +5,10 @@ Generación de informes
 
 
 
+Una versión más completa de este capítulo está disponible en el
+[apéndice](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html) del libro 
+[Escritura de libros con bookdown](https://rubenfcasal.github.io/bookdown_intro)
+
 R Markdown
 ----------
 
