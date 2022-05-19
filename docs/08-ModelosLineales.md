@@ -57,24 +57,15 @@ print(cor(datos, use = "complete"), digits = 2)
 ```
 
 ```
-##          velocida precio flexprec imgfabri servconj imgfvent calidadp
-## velocida    1.000 -0.354    0.519    0.049    0.609    0.081   -0.490
-## precio     -0.354  1.000   -0.486    0.272    0.511    0.189    0.468
-## flexprec    0.519 -0.486    1.000   -0.115    0.075   -0.038   -0.445
-## imgfabri    0.049  0.272   -0.115    1.000    0.298    0.790    0.199
-## servconj    0.609  0.511    0.075    0.298    1.000    0.246   -0.062
-## imgfvent    0.081  0.189   -0.038    0.790    0.246    1.000    0.181
-## calidadp   -0.490  0.468   -0.445    0.199   -0.062    0.181    1.000
-## fidelida    0.674  0.077    0.578    0.224    0.698    0.267   -0.204
-##          fidelida
-## velocida    0.674
-## precio      0.077
-## flexprec    0.578
-## imgfabri    0.224
-## servconj    0.698
-## imgfvent    0.267
-## calidadp   -0.204
-## fidelida    1.000
+##          velocida precio flexprec imgfabri servconj imgfvent calidadp fidelida
+## velocida    1.000 -0.354    0.519    0.049    0.609    0.081   -0.490    0.674
+## precio     -0.354  1.000   -0.486    0.272    0.511    0.189    0.468    0.077
+## flexprec    0.519 -0.486    1.000   -0.115    0.075   -0.038   -0.445    0.578
+## imgfabri    0.049  0.272   -0.115    1.000    0.298    0.790    0.199    0.224
+## servconj    0.609  0.511    0.075    0.298    1.000    0.246   -0.062    0.698
+## imgfvent    0.081  0.189   -0.038    0.790    0.246    1.000    0.181    0.267
+## calidadp   -0.490  0.468   -0.445    0.199   -0.062    0.181    1.000   -0.204
+## fidelida    0.674  0.077    0.578    0.224    0.698    0.267   -0.204    1.000
 ```
 
 Ajuste: función `lm`
@@ -410,7 +401,7 @@ library(leaps)
 ```
 
 ```
-## Warning: package 'leaps' was built under R version 3.5.3
+## Warning: package 'leaps' was built under R version 4.1.1
 ```
 
 ```r
@@ -514,19 +505,7 @@ library(RcmdrMisc)
 ```
 
 ```
-## Warning: package 'RcmdrMisc' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'car' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'carData' was built under R version 3.5.2
-```
-
-```
-## Warning: package 'sandwich' was built under R version 3.5.3
+## Warning: package 'RcmdrMisc' was built under R version 4.1.1
 ```
 
 ```r
@@ -987,13 +966,6 @@ La librería `lmtest` proporciona herramientas adicionales para la diagnosis de 
 
 ```r
 library(lmtest)
-```
-
-```
-## Warning: package 'lmtest' was built under R version 3.5.3
-```
-
-```r
 bptest(modelo, studentize = FALSE)
 ```
 
@@ -1101,7 +1073,7 @@ library(glmnet)
 ```
 
 ```
-## Warning: package 'glmnet' was built under R version 3.5.3
+## Warning: package 'glmnet' was built under R version 4.1.1
 ```
 
 El paquete `glmnet` no emplea formulación de modelos, hay que establecer la respuesta
@@ -1146,7 +1118,7 @@ cv.ridge$lambda.1se
 ```
 
 ```
-## [1] 3.635163
+## [1] 2.749868
 ```
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -1158,15 +1130,15 @@ coef(cv.ridge)
 
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                      1
-## (Intercept) 5.26333438
-## velocida    1.58051175
-## precio      0.70395775
-## flexprec    2.24798481
-## imgfabri    0.31897738
-## servconj    3.76988236
-## imgfvent    1.07304993
-## calidadp    0.06641356
+##                    s1
+## (Intercept) 2.4799000
+## velocida    1.6053747
+## precio      0.7733925
+## flexprec    2.4462308
+## imgfabri    0.2837000
+## servconj    3.9801496
+## imgfvent    1.1232130
+## calidadp    0.1245096
 ```
 
 ### Lasso
@@ -1200,14 +1172,14 @@ coef(cv.lasso)
 
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                     1
-## (Intercept) 5.5514217
-## velocida    0.1044538
+##                    s1
+## (Intercept) 4.4757712
+## velocida    0.1020531
 ## precio      .        
-## flexprec    2.6524703
+## flexprec    2.7202485
 ## imgfabri    .        
-## servconj    6.3120283
-## imgfvent    0.3600231
+## servconj    6.4044378
+## imgfvent    0.4651076
 ## calidadp    .
 ```
 

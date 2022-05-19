@@ -230,7 +230,7 @@ t.test(fidelida ~ nsatisfa, data = hatco, var.equal=TRUE)
 ## 
 ## data:  fidelida by nsatisfa
 ## t = -6.5833, df = 97, p-value = 2.363e-09
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group bajo and group alto is not equal to 0
 ## 95 percent confidence interval:
 ##  -12.915013  -6.931653
 ## sample estimates:
@@ -251,7 +251,7 @@ t.test(fidelida ~ nsatisfa, data = hatco)
 ## 
 ## data:  fidelida by nsatisfa
 ## t = -6.6901, df = 96.995, p-value = 1.437e-09
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group bajo and group alto is not equal to 0
 ## 95 percent confidence interval:
 ##  -12.86727  -6.97940
 ## sample estimates:
@@ -850,8 +850,7 @@ oneway.test(satisfac~nfidelid, data = hatco)
 ## 	One-way analysis of means (not assuming equal variances)
 ## 
 ## data:  satisfac and nfidelid
-## F = 35.013, num df = 2.0000, denom df = 6.7661, p-value =
-## 0.0002697
+## F = 35.013, num df = 2.0000, denom df = 6.7661, p-value = 0.0002697
 ```
 
 Podemos utilizar el test de Bartlett para contrastar la igualdad de varianzas

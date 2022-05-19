@@ -74,17 +74,6 @@ educación).
 ```r
 library(mgcv)
 library(car)
-```
-
-```
-## Warning: package 'car' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'carData' was built under R version 3.5.2
-```
-
-```r
 modelo <- gam(prestige ~ s(income) + s(education), data = Prestige)
 summary(modelo)
 ```
@@ -104,9 +93,9 @@ summary(modelo)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Approximate significance of smooth terms:
-##                edf Ref.df     F  p-value    
-## s(income)    3.118  3.877 14.61 1.53e-09 ***
-## s(education) 3.177  3.952 38.78  < 2e-16 ***
+##                edf Ref.df     F p-value    
+## s(income)    3.118  3.877 14.61  <2e-16 ***
+## s(education) 3.177  3.952 38.78  <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -201,8 +190,8 @@ summary(modelo0)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Approximate significance of smooth terms:
-##            edf Ref.df    F  p-value    
-## s(income) 3.58  4.441 13.6 1.16e-09 ***
+##            edf Ref.df    F p-value    
+## s(income) 3.58  4.441 13.6  <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -285,8 +274,8 @@ gam.check(modelo)
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
 ##                k'  edf k-index p-value
-## s(income)    9.00 3.12    0.98    0.42
-## s(education) 9.00 3.18    1.03    0.55
+## s(income)    9.00 3.12    0.98    0.34
+## s(education) 9.00 3.18    1.03    0.54
 ```
 Lo ideal sería observar normalidad en los dos gráficos de la izquierda, falta de patrón en el superior derecho, y ajuste a una recta en el inferior derecho. En este caso parece que el modelo se comporta adecuadamente.
 

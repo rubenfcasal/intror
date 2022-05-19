@@ -114,7 +114,7 @@ sample(1:6, size=10, replace = T) #lanzamiento de un dado
 ```
 
 ```
-##  [1] 5 3 1 1 1 1 2 3 3 5
+##  [1] 1 6 1 6 6 3 3 1 1 6
 ```
 
 Para simular el lanzamiento de una moneda podemos escribir 
@@ -161,8 +161,8 @@ lanz
 ```
 
 ```
-## cruz cara cruz cruz cara cara cara cara cruz cara 
-##    0    1    0    0    1    1    1    1    0    1
+## cara cara cara cruz cruz cruz cara cruz cara cruz 
+##    1    1    1    0    0    0    1    0    1    0
 ```
 
 ```r
@@ -172,7 +172,7 @@ table(lanz)
 ```
 ## lanz
 ## 0 1 
-## 4 6
+## 5 5
 ```
 
 Otros ejemplos
@@ -182,8 +182,8 @@ rnorm(10)  # rnorm(10, mean = 0, sd = 1)
 ```
 
 ```
-##  [1] -0.7265318  0.4749256  1.5454893 -1.2518813 -0.2937362 -0.4894362
-##  [7]  0.7469616 -0.4330973  0.5300980  0.8035144
+##  [1]  2.26853690 -1.45346455  0.07766315  0.23820643  0.05970954 -0.19272789
+##  [7] -1.24967078 -1.71636815 -0.58777929 -0.19720622
 ```
 
 ```r
@@ -191,9 +191,8 @@ runif(15, min = 2, max = 10)
 ```
 
 ```
-##  [1] 5.471393 8.337525 2.982894 8.786847 6.156096 4.642076 4.649047
-##  [8] 6.084013 9.987531 5.367294 8.330524 4.049023 2.340080 8.825475
-## [15] 6.467664
+##  [1] 5.192119 6.035982 8.925135 6.961173 4.818124 3.337485 6.972300 6.938785
+##  [9] 8.077564 8.570907 4.478581 4.371811 3.872954 3.860248 8.282871
 ```
 
 El lector puede utilizar la función `help()` para obtener la ayuda de las funciones
@@ -861,7 +860,7 @@ class(x)
 ```
 
 ```
-## [1] "matrix"
+## [1] "matrix" "array"
 ```
 
 ```r
@@ -923,8 +922,7 @@ lista.compra$Seccion
 ```
 
 ```
-## [1] Bebidas Lácteos Lácteos
-## Levels: Bebidas Lácteos
+## [1] "Bebidas" "Lácteos" "Lácteos"
 ```
 
 ```r
@@ -952,13 +950,13 @@ summary(lista.compra)
 ```
 
 ```
-##     Producto    Seccion     Unidades     
-##  Queso  :1   Bebidas:1   Min.   : 1.000  
-##  Yogourt:1   Lácteos:2   1st Qu.: 1.500  
-##  Zumo   :1               Median : 2.000  
-##                          Mean   : 4.333  
-##                          3rd Qu.: 6.000  
-##                          Max.   :10.000
+##    Producto           Seccion             Unidades     
+##  Length:3           Length:3           Min.   : 1.000  
+##  Class :character   Class :character   1st Qu.: 1.500  
+##  Mode  :character   Mode  :character   Median : 2.000  
+##                                        Mean   : 4.333  
+##                                        3rd Qu.: 6.000  
+##                                        Max.   :10.000
 ```
 
 

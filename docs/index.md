@@ -1,7 +1,7 @@
 --- 
 title: "Introducción al Análisis de Datos con `R`"
-author: "Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa"
-date: "2019-10-23"
+author: "Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo"
+date: "2022-05-19"
 output: bookdown::gitbook
 site: bookdown::bookdown_site
 documentclass: book

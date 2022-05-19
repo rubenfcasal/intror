@@ -1,6 +1,6 @@
 --- 
 title: "Introducción al Análisis de Datos con `R`"
-author: "Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa"
+author: "Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo"
 date: "`r Sys.Date()`"
 output: bookdown::gitbook
 site: bookdown::bookdown_site

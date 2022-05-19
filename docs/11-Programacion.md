@@ -322,7 +322,7 @@ an
 ## function(a1, r, n) {
 ##         a1 * r^(n - 1)
 ##       }
-## <bytecode: 0x00000000199479f0>
+## <bytecode: 0x000000001e2160d0>
 ```
 
 
@@ -473,7 +473,7 @@ dado <- function(n = 100) {
 }
 ```
 
-A continuación se muestran los resultados obtendidos para
+A continuación se muestran los resultados obtenidos para
 varias simulaciones:
 
 ```r
@@ -487,7 +487,7 @@ dado(100)
 ```
 ## lanzamientos
 ##    1    2    3    4    5    6 
-## 0.18 0.16 0.16 0.16 0.15 0.19
+## 0.09 0.17 0.23 0.18 0.14 0.19
 ```
 
 ```r
@@ -501,7 +501,7 @@ dado(500)
 ```
 ## lanzamientos
 ##     1     2     3     4     5     6 
-## 0.166 0.160 0.202 0.170 0.152 0.150
+## 0.150 0.162 0.164 0.174 0.196 0.154
 ```
 
 ```r
@@ -515,7 +515,7 @@ dado(10000)
 ```
 ## lanzamientos
 ##      1      2      3      4      5      6 
-## 0.1726 0.1690 0.1576 0.1652 0.1703 0.1653
+## 0.1677 0.1648 0.1708 0.1550 0.1702 0.1715
 ```
 
 Se puede comprobar que al aumentar el valor de $n$ las frecuencias se
@@ -718,15 +718,20 @@ reloj:
 
 
 ```r
-angulo <- seq(0, 360, length = 60)
+angulo <- seq(0, 360, by = 6)
 radianes <- angulo * pi / 180
-x <- cos(radianes)
-y <- sin(radianes)
+x <- sin(radianes)
+y <- cos(radianes)
 
-for (i in 1:360) {
-  plot(y, x, axes = FALSE, xlab = "", ylab = "", type = 'l', col = 'grey')
-  arrows(0, 0, y[i], x[i], col = 'blue')
-  Sys.sleep(1) # espera un segundo
+sec <- seq(6, 61, by = 5)
+for (i in 1:61) {
+  plot(x, y, axes = FALSE, xlab = "", ylab = "", type = 'l', col = 'grey')
+  points(x[i], y[i])
+  # Añadir "decoración"
+  text(x[sec]*0.9, y[sec]*0.9, labels = sec - 1)
+  arrows(0, 0, x[i]*0.85, y[i]*0.85, col = 'blue')
+  # Esperar un segundo
+  Sys.sleep(1)
 }
 ```
 
@@ -813,8 +818,9 @@ z
 ### Funciones `apply`
 
 #### La función `apply`
+
 Una forma de evitar la
-utilización de bucles es utilizando la sentica `apply` que permite
+utilización de bucles es utilizando la función `apply()` que permite
 evaluar una misma función en todas las filas, columnas, .... de un array
 de forma simultánea.
 

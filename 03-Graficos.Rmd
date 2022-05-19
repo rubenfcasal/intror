@@ -95,7 +95,7 @@ Función  |  Descripción
 
 ```{r}
 plot(cars)
-abline(h = c(20, 40), lty = 2) # líneas verticales discontinuas (lty=2)
+abline(h = c(20, 40), lty = 2) # líneas horizontales discontinuas (lty=2)
 # selecciona puntos y los dibuja en azul sólido
 points(subset(cars, dist > 20 & dist < 40), pch = 16, col = 'blue') 
 ```

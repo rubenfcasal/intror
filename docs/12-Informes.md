@@ -120,7 +120,7 @@ gear  |  Número de marchas (hacia adelante)
 carb  |  Número de carburadores
 
 
-Para convertir resultados de R en tablas de una forma simple se puede emplear la función `ktable` del paquete *knitr*:
+Para convertir resultados de R en tablas de una forma simple se puede emplear la función `kable` del paquete *knitr*:
 
 ```r
 knitr::kable(
@@ -129,11 +129,11 @@ knitr::kable(
 )
 ```
 
-\begin{table}[t]
+\begin{table}
 
 \caption{(\#tab:kable)Una kable knitr}
 \centering
-\begin{tabular}{l|r|r|r|r|r|r|r|r|r|r|r}
+\begin{tabular}[t]{l|r|r|r|r|r|r|r|r|r|r|r}
 \hline
   & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
 \hline
