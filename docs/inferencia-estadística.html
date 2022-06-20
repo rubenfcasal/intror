@@ -21,10 +21,12 @@
   <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
   
 
-<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Javier Roca-Pardiñas (roca@uvigo.es)" />
+<meta name="author" content="Julián Costa Bouzas (julian.costa@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +35,7 @@
   
 <link rel="prev" href="análisis-exploratorio-de-datos.html"/>
 <link rel="next" href="modelado-de-datos.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,6 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="E.2" data-path="compañías-que-usan-r.html"><a href="compañías-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.2</b> RStudio</a></li>
 </ul></li>
 <li class="divider"></li>
+<li><a>ISBN: 978-84-09-41823-7</a></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
@@ -463,9 +466,9 @@ cubriendo de forma somera los siguientes apartados:</p>
 </ul>
 <p>En este capítulo utilizaremos como ejemplo los datos de clientes de una compañía de distribución industrial (HATCO)
 contenidos en el fichero <em>hatco.RData</em>.</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="inferencia-estadística.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;datos/hatco.RData&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="inferencia-estadística.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;datos/hatco.RData&#39;</span>)</span></code></pre></div>
 <p>Listado de etiquetas</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="inferencia-estadística.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">attr</span>(hatco, <span class="st">&quot;variable.labels&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="inferencia-estadística.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">attr</span>(hatco, <span class="st">&quot;variable.labels&quot;</span>))</span></code></pre></div>
 <pre><code>##          attr(hatco, &quot;variable.labels&quot;)
 ## empresa                         Empresa
 ## tamano             Tamaño de la empresa
@@ -488,11 +491,11 @@ contenidos en el fichero <em>hatco.RData</em>.</p>
 <p>Queremos hacer un estudio inferencial de la variable <em>satisfac</em> (satisfacción global). Lo primero
 que vamos a hacer es comprobar si, visualmente, los datos parecen razonablemente
 simétricos y si se pueden ajustar por una distribución normal</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="inferencia-estadística.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(hatco<span class="sc">$</span>satisfac)</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="inferencia-estadística.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(hatco<span class="sc">$</span>satisfac)</span></code></pre></div>
 <p><img src="06-Inferencia_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="inferencia-estadística.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(hatco<span class="sc">$</span>satisfac)</span></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="inferencia-estadística.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(hatco<span class="sc">$</span>satisfac)</span></code></pre></div>
 <p><img src="06-Inferencia_files/figure-html/unnamed-chunk-4-2.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="inferencia-estadística.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(hatco<span class="sc">$</span>satisfac)</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="inferencia-estadística.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(hatco<span class="sc">$</span>satisfac)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -504,7 +507,7 @@ simétricos y si se pueden ajustar por una distribución normal</p>
 <div id="una-muestra" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Una muestra</h3>
 <p>Obtenemos un intervalo de confianza de <em>satisfac</em></p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="inferencia-estadística.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac)  <span class="co"># with(hatco, t.test(satisfac))</span></span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="inferencia-estadística.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac)  <span class="co"># with(hatco, t.test(satisfac))</span></span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -517,7 +520,7 @@ simétricos y si se pueden ajustar por una distribución normal</p>
 ## mean of x 
 ##  4.774747</code></pre>
 <p>Contrastamos si es razonable suponer que la media es 5</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="inferencia-estadística.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac, <span class="at">mu=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="inferencia-estadística.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac, <span class="at">mu=</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -530,7 +533,7 @@ simétricos y si se pueden ajustar por una distribución normal</p>
 ## mean of x 
 ##  4.774747</code></pre>
 <p>Utilizando una confianza del 99%</p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="inferencia-estadística.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac, <span class="at">mu=</span><span class="dv">5</span>, <span class="at">conf.level=</span><span class="fl">0.99</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="inferencia-estadística.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac, <span class="at">mu=</span><span class="dv">5</span>, <span class="at">conf.level=</span><span class="fl">0.99</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -543,7 +546,7 @@ simétricos y si se pueden ajustar por una distribución normal</p>
 ## mean of x 
 ##  4.774747</code></pre>
 <p>Veamos si podemos afirmar que la media es menor que 5</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="inferencia-estadística.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac, <span class="at">mu=</span><span class="dv">5</span>, <span class="at">alternative =</span> <span class="st">&#39;less&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="inferencia-estadística.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac, <span class="at">mu=</span><span class="dv">5</span>, <span class="at">alternative =</span> <span class="st">&#39;less&#39;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -556,7 +559,7 @@ simétricos y si se pueden ajustar por una distribución normal</p>
 ## mean of x 
 ##  4.774747</code></pre>
 <p>¿Y mayor que 4.65?</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="inferencia-estadística.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac, <span class="at">mu=</span><span class="fl">4.65</span>, <span class="at">alternative =</span> <span class="st">&#39;greater&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="inferencia-estadística.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hatco<span class="sc">$</span>satisfac, <span class="at">mu=</span><span class="fl">4.65</span>, <span class="at">alternative =</span> <span class="st">&#39;greater&#39;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -571,7 +574,7 @@ simétricos y si se pueden ajustar por una distribución normal</p>
 <p>El test de los rangos con signo de Wilcoxon es un contraste no paramétrico
 (exige que la distribución sea simétrica) que se puede utilizar como
 alternativa al contraste <em>t</em> de Student</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="inferencia-estadística.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(hatco, <span class="fu">wilcox.test</span>(satisfac, <span class="at">mu=</span><span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="inferencia-estadística.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(hatco, <span class="fu">wilcox.test</span>(satisfac, <span class="at">mu=</span><span class="dv">5</span>))</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank test with continuity correction
 ## 
@@ -584,7 +587,7 @@ alternativa al contraste <em>t</em> de Student</p>
 <p>Disponemos de dos muestras independientes, el porcentaje de compra
 en las empresas con nivel de satisfacción bajo y alto,
 y asumimos que las varianzas son iguales</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="inferencia-estadística.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="inferencia-estadística.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -597,7 +600,7 @@ y asumimos que las varianzas son iguales</p>
 ## mean in group bajo mean in group alto 
 ##           41.72778           51.65111</code></pre>
 <p>Si no se asume igualdad de varianzas, se calcula la variante Welch del test <em>t</em></p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="inferencia-estadística.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="inferencia-estadística.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -610,10 +613,10 @@ y asumimos que las varianzas son iguales</p>
 ## mean in group bajo mean in group alto 
 ##           41.72778           51.65111</code></pre>
 <p>Comparemos visualmente las varianzas</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="inferencia-estadística.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="inferencia-estadística.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
 <p><img src="06-Inferencia_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>La comparación de las varianzas puede hacerse con el test <em>F</em></p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="inferencia-estadística.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="inferencia-estadística.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## 
 ##  F test to compare two variances
 ## 
@@ -626,14 +629,14 @@ y asumimos que las varianzas son iguales</p>
 ## ratio of variances 
 ##           1.424804</code></pre>
 <p>Una alternativa no paramétrica</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="inferencia-estadística.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="inferencia-estadística.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## 
 ##  Bartlett test of homogeneity of variances
 ## 
 ## data:  fidelida by nsatisfa
 ## Bartlett&#39;s K-squared = 1.4675, df = 1, p-value = 0.2257</code></pre>
 <p>También puede utilizarse el test de Wilcoxon como alternativa al test <em>t</em></p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="inferencia-estadística.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="inferencia-estadística.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(fidelida <span class="sc">~</span> nsatisfa, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -642,7 +645,7 @@ y asumimos que las varianzas son iguales</p>
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Si disponemos de datos apareados, por ejemplo nivel de precios e imagen
 de fuerza de ventas</p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="inferencia-estadística.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(hatco, <span class="fu">t.test</span>(precio, imgfvent, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="inferencia-estadística.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(hatco, <span class="fu">t.test</span>(precio, imgfvent, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -655,7 +658,7 @@ de fuerza de ventas</p>
 ## mean of the differences 
 ##              -0.2919192</code></pre>
 <p>Y la correspondiente alternativa no paramétrica</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="inferencia-estadística.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(hatco, <span class="fu">wilcox.test</span>(precio, imgfvent, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="inferencia-estadística.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(hatco, <span class="fu">wilcox.test</span>(precio, imgfvent, <span class="at">paired =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank test with continuity correction
 ## 
@@ -670,7 +673,7 @@ de fuerza de ventas</p>
 <h3><span class="header-section-number">6.3.1</span> Regresión lineal simple</h3>
 <p>Utilizando la función <em>lm</em> (modelo lineal) se puede llevar a cabo, entre otras
 muchas cosas, una regresión lineal simple</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="inferencia-estadística.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(satisfac <span class="sc">~</span> fidelida, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="inferencia-estadística.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(satisfac <span class="sc">~</span> fidelida, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = satisfac ~ fidelida, data = hatco)
@@ -678,8 +681,8 @@ muchas cosas, una regresión lineal simple</p>
 ## Coefficients:
 ## (Intercept)     fidelida  
 ##      1.6074       0.0685</code></pre>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="inferencia-estadística.html#cb494-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(satisfac <span class="sc">~</span> fidelida, <span class="at">data =</span> hatco, <span class="at">na.action=</span>na.exclude)</span>
-<span id="cb494-2"><a href="inferencia-estadística.html#cb494-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="inferencia-estadística.html#cb495-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(satisfac <span class="sc">~</span> fidelida, <span class="at">data =</span> hatco, <span class="at">na.action=</span>na.exclude)</span>
+<span id="cb495-2"><a href="inferencia-estadística.html#cb495-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = satisfac ~ fidelida, data = hatco, na.action = na.exclude)
@@ -699,13 +702,13 @@ muchas cosas, una regresión lineal simple</p>
 ##   (1 observation deleted due to missingness)
 ## Multiple R-squared:  0.5078, Adjusted R-squared:  0.5027 
 ## F-statistic: 100.1 on 1 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="inferencia-estadística.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac)      <span class="co"># Cuidado con el orden de las variables</span></span>
-<span id="cb496-2"><a href="inferencia-estadística.html#cb496-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with(hatco, plot(fidelida, satisfac))   # Alternativa empleando with</span></span>
-<span id="cb496-3"><a href="inferencia-estadística.html#cb496-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(satisfac ~ fidelida, data = hatco) # Alternativa empleando fórmulas</span></span>
-<span id="cb496-4"><a href="inferencia-estadística.html#cb496-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="inferencia-estadística.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac)      <span class="co"># Cuidado con el orden de las variables</span></span>
+<span id="cb497-2"><a href="inferencia-estadística.html#cb497-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with(hatco, plot(fidelida, satisfac))   # Alternativa empleando with</span></span>
+<span id="cb497-3"><a href="inferencia-estadística.html#cb497-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(satisfac ~ fidelida, data = hatco) # Alternativa empleando fórmulas</span></span>
+<span id="cb497-4"><a href="inferencia-estadística.html#cb497-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(modelo)</span></code></pre></div>
 <p><img src="06-Inferencia_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Valores ajustados</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="inferencia-estadística.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitted</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="inferencia-estadística.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fitted</span>(modelo)</span></code></pre></div>
 <pre><code>##        1        2        3        4        5        6        7        8 
 ## 3.799412 4.552917 4.895419 3.799412 5.580423 4.689918 4.758418 4.621417 
 ##        9       10       11       12       13       14       15       16 
@@ -733,27 +736,27 @@ muchas cosas, una regresión lineal simple</p>
 ##       97       98       99      100 
 ## 5.717424 4.210415 4.484416       NA</code></pre>
 <p>Residuos</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="inferencia-estadística.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">resid</span>(modelo))</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="inferencia-estadística.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">resid</span>(modelo))</span></code></pre></div>
 <pre><code>##          1          2          3          4          5          6 
 ##  0.4005878 -0.2529168  0.3045811  0.1005878  1.2195769 -0.2899177</code></pre>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="inferencia-estadística.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(modelo))</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="inferencia-estadística.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(modelo))</span></code></pre></div>
 <p><img src="06-Inferencia_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="inferencia-estadística.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(modelo))</span></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="inferencia-estadística.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(modelo))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  resid(modelo)
 ## W = 0.98515, p-value = 0.3325</code></pre>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="inferencia-estadística.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac)    </span>
-<span id="cb504-2"><a href="inferencia-estadística.html#cb504-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb504-3"><a href="inferencia-estadística.html#cb504-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(modelo)</span>
-<span id="cb504-4"><a href="inferencia-estadística.html#cb504-4" aria-hidden="true" tabindex="-1"></a><span class="co"># segments(hatco$fidelida, fitted(modelo), hatco$fidelida, hatco$satisfac)</span></span>
-<span id="cb504-5"><a href="inferencia-estadística.html#cb504-5" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(hatco, <span class="fu">segments</span>(fidelida, <span class="fu">fitted</span>(modelo), fidelida, satisfac))</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="inferencia-estadística.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac)    </span>
+<span id="cb505-2"><a href="inferencia-estadística.html#cb505-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb505-3"><a href="inferencia-estadística.html#cb505-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(modelo)</span>
+<span id="cb505-4"><a href="inferencia-estadística.html#cb505-4" aria-hidden="true" tabindex="-1"></a><span class="co"># segments(hatco$fidelida, fitted(modelo), hatco$fidelida, hatco$satisfac)</span></span>
+<span id="cb505-5"><a href="inferencia-estadística.html#cb505-5" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(hatco, <span class="fu">segments</span>(fidelida, <span class="fu">fitted</span>(modelo), fidelida, satisfac))</span></code></pre></div>
 <p><img src="06-Inferencia_files/figure-html/unnamed-chunk-21-2.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="inferencia-estadística.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(modelo), <span class="fu">resid</span>(modelo))</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="inferencia-estadística.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(modelo), <span class="fu">resid</span>(modelo))</span></code></pre></div>
 <p><img src="06-Inferencia_files/figure-html/unnamed-chunk-21-3.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Banda de confianza</p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="inferencia-estadística.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(modelo, <span class="at">interval=</span><span class="st">&#39;confidence&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="inferencia-estadística.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(modelo, <span class="at">interval=</span><span class="st">&#39;confidence&#39;</span>)</span></code></pre></div>
 <pre><code>##          fit      lwr      upr
 ## 1   3.799412 3.571263 4.027561
 ## 2   4.552917 4.424306 4.681528
@@ -856,7 +859,7 @@ muchas cosas, una regresión lineal simple</p>
 ## 99  4.484416 4.350544 4.618289
 ## 100       NA       NA       NA</code></pre>
 <p>Banda de predicción</p>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="inferencia-estadística.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">predict</span>(modelo, <span class="at">interval=</span><span class="st">&#39;prediction&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="inferencia-estadística.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">predict</span>(modelo, <span class="at">interval=</span><span class="st">&#39;prediction&#39;</span>))</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 3.799412 2.575563 5.023261
 ## 2 4.552917 3.343663 5.762171
@@ -865,20 +868,20 @@ muchas cosas, una regresión lineal simple</p>
 ## 5 5.580423 4.361444 6.799403
 ## 6 4.689918 3.481348 5.898487</code></pre>
 <p>Representación gráfica de las bandas</p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="inferencia-estadística.html#cb510-1" aria-hidden="true" tabindex="-1"></a>bandas.frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fidelida=</span><span class="dv">24</span><span class="sc">:</span><span class="dv">66</span>)</span>
-<span id="cb510-2"><a href="inferencia-estadística.html#cb510-2" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>, <span class="at">newdata =</span> bandas.frame)</span>
-<span id="cb510-3"><a href="inferencia-estadística.html#cb510-3" aria-hidden="true" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>, <span class="at">newdata =</span> bandas.frame)</span>
-<span id="cb510-4"><a href="inferencia-estadística.html#cb510-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac, <span class="at">ylim =</span> <span class="fu">range</span>(hatco<span class="sc">$</span>satisfac, bp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb510-5"><a href="inferencia-estadística.html#cb510-5" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(bandas.frame<span class="sc">$</span>fidelida, bc, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">col=</span><span class="st">&#39;black&#39;</span>)</span>
-<span id="cb510-6"><a href="inferencia-estadística.html#cb510-6" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(bandas.frame<span class="sc">$</span>fidelida, bp, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="inferencia-estadística.html#cb511-1" aria-hidden="true" tabindex="-1"></a>bandas.frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fidelida=</span><span class="dv">24</span><span class="sc">:</span><span class="dv">66</span>)</span>
+<span id="cb511-2"><a href="inferencia-estadística.html#cb511-2" aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>, <span class="at">newdata =</span> bandas.frame)</span>
+<span id="cb511-3"><a href="inferencia-estadística.html#cb511-3" aria-hidden="true" tabindex="-1"></a>bp <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>, <span class="at">newdata =</span> bandas.frame)</span>
+<span id="cb511-4"><a href="inferencia-estadística.html#cb511-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac, <span class="at">ylim =</span> <span class="fu">range</span>(hatco<span class="sc">$</span>satisfac, bp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb511-5"><a href="inferencia-estadística.html#cb511-5" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(bandas.frame<span class="sc">$</span>fidelida, bc, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">col=</span><span class="st">&#39;black&#39;</span>)</span>
+<span id="cb511-6"><a href="inferencia-estadística.html#cb511-6" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(bandas.frame<span class="sc">$</span>fidelida, bp, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 <p><img src="06-Inferencia_files/figure-html/unnamed-chunk-24-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="correlación" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Correlación</h3>
 <p>Coeficiente de correlación de Pearson</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="inferencia-estadística.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac, <span class="at">use=</span><span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="inferencia-estadística.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac, <span class="at">use=</span><span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 0.712581</code></pre>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="inferencia-estadística.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hatco[,<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>], <span class="at">use=</span><span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="inferencia-estadística.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hatco[,<span class="dv">6</span><span class="sc">:</span><span class="dv">14</span>], <span class="at">use=</span><span class="st">&#39;complete.obs&#39;</span>)</span></code></pre></div>
 <pre><code>##             velocida      precio    flexprec    imgfabri    servconj
 ## velocida  1.00000000 -0.35439461  0.51879732  0.04885481  0.60908594
 ## precio   -0.35439461  1.00000000 -0.48550163  0.27150666  0.51134698
@@ -899,7 +902,7 @@ muchas cosas, una regresión lineal simple</p>
 ## calidadp  0.18052945  1.00000000 -0.20401261 -0.28687427
 ## fidelida  0.26674626 -0.20401261  1.00000000  0.71258104
 ## satisfac  0.34349253 -0.28687427  0.71258104  1.00000000</code></pre>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="inferencia-estadística.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="inferencia-estadística.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -912,7 +915,7 @@ muchas cosas, una regresión lineal simple</p>
 ##      cor 
 ## 0.712581</code></pre>
 <p>El coeficiente de correlación de Spearman es una variante no paramétrica</p>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="inferencia-estadística.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac, <span class="at">method=</span><span class="st">&#39;spearman&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="inferencia-estadística.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(hatco<span class="sc">$</span>fidelida, hatco<span class="sc">$</span>satisfac, <span class="at">method=</span><span class="st">&#39;spearman&#39;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
@@ -932,18 +935,18 @@ muchas cosas, una regresión lineal simple</p>
 (satisfacción global) entre los diferentes grupos definidos por <em>nfidelid</em>
 (nivel de compra), utilizando el procedimiento clásico de análisis de la
 varianza. Este procedimiento exige normalidad y homocedasticidad.</p>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="inferencia-estadística.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hatco<span class="sc">$</span>nfidelid)</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="inferencia-estadística.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hatco<span class="sc">$</span>nfidelid)</span></code></pre></div>
 <pre><code>## 
 ##  bajo medio  alto 
 ##     3    64    33</code></pre>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="inferencia-estadística.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(hatco<span class="sc">$</span>satisfac, hatco<span class="sc">$</span>nfidelid, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="inferencia-estadística.html#cb522-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(hatco<span class="sc">$</span>satisfac, hatco<span class="sc">$</span>nfidelid, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##     bajo    medio     alto 
 ## 3.533333 4.498437 5.443750</code></pre>
 <p>La variable explicativa tiene que ser obligatoriamente de tipo <em>factor</em>.
 Por coherencia con la función (general) <em>lm</em>, la variación entre grupos
 está etiquetada <em>nfidelid</em>, y la variación dentro de los grupos como
 <em>Residuals</em></p>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="inferencia-estadística.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco))</span></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="inferencia-estadística.html#cb524-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco))</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: satisfac
@@ -953,7 +956,7 @@ está etiquetada <em>nfidelid</em>, y la variación dentro de los grupos como
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Como alternativa, se puede utilizar la función <em>aov</em></p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="inferencia-estadística.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="inferencia-estadística.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## Call:
 ##    aov(formula = satisfac ~ nfidelid, data = hatco)
 ## 
@@ -965,7 +968,7 @@ está etiquetada <em>nfidelid</em>, y la variación dentro de los grupos como
 ## Residual standard error: 0.7107454
 ## Estimated effects may be unbalanced
 ## 1 observation deleted due to missingness</code></pre>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="inferencia-estadística.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco))</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="inferencia-estadística.html#cb528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco))</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## nfidelid     2  23.83  11.916   23.59 4.65e-09 ***
 ## Residuals   96  48.50   0.505                     
@@ -973,7 +976,7 @@ está etiquetada <em>nfidelid</em>, y la variación dentro de los grupos como
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 1 observation deleted due to missingness</code></pre>
 <p>Comparaciones entre pares de variables</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="inferencia-estadística.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(hatco<span class="sc">$</span>satisfac, hatco<span class="sc">$</span>nfidelid)</span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="inferencia-estadística.html#cb530-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(hatco<span class="sc">$</span>satisfac, hatco<span class="sc">$</span>nfidelid)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -985,33 +988,33 @@ está etiquetada <em>nfidelid</em>, y la variación dentro de los grupos como
 ## 
 ## P value adjustment method: holm</code></pre>
 <p>Relajamos la hipótesis de varianzas iguales</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="inferencia-estadística.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="inferencia-estadística.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## 
 ##  One-way analysis of means (not assuming equal variances)
 ## 
 ## data:  satisfac and nfidelid
 ## F = 35.013, num df = 2.0000, denom df = 6.7661, p-value = 0.0002697</code></pre>
 <p>Podemos utilizar el test de Bartlett para contrastar la igualdad de varianzas</p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="inferencia-estadística.html#cb533-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="inferencia-estadística.html#cb534-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## 
 ##  Bartlett test of homogeneity of variances
 ## 
 ## data:  satisfac by nfidelid
 ## Bartlett&#39;s K-squared = 1.4922, df = 2, p-value = 0.4742</code></pre>
 <p>Representación gráfica</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="inferencia-estadística.html#cb535-1" aria-hidden="true" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">tapply</span>(hatco<span class="sc">$</span>satisfac, hatco<span class="sc">$</span>nfidelid, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb535-2"><a href="inferencia-estadística.html#cb535-2" aria-hidden="true" tabindex="-1"></a>desviaciones <span class="ot">&lt;-</span> <span class="fu">tapply</span>(hatco<span class="sc">$</span>satisfac, hatco<span class="sc">$</span>nfidelid, sd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb535-3"><a href="inferencia-estadística.html#cb535-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">tapply</span>(hatco<span class="sc">$</span>satisfac[<span class="sc">!</span><span class="fu">is.na</span>(hatco<span class="sc">$</span>satisfac)], hatco<span class="sc">$</span>nfidelid[<span class="sc">!</span><span class="fu">is.na</span>(hatco<span class="sc">$</span>satisfac)], length)</span>
-<span id="cb535-4"><a href="inferencia-estadística.html#cb535-4" aria-hidden="true" tabindex="-1"></a>errores <span class="ot">&lt;-</span> desviaciones<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
-<span id="cb535-5"><a href="inferencia-estadística.html#cb535-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(hatco<span class="sc">$</span>satisfac<span class="sc">~</span>hatco<span class="sc">$</span>nfidelid, <span class="at">method=</span><span class="st">&#39;jitter&#39;</span>, <span class="at">jit=</span><span class="fl">0.01</span>, <span class="at">pch=</span><span class="dv">18</span>, <span class="at">col=</span><span class="st">&#39;grey&#39;</span>, <span class="at">vertical =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb535-6"><a href="inferencia-estadística.html#cb535-6" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, medias<span class="sc">+</span>errores, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, medias<span class="sc">-</span>errores, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">code=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&#39;orange&#39;</span>)</span>
-<span id="cb535-7"><a href="inferencia-estadística.html#cb535-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, medias, <span class="at">pch=</span><span class="dv">4</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&#39;orange&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="inferencia-estadística.html#cb536-1" aria-hidden="true" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">tapply</span>(hatco<span class="sc">$</span>satisfac, hatco<span class="sc">$</span>nfidelid, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb536-2"><a href="inferencia-estadística.html#cb536-2" aria-hidden="true" tabindex="-1"></a>desviaciones <span class="ot">&lt;-</span> <span class="fu">tapply</span>(hatco<span class="sc">$</span>satisfac, hatco<span class="sc">$</span>nfidelid, sd, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb536-3"><a href="inferencia-estadística.html#cb536-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">tapply</span>(hatco<span class="sc">$</span>satisfac[<span class="sc">!</span><span class="fu">is.na</span>(hatco<span class="sc">$</span>satisfac)], hatco<span class="sc">$</span>nfidelid[<span class="sc">!</span><span class="fu">is.na</span>(hatco<span class="sc">$</span>satisfac)], length)</span>
+<span id="cb536-4"><a href="inferencia-estadística.html#cb536-4" aria-hidden="true" tabindex="-1"></a>errores <span class="ot">&lt;-</span> desviaciones<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb536-5"><a href="inferencia-estadística.html#cb536-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(hatco<span class="sc">$</span>satisfac<span class="sc">~</span>hatco<span class="sc">$</span>nfidelid, <span class="at">method=</span><span class="st">&#39;jitter&#39;</span>, <span class="at">jit=</span><span class="fl">0.01</span>, <span class="at">pch=</span><span class="dv">18</span>, <span class="at">col=</span><span class="st">&#39;grey&#39;</span>, <span class="at">vertical =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb536-6"><a href="inferencia-estadística.html#cb536-6" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, medias<span class="sc">+</span>errores, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, medias<span class="sc">-</span>errores, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">code=</span><span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&#39;orange&#39;</span>)</span>
+<span id="cb536-7"><a href="inferencia-estadística.html#cb536-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, medias, <span class="at">pch=</span><span class="dv">4</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">cex=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&#39;orange&#39;</span>)</span></code></pre></div>
 <p><img src="06-Inferencia_files/figure-html/unnamed-chunk-33-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="test-de-kruskal-wallis" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Test de Kruskal-Wallis</h3>
 <p>Alternativa no paramétrica al análisis de la varianza con un factor</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="inferencia-estadística.html#cb536-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="inferencia-estadística.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(satisfac<span class="sc">~</span>nfidelid, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## 
 ##  Kruskal-Wallis rank sum test
 ## 

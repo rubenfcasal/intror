@@ -21,10 +21,12 @@
   <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
   
 
-<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Javier Roca-Pardiñas (roca@uvigo.es)" />
+<meta name="author" content="Julián Costa Bouzas (julian.costa@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +35,7 @@
   
 <link rel="prev" href="programacion.html"/>
 <link rel="next" href="referencias.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,6 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="E.2" data-path="compañías-que-usan-r.html"><a href="compañías-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.2</b> RStudio</a></li>
 </ul></li>
 <li class="divider"></li>
+<li><a>ISBN: 978-84-09-41823-7</a></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
@@ -481,7 +484,7 @@ browseURL(url = render(&quot;8-Informes.Rmd&quot;))</code></pre>
 <div id="inclusión-de-código-r" class="section level3" number="12.1.2">
 <h3><span class="header-section-number">12.1.2</span> Inclusión de código R</h3>
 <p>Se puede incluir código R entre los delimitadores <code>```{r}</code> y <code>```</code>. Por defecto, se mostrará el código, se evaluará y se mostrarán los resultados justo a continuación:</p>
-<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="generación-de-informes.html#cb839-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="generación-de-informes.html#cb833-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
 <pre><code>##                    mpg cyl disp
 ## Mazda RX4         21.0   6  160
 ## Mazda RX4 Wag     21.0   6  160
@@ -489,7 +492,7 @@ browseURL(url = render(&quot;8-Informes.Rmd&quot;))</code></pre>
 ## Hornet 4 Drive    21.4   6  258
 ## Hornet Sportabout 18.7   8  360
 ## Valiant           18.1   6  225</code></pre>
-<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="generación-de-informes.html#cb841-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="generación-de-informes.html#cb835-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
 <pre><code>##       mpg             cyl             disp      
 ##  Min.   :10.40   Min.   :4.000   Min.   : 71.1  
 ##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8  
@@ -575,10 +578,10 @@ ejecutar todo el código anterior o sólo el correspondiente trozo.</p>
 </tbody>
 </table>
 <p>Para convertir resultados de R en tablas de una forma simple se puede emplear la función <code>kable</code> del paquete <em>knitr</em>:</p>
-<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="generación-de-informes.html#cb844-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb844-2"><a href="generación-de-informes.html#cb844-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(mtcars), </span>
-<span id="cb844-3"><a href="generación-de-informes.html#cb844-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Una kable knitr&quot;</span></span>
-<span id="cb844-4"><a href="generación-de-informes.html#cb844-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="generación-de-informes.html#cb838-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb838-2"><a href="generación-de-informes.html#cb838-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(mtcars), </span>
+<span id="cb838-3"><a href="generación-de-informes.html#cb838-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Una kable knitr&quot;</span></span>
+<span id="cb838-4"><a href="generación-de-informes.html#cb838-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table>
 <caption><span id="tab:kable">Tabla 12.1: </span>Una kable knitr</caption>
 <thead>

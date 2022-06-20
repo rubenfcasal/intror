@@ -21,10 +21,12 @@
   <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
   
 
-<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Javier Roca-Pardiñas (roca@uvigo.es)" />
+<meta name="author" content="Julián Costa Bouzas (julian.costa@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +35,7 @@
   
 <link rel="prev" href="interfaces.html"/>
 <link rel="next" href="compañías-que-usan-r.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,6 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="E.2" data-path="compañías-que-usan-r.html"><a href="compañías-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.2</b> RStudio</a></li>
 </ul></li>
 <li class="divider"></li>
+<li><a>ISBN: 978-84-09-41823-7</a></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
@@ -455,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">D</span> Manipulación de datos con dplyr</h1>
 <div id="el-paquete-dplyr" class="section level2" number="16.1">
 <h2><span class="header-section-number">D.1</span> El paquete <strong>dplyr</strong></h2>
-<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="manipulación-de-datos-con-dplyr.html#cb853-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="manipulación-de-datos-con-dplyr.html#cb847-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <p><strong>dplyr</strong> Permite sustituir funciones base de R (como <code>split()</code>, <code>subset()</code>,
 <code>apply()</code>, <code>sapply()</code>, <code>lapply()</code>, <code>tapply()</code> y <code>aggregate()</code>)
 mediante una “gramática” más sencilla para la manipulación de datos:</p>
@@ -481,8 +484,8 @@ opera sobre objetos de este tipo (solo nos centraremos en <code>data.frame</code
 <p>El fichero <em>empleados.RData</em> contiene datos de empleados de un banco.
 Supongamos por ejemplo que estamos interesados en estudiar si hay
 discriminación por cuestión de sexo o raza.</p>
-<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="manipulación-de-datos-con-dplyr.html#cb854-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
-<span id="cb854-2"><a href="manipulación-de-datos-con-dplyr.html#cb854-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Etiquetas =</span> <span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>))  <span class="co"># Listamos las etiquetas</span></span></code></pre></div>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="manipulación-de-datos-con-dplyr.html#cb848-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb848-2"><a href="manipulación-de-datos-con-dplyr.html#cb848-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Etiquetas =</span> <span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>))  <span class="co"># Listamos las etiquetas</span></span></code></pre></div>
 <pre><code>##                              Etiquetas
 ## id                  Código de empleado
 ## sexo                              Sexo
@@ -495,15 +498,15 @@ discriminación por cuestión de sexo o raza.</p>
 ## expprev     Experiencia previa (meses)
 ## minoria           Clasificación étnica
 ## sexoraza Clasificación por sexo y raza</code></pre>
-<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="manipulación-de-datos-con-dplyr.html#cb856-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>) <span class="ot">&lt;-</span> <span class="cn">NULL</span>                  <span class="co"># Eliminamos las etiquetas para que no molesten...</span></span></code></pre></div>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="manipulación-de-datos-con-dplyr.html#cb850-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>) <span class="ot">&lt;-</span> <span class="cn">NULL</span>                  <span class="co"># Eliminamos las etiquetas para que no molesten...</span></span></code></pre></div>
 </div>
 </div>
 <div id="operaciones-con-variables-columnas" class="section level2" number="16.2">
 <h2><span class="header-section-number">D.2</span> Operaciones con variables (columnas)</h2>
 <div id="seleccionar-variables-con-select" class="section level3" number="16.2.1">
 <h3><span class="header-section-number">D.2.1</span> Seleccionar variables con <strong>select()</strong></h3>
-<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="manipulación-de-datos-con-dplyr.html#cb857-1" aria-hidden="true" tabindex="-1"></a>emplea2 <span class="ot">&lt;-</span> <span class="fu">select</span>(empleados, id, sexo, minoria, tiempemp, salini, salario)</span>
-<span id="cb857-2"><a href="manipulación-de-datos-con-dplyr.html#cb857-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(emplea2)</span></code></pre></div>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="manipulación-de-datos-con-dplyr.html#cb851-1" aria-hidden="true" tabindex="-1"></a>emplea2 <span class="ot">&lt;-</span> <span class="fu">select</span>(empleados, id, sexo, minoria, tiempemp, salini, salario)</span>
+<span id="cb851-2"><a href="manipulación-de-datos-con-dplyr.html#cb851-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(emplea2)</span></code></pre></div>
 <pre><code>##   id   sexo minoria tiempemp salini salario
 ## 1  1 Hombre      No       98  27000   57000
 ## 2  2 Hombre      No       98  18750   40200
@@ -512,7 +515,7 @@ discriminación por cuestión de sexo o raza.</p>
 ## 5  5 Hombre      No       98  21000   45000
 ## 6  6 Hombre      No       98  13500   32100</code></pre>
 <p>Se puede cambiar el nombre (ver también <em>?rename()</em>)</p>
-<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="manipulación-de-datos-con-dplyr.html#cb859-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(empleados, sexo, <span class="at">noblanca =</span> minoria, salario))</span></code></pre></div>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="manipulación-de-datos-con-dplyr.html#cb853-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(empleados, sexo, <span class="at">noblanca =</span> minoria, salario))</span></code></pre></div>
 <pre><code>##     sexo noblanca salario
 ## 1 Hombre       No   57000
 ## 2 Hombre       No   40200
@@ -521,7 +524,7 @@ discriminación por cuestión de sexo o raza.</p>
 ## 5 Hombre       No   45000
 ## 6 Hombre       No   32100</code></pre>
 <p>Se pueden emplear los nombres de variables como índices:</p>
-<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="manipulación-de-datos-con-dplyr.html#cb861-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(empleados, sexo<span class="sc">:</span>salario))</span></code></pre></div>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="manipulación-de-datos-con-dplyr.html#cb855-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(empleados, sexo<span class="sc">:</span>salario))</span></code></pre></div>
 <pre><code>##     sexo    fechnac educ         catlab salario
 ## 1 Hombre 1952-02-03   15      Directivo   57000
 ## 2 Hombre 1958-05-23   16 Administrativo   40200
@@ -529,7 +532,7 @@ discriminación por cuestión de sexo o raza.</p>
 ## 4  Mujer 1947-04-15    8 Administrativo   21900
 ## 5 Hombre 1955-02-09   15 Administrativo   45000
 ## 6 Hombre 1958-08-22   15 Administrativo   32100</code></pre>
-<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="manipulación-de-datos-con-dplyr.html#cb863-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(empleados, <span class="sc">-</span>(sexo<span class="sc">:</span>salario)))</span></code></pre></div>
+<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="manipulación-de-datos-con-dplyr.html#cb857-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(empleados, <span class="sc">-</span>(sexo<span class="sc">:</span>salario)))</span></code></pre></div>
 <pre><code>##   id salini tiempemp expprev minoria     sexoraza
 ## 1  1  27000       98     144      No Blanca varón
 ## 2  2  18750       98      36      No Blanca varón
@@ -539,7 +542,7 @@ discriminación por cuestión de sexo o raza.</p>
 ## 6  6  13500       98      67      No Blanca varón</code></pre>
 <p>Hay opciones para considerar distintos criterios: <code>starts_with()</code>, <code>ends_with()</code>,
 <code>contains()</code>, <code>matches()</code>, <code>one_of()</code> (ver <em>?select</em>).</p>
-<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="manipulación-de-datos-con-dplyr.html#cb865-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(empleados, <span class="fu">starts_with</span>(<span class="st">&quot;s&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="manipulación-de-datos-con-dplyr.html#cb859-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">select</span>(empleados, <span class="fu">starts_with</span>(<span class="st">&quot;s&quot;</span>)))</span></code></pre></div>
 <pre><code>##     sexo salario salini     sexoraza
 ## 1 Hombre   57000  27000 Blanca varón
 ## 2 Hombre   40200  18750 Blanca varón
@@ -550,7 +553,7 @@ discriminación por cuestión de sexo o raza.</p>
 </div>
 <div id="generar-nuevas-variables-con-mutate" class="section level3" number="16.2.2">
 <h3><span class="header-section-number">D.2.2</span> Generar nuevas variables con <strong>mutate()</strong></h3>
-<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="manipulación-de-datos-con-dplyr.html#cb867-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">mutate</span>(emplea2, <span class="at">incsal =</span> salario <span class="sc">-</span> salini, <span class="at">tsal =</span> incsal<span class="sc">/</span>tiempemp ))</span></code></pre></div>
+<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="manipulación-de-datos-con-dplyr.html#cb861-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">mutate</span>(emplea2, <span class="at">incsal =</span> salario <span class="sc">-</span> salini, <span class="at">tsal =</span> incsal<span class="sc">/</span>tiempemp ))</span></code></pre></div>
 <pre><code>##   id   sexo minoria tiempemp salini salario incsal      tsal
 ## 1  1 Hombre      No       98  27000   57000  30000 306.12245
 ## 2  2 Hombre      No       98  18750   40200  21450 218.87755
@@ -564,7 +567,7 @@ discriminación por cuestión de sexo o raza.</p>
 <h2><span class="header-section-number">D.3</span> Operaciones con casos (filas)</h2>
 <div id="seleccionar-casos-con-filter" class="section level3" number="16.3.1">
 <h3><span class="header-section-number">D.3.1</span> Seleccionar casos con <strong>filter()</strong></h3>
-<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="manipulación-de-datos-con-dplyr.html#cb869-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">filter</span>(emplea2, sexo <span class="sc">==</span> <span class="st">&quot;Mujer&quot;</span>, minoria <span class="sc">==</span> <span class="st">&quot;Sí&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="manipulación-de-datos-con-dplyr.html#cb863-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">filter</span>(emplea2, sexo <span class="sc">==</span> <span class="st">&quot;Mujer&quot;</span>, minoria <span class="sc">==</span> <span class="st">&quot;Sí&quot;</span>))</span></code></pre></div>
 <pre><code>##   id  sexo minoria tiempemp salini salario
 ## 1 14 Mujer      Sí       98  16800   35100
 ## 2 23 Mujer      Sí       97  11100   24000
@@ -575,7 +578,7 @@ discriminación por cuestión de sexo o raza.</p>
 </div>
 <div id="organizar-casos-con-arrange" class="section level3" number="16.3.2">
 <h3><span class="header-section-number">D.3.2</span> Organizar casos con <strong>arrange()</strong></h3>
-<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="manipulación-de-datos-con-dplyr.html#cb871-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">arrange</span>(emplea2, salario))</span></code></pre></div>
+<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="manipulación-de-datos-con-dplyr.html#cb865-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">arrange</span>(emplea2, salario))</span></code></pre></div>
 <pre><code>##    id  sexo minoria tiempemp salini salario
 ## 1 378 Mujer      No       70  10200   15750
 ## 2 338 Mujer      No       74  10200   15900
@@ -583,7 +586,7 @@ discriminación por cuestión de sexo o raza.</p>
 ## 4 224 Mujer      No       82  10200   16200
 ## 5 411 Mujer      No       68  10200   16200
 ## 6 448 Mujer      Sí       66  10200   16350</code></pre>
-<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="manipulación-de-datos-con-dplyr.html#cb873-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">arrange</span>(emplea2, <span class="fu">desc</span>(salini), salario))</span></code></pre></div>
+<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="manipulación-de-datos-con-dplyr.html#cb867-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">arrange</span>(emplea2, <span class="fu">desc</span>(salini), salario))</span></code></pre></div>
 <pre><code>##    id   sexo minoria tiempemp salini salario
 ## 1  29 Hombre      No       96  79980  135000
 ## 2 343 Hombre      No       73  60000  103500
@@ -595,13 +598,13 @@ discriminación por cuestión de sexo o raza.</p>
 </div>
 <div id="resumir-valores-con-summarise" class="section level2" number="16.4">
 <h2><span class="header-section-number">D.4</span> Resumir valores con <strong>summarise()</strong></h2>
-<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="manipulación-de-datos-con-dplyr.html#cb875-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(empleados, <span class="at">sal.med =</span> <span class="fu">mean</span>(salario), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="manipulación-de-datos-con-dplyr.html#cb869-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(empleados, <span class="at">sal.med =</span> <span class="fu">mean</span>(salario), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>##    sal.med   n
 ## 1 34419.57 474</code></pre>
 </div>
 <div id="agrupar-casos-con-group_by" class="section level2" number="16.5">
 <h2><span class="header-section-number">D.5</span> Agrupar casos con <strong>group_by()</strong></h2>
-<div class="sourceCode" id="cb877"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb877-1"><a href="manipulación-de-datos-con-dplyr.html#cb877-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(empleados, sexo, minoria), <span class="at">sal.med =</span> <span class="fu">mean</span>(salario), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb871-1"><a href="manipulación-de-datos-con-dplyr.html#cb871-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(empleados, sexo, minoria), <span class="at">sal.med =</span> <span class="fu">mean</span>(salario), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 4
 ## # Groups:   sexo [2]
 ##   sexo   minoria sal.med     n
@@ -617,9 +620,9 @@ discriminación por cuestión de sexo o raza.</p>
 <code>segundo(primero(datos))</code> se traduce en <code>datos %&gt;% primero %&gt;% segundo</code>
 (lectura de funciones de izquierda a derecha).</p>
 <p>Ejemplos:</p>
-<div class="sourceCode" id="cb879"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb879-1"><a href="manipulación-de-datos-con-dplyr.html#cb879-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(catlab <span class="sc">==</span> <span class="st">&quot;Directivo&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb879-2"><a href="manipulación-de-datos-con-dplyr.html#cb879-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">group_by</span>(sexo, minoria) <span class="sc">%&gt;%</span></span>
-<span id="cb879-3"><a href="manipulación-de-datos-con-dplyr.html#cb879-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">sal.med =</span> <span class="fu">mean</span>(salario), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="manipulación-de-datos-con-dplyr.html#cb873-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(catlab <span class="sc">==</span> <span class="st">&quot;Directivo&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb873-2"><a href="manipulación-de-datos-con-dplyr.html#cb873-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">group_by</span>(sexo, minoria) <span class="sc">%&gt;%</span></span>
+<span id="cb873-3"><a href="manipulación-de-datos-con-dplyr.html#cb873-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">sal.med =</span> <span class="fu">mean</span>(salario), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 4
 ## # Groups:   sexo [2]
 ##   sexo   minoria sal.med     n
@@ -627,13 +630,13 @@ discriminación por cuestión de sexo o raza.</p>
 ## 1 Hombre No       65684.    70
 ## 2 Hombre Sí       76038.     4
 ## 3 Mujer  No       47214.    10</code></pre>
-<div class="sourceCode" id="cb881"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb881-1"><a href="manipulación-de-datos-con-dplyr.html#cb881-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(sexo, catlab, salario) <span class="sc">%&gt;%</span></span>
-<span id="cb881-2"><a href="manipulación-de-datos-con-dplyr.html#cb881-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(catlab <span class="sc">!=</span> <span class="st">&quot;Seguridad&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb881-3"><a href="manipulación-de-datos-con-dplyr.html#cb881-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">group_by</span>(catlab) <span class="sc">%&gt;%</span></span>
-<span id="cb881-4"><a href="manipulación-de-datos-con-dplyr.html#cb881-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">saldif =</span> salario <span class="sc">-</span> <span class="fu">mean</span>(salario)) <span class="sc">%&gt;%</span></span>
-<span id="cb881-5"><a href="manipulación-de-datos-con-dplyr.html#cb881-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb881-6"><a href="manipulación-de-datos-con-dplyr.html#cb881-6" aria-hidden="true" tabindex="-1"></a>          <span class="fu">boxplot</span>(saldif <span class="sc">~</span> sexo<span class="sc">*</span><span class="fu">droplevels</span>(catlab), <span class="at">data =</span> .)</span>
-<span id="cb881-7"><a href="manipulación-de-datos-con-dplyr.html#cb881-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="manipulación-de-datos-con-dplyr.html#cb875-1" aria-hidden="true" tabindex="-1"></a>empleados <span class="sc">%&gt;%</span> <span class="fu">select</span>(sexo, catlab, salario) <span class="sc">%&gt;%</span></span>
+<span id="cb875-2"><a href="manipulación-de-datos-con-dplyr.html#cb875-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(catlab <span class="sc">!=</span> <span class="st">&quot;Seguridad&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb875-3"><a href="manipulación-de-datos-con-dplyr.html#cb875-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">group_by</span>(catlab) <span class="sc">%&gt;%</span></span>
+<span id="cb875-4"><a href="manipulación-de-datos-con-dplyr.html#cb875-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">saldif =</span> salario <span class="sc">-</span> <span class="fu">mean</span>(salario)) <span class="sc">%&gt;%</span></span>
+<span id="cb875-5"><a href="manipulación-de-datos-con-dplyr.html#cb875-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb875-6"><a href="manipulación-de-datos-con-dplyr.html#cb875-6" aria-hidden="true" tabindex="-1"></a>          <span class="fu">boxplot</span>(saldif <span class="sc">~</span> sexo<span class="sc">*</span><span class="fu">droplevels</span>(catlab), <span class="at">data =</span> .)</span>
+<span id="cb875-7"><a href="manipulación-de-datos-con-dplyr.html#cb875-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="24-dplyr_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <hr />
 <p>Para mas información sobre <em>dplyr</em> ver por ejemplo la ‘vignette’ del paquete:<br />

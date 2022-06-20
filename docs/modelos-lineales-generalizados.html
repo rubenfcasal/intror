@@ -21,10 +21,12 @@
   <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
   
 
-<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Javier Roca-Pardiñas (roca@uvigo.es)" />
+<meta name="author" content="Julián Costa Bouzas (julian.costa@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +35,7 @@
   
 <link rel="prev" href="modelos-lineales.html"/>
 <link rel="next" href="regresión-no-paramétrica.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,6 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="E.2" data-path="compañías-que-usan-r.html"><a href="compañías-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.2</b> RStudio</a></li>
 </ul></li>
 <li class="divider"></li>
+<li><a>ISBN: 978-84-09-41823-7</a></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
@@ -461,7 +464,7 @@ En los modelos lineales generalizados se introduce una función invertible <em>g
 <div id="ajuste-función-glm" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> Ajuste: función <code>glm</code></h2>
 <p>Para el ajuste (estimación de los parámetros) de un modelo lineal generalizado a un conjunto de datos (por máxima verosimilitud) se emplea la función <code>glm</code>:</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="modelos-lineales-generalizados.html#cb640-1" aria-hidden="true" tabindex="-1"></a>ajuste <span class="ot">&lt;-</span> <span class="fu">glm</span>(formula, <span class="at">family =</span> gaussian, datos, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="modelos-lineales-generalizados.html#cb636-1" aria-hidden="true" tabindex="-1"></a>ajuste <span class="ot">&lt;-</span> <span class="fu">glm</span>(formula, <span class="at">family =</span> gaussian, datos, ...)</span></code></pre></div>
 <p>El parámetro <code>family</code> indica la distribución y el link. Por ejemplo:</p>
 <ul>
 <li><p><code>gaussian(link = "identity")</code>, <code>gaussian(link = "log")</code></p></li>
@@ -479,8 +482,8 @@ también para este tipo de modelos: <code>summary</code>, <code>coef</code>, <co
 <div id="ejemplo-2" class="section level3" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Ejemplo</h3>
 <p>Como ejemplo emplearemos los datos de clientes de la compañía de distribución industrial (Compañía Hair, Anderson y Tatham).</p>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="modelos-lineales-generalizados.html#cb641-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/hatco.RData&quot;</span>)</span>
-<span id="cb641-2"><a href="modelos-lineales-generalizados.html#cb641-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">attr</span>(hatco, <span class="st">&quot;variable.labels&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="modelos-lineales-generalizados.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/hatco.RData&quot;</span>)</span>
+<span id="cb637-2"><a href="modelos-lineales-generalizados.html#cb637-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">attr</span>(hatco, <span class="st">&quot;variable.labels&quot;</span>))</span></code></pre></div>
 <pre><code>##          attr(hatco, &quot;variable.labels&quot;)
 ## empresa                         Empresa
 ## tamano             Tamaño de la empresa
@@ -501,15 +504,15 @@ también para este tipo de modelos: <code>summary</code>, <code>coef</code>, <co
 <p>Consideraremos como respuesta la variable <em>nsatisfa</em> y como variables explicativas
 el resto de variables continuas menos <em>fidelida</em> y <em>satisfac</em>.
 Eliminamos también la última fila por tener datos faltantes (realmente no sería necesario).</p>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="modelos-lineales-generalizados.html#cb643-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> hatco[<span class="sc">-</span><span class="dv">100</span>, <span class="fu">c</span>(<span class="dv">6</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">16</span>)]</span>
-<span id="cb643-2"><a href="modelos-lineales-generalizados.html#cb643-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(datos, <span class="at">pch =</span> <span class="fu">as.numeric</span>(datos<span class="sc">$</span>nsatisfa), <span class="at">col =</span> <span class="fu">as.numeric</span>(datos<span class="sc">$</span>nsatisfa))</span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="modelos-lineales-generalizados.html#cb639-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> hatco[<span class="sc">-</span><span class="dv">100</span>, <span class="fu">c</span>(<span class="dv">6</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">16</span>)]</span>
+<span id="cb639-2"><a href="modelos-lineales-generalizados.html#cb639-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(datos, <span class="at">pch =</span> <span class="fu">as.numeric</span>(datos<span class="sc">$</span>nsatisfa), <span class="at">col =</span> <span class="fu">as.numeric</span>(datos<span class="sc">$</span>nsatisfa))</span></code></pre></div>
 <p><img src="09-ModelosGLM_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="ajuste-de-un-modelo-de-regresión-logística" class="section level3" number="9.2.2">
 <h3><span class="header-section-number">9.2.2</span> Ajuste de un modelo de regresión logística</h3>
 <p>Se emplea la función <code>glm</code> seleccionando <code>family = binomial</code> (la función de enlace por defecto será <em>logit</em>):</p>
-<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="modelos-lineales-generalizados.html#cb644-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">glm</span>(nsatisfa <span class="sc">~</span> velocida <span class="sc">+</span> imgfabri , <span class="at">family =</span> binomial, <span class="at">data =</span> datos)</span>
-<span id="cb644-2"><a href="modelos-lineales-generalizados.html#cb644-2" aria-hidden="true" tabindex="-1"></a>modelo</span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="modelos-lineales-generalizados.html#cb640-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">glm</span>(nsatisfa <span class="sc">~</span> velocida <span class="sc">+</span> imgfabri , <span class="at">family =</span> binomial, <span class="at">data =</span> datos)</span>
+<span id="cb640-2"><a href="modelos-lineales-generalizados.html#cb640-2" aria-hidden="true" tabindex="-1"></a>modelo</span></code></pre></div>
 <pre><code>## 
 ## Call:  glm(formula = nsatisfa ~ velocida + imgfabri, family = binomial, 
 ##     data = datos)
@@ -523,17 +526,17 @@ Eliminamos también la última fila por tener datos faltantes (realmente no ser�
 ## Residual Deviance: 88.64     AIC: 94.64</code></pre>
 <p>La razón de ventajas (OR) permite cuantificar el efecto de las variables explicativas en la respuesta
 (Incremento proporcional en la ventaja o probabilidad de éxito, al aumentar una unidad la variable manteniendo las demás fijas):</p>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="modelos-lineales-generalizados.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(modelo))  <span class="co"># Razones de ventajas (&quot;odds ratios&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="modelos-lineales-generalizados.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(modelo))  <span class="co"># Razones de ventajas (&quot;odds ratios&quot;)</span></span></code></pre></div>
 <pre><code>##  (Intercept)     velocida     imgfabri 
 ## 3.997092e-05 3.329631e+00 2.881619e+00</code></pre>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="modelos-lineales-generalizados.html#cb648-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(modelo))</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="modelos-lineales-generalizados.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(modelo))</span></code></pre></div>
 <pre><code>## Waiting for profiling to be done...</code></pre>
 <pre><code>##                    2.5 %      97.5 %
 ## (Intercept) 3.828431e-07 0.001621259
 ## velocida    2.061302e+00 5.976208357
 ## imgfabri    1.737500e+00 5.247303813</code></pre>
 <p>Para obtener un resumen más completo del ajuste también se utiliza <code>summary()</code></p>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="modelos-lineales-generalizados.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="modelos-lineales-generalizados.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = nsatisfa ~ velocida + imgfabri, family = binomial, 
@@ -561,8 +564,8 @@ Eliminamos también la última fila por tener datos faltantes (realmente no ser�
 <p>La desvianza (deviance) es una medida de la bondad del ajuste de un modelo lineal generalizado (sería equivalente a la suma de cuadrados residual de un modelo lineal; valores más altos indican peor ajuste). La <em>Null deviance</em> se correspondería con un modelo solo con la constante y la <em>Residual deviance</em> con el modelo ajustado.
 En este caso hay una reducción de 47.78 con una pérdida de 2 grados de libertad (una reducción significativa).</p>
 <p>Para contrastar globalmente el efecto de las covariables también podemos emplear:</p>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="modelos-lineales-generalizados.html#cb653-1" aria-hidden="true" tabindex="-1"></a>modelo.null <span class="ot">&lt;-</span> <span class="fu">glm</span>(nsatisfa <span class="sc">~</span> <span class="dv">1</span>, binomial, datos)</span>
-<span id="cb653-2"><a href="modelos-lineales-generalizados.html#cb653-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo.null, modelo, <span class="at">test =</span> <span class="st">&quot;Chi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="modelos-lineales-generalizados.html#cb649-1" aria-hidden="true" tabindex="-1"></a>modelo.null <span class="ot">&lt;-</span> <span class="fu">glm</span>(nsatisfa <span class="sc">~</span> <span class="dv">1</span>, binomial, datos)</span>
+<span id="cb649-2"><a href="modelos-lineales-generalizados.html#cb649-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo.null, modelo, <span class="at">test =</span> <span class="st">&quot;Chi&quot;</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
 ## Model 1: nsatisfa ~ 1
@@ -577,17 +580,17 @@ En este caso hay una reducción de 47.78 con una pérdida de 2 grados de liberta
 <div id="predicción-1" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> Predicción</h2>
 <p>Las predicciones se obtienen también con la función <code>predict</code>:</p>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="modelos-lineales-generalizados.html#cb655-1" aria-hidden="true" tabindex="-1"></a>p.est <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="modelos-lineales-generalizados.html#cb651-1" aria-hidden="true" tabindex="-1"></a>p.est <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <p>El parámetro <code>type = "response"</code> permite calcular las probabilidades estimadas de la segunda categoría.</p>
 <p>Podríamos obtener una tabla de clasificación:</p>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="modelos-lineales-generalizados.html#cb656-1" aria-hidden="true" tabindex="-1"></a>cat.est <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(p.est <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
-<span id="cb656-2"><a href="modelos-lineales-generalizados.html#cb656-2" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>nsatisfa, cat.est)</span>
-<span id="cb656-3"><a href="modelos-lineales-generalizados.html#cb656-3" aria-hidden="true" tabindex="-1"></a>tabla</span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="modelos-lineales-generalizados.html#cb652-1" aria-hidden="true" tabindex="-1"></a>cat.est <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(p.est <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb652-2"><a href="modelos-lineales-generalizados.html#cb652-2" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>nsatisfa, cat.est)</span>
+<span id="cb652-3"><a href="modelos-lineales-generalizados.html#cb652-3" aria-hidden="true" tabindex="-1"></a>tabla</span></code></pre></div>
 <pre><code>##       cat.est
 ##         0  1
 ##   bajo 44 10
 ##   alto  7 38</code></pre>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="modelos-lineales-generalizados.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">prop.table</span>(tabla), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="modelos-lineales-generalizados.html#cb654-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">prop.table</span>(tabla), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##       cat.est
 ##           0    1
 ##   bajo 44.4 10.1
@@ -598,8 +601,8 @@ En este caso hay una reducción de 47.78 con una pérdida de 2 grados de liberta
 <h2><span class="header-section-number">9.4</span> Selección de variables explicativas</h2>
 <p>El objetivo sería conseguir un buen ajuste con el menor número de variables explicativas posible.</p>
 <p>Para actualizar un modelo (p.e. eliminando o añadiendo variables) se puede emplear la función <code>update</code>:</p>
-<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="modelos-lineales-generalizados.html#cb660-1" aria-hidden="true" tabindex="-1"></a>modelo.completo <span class="ot">&lt;-</span> <span class="fu">glm</span>(nsatisfa <span class="sc">~</span> . , <span class="at">family =</span> binomial, <span class="at">data =</span> datos)</span>
-<span id="cb660-2"><a href="modelos-lineales-generalizados.html#cb660-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo.completo)</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="modelos-lineales-generalizados.html#cb656-1" aria-hidden="true" tabindex="-1"></a>modelo.completo <span class="ot">&lt;-</span> <span class="fu">glm</span>(nsatisfa <span class="sc">~</span> . , <span class="at">family =</span> binomial, <span class="at">data =</span> datos)</span>
+<span id="cb656-2"><a href="modelos-lineales-generalizados.html#cb656-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo.completo)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = nsatisfa ~ ., family = binomial, data = datos)
@@ -628,8 +631,8 @@ En este caso hay una reducción de 47.78 con una pérdida de 2 grados de liberta
 ## AIC: 76.807
 ## 
 ## Number of Fisher Scoring iterations: 7</code></pre>
-<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="modelos-lineales-generalizados.html#cb662-1" aria-hidden="true" tabindex="-1"></a>modelo.reducido <span class="ot">&lt;-</span> <span class="fu">update</span>(modelo.completo, . <span class="sc">~</span> . <span class="sc">-</span> calidadp)</span>
-<span id="cb662-2"><a href="modelos-lineales-generalizados.html#cb662-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo.reducido)</span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="modelos-lineales-generalizados.html#cb658-1" aria-hidden="true" tabindex="-1"></a>modelo.reducido <span class="ot">&lt;-</span> <span class="fu">update</span>(modelo.completo, . <span class="sc">~</span> . <span class="sc">-</span> calidadp)</span>
+<span id="cb658-2"><a href="modelos-lineales-generalizados.html#cb658-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo.reducido)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = nsatisfa ~ velocida + precio + flexprec + imgfabri + 
@@ -667,10 +670,9 @@ proporciona una herramienta equivalente (<code>bestglm()</code>).</p>
 <h3><span class="header-section-number">9.4.1</span> Selección por pasos</h3>
 <p>La función <code>stepwise</code> del paquete <code>RcmdrMisc</code> (interfaz de <code>stepAIC</code> del paquete <code>MASS</code>)
 permite seleccionar el modelo por pasos según criterio AIC o BIC:</p>
-<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="modelos-lineales-generalizados.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb664-2"><a href="modelos-lineales-generalizados.html#cb664-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RcmdrMisc)</span></code></pre></div>
-<pre><code>## Warning: package &#39;RcmdrMisc&#39; was built under R version 4.1.1</code></pre>
-<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="modelos-lineales-generalizados.html#cb666-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">stepwise</span>(modelo.completo, <span class="at">direction=</span><span class="st">&#39;backward/forward&#39;</span>, <span class="at">criterion=</span><span class="st">&#39;BIC&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="modelos-lineales-generalizados.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb660-2"><a href="modelos-lineales-generalizados.html#cb660-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RcmdrMisc)</span>
+<span id="cb660-3"><a href="modelos-lineales-generalizados.html#cb660-3" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">stepwise</span>(modelo.completo, <span class="at">direction=</span><span class="st">&#39;backward/forward&#39;</span>, <span class="at">criterion=</span><span class="st">&#39;BIC&#39;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Direction:  backward/forward
 ## Criterion:  BIC 
@@ -728,7 +730,7 @@ permite seleccionar el modelo por pasos según criterio AIC o BIC:</p>
 ## - flexprec  1   83.663 102.044
 ## - imgfabri  1   85.208 103.588
 ## - velocida  1   89.641 108.021</code></pre>
-<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="modelos-lineales-generalizados.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="modelos-lineales-generalizados.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = nsatisfa ~ velocida + precio + flexprec + imgfabri, 
@@ -762,27 +764,27 @@ permite seleccionar el modelo por pasos según criterio AIC o BIC:</p>
 <div id="gráficas-básicas-de-diagnóstico-1" class="section level3" number="9.5.1">
 <h3><span class="header-section-number">9.5.1</span> Gráficas básicas de diagnóstico</h3>
 <p>Con la función <code>plot</code> se pueden generar gráficos de interés para la diagnosis del modelo:</p>
-<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="modelos-lineales-generalizados.html#cb670-1" aria-hidden="true" tabindex="-1"></a>oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>( <span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb670-2"><a href="modelos-lineales-generalizados.html#cb670-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="modelos-lineales-generalizados.html#cb664-1" aria-hidden="true" tabindex="-1"></a>oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>( <span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb664-2"><a href="modelos-lineales-generalizados.html#cb664-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo)</span></code></pre></div>
 <p><img src="09-ModelosGLM_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="modelos-lineales-generalizados.html#cb671-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(oldpar)</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="modelos-lineales-generalizados.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(oldpar)</span></code></pre></div>
 <p>Aunque su interpretación difiere un poco de la de los modelos lineales…</p>
 </div>
 <div id="gráficos-parciales-de-residuos-1" class="section level3" number="9.5.2">
 <h3><span class="header-section-number">9.5.2</span> Gráficos parciales de residuos</h3>
 <p>Se pueden generar gráficos parciales de residuos (p.e. <code>crPlots()</code> del paquete <code>car</code>):</p>
-<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="modelos-lineales-generalizados.html#cb672-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
-<span id="cb672-2"><a href="modelos-lineales-generalizados.html#cb672-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="modelos-lineales-generalizados.html#cb666-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
+<span id="cb666-2"><a href="modelos-lineales-generalizados.html#cb666-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(modelo)</span></code></pre></div>
 <p><img src="09-ModelosGLM_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 <div id="estadísticos-1" class="section level3" number="9.5.3">
 <h3><span class="header-section-number">9.5.3</span> Estadísticos</h3>
 <p>Se pueden emplear las mismas funciones vistas en los modelos lineales para obtener medidas de diagnosis de interés (ver <code>help(influence.measures)</code>). Por ejemplo:</p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="modelos-lineales-generalizados.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residuals</span>(model, <span class="at">type =</span> <span class="st">&quot;deviance&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="modelos-lineales-generalizados.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residuals</span>(model, <span class="at">type =</span> <span class="st">&quot;deviance&quot;</span>) </span></code></pre></div>
 <p>proporciona los residuos deviance.</p>
 <p>En general, muchas de las herramientas para modelos lineales son también válidas para estos modelos. Por ejemplo:</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="modelos-lineales-generalizados.html#cb674-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
-<span id="cb674-2"><a href="modelos-lineales-generalizados.html#cb674-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="modelos-lineales-generalizados.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
+<span id="cb668-2"><a href="modelos-lineales-generalizados.html#cb668-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(modelo)</span></code></pre></div>
 <pre><code>## velocida   precio flexprec imgfabri 
 ## 2.088609 2.653934 2.520042 1.930409</code></pre>
 </div>

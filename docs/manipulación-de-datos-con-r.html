@@ -21,10 +21,12 @@
   <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
   
 
-<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Javier Roca-Pardiñas (roca@uvigo.es)" />
+<meta name="author" content="Julián Costa Bouzas (julian.costa@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +35,7 @@
   
 <link rel="prev" href="gráficos.html"/>
 <link rel="next" href="análisis-exploratorio-de-datos.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,6 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="E.2" data-path="compañías-que-usan-r.html"><a href="compañías-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.2</b> RStudio</a></li>
 </ul></li>
 <li class="divider"></li>
+<li><a>ISBN: 978-84-09-41823-7</a></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
@@ -472,15 +475,15 @@ importar datos externos en múltiples formatos:</p>
 <p>El formato de archivo en el que habitualmente se almacena objetos (datos)
 R es binario y está comprimido (en formato <code>"gzip"</code> por defecto).
 Para cargar un fichero de datos se emplea normalmente <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load"><code>load()</code></a>:</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="manipulación-de-datos-con-r.html#cb281-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
-<span id="cb281-2"><a href="manipulación-de-datos-con-r.html#cb281-2" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="manipulación-de-datos-con-r.html#cb282-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb282-2"><a href="manipulación-de-datos-con-r.html#cb282-2" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
 <pre><code>## [1] &quot;empleados&quot;</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="manipulación-de-datos-con-r.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="manipulación-de-datos-con-r.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
 <pre><code>##  [1] &quot;citefig&quot;   &quot;citefig2&quot;  &quot;empleados&quot; &quot;fig.path&quot;  &quot;inline&quot;    &quot;inline2&quot;  
 ##  [7] &quot;is_html&quot;   &quot;is_latex&quot;  &quot;latexfig&quot;  &quot;res&quot;</code></pre>
 <p>y para guardar <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save"><code>save()</code></a>:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="manipulación-de-datos-con-r.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar</span></span>
-<span id="cb285-2"><a href="manipulación-de-datos-con-r.html#cb285-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(empleados, <span class="at">file =</span> <span class="st">&quot;datos/empleados_new.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="manipulación-de-datos-con-r.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar</span></span>
+<span id="cb286-2"><a href="manipulación-de-datos-con-r.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(empleados, <span class="at">file =</span> <span class="st">&quot;datos/empleados_new.RData&quot;</span>)</span></code></pre></div>
 <p>El objeto empleado normalmente en R para almacenar datos en memoria
 es el <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame"><code>data.frame</code></a>.</p>
 </div>
@@ -499,10 +502,10 @@ y <code>?cars</code> muestra la ayuda correspondiente con la descripición de la
 <p>En R para leer archivos de texto se suele utilizar la función <code>read.table()</code>.
 Supóngase, por ejemplo, que en el directorio actual está el fichero
 <em>empleados.txt</em>. La lectura de este fichero vendría dada por el código:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="manipulación-de-datos-con-r.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Session &gt; Set Working Directory &gt; To Source...?</span></span>
-<span id="cb286-2"><a href="manipulación-de-datos-con-r.html#cb286-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;datos/empleados.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb286-3"><a href="manipulación-de-datos-con-r.html#cb286-3" aria-hidden="true" tabindex="-1"></a><span class="co"># head(datos)</span></span>
-<span id="cb286-4"><a href="manipulación-de-datos-con-r.html#cb286-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="manipulación-de-datos-con-r.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Session &gt; Set Working Directory &gt; To Source...?</span></span>
+<span id="cb287-2"><a href="manipulación-de-datos-con-r.html#cb287-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;datos/empleados.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb287-3"><a href="manipulación-de-datos-con-r.html#cb287-3" aria-hidden="true" tabindex="-1"></a><span class="co"># head(datos)</span></span>
+<span id="cb287-4"><a href="manipulación-de-datos-con-r.html#cb287-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    474 obs. of  10 variables:
 ##  $ id      : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ sexo    : chr  &quot;Hombre&quot; &quot;Hombre&quot; &quot;Mujer&quot; &quot;Mujer&quot; ...
@@ -532,14 +535,14 @@ por “,” se utiliza <code>dec = ","</code></p></li>
 </ul>
 <p>Resumiendo, los (principales) argumentos por defecto de la función
 <code>read.table</code> son los que se muestran en la siguiente línea:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="manipulación-de-datos-con-r.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)  </span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="manipulación-de-datos-con-r.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)  </span></code></pre></div>
 <p>Para más detalles sobre esta función véase
 <code>help(read.table)</code>.</p>
 <p>Estan disponibles otras funciones con valores por defecto de los parámetros
 adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores
 se puede utilizar <code>read.delim()</code> o <code>read.delim2()</code>:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="manipulación-de-datos-con-r.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.delim</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)</span>
-<span id="cb289-2"><a href="manipulación-de-datos-con-r.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.delim2</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="manipulación-de-datos-con-r.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.delim</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb290-2"><a href="manipulación-de-datos-con-r.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.delim2</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 </div>
 <div id="alternativa-tidyverse" class="section level3" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Alternativa <code>tidyverse</code></h3>
@@ -558,10 +561,10 @@ se necesita:</p>
 <li><p>utilizar la función <code>read.spss</code></p></li>
 </ul>
 <p>Por ejemplo:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="manipulación-de-datos-con-r.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
-<span id="cb290-2"><a href="manipulación-de-datos-con-r.html#cb290-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="at">file =</span> <span class="st">&quot;datos/Employee data.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb290-3"><a href="manipulación-de-datos-con-r.html#cb290-3" aria-hidden="true" tabindex="-1"></a><span class="co"># head(datos)</span></span>
-<span id="cb290-4"><a href="manipulación-de-datos-con-r.html#cb290-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="manipulación-de-datos-con-r.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb291-2"><a href="manipulación-de-datos-con-r.html#cb291-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="at">file =</span> <span class="st">&quot;datos/Employee data.sav&quot;</span>, <span class="at">to.data.frame =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb291-3"><a href="manipulación-de-datos-con-r.html#cb291-3" aria-hidden="true" tabindex="-1"></a><span class="co"># head(datos)</span></span>
+<span id="cb291-4"><a href="manipulación-de-datos-con-r.html#cb291-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    474 obs. of  10 variables:
 ##  $ id      : num  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ sexo    : Factor w/ 2 levels &quot;Hombre&quot;,&quot;Mujer&quot;: 1 1 2 2 1 1 1 2 2 2 ...
@@ -596,15 +599,15 @@ archivo CSV. De esta forma se guardarán los datos en el archivo
 editar con Notepad), con cabecera, las columnas separadas por “;” y
 siendo “,” el carácter decimal.</p></li>
 <li><p>Por lo tanto, la lectura de este fichero se puede hacer con:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="manipulación-de-datos-con-r.html#cb292-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;coches.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="manipulación-de-datos-con-r.html#cb293-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;coches.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div></li>
 </ul>
 <p>Otra posibilidad es utilizar la función <code>read.csv2</code>, que es
 una adaptación de la función general <code>read.table</code> con las siguientes
 opciones:</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="manipulación-de-datos-con-r.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv2</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="manipulación-de-datos-con-r.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv2</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 <p>Por lo tanto, la lectura del fichero <em>coches.csv</em> se puede hacer de modo
 más directo con:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="manipulación-de-datos-con-r.html#cb294-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;coches.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="manipulación-de-datos-con-r.html#cb295-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">&quot;coches.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exportación-de-datos" class="section level3" number="4.1.7">
 <h3><span class="header-section-number">4.1.7</span> Exportación de datos</h3>
@@ -614,19 +617,19 @@ ello, se puede emplear la función <code>write.table()</code>. Esta función es
 similar, pero funcionando en sentido inverso, a <code>read.table()</code>
 (Sección <a href="manipulación-de-datos-con-r.html#cap4-texto">4.1.3</a>).</p>
 <p>Veamos un ejemplo:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="manipulación-de-datos-con-r.html#cb295-1" aria-hidden="true" tabindex="-1"></a>tipo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
-<span id="cb295-2"><a href="manipulación-de-datos-con-r.html#cb295-2" aria-hidden="true" tabindex="-1"></a>longitud <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">120.34</span>, <span class="fl">99.45</span>, <span class="fl">115.67</span>)</span>
-<span id="cb295-3"><a href="manipulación-de-datos-con-r.html#cb295-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(tipo, longitud)</span>
-<span id="cb295-4"><a href="manipulación-de-datos-con-r.html#cb295-4" aria-hidden="true" tabindex="-1"></a>datos</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="manipulación-de-datos-con-r.html#cb296-1" aria-hidden="true" tabindex="-1"></a>tipo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</span>
+<span id="cb296-2"><a href="manipulación-de-datos-con-r.html#cb296-2" aria-hidden="true" tabindex="-1"></a>longitud <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">120.34</span>, <span class="fl">99.45</span>, <span class="fl">115.67</span>)</span>
+<span id="cb296-3"><a href="manipulación-de-datos-con-r.html#cb296-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(tipo, longitud)</span>
+<span id="cb296-4"><a href="manipulación-de-datos-con-r.html#cb296-4" aria-hidden="true" tabindex="-1"></a>datos</span></code></pre></div>
 <pre><code>##   tipo longitud
 ## 1    A   120.34
 ## 2    B    99.45
 ## 3    C   115.67</code></pre>
 <p>Para guardar el data.frame <code>datos</code> en un fichero de texto se
 puede utilizar:</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="manipulación-de-datos-con-r.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(datos, <span class="at">file =</span> <span class="st">&quot;datos.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="manipulación-de-datos-con-r.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(datos, <span class="at">file =</span> <span class="st">&quot;datos.txt&quot;</span>)</span></code></pre></div>
 <p>Otra posibilidad es utilizar la función:</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="manipulación-de-datos-con-r.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(datos, <span class="at">file =</span> <span class="st">&quot;datos.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="manipulación-de-datos-con-r.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(datos, <span class="at">file =</span> <span class="st">&quot;datos.csv&quot;</span>)</span></code></pre></div>
 <p>que dará lugar al fichero <em>datos.csv</em> importable directamente desde Excel.</p>
 </div>
 </div>
@@ -656,9 +659,9 @@ tratamiento de datos:</p>
 <h4><span class="header-section-number">4.2.1.1</span> Creación (y eliminación) de variables</h4>
 <p>Consideremos de nuevo la
 base de datos <code>cars</code> incluida en el paquete <code>datasets</code>:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="manipulación-de-datos-con-r.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cars)</span>
-<span id="cb299-2"><a href="manipulación-de-datos-con-r.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="co"># str(cars)</span></span>
-<span id="cb299-3"><a href="manipulación-de-datos-con-r.html#cb299-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="manipulación-de-datos-con-r.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cars)</span>
+<span id="cb300-2"><a href="manipulación-de-datos-con-r.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="co"># str(cars)</span></span>
+<span id="cb300-3"><a href="manipulación-de-datos-con-r.html#cb300-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code></pre></div>
 <pre><code>##   speed dist
 ## 1     4    2
 ## 2     4   10
@@ -676,10 +679,10 @@ variables:</p>
 <p>Recordemos que, para acceder a la variable <code>speed</code> se puede
 hacer directamente con su nombre o bien utilizando notación
 “matricial.”</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="manipulación-de-datos-con-r.html#cb301-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>speed</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="manipulación-de-datos-con-r.html#cb302-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>speed</span></code></pre></div>
 <pre><code>##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
 ## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="manipulación-de-datos-con-r.html#cb303-1" aria-hidden="true" tabindex="-1"></a>cars[, <span class="dv">1</span>]  <span class="co"># Equivalente</span></span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="manipulación-de-datos-con-r.html#cb304-1" aria-hidden="true" tabindex="-1"></a>cars[, <span class="dv">1</span>]  <span class="co"># Equivalente</span></span></code></pre></div>
 <pre><code>##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
 ## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25</code></pre>
 <p>Supongamos ahora que queremos transformar la variable original <code>speed</code>
@@ -687,11 +690,11 @@ hacer directamente con su nombre o bien utilizando notación
 hora) y añadir esta nueva variable al data.frame <code>cars</code>.
 La transformación que permite pasar millas a kilómetros es
 <code>kilómetros=millas/0.62137</code> que en R se hace directamente con:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="manipulación-de-datos-con-r.html#cb305-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>speed<span class="sc">/</span><span class="fl">0.62137</span></span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="manipulación-de-datos-con-r.html#cb306-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>speed<span class="sc">/</span><span class="fl">0.62137</span></span></code></pre></div>
 <p>Finalmente, incluimos la nueva variable que llamaremos
 <code>velocidad</code> en <code>cars</code>:</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="manipulación-de-datos-con-r.html#cb306-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>velocidad <span class="ot">&lt;-</span> cars<span class="sc">$</span>speed <span class="sc">/</span> <span class="fl">0.62137</span></span>
-<span id="cb306-2"><a href="manipulación-de-datos-con-r.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="manipulación-de-datos-con-r.html#cb307-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>velocidad <span class="ot">&lt;-</span> cars<span class="sc">$</span>speed <span class="sc">/</span> <span class="fl">0.62137</span></span>
+<span id="cb307-2"><a href="manipulación-de-datos-con-r.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code></pre></div>
 <pre><code>##   speed dist velocidad
 ## 1     4    2  6.437388
 ## 2     4   10  6.437388
@@ -702,8 +705,8 @@ La transformación que permite pasar millas a kilómetros es
 <p>También transformaremos la variable <code>dist</code> (en pies) en una nueva
 variable <code>distancia</code> (en metros). Ahora la transformación deseada es
 <code>metros=pies/3.2808</code>:</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="manipulación-de-datos-con-r.html#cb308-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>distancia <span class="ot">&lt;-</span> cars<span class="sc">$</span>dis <span class="sc">/</span> <span class="fl">3.2808</span></span>
-<span id="cb308-2"><a href="manipulación-de-datos-con-r.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="manipulación-de-datos-con-r.html#cb309-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>distancia <span class="ot">&lt;-</span> cars<span class="sc">$</span>dis <span class="sc">/</span> <span class="fl">3.2808</span></span>
+<span id="cb309-2"><a href="manipulación-de-datos-con-r.html#cb309-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code></pre></div>
 <pre><code>##   speed dist velocidad distancia
 ## 1     4    2  6.437388 0.6096074
 ## 2     4   10  6.437388 3.0480371
@@ -715,20 +718,20 @@ variable <code>distancia</code> (en metros). Ahora la transformación deseada es
 <code>dist</code>, y guardaremos el data.frame resultante con el nombre <code>coches</code>.
 En primer lugar, veamos varias formas de acceder a las variables de
 interés:</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="manipulación-de-datos-con-r.html#cb310-1" aria-hidden="true" tabindex="-1"></a>cars[, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]</span>
-<span id="cb310-2"><a href="manipulación-de-datos-con-r.html#cb310-2" aria-hidden="true" tabindex="-1"></a>cars[, <span class="fu">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]</span>
-<span id="cb310-3"><a href="manipulación-de-datos-con-r.html#cb310-3" aria-hidden="true" tabindex="-1"></a>cars[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="manipulación-de-datos-con-r.html#cb311-1" aria-hidden="true" tabindex="-1"></a>cars[, <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]</span>
+<span id="cb311-2"><a href="manipulación-de-datos-con-r.html#cb311-2" aria-hidden="true" tabindex="-1"></a>cars[, <span class="fu">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]</span>
+<span id="cb311-3"><a href="manipulación-de-datos-con-r.html#cb311-3" aria-hidden="true" tabindex="-1"></a>cars[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</span></code></pre></div>
 <p>Utilizando alguna de las opciones anteriores se obtiene el <code>data.frame</code>
 deseado:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="manipulación-de-datos-con-r.html#cb311-1" aria-hidden="true" tabindex="-1"></a>coches <span class="ot">&lt;-</span> cars[, <span class="fu">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]</span>
-<span id="cb311-2"><a href="manipulación-de-datos-con-r.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="co"># head(coches)</span></span>
-<span id="cb311-3"><a href="manipulación-de-datos-con-r.html#cb311-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(coches)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="manipulación-de-datos-con-r.html#cb312-1" aria-hidden="true" tabindex="-1"></a>coches <span class="ot">&lt;-</span> cars[, <span class="fu">c</span>(<span class="st">&quot;velocidad&quot;</span>, <span class="st">&quot;distancia&quot;</span>)]</span>
+<span id="cb312-2"><a href="manipulación-de-datos-con-r.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="co"># head(coches)</span></span>
+<span id="cb312-3"><a href="manipulación-de-datos-con-r.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(coches)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    50 obs. of  2 variables:
 ##  $ velocidad: num  6.44 6.44 11.27 11.27 12.87 ...
 ##  $ distancia: num  0.61 3.05 1.22 6.71 4.88 ...</code></pre>
 <p>Finalmente los datos anteriores podrían ser guardados en un fichero
 exportable a Excel con el siguiente comando:</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="manipulación-de-datos-con-r.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(coches, <span class="at">file =</span> <span class="st">&quot;coches.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="manipulación-de-datos-con-r.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(coches, <span class="at">file =</span> <span class="st">&quot;coches.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="operaciones-con-casos" class="section level3" number="4.2.2">
@@ -743,21 +746,21 @@ los valores de <code>dist</code>. Para ello utilizaremos el conocido como vector
 Este vector establece el orden en que tienen que ser elegidos los
 elementos para obtener la ordenación deseada.
 Veamos un ejemplo sencillo:</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="manipulación-de-datos-con-r.html#cb314-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">4.3</span>, <span class="fl">1.2</span>, <span class="fl">3.1</span>, <span class="fl">5.0</span>) <span class="co"># valores originales</span></span>
-<span id="cb314-2"><a href="manipulación-de-datos-con-r.html#cb314-2" aria-hidden="true" tabindex="-1"></a>ii <span class="ot">&lt;-</span> <span class="fu">order</span>(x)</span>
-<span id="cb314-3"><a href="manipulación-de-datos-con-r.html#cb314-3" aria-hidden="true" tabindex="-1"></a>ii    <span class="co"># vector de ordenación</span></span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="manipulación-de-datos-con-r.html#cb315-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">4.3</span>, <span class="fl">1.2</span>, <span class="fl">3.1</span>, <span class="fl">5.0</span>) <span class="co"># valores originales</span></span>
+<span id="cb315-2"><a href="manipulación-de-datos-con-r.html#cb315-2" aria-hidden="true" tabindex="-1"></a>ii <span class="ot">&lt;-</span> <span class="fu">order</span>(x)</span>
+<span id="cb315-3"><a href="manipulación-de-datos-con-r.html#cb315-3" aria-hidden="true" tabindex="-1"></a>ii    <span class="co"># vector de ordenación</span></span></code></pre></div>
 <pre><code>## [1] 3 1 4 2 5</code></pre>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="manipulación-de-datos-con-r.html#cb316-1" aria-hidden="true" tabindex="-1"></a>x[ii] <span class="co"># valores ordenados</span></span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="manipulación-de-datos-con-r.html#cb317-1" aria-hidden="true" tabindex="-1"></a>x[ii] <span class="co"># valores ordenados</span></span></code></pre></div>
 <pre><code>## [1] 1.2 2.5 3.1 4.3 5.0</code></pre>
 <p>En el caso de vectores, el procedimiento anterior se podría
 hacer directamente con:</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="manipulación-de-datos-con-r.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="manipulación-de-datos-con-r.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(x)</span></code></pre></div>
 <p>Sin embargo, para ordenar data.frames será necesario la utilización del
 vector de índices de ordenación. A continuación, los datos de <code>cars</code>
 ordenados por <code>dist</code>:</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="manipulación-de-datos-con-r.html#cb319-1" aria-hidden="true" tabindex="-1"></a>ii <span class="ot">&lt;-</span> <span class="fu">order</span>(cars<span class="sc">$</span>dist) <span class="co"># Vector de índices de ordenación</span></span>
-<span id="cb319-2"><a href="manipulación-de-datos-con-r.html#cb319-2" aria-hidden="true" tabindex="-1"></a>cars2 <span class="ot">&lt;-</span> cars[ii, ]    <span class="co"># Datos ordenados por dist</span></span>
-<span id="cb319-3"><a href="manipulación-de-datos-con-r.html#cb319-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars2)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="manipulación-de-datos-con-r.html#cb320-1" aria-hidden="true" tabindex="-1"></a>ii <span class="ot">&lt;-</span> <span class="fu">order</span>(cars<span class="sc">$</span>dist) <span class="co"># Vector de índices de ordenación</span></span>
+<span id="cb320-2"><a href="manipulación-de-datos-con-r.html#cb320-2" aria-hidden="true" tabindex="-1"></a>cars2 <span class="ot">&lt;-</span> cars[ii, ]    <span class="co"># Datos ordenados por dist</span></span>
+<span id="cb320-3"><a href="manipulación-de-datos-con-r.html#cb320-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars2)</span></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 1      4    2  6.437388 0.6096074
 ## 3      7    4 11.265430 1.2192148
@@ -773,48 +776,48 @@ elegir una submuestra que cumpla determinadas condiciones. Para ello se
 puede utilizar la función <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset"><code>subset()</code></a>
 (que además permite seleccionar variables).</p>
 <p>A continuación se muestran un par de ejemplos:</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="manipulación-de-datos-con-r.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(cars, dist <span class="sc">&gt;</span> <span class="dv">85</span>) <span class="co"># datos con dis&gt;85</span></span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="manipulación-de-datos-con-r.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(cars, dist <span class="sc">&gt;</span> <span class="dv">85</span>) <span class="co"># datos con dis&gt;85</span></span></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 47    24   92  38.62433  28.04194
 ## 48    24   93  38.62433  28.34674
 ## 49    24  120  38.62433  36.57644</code></pre>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="manipulación-de-datos-con-r.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(cars, speed <span class="sc">&gt;</span> <span class="dv">10</span> <span class="sc">&amp;</span> speed <span class="sc">&lt;</span> <span class="dv">15</span> <span class="sc">&amp;</span> dist <span class="sc">&gt;</span> <span class="dv">45</span>) <span class="co"># speed en (10,15) y dist&gt;45</span></span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="manipulación-de-datos-con-r.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(cars, speed <span class="sc">&gt;</span> <span class="dv">10</span> <span class="sc">&amp;</span> speed <span class="sc">&lt;</span> <span class="dv">15</span> <span class="sc">&amp;</span> dist <span class="sc">&gt;</span> <span class="dv">45</span>) <span class="co"># speed en (10,15) y dist&gt;45</span></span></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 19    13   46  20.92151  14.02097
 ## 22    14   60  22.53086  18.28822
 ## 23    14   80  22.53086  24.38430</code></pre>
 <p>También se pueden hacer el filtrado empleando directamente los
 correspondientes vectores de índices:</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="manipulación-de-datos-con-r.html#cb325-1" aria-hidden="true" tabindex="-1"></a>ii <span class="ot">&lt;-</span> cars<span class="sc">$</span>dist <span class="sc">&gt;</span> <span class="dv">85</span></span>
-<span id="cb325-2"><a href="manipulación-de-datos-con-r.html#cb325-2" aria-hidden="true" tabindex="-1"></a>cars[ii, ]   <span class="co"># dis&gt;85</span></span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="manipulación-de-datos-con-r.html#cb326-1" aria-hidden="true" tabindex="-1"></a>ii <span class="ot">&lt;-</span> cars<span class="sc">$</span>dist <span class="sc">&gt;</span> <span class="dv">85</span></span>
+<span id="cb326-2"><a href="manipulación-de-datos-con-r.html#cb326-2" aria-hidden="true" tabindex="-1"></a>cars[ii, ]   <span class="co"># dis&gt;85</span></span></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 47    24   92  38.62433  28.04194
 ## 48    24   93  38.62433  28.34674
 ## 49    24  120  38.62433  36.57644</code></pre>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="manipulación-de-datos-con-r.html#cb327-1" aria-hidden="true" tabindex="-1"></a>ii <span class="ot">&lt;-</span> cars<span class="sc">$</span>speed <span class="sc">&gt;</span> <span class="dv">10</span> <span class="sc">&amp;</span> cars<span class="sc">$</span>speed <span class="sc">&lt;</span> <span class="dv">15</span> <span class="sc">&amp;</span> cars<span class="sc">$</span>dist <span class="sc">&gt;</span> <span class="dv">45</span></span>
-<span id="cb327-2"><a href="manipulación-de-datos-con-r.html#cb327-2" aria-hidden="true" tabindex="-1"></a>cars[ii, ]  <span class="co"># speed en (10,15) y dist&gt;45</span></span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="manipulación-de-datos-con-r.html#cb328-1" aria-hidden="true" tabindex="-1"></a>ii <span class="ot">&lt;-</span> cars<span class="sc">$</span>speed <span class="sc">&gt;</span> <span class="dv">10</span> <span class="sc">&amp;</span> cars<span class="sc">$</span>speed <span class="sc">&lt;</span> <span class="dv">15</span> <span class="sc">&amp;</span> cars<span class="sc">$</span>dist <span class="sc">&gt;</span> <span class="dv">45</span></span>
+<span id="cb328-2"><a href="manipulación-de-datos-con-r.html#cb328-2" aria-hidden="true" tabindex="-1"></a>cars[ii, ]  <span class="co"># speed en (10,15) y dist&gt;45</span></span></code></pre></div>
 <pre><code>##    speed dist velocidad distancia
 ## 19    13   46  20.92151  14.02097
 ## 22    14   60  22.53086  18.28822
 ## 23    14   80  22.53086  24.38430</code></pre>
 <p>En este caso puede ser de utilidad la función <a href="https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which"><code>which()</code></a>:</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="manipulación-de-datos-con-r.html#cb329-1" aria-hidden="true" tabindex="-1"></a>it <span class="ot">&lt;-</span> <span class="fu">which</span>(ii)</span>
-<span id="cb329-2"><a href="manipulación-de-datos-con-r.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(it)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="manipulación-de-datos-con-r.html#cb330-1" aria-hidden="true" tabindex="-1"></a>it <span class="ot">&lt;-</span> <span class="fu">which</span>(ii)</span>
+<span id="cb330-2"><a href="manipulación-de-datos-con-r.html#cb330-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(it)</span></code></pre></div>
 <pre><code>##  int [1:3] 19 22 23</code></pre>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="manipulación-de-datos-con-r.html#cb331-1" aria-hidden="true" tabindex="-1"></a>cars[it, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="manipulación-de-datos-con-r.html#cb332-1" aria-hidden="true" tabindex="-1"></a>cars[it, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##    speed dist
 ## 19    13   46
 ## 22    14   60
 ## 23    14   80</code></pre>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="manipulación-de-datos-con-r.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rownames(cars[it, 1:2])</span></span>
-<span id="cb333-2"><a href="manipulación-de-datos-con-r.html#cb333-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb333-3"><a href="manipulación-de-datos-con-r.html#cb333-3" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span>ii)</span>
-<span id="cb333-4"><a href="manipulación-de-datos-con-r.html#cb333-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cars[id, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="manipulación-de-datos-con-r.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rownames(cars[it, 1:2])</span></span>
+<span id="cb334-2"><a href="manipulación-de-datos-con-r.html#cb334-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb334-3"><a href="manipulación-de-datos-con-r.html#cb334-3" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span>ii)</span>
+<span id="cb334-4"><a href="manipulación-de-datos-con-r.html#cb334-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cars[id, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    47 obs. of  2 variables:
 ##  $ speed: num  4 4 7 7 8 9 10 10 10 11 ...
 ##  $ dist : num  2 10 4 22 16 10 18 26 34 17 ...</code></pre>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="manipulación-de-datos-con-r.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed</span></span>
-<span id="cb335-2"><a href="manipulación-de-datos-con-r.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?which.min</span></span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="manipulación-de-datos-con-r.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se podría p.e. emplear cars[id, ] para predecir cars[it, ]$speed</span></span>
+<span id="cb336-2"><a href="manipulación-de-datos-con-r.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?which.min</span></span></code></pre></div>
 
 </div>
 </div>

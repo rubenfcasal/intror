@@ -6,6 +6,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Introducción al Análisis de Datos con R</a></li>
       after: |
+        <li><a>ISBN: 978-84-09-41823-7</a></li>
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
     edit: https://github.com/rubenfcasal/intror/edit/master/%s
     sharing:

@@ -37,7 +37,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={Introducción al Análisis de Datos con R},
-  pdfauthor={Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo},
+  pdfauthor={Rubén Fernández Casal (ruben.fcasal@udc.es); Javier Roca-Pardiñas (roca@uvigo.es); Julián Costa Bouzas (julian.costa@udc.es); Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -110,7 +110,21 @@
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
 \usepackage{amsthm}
+\usepackage[a4paper, top=3.25cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}
 %\usepackage{animate}
+%\usepackage{fontspec}
+%\setmainfont{Arial}
+% Espacio después de teorema
+% https://tex.stackexchange.com/questions/37797/theorem-environment-line-break-after-label
+\newtheoremstyle{break}
+  {\topsep}{\topsep}%
+  {\itshape}{}%
+  {\bfseries}{}%
+  {\newline}%
+  {}%
+
+\theoremstyle{break}
+
 \ifxetex
   \usepackage{polyglossia}
   \setmainlanguage{spanish}
@@ -122,7 +136,7 @@
   \usepackage[spanish,es-tabla]{babel}
 \fi
 \makeatletter
-\def\thm@space@setup{%
+\def\thm@space@setup{
   \thm@preskip=8pt plus 2pt minus 4pt
   \thm@postskip=\thm@preskip
 }
@@ -134,8 +148,8 @@
 \bibliographystyle{apalike}
 
 \title{Introducción al Análisis de Datos con \texttt{R}}
-\author{Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo}
-\date{2022-05-19}
+\author{Rubén Fernández Casal (\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}}) \and Javier Roca-Pardiñas (\href{mailto:roca@uvigo.es}{\nolinkurl{roca@uvigo.es}}) \and Julián Costa Bouzas (\href{mailto:julian.costa@udc.es}{\nolinkurl{julian.costa@udc.es}}) \and Manuel Oviedo de la Fuente (\href{mailto:manuel.oviedo@udc.es}{\nolinkurl{manuel.oviedo@udc.es}})}
+\date{Edición: Junio de 2022. Impresión: 2022-06-20. ISBN: 978-84-09-41823-7}
 
 \begin{document}
 \maketitle
@@ -192,6 +206,22 @@ Este obra está bajo una licencia de \href{https://creativecommons.org/licenses/
 (esperamos poder liberarlo bajo una licencia menos restrictiva más adelante\ldots).
 
 \includegraphics[width=1.22in]{by-nc-nd-88x31}
+
+Para citar este libro se puede emplear la referencia:
+
+Fernández-Casal R., Roca-Pardiñas J., Costa J. y Oviedo-de la Fuente M. (2022). \emph{Introducción al Análisis de Datos con R}. ISBN: 978-84-09-41823-7. \url{https://rubenfcasal.github.io/intror}.
+
+También puede resultar de utilidad la siguiente entrada BibTeX:
+
+\begin{verbatim}
+@book{fernandezetal2022,
+    title        = {Introducción al Análisis de Datos con R},
+    author       = {Fernández-Casal, R.; Roca-Pardiñas, J.; Costa, J.;Oviedo-de la Fuente, M.},
+    year         = {2022},
+    note         = {ISBN 978-84-09-41823-7},
+    url          = {https://rubenfcasal.github.io/intror/}
+}
+\end{verbatim}
 
 \hypertarget{introducciuxf3n}{%
 \chapter{Introducción}\label{introducciuxf3n}}
@@ -663,7 +693,7 @@ siguiente código
 
 \begin{verbatim}
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   97.72  103.75  105.17  105.05  106.31  110.22
+##   99.37  103.36  105.07  104.97  106.37  111.15
 \end{verbatim}
 
 \begin{Shaded}
@@ -1307,7 +1337,7 @@ A continuación se obtiene una simulación de 10 lanzamientos de un dado
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 6 1 6 6 3 3 1 1 6
+##  [1] 1 6 2 3 3 1 2 6 4 5
 \end{verbatim}
 
 Para simular el lanzamiento de una moneda podemos escribir
@@ -1363,8 +1393,8 @@ Para simular el lanzamiento de una moneda podemos escribir
 \end{Shaded}
 
 \begin{verbatim}
-## cara cara cara cruz cruz cruz cara cruz cara cruz 
-##    1    1    1    0    0    0    1    0    1    0
+## cara cruz cruz cara cruz cruz cruz cruz cruz cruz 
+##    1    0    0    1    0    0    0    0    0    0
 \end{verbatim}
 
 \begin{Shaded}
@@ -1376,7 +1406,7 @@ Para simular el lanzamiento de una moneda podemos escribir
 \begin{verbatim}
 ## lanz
 ## 0 1 
-## 5 5
+## 8 2
 \end{verbatim}
 
 Otros ejemplos
@@ -1388,8 +1418,8 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  2.26853690 -1.45346455  0.07766315  0.23820643  0.05970954 -0.19272789
-##  [7] -1.24967078 -1.71636815 -0.58777929 -0.19720622
+##  [1]  0.8270889  0.4193440 -0.1962943 -0.7439787  2.4990090  1.2134150
+##  [7]  1.8154623  1.9213110  2.3284604  1.6449086
 \end{verbatim}
 
 \begin{Shaded}
@@ -1399,8 +1429,8 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 5.192119 6.035982 8.925135 6.961173 4.818124 3.337485 6.972300 6.938785
-##  [9] 8.077564 8.570907 4.478581 4.371811 3.872954 3.860248 8.282871
+##  [1] 3.110629 9.782394 3.352017 7.827904 4.119838 6.720995 4.428090 8.024008
+##  [9] 9.913126 8.774884 2.865199 3.358302 7.611230 5.505256 6.289807
 \end{verbatim}
 
 El lector puede utilizar la función \texttt{help()} para obtener la ayuda de las funciones
@@ -5969,15 +5999,6 @@ y selecciona el mejor (\texttt{nbest=1}).
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(leaps)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'leaps' was built under R version 4.1.1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{regsubsets}\NormalTok{(fidelida }\SpecialCharTok{\textasciitilde{}}\NormalTok{ . , }\AttributeTok{data =}\NormalTok{ datos)}
 \FunctionTok{summary}\NormalTok{(res)}
 \end{Highlighting}
@@ -6090,15 +6111,6 @@ que facilita su uso:
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(MASS)}
 \FunctionTok{library}\NormalTok{(RcmdrMisc)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'RcmdrMisc' was built under R version 4.1.1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{modelo }\OtherTok{\textless{}{-}} \FunctionTok{stepwise}\NormalTok{(modelo.completo, }\AttributeTok{direction =} \StringTok{"forward/backward"}\NormalTok{, }\AttributeTok{criterion =} \StringTok{"BIC"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -6750,10 +6762,6 @@ el resto de variables continuas menos \emph{satisfac}.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning: package 'glmnet' was built under R version 4.1.1
-\end{verbatim}
-
 El paquete \texttt{glmnet} no emplea formulación de modelos, hay que establecer la respuesta
 \texttt{y} y las variables explicativas \texttt{x} (se puede emplear la función \texttt{model.matrix()} para construir \texttt{x},
 la matriz de diseño, a partir de una fórmula).
@@ -6801,7 +6809,7 @@ En este caso el parámetro sería:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.749868
+## [1] 3.635163
 \end{verbatim}
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -6814,15 +6822,15 @@ y el modelo resultante contiene todas las variables explicativas:
 
 \begin{verbatim}
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                    s1
-## (Intercept) 2.4799000
-## velocida    1.6053747
-## precio      0.7733925
-## flexprec    2.4462308
-## imgfabri    0.2837000
-## servconj    3.9801496
-## imgfvent    1.1232130
-## calidadp    0.1245096
+##                     s1
+## (Intercept) 5.26333438
+## velocida    1.58051175
+## precio      0.70395775
+## flexprec    2.24798481
+## imgfabri    0.31897738
+## servconj    3.76988236
+## imgfvent    1.07304993
+## calidadp    0.06641356
 \end{verbatim}
 
 \hypertarget{lasso}{%
@@ -7361,15 +7369,6 @@ permite seleccionar el modelo por pasos según criterio AIC o BIC:
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(MASS)}
 \FunctionTok{library}\NormalTok{(RcmdrMisc)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'RcmdrMisc' was built under R version 4.1.1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{modelo }\OtherTok{\textless{}{-}} \FunctionTok{stepwise}\NormalTok{(modelo.completo, }\AttributeTok{direction=}\StringTok{\textquotesingle{}backward/forward\textquotesingle{}}\NormalTok{, }\AttributeTok{criterion=}\StringTok{\textquotesingle{}BIC\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -7870,8 +7869,8 @@ La función \texttt{gam.check} realiza una diagnosis del modelo:
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
 ##                k'  edf k-index p-value
-## s(income)    9.00 3.12    0.98    0.34
-## s(education) 9.00 3.18    1.03    0.54
+## s(income)    9.00 3.12    0.98    0.40
+## s(education) 9.00 3.18    1.03    0.49
 \end{verbatim}
 
 Lo ideal sería observar normalidad en los dos gráficos de la izquierda, falta de patrón en el superior derecho, y ajuste a una recta en el inferior derecho. En este caso parece que el modelo se comporta adecuadamente.
@@ -8258,7 +8257,7 @@ contenido:
 ## function(a1, r, n) {
 ##         a1 * r^(n - 1)
 ##       }
-## <bytecode: 0x000000001e2160d0>
+## <bytecode: 0x000000001a2dfee0>
 \end{verbatim}
 
 \hypertarget{salida}{%
@@ -8456,7 +8455,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##    1    2    3    4    5    6 
-## 0.09 0.17 0.23 0.18 0.14 0.19
+## 0.17 0.20 0.12 0.18 0.21 0.12
 \end{verbatim}
 
 \begin{Shaded}
@@ -8470,7 +8469,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##     1     2     3     4     5     6 
-## 0.150 0.162 0.164 0.174 0.196 0.154
+## 0.178 0.164 0.154 0.156 0.162 0.186
 \end{verbatim}
 
 \begin{Shaded}
@@ -8484,7 +8483,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##      1      2      3      4      5      6 
-## 0.1677 0.1648 0.1708 0.1550 0.1702 0.1715
+## 0.1634 0.1738 0.1620 0.1699 0.1646 0.1663
 \end{verbatim}
 
 Se puede comprobar que al aumentar el valor de \(n\) las frecuencias se

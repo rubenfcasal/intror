@@ -1,7 +1,11 @@
 --- 
 title: "Introducción al Análisis de Datos con `R`"
-author: "Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo"
-date: "`r Sys.Date()`"
+author: 
+  - "Rubén Fernández Casal (ruben.fcasal@udc.es)"  
+  - "Javier Roca-Pardiñas (roca@uvigo.es)"
+  - "Julián Costa Bouzas (julian.costa@udc.es)"
+  - "Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)"
+date: "Edición: Junio de 2022. Impresión: `r Sys.Date()`. ISBN: 978-84-09-41823-7"
 output: bookdown::gitbook
 site: bookdown::bookdown_site
 documentclass: book
@@ -62,6 +66,22 @@ Este obra está bajo una licencia de [Creative Commons Reconocimiento-NoComercia
 ```{r echo=FALSE}
 # ![](by-nc-nd-88x31.png)
 knitr::include_graphics("by-nc-nd-88x31.png")
+```
+
+Para citar este libro se puede emplear la referencia:
+
+Fernández-Casal R., Roca-Pardiñas J., Costa J. y Oviedo-de la Fuente M. (2022). *Introducción al Análisis de Datos con R*. ISBN: 978-84-09-41823-7. [https://rubenfcasal.github.io/intror](https://rubenfcasal.github.io/intror).
+
+También puede resultar de utilidad la siguiente entrada BibTeX:
+
+```
+@book{fernandezetal2022,
+    title        = {Introducción al Análisis de Datos con R},
+    author       = {Fernández-Casal, R.; Roca-Pardiñas, J.; Costa, J.;Oviedo-de la Fuente, M.},
+    year         = {2022},
+    note         = {ISBN 978-84-09-41823-7},
+    url          = {https://rubenfcasal.github.io/intror/}
+}
 ```
 
 

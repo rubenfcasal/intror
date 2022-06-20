@@ -49,3 +49,21 @@ Este obra está bajo una licencia de [Creative Commons Reconocimiento-NoComercia
 (esperamos poder liberarlo bajo una licencia menos restrictiva más adelante...).
 
 ![](https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png)
+
+Para citar este libro se puede emplear la referencia:
+
+Fernández-Casal R., Roca-Pardiñas J., Costa J. y Oviedo-de la Fuente M. (2022). *Introducción al Análisis de Datos con R*. ISBN: 978-84-09-41823-7. [https://rubenfcasal.github.io/intror](https://rubenfcasal.github.io/intror).
+
+También puede resultar de utilidad la siguiente entrada BibTeX:
+
+```
+@book{fernandezetal2022,
+    title        = {Introducción al Análisis de Datos con R},
+    author       = {Fernández-Casal, R.; Roca-Pardiñas, J.; Costa, J.;Oviedo-de la Fuente, M.},
+    year         = {2022},
+    note         = {ISBN 978-84-09-41823-7},
+    url          = {https://rubenfcasal.github.io/intror/}
+}
+```
+
+

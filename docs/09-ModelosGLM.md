@@ -317,13 +317,6 @@ permite seleccionar el modelo por pasos según criterio AIC o BIC:
 ```r
 library(MASS)
 library(RcmdrMisc)
-```
-
-```
-## Warning: package 'RcmdrMisc' was built under R version 4.1.1
-```
-
-```r
 modelo <- stepwise(modelo.completo, direction='backward/forward', criterion='BIC')
 ```
 

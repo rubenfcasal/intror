@@ -274,8 +274,8 @@ gam.check(modelo)
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
 ##                k'  edf k-index p-value
-## s(income)    9.00 3.12    0.98    0.34
-## s(education) 9.00 3.18    1.03    0.54
+## s(income)    9.00 3.12    0.98    0.40
+## s(education) 9.00 3.18    1.03    0.49
 ```
 Lo ideal sería observar normalidad en los dos gráficos de la izquierda, falta de patrón en el superior derecho, y ajuste a una recta en el inferior derecho. En este caso parece que el modelo se comporta adecuadamente.
 

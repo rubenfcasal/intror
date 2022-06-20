@@ -21,10 +21,12 @@
   <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
   
 
-<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Javier Roca-Pardiñas (roca@uvigo.es)" />
+<meta name="author" content="Julián Costa Bouzas (julian.costa@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +35,7 @@
   
 <link rel="prev" href="estructuras-de-datos.html"/>
 <link rel="next" href="manipulación-de-datos-con-r.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,6 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="E.2" data-path="compañías-que-usan-r.html"><a href="compañías-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.2</b> RStudio</a></li>
 </ul></li>
 <li class="divider"></li>
+<li><a>ISBN: 978-84-09-41823-7</a></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
@@ -477,8 +480,8 @@ pasen como argumento actuará de modo distinto.</p>
 hará directamente el conocido como <strong>gráfico de dispersión</strong> que
 representa en un sistema coordenado los pares de valores <span class="math inline">\((x,y)\)</span>.</p>
 <p>Por ejemplo, utilizando el siguiente código</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="gráficos.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cars)</span>
-<span id="cb266-2"><a href="gráficos.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist)    <span class="co"># otra posibilidad plot(cars)</span></span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="gráficos.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cars)</span>
+<span id="cb267-2"><a href="gráficos.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist)    <span class="co"># otra posibilidad plot(cars)</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cars1"></span>
 <img src="03-Graficos_files/figure-html/cars1-1.png" alt="Gráfico de dispersión de distancia frente a velocidad" width="70%" />
 <p class="caption">
@@ -515,14 +518,14 @@ añadiendo parámetros gráficos al comando:</p>
 <code>bg</code> | color de relleno (para <code>pch = 21:25</code>)</p>
 <p>Para obtener ayuda sobre estos parámetros ejecutar <code>help(par)</code>.</p>
 <p>Veamos algún ejemplo:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="gráficos.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">xlab =</span> <span class="st">&quot;velocidad&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;distancia&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Título&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="gráficos.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">xlab =</span> <span class="st">&quot;velocidad&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;distancia&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Título&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cars2"></span>
 <img src="03-Graficos_files/figure-html/cars2-1.png" alt="Gráfico de dispersión de distancia frente a velocidad, especificando título y etiquetas de los ejes" width="70%" />
 <p class="caption">
 Figura 3.2: Gráfico de dispersión de distancia frente a velocidad, especificando título y etiquetas de los ejes
 </p>
 </div>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="gráficos.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">main =</span> <span class="st">&#39;pch=16&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="gráficos.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">main =</span> <span class="st">&#39;pch=16&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cars3"></span>
 <img src="03-Graficos_files/figure-html/cars3-1.png" alt="Gráfico de dispersión de distancia frente a velocidad, cambiando el color y el tipo de símbolo" width="70%" />
 <p class="caption">
@@ -590,27 +593,27 @@ Figura 3.3: Gráfico de dispersión de distancia frente a velocidad, cambiando e
 </div>
 <div id="ejemplos-1" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Ejemplos</h2>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="gráficos.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
-<span id="cb269-2"><a href="gráficos.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">40</span>), <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># líneas horizontales discontinuas (lty=2)</span></span>
-<span id="cb269-3"><a href="gráficos.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="co"># selecciona puntos y los dibuja en azul sólido</span></span>
-<span id="cb269-4"><a href="gráficos.html#cb269-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">subset</span>(cars, dist <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> dist <span class="sc">&lt;</span> <span class="dv">40</span>), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="gráficos.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
+<span id="cb270-2"><a href="gráficos.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">40</span>), <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># líneas horizontales discontinuas (lty=2)</span></span>
+<span id="cb270-3"><a href="gráficos.html#cb270-3" aria-hidden="true" tabindex="-1"></a><span class="co"># selecciona puntos y los dibuja en azul sólido</span></span>
+<span id="cb270-4"><a href="gráficos.html#cb270-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">subset</span>(cars, dist <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> dist <span class="sc">&lt;</span> <span class="dv">40</span>), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>) </span></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="gráficos.html#cb270-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span> <span class="sc">*</span> pi, <span class="at">length =</span> <span class="dv">100</span>)</span>
-<span id="cb270-2"><a href="gráficos.html#cb270-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">cos</span>(x)</span>
-<span id="cb270-3"><a href="gráficos.html#cb270-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)</span>
-<span id="cb270-4"><a href="gráficos.html#cb270-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( x, y1, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">xlab =</span> <span class="st">&quot;[0,2pi]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Seno y Coseno&quot;</span>)</span>
-<span id="cb270-5"><a href="gráficos.html#cb270-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y2, <span class="at">col =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb270-6"><a href="gráficos.html#cb270-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pi, <span class="dv">0</span>, <span class="at">pch =</span> <span class="dv">17</span>, <span class="at">col =</span> <span class="dv">4</span>)</span>
-<span id="cb270-7"><a href="gráficos.html#cb270-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fu">c</span>(<span class="st">&quot;Coseno&quot;</span>, <span class="st">&quot;Seno&quot;</span>), <span class="at">col =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb270-8"><a href="gráficos.html#cb270-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb270-9"><a href="gráficos.html#cb270-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> pi, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb270-10"><a href="gráficos.html#cb270-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb270-11"><a href="gráficos.html#cb270-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pi, <span class="dv">0</span>, <span class="st">&quot;(pi,0)&quot;</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="gráficos.html#cb271-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span> <span class="sc">*</span> pi, <span class="at">length =</span> <span class="dv">100</span>)</span>
+<span id="cb271-2"><a href="gráficos.html#cb271-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">cos</span>(x)</span>
+<span id="cb271-3"><a href="gráficos.html#cb271-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)</span>
+<span id="cb271-4"><a href="gráficos.html#cb271-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( x, y1, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">xlab =</span> <span class="st">&quot;[0,2pi]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Seno y Coseno&quot;</span>)</span>
+<span id="cb271-5"><a href="gráficos.html#cb271-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y2, <span class="at">col =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb271-6"><a href="gráficos.html#cb271-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pi, <span class="dv">0</span>, <span class="at">pch =</span> <span class="dv">17</span>, <span class="at">col =</span> <span class="dv">4</span>)</span>
+<span id="cb271-7"><a href="gráficos.html#cb271-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fu">c</span>(<span class="st">&quot;Coseno&quot;</span>, <span class="st">&quot;Seno&quot;</span>), <span class="at">col =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb271-8"><a href="gráficos.html#cb271-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-9"><a href="gráficos.html#cb271-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> pi, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb271-10"><a href="gráficos.html#cb271-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb271-11"><a href="gráficos.html#cb271-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pi, <span class="dv">0</span>, <span class="st">&quot;(pi,0)&quot;</span>, <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Alternativamente se podría usar <code>curve()</code>:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="gráficos.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(cos, <span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, </span>
-<span id="cb271-2"><a href="gráficos.html#cb271-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">&quot;[0,2pi]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Seno y Coseno&quot;</span>)</span>
-<span id="cb271-3"><a href="gráficos.html#cb271-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(sin, <span class="at">col =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="gráficos.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(cos, <span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, </span>
+<span id="cb272-2"><a href="gráficos.html#cb272-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">&quot;[0,2pi]&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Seno y Coseno&quot;</span>)</span>
+<span id="cb272-3"><a href="gráficos.html#cb272-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(sin, <span class="at">col =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="parámetros-gráficos" class="section level2" number="3.4">
@@ -676,20 +679,20 @@ Algunas más de estas opciones son:</p>
 <p>En <code>R</code> se pueden
 hacer varios gráficos por ventana. Para ello, antes de ejecutar la
 función <code>plot</code>, se puede utilizar la función:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="gráficos.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(filas, columnas))</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="gráficos.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(filas, columnas))</span></code></pre></div>
 <p>Los gráficos se irán mostrando en pantalla por filas. En caso de que se
 quieran mostrar por columnas en la función anterior se sustituye <code>mfrow</code>
 por <code>mfcol</code>.</p>
 <p>Por ejemplo, con el siguiente código se obtiene el gráfico de la
 siguiente transparencia.</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="gráficos.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb273-2"><a href="gráficos.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">main =</span> <span class="st">&quot;pch = 1&quot;</span>)</span>
-<span id="cb273-3"><a href="gráficos.html#cb273-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;pch = 2&quot;</span>)</span>
-<span id="cb273-4"><a href="gráficos.html#cb273-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">3</span>, <span class="at">main =</span> <span class="st">&quot;pch = 3&quot;</span>)</span>
-<span id="cb273-5"><a href="gráficos.html#cb273-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb273-6"><a href="gráficos.html#cb273-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">main =</span> <span class="st">&quot;col = red&quot;</span>)</span>
-<span id="cb273-7"><a href="gráficos.html#cb273-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;col = blue&quot;</span>)</span>
-<span id="cb273-8"><a href="gráficos.html#cb273-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">col =</span> <span class="st">&quot;brown&quot;</span>, <span class="at">main =</span> <span class="st">&quot;col = brown&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="gráficos.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb274-2"><a href="gráficos.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">main =</span> <span class="st">&quot;pch = 1&quot;</span>)</span>
+<span id="cb274-3"><a href="gráficos.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;pch = 2&quot;</span>)</span>
+<span id="cb274-4"><a href="gráficos.html#cb274-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">pch =</span> <span class="dv">3</span>, <span class="at">main =</span> <span class="st">&quot;pch = 3&quot;</span>)</span>
+<span id="cb274-5"><a href="gráficos.html#cb274-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-6"><a href="gráficos.html#cb274-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">main =</span> <span class="st">&quot;col = red&quot;</span>)</span>
+<span id="cb274-7"><a href="gráficos.html#cb274-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;col = blue&quot;</span>)</span>
+<span id="cb274-8"><a href="gráficos.html#cb274-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars, <span class="at">col =</span> <span class="st">&quot;brown&quot;</span>, <span class="at">main =</span> <span class="st">&quot;col = brown&quot;</span>)</span></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Para estructuras gráficas más complicadas véase <code>help(layout)</code>.</p>
 </div>
@@ -699,15 +702,15 @@ siguiente transparencia.</p>
 Windows, se puede usar el menú <code>Archivo -&gt; Guardar como</code> de la ventana gráfica (seleccionando el formato deseado: bitmap, postscript,…) y también
 mediante código ejecutando <code>savePlot(filename, type)</code>.
 Alternativamente, se pueden emplear ficheros como dispositivos gráficos. Por ejemplo, a continuación guardamos un gráfico en el fichero <em>car.pdf</em>:</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="gráficos.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;cars.pdf&quot;</span>)   <span class="co"># abrimos el dispositivo gráfico</span></span>
-<span id="cb274-2"><a href="gráficos.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
-<span id="cb274-3"><a href="gráficos.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()         <span class="co"># cerramos el dispositivo</span></span></code></pre></div>
-<p>Con el siguiente código guardaremos el gráfico en formato jpeg:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="gráficos.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jgeg</span>(<span class="st">&quot;cars.jpg&quot;</span>)  <span class="co"># abrimos el dispositivo gráfico</span></span>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="gráficos.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;cars.pdf&quot;</span>)   <span class="co"># abrimos el dispositivo gráfico</span></span>
 <span id="cb275-2"><a href="gráficos.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
 <span id="cb275-3"><a href="gráficos.html#cb275-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()         <span class="co"># cerramos el dispositivo</span></span></code></pre></div>
+<p>Con el siguiente código guardaremos el gráfico en formato jpeg:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="gráficos.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jgeg</span>(<span class="st">&quot;cars.jpg&quot;</span>)  <span class="co"># abrimos el dispositivo gráfico</span></span>
+<span id="cb276-2"><a href="gráficos.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
+<span id="cb276-3"><a href="gráficos.html#cb276-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()         <span class="co"># cerramos el dispositivo</span></span></code></pre></div>
 <p>Otros formatos disponibles son <code>bmp</code>, <code>png</code> y <code>tiff</code>. Para más detalles ejecutar:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="gráficos.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(Devices)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="gráficos.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(Devices)</span></code></pre></div>
 </div>
 <div id="otras-librerías-gráficas" class="section level2" number="3.7">
 <h2><span class="header-section-number">3.7</span> Otras librerías gráficas</h2>
@@ -734,18 +737,18 @@ Alternativamente, se pueden emplear ficheros como dispositivos gráficos. Por ej
 <p>Para más detalles ver <a href="http://cran.r-project.org/web/views/Graphics.html">CRAN Task View: Graphics</a></p>
 <div id="ejemplos-2" class="section level3" number="3.7.1">
 <h3><span class="header-section-number">3.7.1</span> Ejemplos</h3>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="gráficos.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
-<span id="cb277-2"><a href="gráficos.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
-<span id="cb277-3"><a href="gráficos.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(<span class="fu">log</span>(salario) <span class="sc">~</span> <span class="fu">log</span>(salini) <span class="sc">|</span> sexoraza, <span class="at">data =</span> empleados)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="gráficos.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb278-2"><a href="gráficos.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
+<span id="cb278-3"><a href="gráficos.html#cb278-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(<span class="fu">log</span>(salario) <span class="sc">~</span> <span class="fu">log</span>(salini) <span class="sc">|</span> sexoraza, <span class="at">data =</span> empleados)</span></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="gráficos.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalente a xyplot(log(salario) ~ log(salini) | sexo*minoria, data = empleados)</span></span></code></pre></div>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="gráficos.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb279-2"><a href="gráficos.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(empleados, <span class="fu">aes</span>(<span class="fu">log</span>(salini), <span class="fu">log</span>(salario), <span class="at">col =</span> sexo)) <span class="sc">+</span></span>
-<span id="cb279-3"><a href="gráficos.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb279-4"><a href="gráficos.html#cb279-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="gráficos.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalente a xyplot(log(salario) ~ log(salini) | sexo*minoria, data = empleados)</span></span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="gráficos.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb280-2"><a href="gráficos.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(empleados, <span class="fu">aes</span>(<span class="fu">log</span>(salini), <span class="fu">log</span>(salario), <span class="at">col =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb280-3"><a href="gráficos.html#cb280-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb280-4"><a href="gráficos.html#cb280-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="gráficos.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(empleados, <span class="fu">aes</span>(salario, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
-<span id="cb280-2"><a href="gráficos.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span>.<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="gráficos.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(empleados, <span class="fu">aes</span>(salario, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb281-2"><a href="gráficos.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span>.<span class="dv">5</span>)</span></code></pre></div>
 <p><img src="03-Graficos_files/figure-html/unnamed-chunk-11-2.png" width="70%" style="display: block; margin: auto;" /></p>
 
 </div>

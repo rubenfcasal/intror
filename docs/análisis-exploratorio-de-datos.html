@@ -21,10 +21,12 @@
   <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
   
 
-<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Javier Roca-Pardiñas (roca@uvigo.es)" />
+<meta name="author" content="Julián Costa Bouzas (julian.costa@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +35,7 @@
   
 <link rel="prev" href="manipulación-de-datos-con-r.html"/>
 <link rel="next" href="inferencia-estadística.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,6 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="E.2" data-path="compañías-que-usan-r.html"><a href="compañías-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.2</b> RStudio</a></li>
 </ul></li>
 <li class="divider"></li>
+<li><a>ISBN: 978-84-09-41823-7</a></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
@@ -467,8 +470,8 @@ mismos que faciliten su análisis mediante procedimientos que permitan:</p>
 <h3><span class="header-section-number">5.1.1</span> Datos de ejemplo</h3>
 <p>El fichero <em>empleados.RData</em> contiene datos de empleados de un banco que utilizaremos,
 entre otros, a modo de ejemplo.</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="análisis-exploratorio-de-datos.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
-<span id="cb336-2"><a href="análisis-exploratorio-de-datos.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Etiquetas =</span> <span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>))  <span class="co"># Listamos las etiquetas</span></span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="análisis-exploratorio-de-datos.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb337-2"><a href="análisis-exploratorio-de-datos.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Etiquetas =</span> <span class="fu">attr</span>(empleados, <span class="st">&quot;variable.labels&quot;</span>))  <span class="co"># Listamos las etiquetas</span></span></code></pre></div>
 <pre><code>##                              Etiquetas
 ## id                  Código de empleado
 ## sexo                              Sexo
@@ -482,39 +485,39 @@ entre otros, a modo de ejemplo.</p>
 ## minoria           Clasificación étnica
 ## sexoraza Clasificación por sexo y raza</code></pre>
 <p>Para hacer referencia directamente a las variables de <em>empleados</em></p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="análisis-exploratorio-de-datos.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(empleados)</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="análisis-exploratorio-de-datos.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(empleados)</span></code></pre></div>
 </div>
 <div id="tablas-de-frecuencias" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Tablas de frecuencias</h3>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="análisis-exploratorio-de-datos.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sexo)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="análisis-exploratorio-de-datos.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sexo)</span></code></pre></div>
 <pre><code>## sexo
 ## Hombre  Mujer 
 ##    258    216</code></pre>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="análisis-exploratorio-de-datos.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(sexo))</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="análisis-exploratorio-de-datos.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(sexo))</span></code></pre></div>
 <pre><code>## sexo
 ##    Hombre     Mujer 
 ## 0.5443038 0.4556962</code></pre>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="análisis-exploratorio-de-datos.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sexo,catlab)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="análisis-exploratorio-de-datos.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sexo,catlab)</span></code></pre></div>
 <pre><code>##         catlab
 ## sexo     Administrativo Seguridad Directivo
 ##   Hombre            157        27        74
 ##   Mujer             206         0        10</code></pre>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="análisis-exploratorio-de-datos.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(sexo,catlab))</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="análisis-exploratorio-de-datos.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(sexo,catlab))</span></code></pre></div>
 <pre><code>##         catlab
 ## sexo     Administrativo  Seguridad  Directivo
 ##   Hombre     0.33122363 0.05696203 0.15611814
 ##   Mujer      0.43459916 0.00000000 0.02109705</code></pre>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="análisis-exploratorio-de-datos.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(sexo,catlab), <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="análisis-exploratorio-de-datos.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(sexo,catlab), <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##         catlab
 ## sexo     Administrativo Seguridad Directivo
 ##   Hombre      0.6085271 0.1046512 0.2868217
 ##   Mujer       0.9537037 0.0000000 0.0462963</code></pre>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="análisis-exploratorio-de-datos.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(sexo,catlab), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="análisis-exploratorio-de-datos.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(sexo,catlab), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##         catlab
 ## sexo     Administrativo Seguridad Directivo
 ##   Hombre      0.4325069 1.0000000 0.8809524
 ##   Mujer       0.5674931 0.0000000 0.1190476</code></pre>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="análisis-exploratorio-de-datos.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(catlab,educ,sexo)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="análisis-exploratorio-de-datos.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(catlab,educ,sexo)</span></code></pre></div>
 <pre><code>## , , sexo = Hombre
 ## 
 ##                 educ
@@ -530,7 +533,7 @@ entre otros, a modo de ejemplo.</p>
 ##   Administrativo  30 128   0  33  14   1   0   0   0   0
 ##   Seguridad        0   0   0   0   0   0   0   0   0   0
 ##   Directivo        0   0   0   0  10   0   0   0   0   0</code></pre>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="análisis-exploratorio-de-datos.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(catlab,educ,sexo)),<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="análisis-exploratorio-de-datos.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(catlab,educ,sexo)),<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## , , sexo = Hombre
 ## 
 ##                 educ
@@ -548,20 +551,20 @@ entre otros, a modo de ejemplo.</p>
 ##   Directivo      0.00 0.00 0.00 0.00 0.02 0.00 0.00 0.00 0.00 0.00</code></pre>
 <p>Si la variable es ordinal, entonces también son de interés las
 frecuencias acumuladas</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="análisis-exploratorio-de-datos.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(educ)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="análisis-exploratorio-de-datos.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(educ)</span></code></pre></div>
 <pre><code>## educ
 ##   8  12  14  15  16  17  18  19  20  21 
 ##  53 190   6 116  59  11   9  27   2   1</code></pre>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="análisis-exploratorio-de-datos.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(educ))</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="análisis-exploratorio-de-datos.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(educ))</span></code></pre></div>
 <pre><code>## educ
 ##           8          12          14          15          16          17 
 ## 0.111814346 0.400843882 0.012658228 0.244725738 0.124472574 0.023206751 
 ##          18          19          20          21 
 ## 0.018987342 0.056962025 0.004219409 0.002109705</code></pre>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="análisis-exploratorio-de-datos.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(<span class="fu">table</span>(educ))</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="análisis-exploratorio-de-datos.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(<span class="fu">table</span>(educ))</span></code></pre></div>
 <pre><code>##   8  12  14  15  16  17  18  19  20  21 
 ##  53 243 249 365 424 435 444 471 473 474</code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="análisis-exploratorio-de-datos.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(educ)))</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="análisis-exploratorio-de-datos.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(educ)))</span></code></pre></div>
 <pre><code>##         8        12        14        15        16        17        18        19 
 ## 0.1118143 0.5126582 0.5253165 0.7700422 0.8945148 0.9177215 0.9367089 0.9936709 
 ##        20        21 
@@ -571,110 +574,110 @@ frecuencias acumuladas</p>
 <h3><span class="header-section-number">5.1.3</span> Media y varianza</h3>
 <p>La media es la medida de centralización por excelencia. Para su cálculo
 se utiliza la instrucción <em>mean</em></p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="análisis-exploratorio-de-datos.html#cb363-1" aria-hidden="true" tabindex="-1"></a>consumo<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">6.9</span>, <span class="fl">6.3</span>, <span class="fl">6.2</span>, <span class="fl">6.5</span> ,<span class="fl">6.4</span>, <span class="fl">6.8</span>, <span class="fl">6.6</span>)</span>
-<span id="cb363-2"><a href="análisis-exploratorio-de-datos.html#cb363-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(consumo)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="análisis-exploratorio-de-datos.html#cb364-1" aria-hidden="true" tabindex="-1"></a>consumo<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">6.9</span>, <span class="fl">6.3</span>, <span class="fl">6.2</span>, <span class="fl">6.5</span> ,<span class="fl">6.4</span>, <span class="fl">6.8</span>, <span class="fl">6.6</span>)</span>
+<span id="cb364-2"><a href="análisis-exploratorio-de-datos.html#cb364-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(consumo)</span></code></pre></div>
 <pre><code>## [1] 6.528571</code></pre>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="análisis-exploratorio-de-datos.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotchart</span>(consumo,<span class="at">pch=</span><span class="dv">16</span>)</span>
-<span id="cb365-2"><a href="análisis-exploratorio-de-datos.html#cb365-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(consumo),<span class="fl">2.5</span>, <span class="at">pos=</span><span class="dv">3</span>,<span class="fu">expression</span>(<span class="fu">bar</span>(X)<span class="sc">==</span><span class="fl">6.53</span>))</span>
-<span id="cb365-3"><a href="análisis-exploratorio-de-datos.html#cb365-3" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="fu">mean</span>(consumo),<span class="dv">0</span>,<span class="fu">mean</span>(consumo),<span class="fl">2.5</span>,<span class="at">length =</span> <span class="fl">0.15</span>,<span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="análisis-exploratorio-de-datos.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotchart</span>(consumo,<span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb366-2"><a href="análisis-exploratorio-de-datos.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(consumo),<span class="fl">2.5</span>, <span class="at">pos=</span><span class="dv">3</span>,<span class="fu">expression</span>(<span class="fu">bar</span>(X)<span class="sc">==</span><span class="fl">6.53</span>))</span>
+<span id="cb366-3"><a href="análisis-exploratorio-de-datos.html#cb366-3" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="fu">mean</span>(consumo),<span class="dv">0</span>,<span class="fu">mean</span>(consumo),<span class="fl">2.5</span>,<span class="at">length =</span> <span class="fl">0.15</span>,<span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="análisis-exploratorio-de-datos.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(salario)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="análisis-exploratorio-de-datos.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(salario)</span></code></pre></div>
 <pre><code>## [1] 34419.57</code></pre>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="análisis-exploratorio-de-datos.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">subset</span>(empleados,catlab<span class="sc">==</span><span class="st">&#39;Directivo&#39;</span>)<span class="sc">$</span>salario)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="análisis-exploratorio-de-datos.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">subset</span>(empleados,catlab<span class="sc">==</span><span class="st">&#39;Directivo&#39;</span>)<span class="sc">$</span>salario)</span></code></pre></div>
 <pre><code>## [1] 63977.8</code></pre>
 <p>También se puede utilizar la función <em>tapply</em>, que se estudiará
 con detalle más adelante</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="análisis-exploratorio-de-datos.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(salario, catlab, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="análisis-exploratorio-de-datos.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(salario, catlab, mean)</span></code></pre></div>
 <pre><code>## Administrativo      Seguridad      Directivo 
 ##       27838.54       30938.89       63977.80</code></pre>
 <p>La principal medida de dispersión es la varianza. En la práctica, cuando
 se trabaja con datos muestrales, se sustituye por la <em>cuasi</em>-varianza
 (también llamada varianza muestral corregida), que se calcula mediante
 el comando <em>var</em></p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="análisis-exploratorio-de-datos.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(consumo)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="análisis-exploratorio-de-datos.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(consumo)</span></code></pre></div>
 <pre><code>## [1] 0.06571429</code></pre>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="análisis-exploratorio-de-datos.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(salario)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="análisis-exploratorio-de-datos.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(salario)</span></code></pre></div>
 <pre><code>## [1] 291578214</code></pre>
 <p>La <em>cuasi</em>-desviación típica se calcula</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="análisis-exploratorio-de-datos.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(consumo)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="análisis-exploratorio-de-datos.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(consumo)</span></code></pre></div>
 <pre><code>## [1] 0.256348</code></pre>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="análisis-exploratorio-de-datos.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(salario)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="análisis-exploratorio-de-datos.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(salario)</span></code></pre></div>
 <pre><code>## [1] 17075.66</code></pre>
 <p>o, equivalentemente,</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="análisis-exploratorio-de-datos.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">var</span>(consumo))</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="análisis-exploratorio-de-datos.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">var</span>(consumo))</span></code></pre></div>
 <pre><code>## [1] 0.256348</code></pre>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="análisis-exploratorio-de-datos.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">var</span>(salario))</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="análisis-exploratorio-de-datos.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">var</span>(salario))</span></code></pre></div>
 <pre><code>## [1] 17075.66</code></pre>
 <p>La media de dispersión adimensional (relativa) más utilizada
 es el <em>coeficiente de variación</em> (de Pearson)</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="análisis-exploratorio-de-datos.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(consumo)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(consumo))</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="análisis-exploratorio-de-datos.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(consumo)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(consumo))</span></code></pre></div>
 <pre><code>## [1] 0.03926555</code></pre>
 <p>que también podemos expresar en tanto por cien</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="análisis-exploratorio-de-datos.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(consumo)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(consumo))</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="análisis-exploratorio-de-datos.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(consumo)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(consumo))</span></code></pre></div>
 <pre><code>## [1] 3.926555</code></pre>
 <p>El coeficiente de variación nos permite, entre otras cosas, comparar dispersiones de
 variables medidas en diferentes unidades</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="análisis-exploratorio-de-datos.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(salini)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(salini))</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="análisis-exploratorio-de-datos.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(salini)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(salini))</span></code></pre></div>
 <pre><code>## [1] 46.2541</code></pre>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="análisis-exploratorio-de-datos.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(salario)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(salario))</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="análisis-exploratorio-de-datos.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(salario)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(salario))</span></code></pre></div>
 <pre><code>## [1] 49.61033</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="análisis-exploratorio-de-datos.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(expprev)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(expprev))</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="análisis-exploratorio-de-datos.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(expprev)<span class="sc">/</span><span class="fu">abs</span>(<span class="fu">mean</span>(expprev))</span></code></pre></div>
 <pre><code>## [1] 109.1022</code></pre>
 </div>
 <div id="mediana-y-cuantiles" class="section level3" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> Mediana y cuantiles</h3>
 <p>La mediana es una medida de centralización robusta. Se calcula mediante <em>median</em></p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="análisis-exploratorio-de-datos.html#cb394-1" aria-hidden="true" tabindex="-1"></a>diametro <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.88</span>,<span class="fl">4.09</span>,<span class="fl">3.92</span>,<span class="fl">3.97</span>,<span class="fl">4.02</span>,<span class="fl">3.95</span>, <span class="fl">4.03</span>,<span class="fl">3.92</span>,<span class="fl">3.98</span>,<span class="fl">5.60</span>)</span>
-<span id="cb394-2"><a href="análisis-exploratorio-de-datos.html#cb394-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dotchart</span>(diametro,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="st">&quot;diámetro&quot;</span>)</span>
-<span id="cb394-3"><a href="análisis-exploratorio-de-datos.html#cb394-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(diametro),<span class="at">col=</span><span class="st">&#39;red&#39;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb394-4"><a href="análisis-exploratorio-de-datos.html#cb394-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">median</span>(diametro),<span class="at">col=</span><span class="st">&#39;blue&#39;</span>,<span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb394-5"><a href="análisis-exploratorio-de-datos.html#cb394-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;media&quot;</span>,<span class="st">&quot;mediana&quot;</span>),</span>
-<span id="cb394-6"><a href="análisis-exploratorio-de-datos.html#cb394-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>),<span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">lwd=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>),<span class="at">box.lty=</span><span class="dv">0</span>,<span class="at">cex=</span><span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="análisis-exploratorio-de-datos.html#cb395-1" aria-hidden="true" tabindex="-1"></a>diametro <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">3.88</span>,<span class="fl">4.09</span>,<span class="fl">3.92</span>,<span class="fl">3.97</span>,<span class="fl">4.02</span>,<span class="fl">3.95</span>, <span class="fl">4.03</span>,<span class="fl">3.92</span>,<span class="fl">3.98</span>,<span class="fl">5.60</span>)</span>
+<span id="cb395-2"><a href="análisis-exploratorio-de-datos.html#cb395-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dotchart</span>(diametro,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">xlab=</span><span class="st">&quot;diámetro&quot;</span>)</span>
+<span id="cb395-3"><a href="análisis-exploratorio-de-datos.html#cb395-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(diametro),<span class="at">col=</span><span class="st">&#39;red&#39;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb395-4"><a href="análisis-exploratorio-de-datos.html#cb395-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">median</span>(diametro),<span class="at">col=</span><span class="st">&#39;blue&#39;</span>,<span class="at">lty=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb395-5"><a href="análisis-exploratorio-de-datos.html#cb395-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;media&quot;</span>,<span class="st">&quot;mediana&quot;</span>),</span>
+<span id="cb395-6"><a href="análisis-exploratorio-de-datos.html#cb395-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>),<span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">lwd=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>),<span class="at">box.lty=</span><span class="dv">0</span>,<span class="at">cex=</span><span class="fl">1.5</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Podemos comprobar que la variable <em>salario</em> presenta una
 asimetría derecha</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="análisis-exploratorio-de-datos.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(salario); <span class="fu">median</span>(salario)</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="análisis-exploratorio-de-datos.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(salario); <span class="fu">median</span>(salario)</span></code></pre></div>
 <pre><code>## [1] 34419.57</code></pre>
 <pre><code>## [1] 28875</code></pre>
 <p>Calculemos cuántos empleados tienen un salario inferior al salario medio</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="análisis-exploratorio-de-datos.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(salario <span class="sc">&lt;</span> <span class="fu">mean</span>(salario))</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="análisis-exploratorio-de-datos.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(salario <span class="sc">&lt;</span> <span class="fu">mean</span>(salario))</span></code></pre></div>
 <pre><code>## [1] 0.6940928</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="análisis-exploratorio-de-datos.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&#39;El &#39;</span>, <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(salario <span class="sc">&lt;</span> <span class="fu">mean</span>(salario)),<span class="dv">0</span>), <span class="st">&#39;%&#39;</span>,</span>
-<span id="cb400-2"><a href="análisis-exploratorio-de-datos.html#cb400-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39; de los empleados tienen un salario inferior al salario medio&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="análisis-exploratorio-de-datos.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&#39;El &#39;</span>, <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">mean</span>(salario <span class="sc">&lt;</span> <span class="fu">mean</span>(salario)),<span class="dv">0</span>), <span class="st">&#39;%&#39;</span>,</span>
+<span id="cb401-2"><a href="análisis-exploratorio-de-datos.html#cb401-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">&#39; de los empleados tienen un salario inferior al salario medio&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;El 69% de los empleados tienen un salario inferior al salario medio&quot;</code></pre>
 <p>Como sabemos, la mitad de los empleados tienen un salario inferior a la mediana</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="análisis-exploratorio-de-datos.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(salario <span class="sc">&lt;</span> <span class="fu">median</span>(salario))</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="análisis-exploratorio-de-datos.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(salario <span class="sc">&lt;</span> <span class="fu">median</span>(salario))</span></code></pre></div>
 <pre><code>## [1] 0.5</code></pre>
 <p>Los cuantiles son una generalización de la mediana, que se corresponde con el
 cuantil de orden 0.5. <em>R</em> contempla distintas formas
 de calcular los cuantiles</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="análisis-exploratorio-de-datos.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="análisis-exploratorio-de-datos.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))</span></code></pre></div>
 <pre><code>## [1] 2.5</code></pre>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="análisis-exploratorio-de-datos.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),<span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="análisis-exploratorio-de-datos.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),<span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 50% 
 ## 2.5</code></pre>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="análisis-exploratorio-de-datos.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),<span class="fl">0.5</span>,<span class="at">type=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="análisis-exploratorio-de-datos.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),<span class="fl">0.5</span>,<span class="at">type=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 50% 
 ##   2</code></pre>
 <p>Calculemos los <em>cuartiles</em> y los <em>deciles</em> de la variable <em>salario</em></p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="análisis-exploratorio-de-datos.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(salario)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="análisis-exploratorio-de-datos.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(salario)</span></code></pre></div>
 <pre><code>##       0%      25%      50%      75%     100% 
 ##  15750.0  24000.0  28875.0  36937.5 135000.0</code></pre>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="análisis-exploratorio-de-datos.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(salario, <span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="análisis-exploratorio-de-datos.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(salario, <span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>))</span></code></pre></div>
 <pre><code>##     25%     50%     75% 
 ## 24000.0 28875.0 36937.5</code></pre>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="análisis-exploratorio-de-datos.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(salario, <span class="at">probs=</span><span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="fl">0.1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="análisis-exploratorio-de-datos.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(salario, <span class="at">probs=</span><span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="fl">0.1</span>))</span></code></pre></div>
 <pre><code>##     10%     20%     30%     40%     50%     60%     70%     80%     90% 
 ## 21045.0 22950.0 24885.0 26700.0 28875.0 30750.0 34500.0 40920.0 59392.5</code></pre>
 <p>El <em>rango</em> y el <em>rango intercuartílico</em></p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="análisis-exploratorio-de-datos.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Rango=</span><span class="fu">max</span>(salario)<span class="sc">-</span><span class="fu">min</span>(salario),</span>
-<span id="cb416-2"><a href="análisis-exploratorio-de-datos.html#cb416-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">RI=</span><span class="fu">as.numeric</span>(<span class="fu">quantile</span>(salario, <span class="fl">0.75</span>) <span class="sc">-</span> <span class="fu">quantile</span>(salario, <span class="fl">0.25</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="análisis-exploratorio-de-datos.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Rango=</span><span class="fu">max</span>(salario)<span class="sc">-</span><span class="fu">min</span>(salario),</span>
+<span id="cb417-2"><a href="análisis-exploratorio-de-datos.html#cb417-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">RI=</span><span class="fu">as.numeric</span>(<span class="fu">quantile</span>(salario, <span class="fl">0.75</span>) <span class="sc">-</span> <span class="fu">quantile</span>(salario, <span class="fl">0.25</span>)))</span></code></pre></div>
 <pre><code>##    Rango      RI
 ## 1 119250 12937.5</code></pre>
 </div>
 <div id="summary" class="section level3" number="5.1.5">
 <h3><span class="header-section-number">5.1.5</span> <em>Summary</em></h3>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="análisis-exploratorio-de-datos.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(empleados)</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="análisis-exploratorio-de-datos.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(empleados)</span></code></pre></div>
 <pre><code>##        id            sexo        fechnac                educ      
 ##  Min.   :  1.0   Hombre:258   Min.   :1929-02-10   Min.   : 8.00  
 ##  1st Qu.:119.2   Mujer :216   1st Qu.:1948-01-03   1st Qu.:12.00  
@@ -699,7 +702,7 @@ de calcular los cuantiles</p>
 ##  3rd Qu.:138.75                               
 ##  Max.   :476.00                               
 ## </code></pre>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="análisis-exploratorio-de-datos.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">subset</span>(empleados,catlab<span class="sc">==</span><span class="st">&#39;Directivo&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="análisis-exploratorio-de-datos.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">subset</span>(empleados,catlab<span class="sc">==</span><span class="st">&#39;Directivo&#39;</span>))</span></code></pre></div>
 <pre><code>##        id            sexo       fechnac                educ      
 ##  Min.   :  1.0   Hombre:74   Min.   :1937-07-12   Min.   :12.00  
 ##  1st Qu.:102.5   Mujer :10   1st Qu.:1954-08-09   1st Qu.:16.00  
@@ -727,52 +730,52 @@ de calcular los cuantiles</p>
 <h2><span class="header-section-number">5.2</span> Gráficos</h2>
 <div id="diagrama-de-barras-y-gráfico-de-sectores" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Diagrama de barras y gráfico de sectores</h3>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="análisis-exploratorio-de-datos.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(catlab)</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="análisis-exploratorio-de-datos.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(catlab)</span></code></pre></div>
 <pre><code>## catlab
 ## Administrativo      Seguridad      Directivo 
 ##            363             27             84</code></pre>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="análisis-exploratorio-de-datos.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb424-2"><a href="análisis-exploratorio-de-datos.html#cb424-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(catlab),<span class="at">main=</span><span class="st">&quot;frecuencia absoluta&quot;</span>)</span>
-<span id="cb424-3"><a href="análisis-exploratorio-de-datos.html#cb424-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">prop.table</span>(<span class="fu">table</span>(catlab)),<span class="at">main=</span><span class="st">&quot;frecuencia relativa (%)&quot;</span>)</span>
-<span id="cb424-4"><a href="análisis-exploratorio-de-datos.html#cb424-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(catlab))</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="análisis-exploratorio-de-datos.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb425-2"><a href="análisis-exploratorio-de-datos.html#cb425-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(catlab),<span class="at">main=</span><span class="st">&quot;frecuencia absoluta&quot;</span>)</span>
+<span id="cb425-3"><a href="análisis-exploratorio-de-datos.html#cb425-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">prop.table</span>(<span class="fu">table</span>(catlab)),<span class="at">main=</span><span class="st">&quot;frecuencia relativa (%)&quot;</span>)</span>
+<span id="cb425-4"><a href="análisis-exploratorio-de-datos.html#cb425-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(catlab))</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="análisis-exploratorio-de-datos.html#cb425-1" aria-hidden="true" tabindex="-1"></a>nj <span class="ot">&lt;-</span> <span class="fu">table</span>(educ)</span>
-<span id="cb425-2"><a href="análisis-exploratorio-de-datos.html#cb425-2" aria-hidden="true" tabindex="-1"></a>fj <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(nj)</span>
-<span id="cb425-3"><a href="análisis-exploratorio-de-datos.html#cb425-3" aria-hidden="true" tabindex="-1"></a>Nj <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(nj)</span>
-<span id="cb425-4"><a href="análisis-exploratorio-de-datos.html#cb425-4" aria-hidden="true" tabindex="-1"></a>Fj <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(fj)</span>
-<span id="cb425-5"><a href="análisis-exploratorio-de-datos.html#cb425-5" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), <span class="dv">2</span>, <span class="dv">3</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>), <span class="at">respect=</span><span class="cn">TRUE</span>)</span>
-<span id="cb425-6"><a href="análisis-exploratorio-de-datos.html#cb425-6" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(nj,<span class="at">main=</span><span class="st">&quot;frecuencia absolutas&quot;</span>,<span class="at">xlab=</span><span class="st">&#39;años de estudio&#39;</span>)</span>
-<span id="cb425-7"><a href="análisis-exploratorio-de-datos.html#cb425-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(fj,<span class="at">main=</span><span class="st">&quot;frecuencia relativas&quot;</span>,<span class="at">xlab=</span><span class="st">&#39;años de estudio&#39;</span>)</span>
-<span id="cb425-8"><a href="análisis-exploratorio-de-datos.html#cb425-8" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(Nj,<span class="at">main=</span><span class="st">&quot;frecuencia absolutas acumuladas&quot;</span>,<span class="at">xlab=</span><span class="st">&#39;años de estudio&#39;</span>)</span>
-<span id="cb425-9"><a href="análisis-exploratorio-de-datos.html#cb425-9" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(Fj,<span class="at">main=</span><span class="st">&quot;frecuencia relativas acumuladas&quot;</span>,<span class="at">xlab=</span><span class="st">&#39;años de estudio&#39;</span>)</span>
-<span id="cb425-10"><a href="análisis-exploratorio-de-datos.html#cb425-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(nj,<span class="at">col=</span><span class="fu">rainbow</span>(<span class="dv">6</span>),<span class="at">main=</span><span class="st">&#39;años de estudio&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="análisis-exploratorio-de-datos.html#cb426-1" aria-hidden="true" tabindex="-1"></a>nj <span class="ot">&lt;-</span> <span class="fu">table</span>(educ)</span>
+<span id="cb426-2"><a href="análisis-exploratorio-de-datos.html#cb426-2" aria-hidden="true" tabindex="-1"></a>fj <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(nj)</span>
+<span id="cb426-3"><a href="análisis-exploratorio-de-datos.html#cb426-3" aria-hidden="true" tabindex="-1"></a>Nj <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(nj)</span>
+<span id="cb426-4"><a href="análisis-exploratorio-de-datos.html#cb426-4" aria-hidden="true" tabindex="-1"></a>Fj <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(fj)</span>
+<span id="cb426-5"><a href="análisis-exploratorio-de-datos.html#cb426-5" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), <span class="dv">2</span>, <span class="dv">3</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>), <span class="at">respect=</span><span class="cn">TRUE</span>)</span>
+<span id="cb426-6"><a href="análisis-exploratorio-de-datos.html#cb426-6" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(nj,<span class="at">main=</span><span class="st">&quot;frecuencia absolutas&quot;</span>,<span class="at">xlab=</span><span class="st">&#39;años de estudio&#39;</span>)</span>
+<span id="cb426-7"><a href="análisis-exploratorio-de-datos.html#cb426-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(fj,<span class="at">main=</span><span class="st">&quot;frecuencia relativas&quot;</span>,<span class="at">xlab=</span><span class="st">&#39;años de estudio&#39;</span>)</span>
+<span id="cb426-8"><a href="análisis-exploratorio-de-datos.html#cb426-8" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(Nj,<span class="at">main=</span><span class="st">&quot;frecuencia absolutas acumuladas&quot;</span>,<span class="at">xlab=</span><span class="st">&#39;años de estudio&#39;</span>)</span>
+<span id="cb426-9"><a href="análisis-exploratorio-de-datos.html#cb426-9" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(Fj,<span class="at">main=</span><span class="st">&quot;frecuencia relativas acumuladas&quot;</span>,<span class="at">xlab=</span><span class="st">&#39;años de estudio&#39;</span>)</span>
+<span id="cb426-10"><a href="análisis-exploratorio-de-datos.html#cb426-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(nj,<span class="at">col=</span><span class="fu">rainbow</span>(<span class="dv">6</span>),<span class="at">main=</span><span class="st">&#39;años de estudio&#39;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-23-2.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="análisis-exploratorio-de-datos.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="análisis-exploratorio-de-datos.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p>Con datos continuos, podemos hacer uso de la función <em>cut</em>
 (más adelante veremos como se representa el histograma)</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="análisis-exploratorio-de-datos.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">cut</span>(expprev, <span class="at">breaks=</span><span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="análisis-exploratorio-de-datos.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">cut</span>(expprev, <span class="at">breaks=</span><span class="dv">5</span>))</span></code></pre></div>
 <pre><code>## 
 ## (-0.476,95.2]    (95.2,190]     (190,286]     (286,381]     (381,476] 
 ##           312            81            46            22            13</code></pre>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="análisis-exploratorio-de-datos.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(<span class="fu">cut</span>(expprev,<span class="at">breaks=</span><span class="dv">5</span>)),<span class="at">xlab=</span><span class="st">&quot;Experiencia previa&quot;</span>,</span>
-<span id="cb429-2"><a href="análisis-exploratorio-de-datos.html#cb429-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Categorización en 5 clases&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="análisis-exploratorio-de-datos.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(<span class="fu">cut</span>(expprev,<span class="at">breaks=</span><span class="dv">5</span>)),<span class="at">xlab=</span><span class="st">&quot;Experiencia previa&quot;</span>,</span>
+<span id="cb430-2"><a href="análisis-exploratorio-de-datos.html#cb430-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Categorización en 5 clases&quot;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-24-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Debemos ser muy cuidadosos a la hora de valorar gráficas como la siguiente</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="análisis-exploratorio-de-datos.html#cb430-1" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">cut</span>(expprev, <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>,<span class="dv">80</span>,<span class="dv">150</span>,<span class="dv">250</span>,<span class="dv">400</span>)))</span>
-<span id="cb430-2"><a href="análisis-exploratorio-de-datos.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tt,<span class="at">xlab=</span><span class="st">&quot;Experiencia previa&quot;</span>, <span class="at">main=</span><span class="st">&quot;Categorización en 5 clases&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="análisis-exploratorio-de-datos.html#cb431-1" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">cut</span>(expprev, <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>,<span class="dv">80</span>,<span class="dv">150</span>,<span class="dv">250</span>,<span class="dv">400</span>)))</span>
+<span id="cb431-2"><a href="análisis-exploratorio-de-datos.html#cb431-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tt,<span class="at">xlab=</span><span class="st">&quot;Experiencia previa&quot;</span>, <span class="at">main=</span><span class="st">&quot;Categorización en 5 clases&quot;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-25-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráfico-de-puntos" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Gráfico de puntos</h3>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="análisis-exploratorio-de-datos.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotchart</span>(salario, <span class="at">xlab=</span><span class="st">&#39;salarios&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="análisis-exploratorio-de-datos.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotchart</span>(salario, <span class="at">xlab=</span><span class="st">&#39;salarios&#39;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-26-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="análisis-exploratorio-de-datos.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(salario<span class="sc">~</span>sexo, <span class="at">method=</span><span class="st">&#39;jitter&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="análisis-exploratorio-de-datos.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(salario<span class="sc">~</span>sexo, <span class="at">method=</span><span class="st">&#39;jitter&#39;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-26-2.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="árbol-de-tallo-y-hojas" class="section level3" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Árbol de tallo y hojas</h3>
 <p>Esta representación puede ser útil cuando se dispone de pocos datos.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="análisis-exploratorio-de-datos.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem</span>(salario)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="análisis-exploratorio-de-datos.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem</span>(salario)</span></code></pre></div>
 <pre><code>## 
 ##   The decimal point is 4 digit(s) to the right of the |
 ## 
@@ -789,7 +792,7 @@ de calcular los cuantiles</p>
 ##   11 | 1
 ##   12 | 
 ##   13 | 5</code></pre>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="análisis-exploratorio-de-datos.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem</span>(tiempemp)</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="análisis-exploratorio-de-datos.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem</span>(tiempemp)</span></code></pre></div>
 <pre><code>## 
 ##   The decimal point is at the |
 ## 
@@ -816,63 +819,63 @@ de calcular los cuantiles</p>
 <div id="histograma" class="section level3" number="5.2.4">
 <h3><span class="header-section-number">5.2.4</span> Histograma</h3>
 <p>Este gráfico es uno de los más habituales para representar datos continuos</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="análisis-exploratorio-de-datos.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">main=</span><span class="st">&#39;número de clases por defecto&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="análisis-exploratorio-de-datos.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">main=</span><span class="st">&#39;número de clases por defecto&#39;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-28-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="análisis-exploratorio-de-datos.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">breaks=</span><span class="dv">3</span>, <span class="at">main=</span><span class="st">&#39;3 intervalos de clase&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="análisis-exploratorio-de-datos.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">breaks=</span><span class="dv">3</span>, <span class="at">main=</span><span class="st">&#39;3 intervalos de clase&#39;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-28-2.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="análisis-exploratorio-de-datos.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">breaks=</span><span class="dv">100</span>, <span class="at">main=</span><span class="st">&#39;100 intervalos de clase&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="análisis-exploratorio-de-datos.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">breaks=</span><span class="dv">100</span>, <span class="at">main=</span><span class="st">&#39;100 intervalos de clase&#39;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-28-3.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="análisis-exploratorio-de-datos.html#cb440-1" aria-hidden="true" tabindex="-1"></a>cl1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">15000</span>,<span class="dv">40000</span>,<span class="dv">5000</span>)</span>
-<span id="cb440-2"><a href="análisis-exploratorio-de-datos.html#cb440-2" aria-hidden="true" tabindex="-1"></a>cl2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">50000</span>,<span class="dv">80000</span>,<span class="dv">10000</span>)</span>
-<span id="cb440-3"><a href="análisis-exploratorio-de-datos.html#cb440-3" aria-hidden="true" tabindex="-1"></a>cl3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">100000</span>,<span class="dv">140000</span>,<span class="dv">20000</span>)</span>
-<span id="cb440-4"><a href="análisis-exploratorio-de-datos.html#cb440-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">breaks=</span><span class="fu">c</span>(cl1,cl2,cl3),<span class="at">main=</span><span class="st">&#39;intervalos de clase de distinta amplitud&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="análisis-exploratorio-de-datos.html#cb441-1" aria-hidden="true" tabindex="-1"></a>cl1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">15000</span>,<span class="dv">40000</span>,<span class="dv">5000</span>)</span>
+<span id="cb441-2"><a href="análisis-exploratorio-de-datos.html#cb441-2" aria-hidden="true" tabindex="-1"></a>cl2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">50000</span>,<span class="dv">80000</span>,<span class="dv">10000</span>)</span>
+<span id="cb441-3"><a href="análisis-exploratorio-de-datos.html#cb441-3" aria-hidden="true" tabindex="-1"></a>cl3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">100000</span>,<span class="dv">140000</span>,<span class="dv">20000</span>)</span>
+<span id="cb441-4"><a href="análisis-exploratorio-de-datos.html#cb441-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">breaks=</span><span class="fu">c</span>(cl1,cl2,cl3),<span class="at">main=</span><span class="st">&#39;intervalos de clase de distinta amplitud&#39;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-28-4.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráfico-de-densidad" class="section level3" number="5.2.5">
 <h3><span class="header-section-number">5.2.5</span> Gráfico de densidad</h3>
 <p>Es una versión suavizada del histograma.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="análisis-exploratorio-de-datos.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(salario))</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="análisis-exploratorio-de-datos.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(salario))</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="análisis-exploratorio-de-datos.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">freq=</span>F, <span class="at">main=</span><span class="st">&#39;&#39;</span>)</span>
-<span id="cb442-2"><a href="análisis-exploratorio-de-datos.html#cb442-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(salario), <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="análisis-exploratorio-de-datos.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario, <span class="at">freq=</span>F, <span class="at">main=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb443-2"><a href="análisis-exploratorio-de-datos.html#cb443-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(salario), <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-29-2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>El paquete <em>car</em> nos da acceso a la instrucción <em>densityPlot</em>:</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="análisis-exploratorio-de-datos.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)  <span class="co"># help(car)</span></span>
-<span id="cb443-2"><a href="análisis-exploratorio-de-datos.html#cb443-2" aria-hidden="true" tabindex="-1"></a><span class="fu">densityPlot</span>(salario<span class="sc">~</span>sexo)</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="análisis-exploratorio-de-datos.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)  <span class="co"># help(car)</span></span>
+<span id="cb444-2"><a href="análisis-exploratorio-de-datos.html#cb444-2" aria-hidden="true" tabindex="-1"></a><span class="fu">densityPlot</span>(salario<span class="sc">~</span>sexo)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-30-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="diagrama-de-cajas" class="section level3" number="5.2.6">
 <h3><span class="header-section-number">5.2.6</span> Diagrama de cajas</h3>
 <p>Se trata de un gráfico muy polivalente</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="análisis-exploratorio-de-datos.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario, <span class="at">horizontal=</span>T, <span class="at">axes=</span>F)</span>
-<span id="cb444-2"><a href="análisis-exploratorio-de-datos.html#cb444-2" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="análisis-exploratorio-de-datos.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario, <span class="at">horizontal=</span>T, <span class="at">axes=</span>F)</span>
+<span id="cb445-2"><a href="análisis-exploratorio-de-datos.html#cb445-2" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-31-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="análisis-exploratorio-de-datos.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb445-2"><a href="análisis-exploratorio-de-datos.html#cb445-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario<span class="sc">~</span>catlab)</span>
-<span id="cb445-3"><a href="análisis-exploratorio-de-datos.html#cb445-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario<span class="sc">~</span>sexo)</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="análisis-exploratorio-de-datos.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb446-2"><a href="análisis-exploratorio-de-datos.html#cb446-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario<span class="sc">~</span>catlab)</span>
+<span id="cb446-3"><a href="análisis-exploratorio-de-datos.html#cb446-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario<span class="sc">~</span>sexo)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-31-2.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="análisis-exploratorio-de-datos.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb446-2"><a href="análisis-exploratorio-de-datos.html#cb446-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario<span class="sc">~</span>sexo<span class="sc">*</span>catlab)</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="análisis-exploratorio-de-datos.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb447-2"><a href="análisis-exploratorio-de-datos.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario<span class="sc">~</span>sexo<span class="sc">*</span>catlab)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-31-3.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="análisis-exploratorio-de-datos.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salini, salario)</span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="análisis-exploratorio-de-datos.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salini, salario)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-31-4.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="análisis-exploratorio-de-datos.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario,<span class="at">probability=</span>T,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">col=</span><span class="st">&#39;grey&#39;</span>,<span class="at">axes=</span>F,<span class="at">main=</span><span class="st">&quot;&quot;</span>); <span class="fu">axis</span>(<span class="dv">1</span>)</span>
-<span id="cb448-2"><a href="análisis-exploratorio-de-datos.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(salario),<span class="at">col=</span><span class="st">&#39;red&#39;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb448-3"><a href="análisis-exploratorio-de-datos.html#cb448-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span>T)</span>
-<span id="cb448-4"><a href="análisis-exploratorio-de-datos.html#cb448-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario,<span class="at">horizontal=</span>T,<span class="at">axes=</span>F,<span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="análisis-exploratorio-de-datos.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(salario,<span class="at">probability=</span>T,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>,<span class="at">col=</span><span class="st">&#39;grey&#39;</span>,<span class="at">axes=</span>F,<span class="at">main=</span><span class="st">&quot;&quot;</span>); <span class="fu">axis</span>(<span class="dv">1</span>)</span>
+<span id="cb449-2"><a href="análisis-exploratorio-de-datos.html#cb449-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(salario),<span class="at">col=</span><span class="st">&#39;red&#39;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb449-3"><a href="análisis-exploratorio-de-datos.html#cb449-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">new=</span>T)</span>
+<span id="cb449-4"><a href="análisis-exploratorio-de-datos.html#cb449-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(salario,<span class="at">horizontal=</span>T,<span class="at">axes=</span>F,<span class="at">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-31-5.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráfica-de-dispersión" class="section level3" number="5.2.7">
 <h3><span class="header-section-number">5.2.7</span> Gráfica de dispersión</h3>
 <p>Permite ver la relación entre dos variables:</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="análisis-exploratorio-de-datos.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(educ,salario)</span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="análisis-exploratorio-de-datos.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(educ,salario)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-32-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="análisis-exploratorio-de-datos.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tiempemp,salario)</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="análisis-exploratorio-de-datos.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tiempemp,salario)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-32-2.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="análisis-exploratorio-de-datos.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(salini,salario)</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="análisis-exploratorio-de-datos.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(salini,salario)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-32-3.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>En el caso de una serie temporal</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="análisis-exploratorio-de-datos.html#cb452-1" aria-hidden="true" tabindex="-1"></a>AirPassengers</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="análisis-exploratorio-de-datos.html#cb453-1" aria-hidden="true" tabindex="-1"></a>AirPassengers</span></code></pre></div>
 <pre><code>##      Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
 ## 1949 112 118 132 129 121 135 148 148 136 119 104 118
 ## 1950 115 126 141 135 125 149 170 170 158 133 114 140
@@ -886,20 +889,20 @@ de calcular los cuantiles</p>
 ## 1958 340 318 362 348 363 435 491 505 404 359 310 337
 ## 1959 360 342 406 396 420 472 548 559 463 407 362 405
 ## 1960 417 391 419 461 472 535 622 606 508 461 390 432</code></pre>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="análisis-exploratorio-de-datos.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AirPassengers)</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="análisis-exploratorio-de-datos.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AirPassengers)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-33-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Y un último ejemplo utilizando los datos <em>iris</em> de Fisher:</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="análisis-exploratorio-de-datos.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris[,<span class="dv">3</span>],iris[,<span class="dv">4</span>],<span class="at">main=</span><span class="st">&quot;Longitud y anchura de pétalos de lirios&quot;</span>,</span>
-<span id="cb455-2"><a href="análisis-exploratorio-de-datos.html#cb455-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Longitud de pétalo&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Anchura de pétalo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="análisis-exploratorio-de-datos.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris[,<span class="dv">3</span>],iris[,<span class="dv">4</span>],<span class="at">main=</span><span class="st">&quot;Longitud y anchura de pétalos de lirios&quot;</span>,</span>
+<span id="cb456-2"><a href="análisis-exploratorio-de-datos.html#cb456-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Longitud de pétalo&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Anchura de pétalo&quot;</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-34-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="análisis-exploratorio-de-datos.html#cb456-1" aria-hidden="true" tabindex="-1"></a>iris.color<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>)[iris<span class="sc">$</span>Species]</span>
-<span id="cb456-2"><a href="análisis-exploratorio-de-datos.html#cb456-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris[,<span class="dv">3</span>],iris[,<span class="dv">4</span>],<span class="at">col=</span>iris.color,<span class="at">main=</span><span class="st">&quot;Longitud y anchura</span></span>
-<span id="cb456-3"><a href="análisis-exploratorio-de-datos.html#cb456-3" aria-hidden="true" tabindex="-1"></a><span class="st">     de pétalo según especies&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Longitud de pétalo&quot;</span>,</span>
-<span id="cb456-4"><a href="análisis-exploratorio-de-datos.html#cb456-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Anchura de pétalo&quot;</span>)</span>
-<span id="cb456-5"><a href="análisis-exploratorio-de-datos.html#cb456-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;Setosa&quot;</span>,<span class="st">&quot;Versicolor&quot;</span>,<span class="st">&quot;Virginica&quot;</span>),<span class="at">pch=</span><span class="dv">1</span>,</span>
-<span id="cb456-6"><a href="análisis-exploratorio-de-datos.html#cb456-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>),<span class="at">box.lty=</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="análisis-exploratorio-de-datos.html#cb457-1" aria-hidden="true" tabindex="-1"></a>iris.color<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>)[iris<span class="sc">$</span>Species]</span>
+<span id="cb457-2"><a href="análisis-exploratorio-de-datos.html#cb457-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris[,<span class="dv">3</span>],iris[,<span class="dv">4</span>],<span class="at">col=</span>iris.color,<span class="at">main=</span><span class="st">&quot;Longitud y anchura</span></span>
+<span id="cb457-3"><a href="análisis-exploratorio-de-datos.html#cb457-3" aria-hidden="true" tabindex="-1"></a><span class="st">     de pétalo según especies&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Longitud de pétalo&quot;</span>,</span>
+<span id="cb457-4"><a href="análisis-exploratorio-de-datos.html#cb457-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Anchura de pétalo&quot;</span>)</span>
+<span id="cb457-5"><a href="análisis-exploratorio-de-datos.html#cb457-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;Setosa&quot;</span>,<span class="st">&quot;Versicolor&quot;</span>,<span class="st">&quot;Virginica&quot;</span>),<span class="at">pch=</span><span class="dv">1</span>,</span>
+<span id="cb457-6"><a href="análisis-exploratorio-de-datos.html#cb457-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>),<span class="at">box.lty=</span><span class="dv">0</span>)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-34-2.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="análisis-exploratorio-de-datos.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>],<span class="at">col=</span>iris.color)</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="análisis-exploratorio-de-datos.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>],<span class="at">col=</span>iris.color)</span></code></pre></div>
 <p><img src="05-AnalisisExploratorio_files/figure-html/unnamed-chunk-34-3.png" width="70%" style="display: block; margin: auto;" /></p>
 
 </div>

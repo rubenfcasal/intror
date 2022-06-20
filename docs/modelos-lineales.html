@@ -21,10 +21,12 @@
   <meta name="twitter:description" content="Este es un libro introductorio al análisis de datos con R" />
   
 
-<meta name="author" content="Rubén Fernández-Casal, Javier Roca-Pardiñas, Julián Costa y Manuel Oviedo" />
+<meta name="author" content="Rubén Fernández Casal (ruben.fcasal@udc.es)" />
+<meta name="author" content="Javier Roca-Pardiñas (roca@uvigo.es)" />
+<meta name="author" content="Julián Costa Bouzas (julian.costa@udc.es)" />
+<meta name="author" content="Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)" />
 
 
-<meta name="date" content="2022-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +35,7 @@
   
 <link rel="prev" href="modelado-de-datos.html"/>
 <link rel="next" href="modelos-lineales-generalizados.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -432,6 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="E.2" data-path="compañías-que-usan-r.html"><a href="compañías-que-usan-r.html#rstudio-com"><i class="fa fa-check"></i><b>E.2</b> RStudio</a></li>
 </ul></li>
 <li class="divider"></li>
+<li><a>ISBN: 978-84-09-41823-7</a></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
 
 </ul>
@@ -461,8 +464,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>El fichero <em>hatco.RData</em> contiene observaciones de clientes de la compañía de
 distribución industrial (Compañía Hair, Anderson y Tatham).
 Las variables se pueden clasificar en tres grupos:</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="modelos-lineales.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;datos/hatco.RData&#39;</span>)</span>
-<span id="cb539-2"><a href="modelos-lineales.html#cb539-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">attr</span>(hatco, <span class="st">&quot;variable.labels&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="modelos-lineales.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;datos/hatco.RData&#39;</span>)</span>
+<span id="cb540-2"><a href="modelos-lineales.html#cb540-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">attr</span>(hatco, <span class="st">&quot;variable.labels&quot;</span>))</span></code></pre></div>
 <pre><code>##          attr(hatco, &quot;variable.labels&quot;)
 ## empresa                         Empresa
 ## tamano             Tamaño de la empresa
@@ -482,11 +485,11 @@ Las variables se pueden clasificar en tres grupos:</p>
 ## nsatisfa          Nivel de satisfacción</code></pre>
 <p>Consideraremos como respuesta la variable <em>fidelida</em> y como variables explicativas
 el resto de variables continuas menos <em>satisfac</em>.</p>
-<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="modelos-lineales.html#cb541-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> hatco[, <span class="dv">6</span><span class="sc">:</span><span class="dv">13</span>]  <span class="co"># Nota: realmente no copia el objeto...</span></span>
-<span id="cb541-2"><a href="modelos-lineales.html#cb541-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="modelos-lineales.html#cb542-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> hatco[, <span class="dv">6</span><span class="sc">:</span><span class="dv">13</span>]  <span class="co"># Nota: realmente no copia el objeto...</span></span>
+<span id="cb542-2"><a href="modelos-lineales.html#cb542-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(datos)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="modelos-lineales.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cor(datos, use = &quot;complete&quot;) # Por defecto 8 decimales...</span></span>
-<span id="cb542-2"><a href="modelos-lineales.html#cb542-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cor</span>(datos, <span class="at">use =</span> <span class="st">&quot;complete&quot;</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="modelos-lineales.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cor(datos, use = &quot;complete&quot;) # Por defecto 8 decimales...</span></span>
+<span id="cb543-2"><a href="modelos-lineales.html#cb543-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">cor</span>(datos, <span class="at">use =</span> <span class="st">&quot;complete&quot;</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##          velocida precio flexprec imgfabri servconj imgfvent calidadp fidelida
 ## velocida    1.000 -0.354    0.519    0.049    0.609    0.081   -0.490    0.674
 ## precio     -0.354  1.000   -0.486    0.272    0.511    0.189    0.468    0.077
@@ -500,7 +503,7 @@ el resto de variables continuas menos <em>satisfac</em>.</p>
 <div id="ajuste-función-lm" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Ajuste: función <code>lm</code></h2>
 <p>Para el ajuste (estimación de los parámetros) de un modelo lineal a un conjunto de datos (por mínimos cuadrados) se emplea la función <code>lm</code>:</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="modelos-lineales.html#cb544-1" aria-hidden="true" tabindex="-1"></a>ajuste <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, datos, seleccion, pesos, na.action)</span></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="modelos-lineales.html#cb545-1" aria-hidden="true" tabindex="-1"></a>ajuste <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula, datos, seleccion, pesos, na.action)</span></code></pre></div>
 <ul>
 <li><code>formula</code> fórmula que especifica el modelo.</li>
 <li><code>datos</code> data.frame opcional con las variables de la formula.</li>
@@ -508,8 +511,8 @@ el resto de variables continuas menos <em>satisfac</em>.</p>
 <li><code>pesos</code> vector opcional de pesos (WLS).</li>
 <li><code>na.action</code> opción para manejar los datos faltantes (<code>na.omit</code>).</li>
 </ul>
-<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="modelos-lineales.html#cb545-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(fidelida <span class="sc">~</span> servconj, datos)</span>
-<span id="cb545-2"><a href="modelos-lineales.html#cb545-2" aria-hidden="true" tabindex="-1"></a>modelo</span></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="modelos-lineales.html#cb546-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(fidelida <span class="sc">~</span> servconj, datos)</span>
+<span id="cb546-2"><a href="modelos-lineales.html#cb546-2" aria-hidden="true" tabindex="-1"></a>modelo</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fidelida ~ servconj, data = datos)
@@ -519,7 +522,7 @@ el resto de variables continuas menos <em>satisfac</em>.</p>
 ##       21.98         8.30</code></pre>
 <p>Al imprimir el ajuste resultante se muestra un pequeño resumen del ajuste (aunque el objeto que contiene los resultados es una lista).</p>
 <p>Para obtener un resumen más completo se puede utilizar la función <code>summary()</code>.</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="modelos-lineales.html#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="modelos-lineales.html#cb548-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fidelida ~ servconj, data = datos)
@@ -539,8 +542,8 @@ el resto de variables continuas menos <em>satisfac</em>.</p>
 ##   (1 observation deleted due to missingness)
 ## Multiple R-squared:  0.4872, Adjusted R-squared:  0.482 
 ## F-statistic: 92.17 on 1 and 97 DF,  p-value: 9.765e-16</code></pre>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="modelos-lineales.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fidelida <span class="sc">~</span> servconj, datos)</span>
-<span id="cb549-2"><a href="modelos-lineales.html#cb549-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="modelos-lineales.html#cb550-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fidelida <span class="sc">~</span> servconj, datos)</span>
+<span id="cb550-2"><a href="modelos-lineales.html#cb550-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(modelo)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <div id="extracción-de-información" class="section level3" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> Extracción de información</h3>
@@ -592,8 +595,8 @@ el resto de variables continuas menos <em>satisfac</em>.</p>
 </tbody>
 </table>
 <p>Ejemplo:</p>
-<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="modelos-lineales.html#cb550-1" aria-hidden="true" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fidelida <span class="sc">~</span> servconj <span class="sc">+</span> flexprec, <span class="at">data =</span> hatco)</span>
-<span id="cb550-2"><a href="modelos-lineales.html#cb550-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo2)</span></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="modelos-lineales.html#cb551-1" aria-hidden="true" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fidelida <span class="sc">~</span> servconj <span class="sc">+</span> flexprec, <span class="at">data =</span> hatco)</span>
+<span id="cb551-2"><a href="modelos-lineales.html#cb551-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fidelida ~ servconj + flexprec, data = hatco)
@@ -614,12 +617,12 @@ el resto de variables continuas menos <em>satisfac</em>.</p>
 ##   (1 observation deleted due to missingness)
 ## Multiple R-squared:  0.7652, Adjusted R-squared:  0.7603 
 ## F-statistic: 156.4 on 2 and 96 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="modelos-lineales.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(modelo2)</span></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="modelos-lineales.html#cb553-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(modelo2)</span></code></pre></div>
 <pre><code>##                 2.5 %   97.5 %
 ## (Intercept) -9.363813 2.440344
 ## servconj     6.658219 8.999274
 ## flexprec     2.768333 4.035030</code></pre>
-<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="modelos-lineales.html#cb554-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo2)</span></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="modelos-lineales.html#cb555-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: fidelida
@@ -629,19 +632,19 @@ el resto de variables continuas menos <em>satisfac</em>.</p>
 ## Residuals 96 1837.6    19.1                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="modelos-lineales.html#cb556-1" aria-hidden="true" tabindex="-1"></a><span class="co"># anova(modelo2, modelo)</span></span>
-<span id="cb556-2"><a href="modelos-lineales.html#cb556-2" aria-hidden="true" tabindex="-1"></a><span class="co"># termplot(modelo2, partial.resid = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="modelos-lineales.html#cb557-1" aria-hidden="true" tabindex="-1"></a><span class="co"># anova(modelo2, modelo)</span></span>
+<span id="cb557-2"><a href="modelos-lineales.html#cb557-2" aria-hidden="true" tabindex="-1"></a><span class="co"># termplot(modelo2, partial.resid = TRUE)</span></span></code></pre></div>
 <p>Muchas de estas funciones genéricas son válidas para otros tipos de
 modelos (glm, …).</p>
 <p>Algunas funciones como <code>summary()</code> devuelven información adicional:</p>
-<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="modelos-lineales.html#cb557-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo2)</span>
-<span id="cb557-2"><a href="modelos-lineales.html#cb557-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="modelos-lineales.html#cb558-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo2)</span>
+<span id="cb558-2"><a href="modelos-lineales.html#cb558-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(res)</span></code></pre></div>
 <pre><code>##  [1] &quot;call&quot;          &quot;terms&quot;         &quot;residuals&quot;     &quot;coefficients&quot; 
 ##  [5] &quot;aliased&quot;       &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;    
 ##  [9] &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;  &quot;na.action&quot;</code></pre>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="modelos-lineales.html#cb559-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>sigma</span></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="modelos-lineales.html#cb560-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>sigma</span></code></pre></div>
 <pre><code>## [1] 4.375074</code></pre>
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="modelos-lineales.html#cb561-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>adj.r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="modelos-lineales.html#cb562-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>adj.r.squared</span></code></pre></div>
 <pre><code>## [1] 0.7603292</code></pre>
 </div>
 </div>
@@ -654,19 +657,19 @@ Por defecto obtiene las predicciones correspondientes a las observaciones (<code
 deben coincidir con los originales.</li>
 </ul>
 <p>Ejemplo:</p>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="modelos-lineales.html#cb563-1" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb563-2"><a href="modelos-lineales.html#cb563-2" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">servconj =</span> valores))</span>
-<span id="cb563-3"><a href="modelos-lineales.html#cb563-3" aria-hidden="true" tabindex="-1"></a>pred</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="modelos-lineales.html#cb564-1" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb564-2"><a href="modelos-lineales.html#cb564-2" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">servconj =</span> valores))</span>
+<span id="cb564-3"><a href="modelos-lineales.html#cb564-3" aria-hidden="true" tabindex="-1"></a>pred</span></code></pre></div>
 <pre><code>##        1        2        3        4        5        6 
 ## 21.97544 30.27548 38.57552 46.87556 55.17560 63.47564</code></pre>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="modelos-lineales.html#cb565-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fidelida <span class="sc">~</span> servconj, datos)</span>
-<span id="cb565-2"><a href="modelos-lineales.html#cb565-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(valores, pred)</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="modelos-lineales.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fidelida <span class="sc">~</span> servconj, datos)</span>
+<span id="cb566-2"><a href="modelos-lineales.html#cb566-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(valores, pred)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Esta función también permite obtener intervalos de confianza y de predicción:</p>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="modelos-lineales.html#cb566-1" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
-<span id="cb566-2"><a href="modelos-lineales.html#cb566-2" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">servconj =</span> valores)</span>
-<span id="cb566-3"><a href="modelos-lineales.html#cb566-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> newdata, <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">&quot;confidence&quot;</span>))</span>
-<span id="cb566-4"><a href="modelos-lineales.html#cb566-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pred)</span></code></pre></div>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="modelos-lineales.html#cb567-1" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
+<span id="cb567-2"><a href="modelos-lineales.html#cb567-2" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">servconj =</span> valores)</span>
+<span id="cb567-3"><a href="modelos-lineales.html#cb567-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> newdata, <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">&quot;confidence&quot;</span>))</span>
+<span id="cb567-4"><a href="modelos-lineales.html#cb567-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pred)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 21.97544 16.79816 27.15272
 ## 2 22.39463 17.30126 27.48800
@@ -674,11 +677,11 @@ deben coincidir con los originales.</li>
 ## 4 23.23302 18.30718 28.15886
 ## 5 23.65221 18.80999 28.49444
 ## 6 24.07141 19.31269 28.83013</code></pre>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="modelos-lineales.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fidelida <span class="sc">~</span> servconj, datos)</span>
-<span id="cb568-2"><a href="modelos-lineales.html#cb568-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(valores, pred, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="at">col =</span> <span class="dv">1</span>)</span>
-<span id="cb568-3"><a href="modelos-lineales.html#cb568-3" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> newdata, <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">&quot;prediction&quot;</span>))</span>
-<span id="cb568-4"><a href="modelos-lineales.html#cb568-4" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(valores, pred2[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="dv">1</span>)</span>
-<span id="cb568-5"><a href="modelos-lineales.html#cb568-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Ajuste&quot;</span>, <span class="st">&quot;Int. confianza&quot;</span>, <span class="st">&quot;Int. predicción&quot;</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="modelos-lineales.html#cb569-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fidelida <span class="sc">~</span> servconj, datos)</span>
+<span id="cb569-2"><a href="modelos-lineales.html#cb569-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(valores, pred, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="at">col =</span> <span class="dv">1</span>)</span>
+<span id="cb569-3"><a href="modelos-lineales.html#cb569-3" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> newdata, <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb569-4"><a href="modelos-lineales.html#cb569-4" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(valores, pred2[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="dv">1</span>)</span>
+<span id="cb569-5"><a href="modelos-lineales.html#cb569-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Ajuste&quot;</span>, <span class="st">&quot;Int. confianza&quot;</span>, <span class="st">&quot;Int. predicción&quot;</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 <div id="selección-de-variables-explicativas" class="section level2" number="8.4">
@@ -691,8 +694,8 @@ no se debería incluir (se simplificaría la interpretación del modelo, aumenta
 la precisión de la estimación y se evitarían problemas como la multicolinealidad).
 Se trataría entonces de conseguir un buen ajuste con el menor número de variables explicativas posible.</p>
 <p>Para actualizar un modelo (p.e. eliminando o añadiendo variables) se puede emplear la función <code>update</code>:</p>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="modelos-lineales.html#cb569-1" aria-hidden="true" tabindex="-1"></a>modelo.completo <span class="ot">&lt;-</span> <span class="fu">lm</span>(fidelida <span class="sc">~</span> . , <span class="at">data =</span> datos)</span>
-<span id="cb569-2"><a href="modelos-lineales.html#cb569-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo.completo)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="modelos-lineales.html#cb570-1" aria-hidden="true" tabindex="-1"></a>modelo.completo <span class="ot">&lt;-</span> <span class="fu">lm</span>(fidelida <span class="sc">~</span> . , <span class="at">data =</span> datos)</span>
+<span id="cb570-2"><a href="modelos-lineales.html#cb570-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo.completo)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fidelida ~ ., data = datos)
@@ -718,8 +721,8 @@ Se trataría entonces de conseguir un buen ajuste con el menor número de variab
 ##   (1 observation deleted due to missingness)
 ## Multiple R-squared:  0.7869, Adjusted R-squared:  0.7705 
 ## F-statistic:    48 on 7 and 91 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="modelos-lineales.html#cb571-1" aria-hidden="true" tabindex="-1"></a>modelo.reducido <span class="ot">&lt;-</span> <span class="fu">update</span>(modelo.completo, . <span class="sc">~</span> . <span class="sc">-</span> imgfabri)</span>
-<span id="cb571-2"><a href="modelos-lineales.html#cb571-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo.reducido)</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="modelos-lineales.html#cb572-1" aria-hidden="true" tabindex="-1"></a>modelo.reducido <span class="ot">&lt;-</span> <span class="fu">update</span>(modelo.completo, . <span class="sc">~</span> . <span class="sc">-</span> imgfabri)</span>
+<span id="cb572-2"><a href="modelos-lineales.html#cb572-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo.reducido)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fidelida ~ velocida + precio + flexprec + servconj + 
@@ -753,10 +756,9 @@ fijando el número de variables explicativas.
 Por defecto, evalúa todos los modelos posibles con un determinado número de
 parámetros (variando desde 1 hasta un máximo de <code>nvmax=8</code>)
 y selecciona el mejor (<code>nbest=1</code>).</p>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="modelos-lineales.html#cb573-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span></code></pre></div>
-<pre><code>## Warning: package &#39;leaps&#39; was built under R version 4.1.1</code></pre>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="modelos-lineales.html#cb575-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(fidelida <span class="sc">~</span> . , <span class="at">data =</span> datos)</span>
-<span id="cb575-2"><a href="modelos-lineales.html#cb575-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="modelos-lineales.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span>
+<span id="cb574-2"><a href="modelos-lineales.html#cb574-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(fidelida <span class="sc">~</span> . , <span class="at">data =</span> datos)</span>
+<span id="cb574-3"><a href="modelos-lineales.html#cb574-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
 <pre><code>## Subset selection object
 ## Call: regsubsets.formula(fidelida ~ ., data = datos)
 ## 7 Variables  (and intercept)
@@ -778,14 +780,14 @@ y selecciona el mejor (<code>nbest=1</code>).</p>
 ## 5  ( 1 ) &quot; &quot;      &quot;*&quot;    &quot;*&quot;      &quot; &quot;      &quot;*&quot;      &quot;*&quot;      &quot;*&quot;     
 ## 6  ( 1 ) &quot;*&quot;      &quot;*&quot;    &quot;*&quot;      &quot; &quot;      &quot;*&quot;      &quot;*&quot;      &quot;*&quot;     
 ## 7  ( 1 ) &quot;*&quot;      &quot;*&quot;    &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      &quot;*&quot;      &quot;*&quot;</code></pre>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="modelos-lineales.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="co"># names(summary(res))</span></span></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="modelos-lineales.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="co"># names(summary(res))</span></span></code></pre></div>
 <p>Al representar el resultado se obtiene un gráfico con los mejores modelos ordenados
 según el criterio determinado por el argumento <code>scale = c("bic", "Cp", "adjr2", "r2")</code>.
 Por ejemplo, en este caso, empleando el coeficiente de determinación ajustado, obtendríamos:</p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="modelos-lineales.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">scale =</span> <span class="st">&quot;adjr2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="modelos-lineales.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">scale =</span> <span class="st">&quot;adjr2&quot;</span>)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>En este caso (considerando que una mejora del 2% no es significativa), el modelo resultante sería:</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="modelos-lineales.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(fidelida <span class="sc">~</span> servconj <span class="sc">+</span> flexprec, <span class="at">data =</span> hatco)</span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="modelos-lineales.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(fidelida <span class="sc">~</span> servconj <span class="sc">+</span> flexprec, <span class="at">data =</span> hatco)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fidelida ~ servconj + flexprec, data = hatco)
@@ -826,10 +828,9 @@ exclusión</strong> (forward/backward).</p></li>
 hacia delante o hacia atrás según criterio AIC o BIC (también esta disponible una función <code>step</code> del paquete base <code>stats</code> con menos opciones).
 La función <code>stepwise</code> del paquete <code>RcmdrMisc</code> es una interfaz de <code>stepAIC</code>
 que facilita su uso:</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="modelos-lineales.html#cb581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb581-2"><a href="modelos-lineales.html#cb581-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RcmdrMisc)</span></code></pre></div>
-<pre><code>## Warning: package &#39;RcmdrMisc&#39; was built under R version 4.1.1</code></pre>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="modelos-lineales.html#cb583-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">stepwise</span>(modelo.completo, <span class="at">direction =</span> <span class="st">&quot;forward/backward&quot;</span>, <span class="at">criterion =</span> <span class="st">&quot;BIC&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="modelos-lineales.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb580-2"><a href="modelos-lineales.html#cb580-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RcmdrMisc)</span>
+<span id="cb580-3"><a href="modelos-lineales.html#cb580-3" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">stepwise</span>(modelo.completo, <span class="at">direction =</span> <span class="st">&quot;forward/backward&quot;</span>, <span class="at">criterion =</span> <span class="st">&quot;BIC&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Direction:  forward/backward
 ## Criterion:  BIC 
@@ -885,7 +886,7 @@ que facilita su uso:</p>
 ## + velocida  1      0.41 1707.3 304.88
 ## - flexprec  1   2230.67 3938.4 378.44
 ## - servconj  1   2850.14 4557.9 392.91</code></pre>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="modelos-lineales.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="modelos-lineales.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fidelida ~ servconj + flexprec + imgfvent, data = datos)
@@ -915,14 +916,14 @@ que facilita su uso:</p>
 <h2><span class="header-section-number">8.5</span> Regresión con variables categóricas</h2>
 <p>La función <code>lm()</code> admite también variables categóricas (factores), lo que equivaldría a modelos de análisis de la varianza o de la covarianza.</p>
 <p>Como ejemplo, en el resto del tema emplearemos los datos de empleados:</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="modelos-lineales.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
-<span id="cb587-2"><a href="modelos-lineales.html#cb587-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">with</span>(empleados, <span class="fu">data.frame</span>(<span class="at">lnsal =</span> <span class="fu">log</span>(salario), <span class="at">lnsalini =</span> <span class="fu">log</span>(salini), catlab, sexo))</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="modelos-lineales.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;datos/empleados.RData&quot;</span>)</span>
+<span id="cb584-2"><a href="modelos-lineales.html#cb584-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">with</span>(empleados, <span class="fu">data.frame</span>(<span class="at">lnsal =</span> <span class="fu">log</span>(salario), <span class="at">lnsalini =</span> <span class="fu">log</span>(salini), catlab, sexo))</span></code></pre></div>
 <p>Al incluir variables categóricas la función <code>lm()</code> genera las variables indicadoras (variables dummy) que sean necesarias.
 Por ejemplo, la función <code>model.matrix()</code> construye la denominada matriz de diseño <span class="math inline">\(X\)</span> de un modelo lineal:
 <span class="math display">\[\mathbf{Y}=X\mathbf{\beta}+\mathbf{\varepsilon}\]</span>
 En el caso de una variable categórica, por defecto se toma la primera categoría como referencia y se generan variables indicadoras del resto de categorías:</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="modelos-lineales.html#cb588-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(lnsal <span class="sc">~</span> catlab, datos)</span>
-<span id="cb588-2"><a href="modelos-lineales.html#cb588-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="modelos-lineales.html#cb585-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(lnsal <span class="sc">~</span> catlab, datos)</span>
+<span id="cb585-2"><a href="modelos-lineales.html#cb585-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
 <pre><code>##   (Intercept) catlabSeguridad catlabDirectivo
 ## 1           1               0               1
 ## 2           1               0               0
@@ -931,8 +932,8 @@ En el caso de una variable categórica, por defecto se toma la primera categorí
 ## 5           1               0               0
 ## 6           1               0               0</code></pre>
 <p>En el correspondiente ajuste (análisis de la varianza de un factor):</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="modelos-lineales.html#cb590-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnsal <span class="sc">~</span> catlab, datos)</span>
-<span id="cb590-2"><a href="modelos-lineales.html#cb590-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="modelos-lineales.html#cb587-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnsal <span class="sc">~</span> catlab, datos)</span>
+<span id="cb587-2"><a href="modelos-lineales.html#cb587-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lnsal ~ catlab, data = datos)
@@ -954,8 +955,8 @@ En el caso de una variable categórica, por defecto se toma la primera categorí
 ## F-statistic: 392.6 on 2 and 471 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>el nivel de referencia no tiene asociado un coeficiente (su efecto se corresponde con <code>(Intercept)</code>). Los coeficientes del resto de niveles miden el cambio que se produce en la media al cambiar desde la categoría de referencia (diferencias de efectos respecto al nivel de referencia).</p>
 <p>Para contrastar el efecto de los factores, es preferible emplear la función <code>anova</code>:</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="modelos-lineales.html#cb592-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnsal <span class="sc">~</span> catlab <span class="sc">+</span> sexo, datos)</span>
-<span id="cb592-2"><a href="modelos-lineales.html#cb592-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="modelos-lineales.html#cb589-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnsal <span class="sc">~</span> catlab <span class="sc">+</span> sexo, datos)</span>
+<span id="cb589-2"><a href="modelos-lineales.html#cb589-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: lnsal
@@ -978,8 +979,8 @@ el argumento <code>contrasts = c("contr.treatment", "contr.poly")</code>
 <div id="interacciones" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Interacciones</h2>
 <p>Al emplear el operador <code>+</code> se considera que los efectos de las covariables son aditivos (independientes):</p>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="modelos-lineales.html#cb594-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnsal <span class="sc">~</span> lnsalini <span class="sc">+</span> catlab, datos)</span>
-<span id="cb594-2"><a href="modelos-lineales.html#cb594-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="modelos-lineales.html#cb591-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnsal <span class="sc">~</span> lnsalini <span class="sc">+</span> catlab, datos)</span>
+<span id="cb591-2"><a href="modelos-lineales.html#cb591-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: lnsal
@@ -989,17 +990,17 @@ el argumento <code>contrasts = c("contr.treatment", "contr.poly")</code>
 ## Residuals 470 14.497   0.031                       
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="modelos-lineales.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lnsal <span class="sc">~</span> lnsalini, <span class="at">data =</span> datos, <span class="at">pch =</span> <span class="fu">as.numeric</span>(catlab), <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
-<span id="cb596-2"><a href="modelos-lineales.html#cb596-2" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)</span>
-<span id="cb596-3"><a href="modelos-lineales.html#cb596-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>], <span class="at">b =</span> parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">1</span>)</span>
-<span id="cb596-4"><a href="modelos-lineales.html#cb596-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">3</span>], <span class="at">b =</span> parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb596-5"><a href="modelos-lineales.html#cb596-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">4</span>], <span class="at">b =</span> parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb596-6"><a href="modelos-lineales.html#cb596-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="fu">levels</span>(datos<span class="sc">$</span>catlab), <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="modelos-lineales.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lnsal <span class="sc">~</span> lnsalini, <span class="at">data =</span> datos, <span class="at">pch =</span> <span class="fu">as.numeric</span>(catlab), <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
+<span id="cb593-2"><a href="modelos-lineales.html#cb593-2" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)</span>
+<span id="cb593-3"><a href="modelos-lineales.html#cb593-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>], <span class="at">b =</span> parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb593-4"><a href="modelos-lineales.html#cb593-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">3</span>], <span class="at">b =</span> parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb593-5"><a href="modelos-lineales.html#cb593-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">4</span>], <span class="at">b =</span> parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb593-6"><a href="modelos-lineales.html#cb593-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="fu">levels</span>(datos<span class="sc">$</span>catlab), <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Para especificar que el efecto de una covariable depende de otra (interacción),
 se pueden emplear los operadores <code>*</code> ó <code>:</code>.</p>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="modelos-lineales.html#cb597-1" aria-hidden="true" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnsal <span class="sc">~</span> lnsalini<span class="sc">*</span>catlab, datos)</span>
-<span id="cb597-2"><a href="modelos-lineales.html#cb597-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo2)</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="modelos-lineales.html#cb594-1" aria-hidden="true" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lnsal <span class="sc">~</span> lnsalini<span class="sc">*</span>catlab, datos)</span>
+<span id="cb594-2"><a href="modelos-lineales.html#cb594-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lnsal ~ lnsalini * catlab, data = datos)
@@ -1022,7 +1023,7 @@ se pueden emplear los operadores <code>*</code> ó <code>:</code>.</p>
 ## Residual standard error: 0.1727 on 468 degrees of freedom
 ## Multiple R-squared:  0.8131, Adjusted R-squared:  0.8111 
 ## F-statistic: 407.3 on 5 and 468 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="modelos-lineales.html#cb599-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo2)</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="modelos-lineales.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: lnsal
@@ -1034,12 +1035,12 @@ se pueden emplear los operadores <code>*</code> ó <code>:</code>.</p>
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>En este caso las pendientes también varían dependiendo del nivel del factor:</p>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="modelos-lineales.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lnsal <span class="sc">~</span> lnsalini, <span class="at">data =</span> datos, <span class="at">pch =</span> <span class="fu">as.numeric</span>(catlab), <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
-<span id="cb601-2"><a href="modelos-lineales.html#cb601-2" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo2)</span>
-<span id="cb601-3"><a href="modelos-lineales.html#cb601-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>], <span class="at">b =</span> parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">1</span>)</span>
-<span id="cb601-4"><a href="modelos-lineales.html#cb601-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">3</span>], <span class="at">b =</span> parest[<span class="dv">2</span>] <span class="sc">+</span> parest[<span class="dv">5</span>], <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb601-5"><a href="modelos-lineales.html#cb601-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">4</span>], <span class="at">b =</span> parest[<span class="dv">2</span>] <span class="sc">+</span> parest[<span class="dv">6</span>], <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb601-6"><a href="modelos-lineales.html#cb601-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="fu">levels</span>(datos<span class="sc">$</span>catlab), <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="modelos-lineales.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lnsal <span class="sc">~</span> lnsalini, <span class="at">data =</span> datos, <span class="at">pch =</span> <span class="fu">as.numeric</span>(catlab), <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
+<span id="cb598-2"><a href="modelos-lineales.html#cb598-2" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo2)</span>
+<span id="cb598-3"><a href="modelos-lineales.html#cb598-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>], <span class="at">b =</span> parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb598-4"><a href="modelos-lineales.html#cb598-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">3</span>], <span class="at">b =</span> parest[<span class="dv">2</span>] <span class="sc">+</span> parest[<span class="dv">5</span>], <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb598-5"><a href="modelos-lineales.html#cb598-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">4</span>], <span class="at">b =</span> parest[<span class="dv">2</span>] <span class="sc">+</span> parest[<span class="dv">6</span>], <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb598-6"><a href="modelos-lineales.html#cb598-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="fu">levels</span>(datos<span class="sc">$</span>catlab), <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>Por ejemplo, empleando la fórmula <code>lnsal ~ lnsalini:catlab</code> se considerarían distintas pendientes pero el mismo término independiente.</p>
 </div>
@@ -1059,8 +1060,8 @@ fiables, o incluso totalmente erróneas. En el caso de regresión múltiple es
 de especial interés el fenómeno de la multicolinealidad (o colinearidad)
 relacionado con la última de estas hipótesis.</p>
 <p>En esta sección consideraremos como ejemplo el modelo:</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="modelos-lineales.html#cb602-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(salario <span class="sc">~</span> salini <span class="sc">+</span> expprev, <span class="at">data =</span> empleados)</span>
-<span id="cb602-2"><a href="modelos-lineales.html#cb602-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)   </span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="modelos-lineales.html#cb599-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(salario <span class="sc">~</span> salini <span class="sc">+</span> expprev, <span class="at">data =</span> empleados)</span>
+<span id="cb599-2"><a href="modelos-lineales.html#cb599-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)   </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = salario ~ salini + expprev, data = empleados)
@@ -1083,10 +1084,10 @@ relacionado con la última de estas hipótesis.</p>
 <div id="gráficas-básicas-de-diagnóstico" class="section level3" number="8.7.1">
 <h3><span class="header-section-number">8.7.1</span> Gráficas básicas de diagnóstico</h3>
 <p>Con la función <code>plot</code> se pueden generar gráficos de interés para la diagnosis del modelo:</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="modelos-lineales.html#cb604-1" aria-hidden="true" tabindex="-1"></a>oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>( <span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb604-2"><a href="modelos-lineales.html#cb604-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="modelos-lineales.html#cb601-1" aria-hidden="true" tabindex="-1"></a>oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>( <span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb601-2"><a href="modelos-lineales.html#cb601-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="modelos-lineales.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(oldpar)</span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="modelos-lineales.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(oldpar)</span></code></pre></div>
 <p>Por defecto se muestran cuatro gráficos (ver <code>help(plot.lm)</code> para más detalles). El primero (residuos frente a predicciones) permite detectar falta de
 linealidad o heterocedasticidad (o el efecto de un factor omitido: mala
 especificación del modelo), lo ideal sería no observar ningún patrón.</p>
@@ -1097,8 +1098,8 @@ especificación del modelo), lo ideal sería no observar ningún patrón.</p>
 observación (normalmente atípica), esta se denomina influyente (a
 posteriori) y debe ser examinada con cuidado por el experimentador.
 Para recalcular el modelo sin una de las observaciones puede ser útil la función update:</p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="modelos-lineales.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which.max(cooks.distance(modelo))</span></span>
-<span id="cb606-2"><a href="modelos-lineales.html#cb606-2" aria-hidden="true" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">update</span>(modelo, <span class="at">data =</span> empleados[<span class="sc">-</span><span class="dv">29</span>, ])</span></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="modelos-lineales.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which.max(cooks.distance(modelo))</span></span>
+<span id="cb603-2"><a href="modelos-lineales.html#cb603-2" aria-hidden="true" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">update</span>(modelo, <span class="at">data =</span> empleados[<span class="sc">-</span><span class="dv">29</span>, ])</span></code></pre></div>
 <p>Si hay datos atípicos o influyentes, puede ser recomendable emplear regresión lineal robusta, por ejemplo mediante la función <code>rlm</code> del paquete <code>MASS</code>.</p>
 <p>En el ejemplo anterior, se observa claramente heterogeneidad de varianzas y falta de normalidad. Aparentemente no hay observaciones influyentes (a posteriori) aunque si algún dato atípico.</p>
 </div>
@@ -1108,12 +1109,12 @@ Para recalcular el modelo sin una de las observaciones puede ser útil la funci�
 (p.e. gráficos de dispersión matriciales) para detectar problemas (falta de
 linealidad, …) y analizar los efectos de las variables explicativas,
 se pueden generar gráficos parciales de residuos, por ejemplo con el comando:</p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="modelos-lineales.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">termplot</span>(modelo, <span class="at">partial.resid =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="modelos-lineales.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="fu">termplot</span>(modelo, <span class="at">partial.resid =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Aunque puede ser preferible emplear las funciones <code>crPlots</code> ó <code>avPlots</code> del paquete <code>car</code>:</p>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="modelos-lineales.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb608-2"><a href="modelos-lineales.html#cb608-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="modelos-lineales.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb605-2"><a href="modelos-lineales.html#cb605-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crPlots</span>(modelo)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="modelos-lineales.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="co"># avPlots(modelo)</span></span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="modelos-lineales.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="co"># avPlots(modelo)</span></span></code></pre></div>
 <p>Estas funciones permitirían además detectar puntos atípicos o influyentes
 (mediante los argumentos <code>id.method</code> e <code>id.n</code>).</p>
 </div>
@@ -1156,8 +1157,8 @@ las siguientes funciones:</p>
 Por ejemplo, para la detección de multicolinealidad, se puede emplear la función
 <code>vif</code> del paquete <code>car</code> para calcular los factores de inflación de varianza para
 las variables del modelo:</p>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="modelos-lineales.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
-<span id="cb610-2"><a href="modelos-lineales.html#cb610-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="modelos-lineales.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
+<span id="cb607-2"><a href="modelos-lineales.html#cb607-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(modelo)</span></code></pre></div>
 <pre><code>##   salini  expprev 
 ## 1.002041 1.002041</code></pre>
 <p>Valores grandes, por ejemplo &gt; 10, indican la posible presencia de multicolinealidad.</p>
@@ -1168,20 +1169,20 @@ las variables del modelo:</p>
 <div id="normalidad-1" class="section level4" number="8.7.4.1">
 <h4><span class="header-section-number">8.7.4.1</span> Normalidad</h4>
 <p>Para realizar el contraste de normalidad de Shapiro-Wilk se puede emplear:</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="modelos-lineales.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(modelo))</span></code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="modelos-lineales.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(modelo))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(modelo)
 ## W = 0.85533, p-value &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="modelos-lineales.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(modelo))</span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="modelos-lineales.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(modelo))</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 <div id="homocedasticidad" class="section level4" number="8.7.4.2">
 <h4><span class="header-section-number">8.7.4.2</span> Homocedasticidad</h4>
 <p>La librería <code>lmtest</code> proporciona herramientas adicionales para la diagnosis de modelos lineales, por ejemplo el test de Breusch-Pagan para heterocedasticidad:</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="modelos-lineales.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
-<span id="cb615-2"><a href="modelos-lineales.html#cb615-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(modelo, <span class="at">studentize =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="modelos-lineales.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb612-2"><a href="modelos-lineales.html#cb612-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(modelo, <span class="at">studentize =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Breusch-Pagan test
 ## 
@@ -1192,7 +1193,7 @@ las variables del modelo:</p>
 <div id="autocorrelación" class="section level4" number="8.7.4.3">
 <h4><span class="header-section-number">8.7.4.3</span> Autocorrelación</h4>
 <p>Contraste de Durbin-Watson para detectar si hay correlación serial entre los errores:</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="modelos-lineales.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(modelo, <span class="at">alternative=</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="modelos-lineales.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(modelo, <span class="at">alternative=</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Durbin-Watson test
 ## 
@@ -1237,8 +1238,8 @@ costa del sesgo).</p></li>
 <p>El fichero <em>hatco.RData</em> contiene observaciones de clientes de la compañía de
 distribución industrial (Compañía Hair, Anderson y Tatham).
 Las variables se pueden clasificar en tres grupos:</p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="modelos-lineales.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;datos/hatco.RData&#39;</span>)</span>
-<span id="cb619-2"><a href="modelos-lineales.html#cb619-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">attr</span>(hatco, <span class="st">&quot;variable.labels&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="modelos-lineales.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;datos/hatco.RData&#39;</span>)</span>
+<span id="cb616-2"><a href="modelos-lineales.html#cb616-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">attr</span>(hatco, <span class="st">&quot;variable.labels&quot;</span>))</span></code></pre></div>
 <pre><code>##          attr(hatco, &quot;variable.labels&quot;)
 ## empresa                         Empresa
 ## tamano             Tamaño de la empresa
@@ -1258,63 +1259,62 @@ Las variables se pueden clasificar en tres grupos:</p>
 ## nsatisfa          Nivel de satisfacción</code></pre>
 <p>Consideraremos como respuesta la variable <em>fidelida</em> y como variables explicativas
 el resto de variables continuas menos <em>satisfac</em>.</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="modelos-lineales.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span></code></pre></div>
-<pre><code>## Warning: package &#39;glmnet&#39; was built under R version 4.1.1</code></pre>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="modelos-lineales.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span></code></pre></div>
 <p>El paquete <code>glmnet</code> no emplea formulación de modelos, hay que establecer la respuesta
 <code>y</code> y las variables explicativas <code>x</code> (se puede emplear la función <code>model.matrix()</code> para construir <code>x</code>,
 la matriz de diseño, a partir de una fórmula).
 En este caso, eliminamos también la última fila por tener datos faltantes:</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="modelos-lineales.html#cb623-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(hatco[<span class="sc">-</span><span class="dv">100</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">12</span>])</span>
-<span id="cb623-2"><a href="modelos-lineales.html#cb623-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> hatco<span class="sc">$</span>fidelida[<span class="sc">-</span><span class="dv">100</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="modelos-lineales.html#cb619-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(hatco[<span class="sc">-</span><span class="dv">100</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">12</span>])</span>
+<span id="cb619-2"><a href="modelos-lineales.html#cb619-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> hatco<span class="sc">$</span>fidelida[<span class="sc">-</span><span class="dv">100</span>]</span></code></pre></div>
 </div>
 <div id="ridge-regression" class="section level3" number="8.8.2">
 <h3><span class="header-section-number">8.8.2</span> Ridge Regression</h3>
 <p>Ajustamos un modelo de regresión ridge con la función <code>glmnet</code> con <code>alpha=0</code> (ridge penalty).</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="modelos-lineales.html#cb624-1" aria-hidden="true" tabindex="-1"></a>fit.ridge <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
-<span id="cb624-2"><a href="modelos-lineales.html#cb624-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit.ridge, <span class="at">xvar =</span> <span class="st">&quot;lambda&quot;</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="modelos-lineales.html#cb620-1" aria-hidden="true" tabindex="-1"></a>fit.ridge <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
+<span id="cb620-2"><a href="modelos-lineales.html#cb620-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit.ridge, <span class="at">xvar =</span> <span class="st">&quot;lambda&quot;</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>Para seleccionar el parámetro de penalización por validación cruzada se puede emplear
 la función <code>cv.glmnet</code>.</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="modelos-lineales.html#cb625-1" aria-hidden="true" tabindex="-1"></a>cv.ridge <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
-<span id="cb625-2"><a href="modelos-lineales.html#cb625-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.ridge)</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="modelos-lineales.html#cb621-1" aria-hidden="true" tabindex="-1"></a>cv.ridge <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
+<span id="cb621-2"><a href="modelos-lineales.html#cb621-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.ridge)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>En este caso el parámetro sería:</p>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="modelos-lineales.html#cb626-1" aria-hidden="true" tabindex="-1"></a>cv.ridge<span class="sc">$</span>lambda<span class="fl">.1</span>se</span></code></pre></div>
-<pre><code>## [1] 3.017977</code></pre>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="modelos-lineales.html#cb622-1" aria-hidden="true" tabindex="-1"></a>cv.ridge<span class="sc">$</span>lambda<span class="fl">.1</span>se</span></code></pre></div>
+<pre><code>## [1] 4.378567</code></pre>
 <p>y el modelo resultante contiene todas las variables explicativas:</p>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="modelos-lineales.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(cv.ridge)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="modelos-lineales.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(cv.ridge)</span></code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                    s1
-## (Intercept) 3.3722695
-## velocida    1.5991955
-## precio      0.7512946
-## flexprec    2.3818230
-## imgfabri    0.2960322
-## servconj    3.9127056
-## imgfvent    1.1068114
-## calidadp    0.1052501</code></pre>
+##                     s1
+## (Intercept) 7.28558079
+## velocida    1.55290772
+## precio      0.65329920
+## flexprec    2.10876330
+## imgfabri    0.33897337
+## servconj    3.61576314
+## imgfvent    1.03776789
+## calidadp    0.02802458</code></pre>
 </div>
 <div id="lasso" class="section level3" number="8.8.3">
 <h3><span class="header-section-number">8.8.3</span> Lasso</h3>
 <p>Ajustamos un modelo lasso también con la función <code>glmnet</code> (con la opción por defecto <code>alpha=1</code>, lasso penalty).</p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="modelos-lineales.html#cb630-1" aria-hidden="true" tabindex="-1"></a>fit.lasso <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x,y)</span>
-<span id="cb630-2"><a href="modelos-lineales.html#cb630-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit.lasso, <span class="at">xvar =</span> <span class="st">&quot;lambda&quot;</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="modelos-lineales.html#cb626-1" aria-hidden="true" tabindex="-1"></a>fit.lasso <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x,y)</span>
+<span id="cb626-2"><a href="modelos-lineales.html#cb626-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit.lasso, <span class="at">xvar =</span> <span class="st">&quot;lambda&quot;</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>Seleccionamos el parámetro de penalización por validación cruzada.</p>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="modelos-lineales.html#cb631-1" aria-hidden="true" tabindex="-1"></a>cv.lasso <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x,y)</span>
-<span id="cb631-2"><a href="modelos-lineales.html#cb631-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.lasso)</span></code></pre></div>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="modelos-lineales.html#cb627-1" aria-hidden="true" tabindex="-1"></a>cv.lasso <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x,y)</span>
+<span id="cb627-2"><a href="modelos-lineales.html#cb627-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.lasso)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>En este caso el modelo resultante solo contiene 4 variables explicativas:</p>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="modelos-lineales.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(cv.lasso)</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="modelos-lineales.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(cv.lasso)</span></code></pre></div>
 <pre><code>## 8 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
 ##                    s1
-## (Intercept) 4.4757712
-## velocida    0.1020531
+## (Intercept) 5.5514217
+## velocida    0.1044538
 ## precio      .        
-## flexprec    2.7202485
+## flexprec    2.6524703
 ## imgfabri    .        
-## servconj    6.4044378
-## imgfvent    0.4651076
+## servconj    6.3120283
+## imgfvent    0.3600231
 ## calidadp    .</code></pre>
 </div>
 </div>
@@ -1333,8 +1333,8 @@ más adecuada:
 \dfrac{Y^\lambda - 1}{\lambda} &amp; \text{si } \lambda \neq 0 \\
 \ln{(Y)} &amp; \text{si } \lambda = 0
 \end{cases}\]</span></p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="modelos-lineales.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(MASS)</span></span>
-<span id="cb634-2"><a href="modelos-lineales.html#cb634-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxcox</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="modelos-lineales.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(MASS)</span></span>
+<span id="cb630-2"><a href="modelos-lineales.html#cb630-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxcox</span>(modelo)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>En este caso una transformación logarítmica parece adecuada.</p>
 <p>En ocasiones para obtener una relación lineal (o heterocedasticidad) también es
@@ -1384,50 +1384,50 @@ las relaciones fácilmente linealizables se muestran a continuación:</p>
 </table>
 <div id="ejemplo-1" class="section level4" number="8.9.1.1">
 <h4><span class="header-section-number">8.9.1.1</span> Ejemplo:</h4>
-<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="modelos-lineales.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(salario <span class="sc">~</span> salini, <span class="at">data =</span> empleados, <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
-<span id="cb635-2"><a href="modelos-lineales.html#cb635-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb635-3"><a href="modelos-lineales.html#cb635-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste lineal</span></span>
-<span id="cb635-4"><a href="modelos-lineales.html#cb635-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(salario <span class="sc">~</span> salini, <span class="at">data =</span> empleados)) </span>
-<span id="cb635-5"><a href="modelos-lineales.html#cb635-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb635-6"><a href="modelos-lineales.html#cb635-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo exponencial</span></span>
-<span id="cb635-7"><a href="modelos-lineales.html#cb635-7" aria-hidden="true" tabindex="-1"></a>modelo1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(salario) <span class="sc">~</span> salini, <span class="at">data =</span> empleados)</span>
-<span id="cb635-8"><a href="modelos-lineales.html#cb635-8" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo1)</span>
-<span id="cb635-9"><a href="modelos-lineales.html#cb635-9" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">exp</span>(parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">2</span>]<span class="sc">*</span>x), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb635-10"><a href="modelos-lineales.html#cb635-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb635-11"><a href="modelos-lineales.html#cb635-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo logarítmico</span></span>
-<span id="cb635-12"><a href="modelos-lineales.html#cb635-12" aria-hidden="true" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(salario) <span class="sc">~</span> <span class="fu">log</span>(salini), <span class="at">data =</span> empleados)</span>
-<span id="cb635-13"><a href="modelos-lineales.html#cb635-13" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo2)</span>
-<span id="cb635-14"><a href="modelos-lineales.html#cb635-14" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">exp</span>(parest[<span class="dv">1</span>]) <span class="sc">*</span> x<span class="sc">^</span>parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb635-15"><a href="modelos-lineales.html#cb635-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb635-16"><a href="modelos-lineales.html#cb635-16" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Lineal&quot;</span>,<span class="st">&quot;Exponencial&quot;</span>,<span class="st">&quot;Logarítmico&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="modelos-lineales.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(salario <span class="sc">~</span> salini, <span class="at">data =</span> empleados, <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
+<span id="cb631-2"><a href="modelos-lineales.html#cb631-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb631-3"><a href="modelos-lineales.html#cb631-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste lineal</span></span>
+<span id="cb631-4"><a href="modelos-lineales.html#cb631-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(salario <span class="sc">~</span> salini, <span class="at">data =</span> empleados)) </span>
+<span id="cb631-5"><a href="modelos-lineales.html#cb631-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb631-6"><a href="modelos-lineales.html#cb631-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo exponencial</span></span>
+<span id="cb631-7"><a href="modelos-lineales.html#cb631-7" aria-hidden="true" tabindex="-1"></a>modelo1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(salario) <span class="sc">~</span> salini, <span class="at">data =</span> empleados)</span>
+<span id="cb631-8"><a href="modelos-lineales.html#cb631-8" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo1)</span>
+<span id="cb631-9"><a href="modelos-lineales.html#cb631-9" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">exp</span>(parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">2</span>]<span class="sc">*</span>x), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb631-10"><a href="modelos-lineales.html#cb631-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb631-11"><a href="modelos-lineales.html#cb631-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo logarítmico</span></span>
+<span id="cb631-12"><a href="modelos-lineales.html#cb631-12" aria-hidden="true" tabindex="-1"></a>modelo2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(salario) <span class="sc">~</span> <span class="fu">log</span>(salini), <span class="at">data =</span> empleados)</span>
+<span id="cb631-13"><a href="modelos-lineales.html#cb631-13" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo2)</span>
+<span id="cb631-14"><a href="modelos-lineales.html#cb631-14" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">exp</span>(parest[<span class="dv">1</span>]) <span class="sc">*</span> x<span class="sc">^</span>parest[<span class="dv">2</span>], <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb631-15"><a href="modelos-lineales.html#cb631-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb631-16"><a href="modelos-lineales.html#cb631-16" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Lineal&quot;</span>,<span class="st">&quot;Exponencial&quot;</span>,<span class="st">&quot;Logarítmico&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p>Con estos datos de ejemplo, el principal problema es la falta de homogeneidad de varianzas (y de normalidad) y se corrige sustancialmente con el segundo modelo:</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="modelos-lineales.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(salario) <span class="sc">~</span> <span class="fu">log</span>(salini), <span class="at">data =</span> empleados)</span>
-<span id="cb636-2"><a href="modelos-lineales.html#cb636-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(modelo2)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="modelos-lineales.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(salario) <span class="sc">~</span> <span class="fu">log</span>(salini), <span class="at">data =</span> empleados)</span>
+<span id="cb632-2"><a href="modelos-lineales.html#cb632-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(modelo2)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 </div>
 </div>
 <div id="ajuste-polinómico" class="section level3" number="8.9.2">
 <h3><span class="header-section-number">8.9.2</span> Ajuste polinómico</h3>
 <p>En este apartado utilizaremos como ejemplo el conjunto de datos <code>Prestige</code> de la librería <code>car</code>. Al tratar de explicar <code>prestige</code> (puntuación de ocupaciones obtenidas a partir de una encuesta ) a partir de <code>income</code> (media de ingresos en la ocupación), un ajuste cuadrático puede parecer razonable:</p>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="modelos-lineales.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
-<span id="cb637-2"><a href="modelos-lineales.html#cb637-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prestige <span class="sc">~</span> income, <span class="at">data =</span> Prestige, <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
-<span id="cb637-3"><a href="modelos-lineales.html#cb637-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste lineal</span></span>
-<span id="cb637-4"><a href="modelos-lineales.html#cb637-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(prestige <span class="sc">~</span> income, <span class="at">data =</span> Prestige)) </span>
-<span id="cb637-5"><a href="modelos-lineales.html#cb637-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste cuadrático</span></span>
-<span id="cb637-6"><a href="modelos-lineales.html#cb637-6" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">I</span>(income<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> Prestige)</span>
-<span id="cb637-7"><a href="modelos-lineales.html#cb637-7" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)</span>
-<span id="cb637-8"><a href="modelos-lineales.html#cb637-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">2</span>]<span class="sc">*</span>x <span class="sc">+</span> parest[<span class="dv">3</span>]<span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb637-9"><a href="modelos-lineales.html#cb637-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb637-10"><a href="modelos-lineales.html#cb637-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Lineal&quot;</span>,<span class="st">&quot;Cuadrático&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="modelos-lineales.html#cb633-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
+<span id="cb633-2"><a href="modelos-lineales.html#cb633-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prestige <span class="sc">~</span> income, <span class="at">data =</span> Prestige, <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
+<span id="cb633-3"><a href="modelos-lineales.html#cb633-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste lineal</span></span>
+<span id="cb633-4"><a href="modelos-lineales.html#cb633-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(prestige <span class="sc">~</span> income, <span class="at">data =</span> Prestige)) </span>
+<span id="cb633-5"><a href="modelos-lineales.html#cb633-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste cuadrático</span></span>
+<span id="cb633-6"><a href="modelos-lineales.html#cb633-6" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> income <span class="sc">+</span> <span class="fu">I</span>(income<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> Prestige)</span>
+<span id="cb633-7"><a href="modelos-lineales.html#cb633-7" aria-hidden="true" tabindex="-1"></a>parest <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)</span>
+<span id="cb633-8"><a href="modelos-lineales.html#cb633-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(parest[<span class="dv">1</span>] <span class="sc">+</span> parest[<span class="dv">2</span>]<span class="sc">*</span>x <span class="sc">+</span> parest[<span class="dv">3</span>]<span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb633-9"><a href="modelos-lineales.html#cb633-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb633-10"><a href="modelos-lineales.html#cb633-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Lineal&quot;</span>,<span class="st">&quot;Cuadrático&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <p>Alternativamente se podría emplear la función <code>poly</code>:</p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="modelos-lineales.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prestige <span class="sc">~</span> income, <span class="at">data =</span> Prestige, <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
-<span id="cb638-2"><a href="modelos-lineales.html#cb638-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste cúbico</span></span>
-<span id="cb638-3"><a href="modelos-lineales.html#cb638-3" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> <span class="fu">poly</span>(income, <span class="dv">3</span>), <span class="at">data =</span> Prestige)</span>
-<span id="cb638-4"><a href="modelos-lineales.html#cb638-4" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">26000</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
-<span id="cb638-5"><a href="modelos-lineales.html#cb638-5" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">income =</span> valores))</span>
-<span id="cb638-6"><a href="modelos-lineales.html#cb638-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(valores, pred, <span class="at">lty =</span> <span class="dv">3</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="modelos-lineales.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prestige <span class="sc">~</span> income, <span class="at">data =</span> Prestige, <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
+<span id="cb634-2"><a href="modelos-lineales.html#cb634-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste cúbico</span></span>
+<span id="cb634-3"><a href="modelos-lineales.html#cb634-3" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> <span class="fu">poly</span>(income, <span class="dv">3</span>), <span class="at">data =</span> Prestige)</span>
+<span id="cb634-4"><a href="modelos-lineales.html#cb634-4" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">26000</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
+<span id="cb634-5"><a href="modelos-lineales.html#cb634-5" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">income =</span> valores))</span>
+<span id="cb634-6"><a href="modelos-lineales.html#cb634-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(valores, pred, <span class="at">lty =</span> <span class="dv">3</span>) </span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 </div>
 <div id="ajuste-polinómico-local-robusto" class="section level3" number="8.9.3">
@@ -1435,11 +1435,11 @@ las relaciones fácilmente linealizables se muestran a continuación:</p>
 <p>Si no se logra un buen ajuste empleando los modelos anteriores se puede pensar en
 utilizar métodos no paramétricos (p.e. regresión aditiva no paramétrica). Por ejemplo,
 en<code>R</code> es habitual emplear la función <code>loess</code> (sobre todo en gráficos):</p>
-<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="modelos-lineales.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prestige <span class="sc">~</span> income, Prestige, <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
-<span id="cb639-2"><a href="modelos-lineales.html#cb639-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">loess</span>(prestige <span class="sc">~</span> income, Prestige, <span class="at">span =</span> <span class="fl">0.75</span>)</span>
-<span id="cb639-3"><a href="modelos-lineales.html#cb639-3" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)</span>
-<span id="cb639-4"><a href="modelos-lineales.html#cb639-4" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">income =</span> valores))</span>
-<span id="cb639-5"><a href="modelos-lineales.html#cb639-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(valores, pred)</span></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="modelos-lineales.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prestige <span class="sc">~</span> income, Prestige, <span class="at">col =</span> <span class="st">&#39;darkgray&#39;</span>)</span>
+<span id="cb635-2"><a href="modelos-lineales.html#cb635-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">loess</span>(prestige <span class="sc">~</span> income, Prestige, <span class="at">span =</span> <span class="fl">0.75</span>)</span>
+<span id="cb635-3"><a href="modelos-lineales.html#cb635-3" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">25000</span>, <span class="dv">100</span>)</span>
+<span id="cb635-4"><a href="modelos-lineales.html#cb635-4" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">income =</span> valores))</span>
+<span id="cb635-5"><a href="modelos-lineales.html#cb635-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(valores, pred)</span></code></pre></div>
 <p><img src="08-ModelosLineales_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>Este tipo de modelos los trataremos con detalle más adelante…</p>
 

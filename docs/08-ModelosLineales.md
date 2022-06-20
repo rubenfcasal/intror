@@ -398,13 +398,6 @@ y selecciona el mejor (`nbest=1`).
 
 ```r
 library(leaps)
-```
-
-```
-## Warning: package 'leaps' was built under R version 4.1.1
-```
-
-```r
 res <- regsubsets(fidelida ~ . , data = datos)
 summary(res)
 ```
@@ -502,13 +495,6 @@ que facilita su uso:
 ```r
 library(MASS)
 library(RcmdrMisc)
-```
-
-```
-## Warning: package 'RcmdrMisc' was built under R version 4.1.1
-```
-
-```r
 modelo <- stepwise(modelo.completo, direction = "forward/backward", criterion = "BIC")
 ```
 
@@ -1072,10 +1058,6 @@ el resto de variables continuas menos *satisfac*.
 library(glmnet)
 ```
 
-```
-## Warning: package 'glmnet' was built under R version 4.1.1
-```
-
 El paquete `glmnet` no emplea formulación de modelos, hay que establecer la respuesta
 `y` y las variables explicativas `x` (se puede emplear la función `model.matrix()` para construir `x`, 
 la matriz de diseño, a partir de una fórmula). 
@@ -1118,7 +1100,7 @@ cv.ridge$lambda.1se
 ```
 
 ```
-## [1] 2.749868
+## [1] 3.635163
 ```
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -1130,15 +1112,15 @@ coef(cv.ridge)
 
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                    s1
-## (Intercept) 2.4799000
-## velocida    1.6053747
-## precio      0.7733925
-## flexprec    2.4462308
-## imgfabri    0.2837000
-## servconj    3.9801496
-## imgfvent    1.1232130
-## calidadp    0.1245096
+##                     s1
+## (Intercept) 5.26333438
+## velocida    1.58051175
+## precio      0.70395775
+## flexprec    2.24798481
+## imgfabri    0.31897738
+## servconj    3.76988236
+## imgfvent    1.07304993
+## calidadp    0.06641356
 ```
 
 ### Lasso
