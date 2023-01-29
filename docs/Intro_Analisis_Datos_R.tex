@@ -109,21 +109,50 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
-\usepackage{amsthm}
 \usepackage[a4paper, top=3.25cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}
-%\usepackage{animate}
-%\usepackage{fontspec}
-%\setmainfont{Arial}
+% \usepackage{fontspec}
+% \setmainfont{Arial}
+% \usepackage{amsthm}
 % Espacio después de teorema
-% https://tex.stackexchange.com/questions/37797/theorem-environment-line-break-after-label
-\newtheoremstyle{break}
-  {\topsep}{\topsep}%
-  {\itshape}{}%
-  {\bfseries}{}%
-  {\newline}%
-  {}%
+% Basado en https://tex.stackexchange.com/questions/37797/theorem-environment-line-break-after-label
+% \newtheoremstyle{break}
+%   {\topsep}{\topsep}% Space above and below
+%   {\itshape}{}%       Body font, Indent amoun
+%   {\bfseries}{}%      Theorem head font, Punctuation after theorem head
+%   {\newline}%         Space after theorem head
+%   {}%                 Theorem head spec (can be left empty, meaning ‘normal’ )
+% Problemas con listas  https://tex.stackexchange.com/questions/8110/is-it-possible-to-skip-the-first-line-in-a-theorem-environment
 
+\usepackage{ntheorem}
 \theoremstyle{break}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theorempreskip{\bigskipamount}
+\theorempostskip{\smallskipamount}
+\theoremprework{\bigskip\hrule\leavevmode}
+\theoremseparator{\smallskip}
+\theorempostwork{\bigskip\hrule\bigskip}
+\newtheorem{theorem}{Teorema}[chapter]
+\theoremprework{\bigskip\hrule\leavevmode}
+\theorempostwork{\bigskip\hrule\bigskip}
+\newtheorem{conjecture}{Algoritmo}[chapter]
+\newtheorem{lemma}{Lema}[chapter]
+\newtheorem{corollary}{Corolario}[chapter]
+\newtheorem{proposition}{Proposición}[chapter]
+\newtheorem{definition}{Definición}[chapter]
+\newtheorem{hypothesis}{Hipótesis}[chapter]
+\newtheorem{exercise}{Ejercicio}[chapter]
+%\theoremprework{\bigskip\leavevmode}
+%\theorempostwork{\vspace*{-\bigskipamount}\vspace*{-\medskipamount}}
+\newtheorem{example}{Ejemplo}[chapter]
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\normalfont\itshape}
+\theoremseparator{:}
+% \theorempostwork{\hrule}
+\newtheorem{remark}{Nota}
+\newtheorem{solution}{Solución}
+\newtheorem{proof}{Demostración}
+
 
 \ifxetex
   \usepackage{polyglossia}
@@ -136,7 +165,7 @@
   \usepackage[spanish,es-tabla]{babel}
 \fi
 \makeatletter
-\def\thm@space@setup{
+\def\thm@space@setup{%
   \thm@preskip=8pt plus 2pt minus 4pt
   \thm@postskip=\thm@preskip
 }
@@ -149,7 +178,7 @@
 
 \title{Introducción al Análisis de Datos con \texttt{R}}
 \author{Rubén Fernández Casal (\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}}) \and Javier Roca-Pardiñas (\href{mailto:roca@uvigo.es}{\nolinkurl{roca@uvigo.es}}) \and Julián Costa Bouzas (\href{mailto:julian.costa@udc.es}{\nolinkurl{julian.costa@udc.es}}) \and Manuel Oviedo de la Fuente (\href{mailto:manuel.oviedo@udc.es}{\nolinkurl{manuel.oviedo@udc.es}})}
-\date{Edición: Junio de 2022. Impresión: 2022-06-20. ISBN: 978-84-09-41823-7}
+\date{Edición: Junio de 2022. Impresión: 2023-01-29. ISBN: 978-84-09-41823-7}
 
 \begin{document}
 \maketitle
@@ -164,6 +193,9 @@
 
 Este es un libro introductorio al análisis de datos con R.
 
+En el Apéndice \ref{instalacion} se detallan los pasos para la instalación de \texttt{R} y el entorno de desarrollo RStudio.
+En la Sección \protect\hyperlink{links}{Enlaces} de las Referencias se incluyen recursos adicionales, incluyendo algunos que pueden ser útiles para el aprendizaje de R.
+
 Este libro ha sido escrito en \href{http://rmarkdown.rstudio.com}{R-Markdown} empleando el paquete \href{https://bookdown.org/yihui/bookdown/}{\texttt{bookdown}} y está disponible en el repositorio Github: \href{https://github.com/rubenfcasal/book_remuestreo}{rubenfcasal/intror}.
 Se puede acceder a la versión en línea a través del siguiente enlace:
 
@@ -171,31 +203,26 @@ Se puede acceder a la versión en línea a través del siguiente enlace:
 
 donde puede descargarse en formato \href{https://rubenfcasal.github.io/intror/Intro_Analisis_Datos_R.pdf}{pdf}.
 
-Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes:
-\href{https://cran.r-project.org/web/packages/lattice/index.html}{\texttt{lattice}},
-\href{https://cran.r-project.org/web/packages/ggplot2/index.html}{\texttt{ggplot2}},
-\href{https://cran.r-project.org/web/packages/foreign/index.html}{\texttt{foreign}},
-\href{https://cran.r-project.org/web/packages/car/index.html}{\texttt{car}},
-\href{https://cran.r-project.org/web/packages/leaps/index.html}{\texttt{leaps}},
-\href{https://cran.r-project.org/web/packages/MASS/index.html}{\texttt{MASS}},
-\href{https://cran.r-project.org/web/packages/RcmdrMisc/index.html}{\texttt{RcmdrMisc}},
-\href{https://cran.r-project.org/web/packages/lmtest/index.html}{\texttt{lmtest}},
-\href{https://cran.r-project.org/web/packages/glmnet/index.html}{\texttt{glmnet}},
-\href{https://cran.r-project.org/web/packages/mgcv/index.html}{\texttt{mgcv}},
-\href{https://cran.r-project.org/web/packages/rmarkdown/index.html}{\texttt{rmarkdown}},
-\href{https://cran.r-project.org/web/packages/knitr/index.html}{\texttt{knitr}},
-\href{https://cran.r-project.org/web/packages/dplyr/index.html}{\texttt{dplyr}}.
-Por ejemplo mediante el comando:
+Para ejecutar los ejemplos mostrados en el libro sería necesario tener instalados los siguientes paquetes:
+\href{https://CRAN.R-project.org/package=lattice}{\texttt{lattice}}, \href{https://CRAN.R-project.org/package=ggplot2}{\texttt{ggplot2}}, \href{https://CRAN.R-project.org/package=foreign}{\texttt{foreign}}, \href{https://CRAN.R-project.org/package=car}{\texttt{car}}, \href{https://CRAN.R-project.org/package=leaps}{\texttt{leaps}}, \href{https://CRAN.R-project.org/package=MASS}{\texttt{MASS}}, \href{https://CRAN.R-project.org/package=RcmdrMisc}{\texttt{RcmdrMisc}}, \href{https://CRAN.R-project.org/package=lmtest}{\texttt{lmtest}}, \href{https://CRAN.R-project.org/package=glmnet}{\texttt{glmnet}}, \href{https://CRAN.R-project.org/package=mgcv}{\texttt{mgcv}}, \href{https://CRAN.R-project.org/package=rmarkdown}{\texttt{rmarkdown}}, \href{https://CRAN.R-project.org/package=knitr}{\texttt{knitr}}, \href{https://CRAN.R-project.org/package=dplyr}{\texttt{dplyr}}, \href{https://CRAN.R-project.org/package=tidyr}{\texttt{tidyr}}.
+Por ejemplo mediante los siguientes comandos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{pkgs }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"lattice"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"foreign"}\NormalTok{, }\StringTok{"car"}\NormalTok{, }\StringTok{"leaps"}\NormalTok{, }\StringTok{"MASS"}\NormalTok{, }\StringTok{"RcmdrMisc"}\NormalTok{, }
-          \StringTok{"lmtest"}\NormalTok{, }\StringTok{"glmnet"}\NormalTok{, }\StringTok{"mgcv"}\NormalTok{, }\StringTok{"rmarkdown"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
-
+          \StringTok{"lmtest"}\NormalTok{, }\StringTok{"glmnet"}\NormalTok{, }\StringTok{"mgcv"}\NormalTok{, }\StringTok{"rmarkdown"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"tidyr"}\NormalTok{)}
 \FunctionTok{install.packages}\NormalTok{(}\FunctionTok{setdiff}\NormalTok{(pkgs, }\FunctionTok{installed.packages}\NormalTok{()[,}\StringTok{"Package"}\NormalTok{]), }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{)}
-\CommentTok{\# Si aparecen errores debidos a incompatibilidades entre las versiones de los paquetes, }
-\CommentTok{\# probar a ejecutar en lugar de lo anterior:}
-\CommentTok{\# install.packages(pkgs, dependencies=TRUE) \# Instala todos...}
+\end{Highlighting}
+\end{Shaded}
+
+(puede que haya que seleccionar el repositorio de descarga, e.g.~\emph{Spain (Madrid)}).
+
+El código anterior no reinstala los paquetes ya instalados, por lo que podrían aparecer problemas debidos a incompatibilidades entre versiones (aunque no suele ocurrir, salvo que nuestra instalación de R esté muy desactualizada).
+Si es el caso, en lugar de la última línea se puede ejecutar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(pkgs, }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# Instala todos...}
 \end{Highlighting}
 \end{Shaded}
 
@@ -277,16 +304,15 @@ Se pueden destacar las siguientes características del entorno \texttt{R}:
 
 \begin{itemize}
 \item
-  Dispone de numerosos complementos (librerías, paquetes) que cubren ``literalmente''
-  todos los campos del análisis de datos.
+  Dispone de numerosos complementos (librerías, paquetes) que cubren ``literalmente'' todos los campos del análisis de datos.
 \item
   Repositorios:
 
   \begin{itemize}
   \item
-    \href{https://cran.r-project.org}{CRAN} (9705, 14972, \ldots)
+    \href{https://cran.r-project.org}{CRAN} (9705, 14972, 19122, \ldots)
   \item
-    \href{https://www.bioconductor.org}{Bioconductor} (1289, 1741, \ldots),
+    \href{https://www.bioconductor.org}{Bioconductor} (1289, 1741, 2183, \ldots),
   \item
     \href{https://github.com/trending/r?since=monthly}{GitHub}, \ldots{}
   \end{itemize}
@@ -356,15 +382,29 @@ Hoy en día es muy popular:
   \end{itemize}
 \end{itemize}
 
-\hypertarget{interfaces-gruxe1ficas}{%
-\subsection{Interfaces gráficas}\label{interfaces-gruxe1ficas}}
+En el Apéndice \ref{instalacion} se detallan los pasos para la instalación de \texttt{R} y el entorno de desarrollo RStudio.
+En la Sección \protect\hyperlink{links}{Enlaces} de las Referencias se incluyen recursos adicionales, incluyendo algunos que pueden ser útiles para el aprendizaje de R.
 
-El programa \texttt{R}
-utiliza una \textbf{interfaz de comandos} donde se teclean las instrucciones
-que se pretenden ejecutar (ver Figura \ref{fig:consola}).
+\hypertarget{interfaz-de-comandos}{%
+\section{Interfaz de comandos}\label{interfaz-de-comandos}}
 
-Por ejemplo, para obtener una secuencia de números desde el 1 hasta el
-10, se utilizará la sentencia:
+Normalmente se trabaja en \texttt{R} de forma interactiva empleando una \textbf{interfaz de comandos} donde se teclean las instrucciones que se pretenden ejecutar.
+En Linux se trabaja directamente en el terminal de comandos y se inicia ejecutando el comando \texttt{R}.
+En Windows se puede emplear el menú de inicio para ejecutar \texttt{R} (e.g.~abriendo \emph{R x64 X.Y.Z}) y se mostrará una ventana de consola que permite trabajar de modo interactivo (ver Figura \ref{fig:consola}).
+
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{figuras/consola} 
+
+}
+
+\caption{Consola de `R` en Windows (modo MDI).}\label{fig:consola}
+\end{figure}
+
+En la línea de comandos \texttt{R} muestra el carácter \texttt{\textgreater{}} (el \emph{prompt}) para indicar que está a la espera de instrucciones.
+Para ejecutar una línea de instrucciones hay que pulsar \emph{Retorno} (y por defecto se imprime el resultado).
+
+Por ejemplo, para obtener una secuencia de números desde el 1 hasta el 10, se utilizará la sentencia:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -378,63 +418,11 @@ obteniéndose el resultado
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 \end{verbatim}
 
-En el Apéndice \ref{instalacion} se detallan los pasos para la instalación de \texttt{R},
-y en el Apéndice \ref{interfaces} los de otras interfaces gráficas.
-
-\hypertarget{entorno-de-trabajo}{%
-\section{Entorno de trabajo}\label{entorno-de-trabajo}}
-
-\hypertarget{ventana-de-consola}{%
-\subsection{Ventana de Consola}\label{ventana-de-consola}}
-
-Al abrir el programa \texttt{R}, tal y como ya
-se ha visto, aparece la siguiente ventana de consola para trabajar de
-modo interactivo en modo comando (ver Figura \ref{fig:consola}).
-
-\begin{figure}[!htb]
-
-{\centering \includegraphics[width=0.7\linewidth]{figuras/consola} 
-
-}
-
-\caption{Consola de `R` en Windows (modo MDI).}\label{fig:consola}
-\end{figure}
-
-En la ventana de consola cada línea en que el usuario puede
-introducir información se inicia con el carácter \texttt{\textgreater{}} que pone el sistema
-\texttt{R}.
-
-\begin{itemize}
-\item
-  Para ejecutar las instrucciones que están en una línea, se pulsa la
-  tecla de Retorno (y por defecto se imprime el resultado).
+Se pueden escribir varias instrucciones en una misma línea separándolas por ``;''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{1}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\DecValTok{4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 9
-\end{verbatim}
-\item
-  Se pueden escribir varias instrucción en una misma línea
-  separándolas por ``;''
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}\NormalTok{;}\DecValTok{1}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\DecValTok{4}
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}\NormalTok{; }\DecValTok{1}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\DecValTok{4}
 \end{Highlighting}
 \end{Shaded}
 
@@ -445,24 +433,17 @@ introducir información se inicia con el carácter \texttt{\textgreater{}} que p
 \begin{verbatim}
 ## [1] 9
 \end{verbatim}
-\item
-  Se pueden recuperar líneas de instrucciones introducidas
-  anteriormente pulsando la tecla con la flecha ascendente del
-  teclado, a fin de re-ejecutarlas o modificarlas.
-\end{itemize}
 
-\hypertarget{ventana-de-script}{%
-\subsection{Ventana de Script}\label{ventana-de-script}}
+Si no se completó algún comando, el prompt cambia a \texttt{+} (habría que completar la instrucción anterior antes de escribir una nueva, o pulsar \emph{Escape} para cancelarla).
 
-La ventana consola ejecuta de
-forma automática cada línea de comando. Sin embargo, suele interesar
-guardar un conjunto de instrucciones en un único archivo de texto para
-formar lo que se conoce como un \emph{script}. Las instrucciones del script
-se copian y pegan en la ventana de comandos para ser ejecutadas.
+Se pueden recuperar líneas de instrucciones introducidas anteriormente pulsando la tecla \emph{Arriba}, a fin de re-ejecutarlas o modificarlas.
 
-Para crear un fichero de script se selecciona el submenú \emph{Nuevo script}
-dentro del menú \emph{Archivo}. Otra posibilidad es utilizar directamente la
-combinación de teclas Ctrl+N.
+La ventana consola ejecuta de forma automática cada línea de comando.
+Sin embargo, suele interesar guardar un conjunto de instrucciones en un único archivo de texto para formar lo que se conoce como un \emph{script} (archivo de código).
+Las instrucciones del script se pueden pegar en la ventana de comandos para ser ejecutadas, pero también hay editores o entornos de desarrollo que permiten interactuar directamente con R.
+
+Por ejemplo, en la consola de R en Windows se puede abrir una ventana de código seleccionando el menú \emph{Archivo \textgreater{} Nuevo script}.
+Posteriormente se pueden ejecutar líneas de código pulsando \emph{Ctrl+R}.
 
 \begin{figure}[!htb]
 
@@ -470,32 +451,70 @@ combinación de teclas Ctrl+N.
 
 }
 
-\caption{Ventanas de la consola y de *script* en Windows (modo MDI).}\label{fig:script}
+\caption{Ventanas de la consola y de comandos en Windows (modo MDI).}\label{fig:script}
 \end{figure}
 
-Para guardar este tipo de fichero se utiliza directamente el menú \emph{Archivo \textgreater{} Guardar como\ldots{}}
-y se elige a continuación la ubicación en el disco duro del ordenador.
+Sin embargo, nosotros recomendamos emplear \emph{RStudio Desktop}.
 
-De igual modo para abrir un script existente se hace a través del menú \emph{Archivo \textgreater{} Abrir script\ldots{}}.
+\hypertarget{rstudio}{%
+\section{El entorno de desarrollo RStudio Desktop}\label{rstudio}}
 
-En el Apéndice \ref{links} se incluyen enlaces a numerosos recursos para el aprendizaje de R,
-incluyendo manuales y libros, además de otros recursos para la obtención de ayuda.
+Al ejecutar RStudio se muestra la ventana principal:
 
-\hypertarget{ayuda-dentro-del-programa}{%
-\subsection{Ayuda dentro del programa}\label{ayuda-dentro-del-programa}}
+\begin{figure}[!htb]
 
-Como ya se ha comentado con anterioridad,
-hay manuales de \texttt{R} alos que se puede acceder a través del menú
-\emph{Ayuda \textgreater{} Manuales (en PDF)}
+{\centering \includegraphics[width=0.7\linewidth]{figuras/rstudio} 
 
-Puede empezarse utilizando \texttt{help.start()} o \texttt{demo()}.
+}
 
-Todas las funciones de \texttt{R} tienen su documentación integrada en
-el programa. Para obtener la ayuda de una determinada función se
-utilizará \texttt{help\ (función)} o de forma equivalente \texttt{?función}.
+\caption{Ventana principal de RStudio.}\label{fig:rstudio}
+\end{figure}
+
+Por defecto RStudio está organizado en cuatro paneles:
+
+\begin{itemize}
+\item
+  Editor de código (normalmente un fichero \emph{.R} o \emph{.Rmd}).
+\item
+  Consola de R (y terminal de comandos del sistema operativo).
+\item
+  Explorador del entorno e historial.
+\item
+  Explorador de archivos, visor de gráficos, ayuda y navegador web integrado.
+\end{itemize}
+
+Primeros pasos:
+
+\begin{itemize}
+\item
+  Presionar \emph{Ctrl-Enter} (\emph{Command-Enter} en OS X) para ejecutar la línea de código actual o el código seleccionado (también se puede emplear el botón \emph{Run} en la barra de herramientas del Editor o el menú \emph{Code}).
+\item
+  Presionar \emph{Tab} para autocompletado.
+\item
+  Pulsar en el nombre del objeto en la pestaña \emph{Environment}, o ejecutar \texttt{View(objeto)} en la consola, para visualizar el objeto en una nueva pestaña del editor.
+\end{itemize}
+
+Información adicional:
+
+\begin{itemize}
+\item
+  \href{https://posit.co/wp-content/uploads/2022/10/rstudio-ide-1.pdf}{RStudio cheatsheet}
+\item
+  \href{https://support.posit.co/hc/en-us/sections/200107586-Using-the-RStudio-IDE}{Using the RStudio IDE}
+\end{itemize}
+
+\hypertarget{ayuda}{%
+\section{Ayuda}\label{ayuda}}
+
+Se puede acceder a la ayuda empleando el entorno de comandos o los menús correspondientes de la intefaz gráfica.
+Por ejemplo en RStudio se puede emplear el menú \emph{Help}, y en la consola de \texttt{R} el menú \emph{Ayuda \textgreater{} Manuales (en PDF)}.
+Para acceder a la ayuda desde la interfaz de comandos se puede ejecutar \texttt{help.start()} (también puede ser de interés la función \texttt{demo()}).
+
+Todas las funciones de \texttt{R} están documentadas.
+Para obtener la ayuda de una determinada función se utilizará \texttt{help\ (función)} o de forma equivalente \texttt{?función}.
 
 Por ejemplo, la ayuda de la función \texttt{rnorm} (utilizada para la
-generación de datos normales) se obtiene con el código
+generación de datos con distribución normal) se obtiene con el código
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -508,9 +527,7 @@ En muchas ocasiones no se conoce el nombre exacto de la función de la
 que queremos obtener la documentación. En estos casos, la función
 \texttt{help.search()} realiza búsquedas en la documentación en todos los
 paquetes instalados, estén cargados o no.
-
-Por ejemplo, si no conocemos la función que permite calcular la mediana
-de un conjunto de datos, se puede utilizar
+Por ejemplo, si no conocemos la función que permite calcular la mediana de un conjunto de datos, se puede utilizar
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -520,58 +537,46 @@ de un conjunto de datos, se puede utilizar
 
 Para más detalles véase \texttt{?help.search}
 
-\hypertarget{libreruxedas}{%
-\section{Librerías}\label{libreruxedas}}
+\hypertarget{libreruxedas-paquetes}{%
+\section{Librerías (paquetes)}\label{libreruxedas-paquetes}}
 
-\hypertarget{paquetes}{%
-\subsection{Paquetes}\label{paquetes}}
+Al iniciar el programa \texttt{R} se cargan por defecto una serie de librerías básicas con las que se pueden realizar una gran cantidad de operaciones básicas.
+Estas librerías conforman el llamado \textbf{paquete base}.
 
-Al iniciar el programa \texttt{R} se cargan
-por defecto una serie de librerías básicas con las que se pueden
-realizar una gran cantidad de operaciones básicas. Estas librerías
-conforman el llamado \textbf{paquete base}.
-
-En otras ocasiones es necesario cargar otras librerías distintas a las
-anteriores. Esto se hace a través de los llamados paquetes (packages)
-que pueden ser descargados directamente de la web
-
-\url{http://cran.r-project.org/web/packages/}
-
-o directamente a través del menú \texttt{Paquetes}.
+En otras ocasiones es necesario cargar librerías adicionales, empleando los denominados paquetes (packages).
+Normalmente se emplean los disponibles en el repositorio CRAN oficial
+\url{http://cran.r-project.org/web/packages/}.
 
 \hypertarget{instalacion-pkg}{%
 \subsection{Instalación}\label{instalacion-pkg}}
 
-La instalación de un paquete, bajo el sistema
-operativo Windows, se puede hacer de varias formas:
+La instalación de un paquete se puede hacer de varias formas:
 
 \begin{itemize}
 \item
-  Desde el menú \emph{Paquetes \textgreater{} Instalar paquete(s)\ldots{}}
-\item
-  Desde la ventana de consola utilizando la instrucción
+  Desde la interfaz de comandos utilizando la instrucción
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{install.packages}\NormalTok{(}\StringTok{"nombre del paquete"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+\item
+  Desde el correspondiente menú de la intefaz gráfica (\emph{Paquetes \textgreater{} Instalar paquete(s)\ldots{}} en la consola de R y \emph{Tools \textgreater{} Install packages\ldots{}} o la pestaña \emph{Packages} en RStudio).
 \end{itemize}
 
-Este proceso sólo es necesario realizarlo la primera vez que se utilice
-el paquete.
+Este proceso sólo es necesario realizarlo la primera vez que se utilice el paquete.
 
 \hypertarget{carga}{%
 \subsection{Carga}\label{carga}}
 
-Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de
-varias formas:
+Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de varias formas:
 
 \begin{itemize}
 \item
-  Desde el menú \texttt{Paquetes\ \textgreater{}\ Cargar\ paquete(s)...}
+  Desde el menú \emph{Paquetes \textgreater{} Cargar paquete(s)\ldots{}}
 \item
-  Por consola, utilizando \texttt{library(nombre\ del\ paquete)}
+  Por consola, utilizando \texttt{library(paquete)} (también \texttt{require(paquete)})
 \end{itemize}
 
 Esta operación será necesario realizarla cada vez que se inicie una
@@ -588,15 +593,8 @@ Finalmente, la ayuda de un paquete se puede obtener con la sentencia
 \hypertarget{una-primera-sesiuxf3n}{%
 \section{Una primera sesión}\label{una-primera-sesiuxf3n}}
 
-\hypertarget{inicio-de-una-sesiuxf3n}{%
-\subsection{Inicio de una sesión}\label{inicio-de-una-sesiuxf3n}}
-
-El programa \texttt{R} (bajo
-Windows) se arranca al hacer un doble-click sobre el icono del programa.
-Entonces aparecerá la ventana de consola donde se escribirán los
-comandos y los resultados serán mostrados inmediatamente por pantalla.
-
-Veamos algún ejemplo:
+Como ya se comentó, al emplear la interfaz de comandos, el usuario puede ir ejecutando instrucciones y se va imprimiendo el resultado.
+Por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -628,11 +626,10 @@ Veamos algún ejemplo:
 ## [1] 3.141593
 \end{verbatim}
 
-Nótese que en los comandos se pueden hacer comentarios utilizando el
-símbolo \texttt{\#}.
+Nótese que en los comandos se pueden hacer comentarios utilizando el símbolo \texttt{\#}.
 
-Los resultados obtenidos pueden guardarse en objetos. Por
-ejemplo, al escribir
+Los resultados obtenidos pueden guardarse en objetos empleando el operador asignación \texttt{\textless{}-} (o \texttt{=}).
+Por ejemplo, al ejecutar
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -640,9 +637,8 @@ ejemplo, al escribir
 \end{Highlighting}
 \end{Shaded}
 
-el resultado de la suma se guarda en \texttt{a}. Se puede comprobar si la
-asignación se ha realizado correctamente escribiendo el nombre del
-objeto
+el resultado de la suma se guarda en el objeto \texttt{a} (se crea o se reescribe si ya existía previamente).
+Se puede comprobar si la asignación se ha realizado correctamente escribiendo el nombre del objeto (equivalente a ejecutar \texttt{print(a)})
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -653,65 +649,6 @@ objeto
 \begin{verbatim}
 ## [1] 8
 \end{verbatim}
-
-La asignación anterior se puede hacer del siguiente modo
-ejemplo, al escribir
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{3} \SpecialCharTok{+} \DecValTok{5}\NormalTok{; a}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 8
-\end{verbatim}
-
-\textbf{Nota}: Habitualmente no habrá diferencia entre la utilización de las
-asignaciones hechas con \texttt{=} y \texttt{\textless{}-} (aunque nosotros emplearemos el segundo).
-Las diferencias aparecen a nivel
-de programación y se tratarán en el Capítulo \ref{programacion}.
-
-Veamos ahora un ejemplo un poco más avanzado. Con el
-siguiente código
-
-\begin{itemize}
-\item
-  Se obtienen 200 datos simulados siguiendo una distribución gaussiana
-  de media 105 y desviación típica 2
-\item
-  Se hace un resumen estadístico de los valores obtenidos
-\item
-  Se hace el correspondiente histograma y gráfico de cajas
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\AttributeTok{n =} \DecValTok{200}\NormalTok{, }\AttributeTok{mean =} \DecValTok{105}\NormalTok{, }\AttributeTok{sd =} \DecValTok{2}\NormalTok{) }\CommentTok{\#datos normales}
-\FunctionTok{summary}\NormalTok{(x) }\CommentTok{\# resumen estadístico}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   99.37  103.36  105.07  104.97  106.37  111.15
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(x) }\CommentTok{\# histograma}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-14-1} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{boxplot}\NormalTok{(x) }\CommentTok{\# gráfico de cajas}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-14-2} \end{center}
-\end{itemize}
 
 Es importante señalar que \texttt{R} diferencia entre mayúsculas y
 minúsculas, de modo que los objetos \texttt{a} y \texttt{A} serán diferentes.
@@ -738,13 +675,53 @@ minúsculas, de modo que los objetos \texttt{a} y \texttt{A} serán diferentes.
 ## [1] "casa"
 \end{verbatim}
 
+\textbf{Nota}: Habitualmente no habrá diferencia entre la utilización de las asignaciones hechas con \texttt{=} y \texttt{\textless{}-} (aunque nosotros emplearemos el segundo).
+Las diferencias aparecen a nivel de programación y se tratarán en el Capítulo \ref{programacion}.
+
+Veamos ahora un ejemplo un poco más avanzado.
+En el siguiente código:
+
+\begin{itemize}
+\item
+  Se carga el conjunto de datos \texttt{precip}, disponible en el paquete base de \texttt{R}, que contiene el promedio de precipitación, en pulgadas de lluvia, de 70 ciudades de Estados Unidos.
+\item
+  Se hace un resumen estadístico de los datos.
+\item
+  Se hace el correspondiente histograma y gráfico de cajas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(precip)    }\CommentTok{\# Datos de lluvia}
+\FunctionTok{summary}\NormalTok{(precip) }\CommentTok{\# Resumen estadístico}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    7.00   29.38   36.60   34.89   42.77   67.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(precip)    }\CommentTok{\# Histograma}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-13-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(precip) }\CommentTok{\# Gráfico de cajas}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-13-2} \end{center}
+\end{itemize}
+
 \hypertarget{objetos-buxe1sicos}{%
 \section{Objetos básicos}\label{objetos-buxe1sicos}}
 
-\texttt{R} es un lenguaje \textbf{orientado a
-objetos} lo que significa que las variables, datos, funciones,
-resultados, etc., se guardan en la memoria del ordenador en forma de
-\emph{objetos} con un nombre específico.
+\texttt{R} es un lenguaje \textbf{orientado a objetos} lo que significa que las variables, datos, funciones, resultados, etc., se guardan en la memoria del ordenador en forma de \emph{objetos} con un nombre específico.
 
 Los principales tipos de valores básicos de \texttt{R} son:
 
@@ -1081,20 +1058,14 @@ los operadores \texttt{\&} (y lógico) y \texttt{\textbar{}} (o lógico).
 \hypertarget{uxe1rea-de-trabajo}{%
 \section{Área de trabajo}\label{uxe1rea-de-trabajo}}
 
-Como ya se ha comentado
-con anterioridad es posible guardar los comandos que se han utilizado en
-una sesión en ficheros llamados \textbf{script}. En ocasiones interesará
-además guardar todos los objetos que han sido generados a lo largo de
-una sesión de trabajo.
+Como ya se ha comentado con anterioridad es posible guardar los comandos que se han utilizado en una sesión en ficheros llamados \textbf{script}.
+En ocasiones interesará además guardar todos los objetos que han sido generados a lo largo de una sesión de trabajo.
 
-El \textbf{Workspace} o \textbf{Área de Trabajo} es el entorno en el que se puede
-guardar todo el trabajo realizado en una sesión. De este modo, la
-próxima vez que se inicie el programa, al cargar dicho entorno, se podrá
-acceder a lo objetos almacenados en él.
+El \textbf{Workspace} o \textbf{Área de Trabajo} es el entorno en el que se almacenan todos los objetos creados en una sesión.
+Se puede guardar este entorno en el disco de forma que la próxima vez que se inicie el programa, al cargar dicho entorno, se pueda acceder a lo objetos almacenados en él.
 
-En primer lugar, para saber los objetos que tenemos en memoria se
-utiliza la función \texttt{ls}. Por ejemplo, supongamos que acabamos de iniciar
-una sesión de \texttt{R} y hemos escrito
+En primer lugar, para saber los objetos que tenemos en memoria se utiliza la función \texttt{ls()}.
+Por ejemplo, supongamos que acabamos de iniciar una sesión de \texttt{R} y hemos escrito
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1103,8 +1074,7 @@ una sesión de \texttt{R} y hemos escrito
 \end{Highlighting}
 \end{Shaded}
 
-Entonces al utilizar \texttt{ls} se obtendrá la siguiente lista de objetos en
-memoria
+Entonces al utilizar \texttt{ls()} se obtendrá la siguiente lista de objetos en memoria
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1116,8 +1086,7 @@ memoria
 ## [1] "a" "b"
 \end{verbatim}
 
-También es posible borrar objetos a través de la función
-\texttt{rm}
+Los objetos se pueden eliminar empleando la función \texttt{rm()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1130,8 +1099,7 @@ También es posible borrar objetos a través de la función
 ## [1] "a"
 \end{verbatim}
 
-Para borrar todos los objetos en memoria se puede utilizar
-\texttt{rm(list=ls())}
+Para borrar todos los objetos en memoria se puede utilizar \texttt{rm(list=ls())}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1143,27 +1111,24 @@ Para borrar todos los objetos en memoria se puede utilizar
 ## character(0)
 \end{verbatim}
 
-\texttt{character(0)} (lista vacía) significa que no hay objetos en memoria.
+\texttt{character(0)} (cadena de texto vacía) significa que no hay objetos en memoria.
 
-\hypertarget{guardar-y-cargar-resultados}{%
-\subsection{Guardar y cargar resultados}\label{guardar-y-cargar-resultados}}
+\hypertarget{guardar-y-cargar-objetos}{%
+\subsection{Guardar y cargar objetos}\label{guardar-y-cargar-objetos}}
 
-Para guardar
-el área de trabajo (Workspace) con todos los objetos de memoria (es
-decir, los que figuran al utilizar \texttt{ls()}) se utiliza la función
-\texttt{save.image(nombre\ archivo)}.
+Para guardar el área de trabajo (Workspace) con todos los objetos de memoria (es decir, los que figuran al utilizar \texttt{ls()}) se utiliza la función \texttt{save.image(nombre\ archivo)}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{rm}\NormalTok{(}\AttributeTok{list =} \FunctionTok{ls}\NormalTok{()) }\CommentTok{\# primero borramos toda la mamoria}
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list =} \FunctionTok{ls}\NormalTok{()) }\CommentTok{\# borramos todos los objetos en memoria}
 \NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{20}
 \NormalTok{y }\OtherTok{\textless{}{-}} \DecValTok{34}
 \NormalTok{z }\OtherTok{\textless{}{-}} \StringTok{"casa"}
-\FunctionTok{save.image}\NormalTok{(}\AttributeTok{file =} \StringTok{"prueba.RData"}\NormalTok{) }\CommentTok{\# guarda area de trabajo en prueba.RData}
+\FunctionTok{save.image}\NormalTok{(}\AttributeTok{file =} \StringTok{"prueba.RData"}\NormalTok{) }\CommentTok{\# guarda área de trabajo en prueba.RData}
 \end{Highlighting}
 \end{Shaded}
 
-La función \texttt{save} permite guardar los objetos seleccionados.
+La función \texttt{save()} permite guardar los objetos especificados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1171,21 +1136,19 @@ La función \texttt{save} permite guardar los objetos seleccionados.
 \end{Highlighting}
 \end{Shaded}
 
-Para cargar una ára de trabajo ya exitente se utiliza la función
-\texttt{load()}.
+Para cargar los objetos almacenados en un archivo se utiliza la función \texttt{load()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{load}\NormalTok{(}\StringTok{"prueba2.RData"}\NormalTok{) }\CommentTok{\# carga área de trabajo}
+\FunctionTok{load}\NormalTok{(}\StringTok{"prueba2.RData"}\NormalTok{) }\CommentTok{\# carga los objetos x e y}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{directorio-de-trabajo}{%
 \subsection{Directorio de trabajo}\label{directorio-de-trabajo}}
 
-Por defecto \texttt{R} utiliza
-una carpeta de trabajo donde guardará toda la información. Dicha carpeta
-se puede obtener con la función
+Por defecto \texttt{R} utiliza una carpeta de trabajo donde guardará toda la información.
+Dicha carpeta se puede obtener con la función
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1197,14 +1160,13 @@ se puede obtener con la función
 ## [1] "d:/"
 \end{verbatim}
 
-El directorio de trabajo se puede cambiar utilizando \texttt{setwd(carpeta)}.
-Por ejemplo, para cambiar el directorio de trabajo a \texttt{c:\textbackslash{}datos},
-se utiliza el comando
+El directorio de trabajo se puede cambiar utilizando \texttt{setwd(directorio)}.
+Por ejemplo, para cambiar el directorio de trabajo a \texttt{c:\textbackslash{}datos}, se utiliza el comando
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{setwd}\NormalTok{(}\StringTok{"c:/datos"}\NormalTok{)}
-\CommentTok{\# Importante la barra utilizada}
+\CommentTok{\# Importante podemos emplear \textquotesingle{}/\textquotesingle{} o \textquotesingle{}\textbackslash{}\textbackslash{}\textquotesingle{} como separador en la ruta}
 \CommentTok{\# NO funciona setwd("c:\textbackslash{}datos")}
 \end{Highlighting}
 \end{Shaded}
@@ -1212,11 +1174,9 @@ se utiliza el comando
 \hypertarget{estructuras-de-datos}{%
 \chapter{Estructuras de datos}\label{estructuras-de-datos}}
 
-En los ejemplos que hemos visto hasta ahora los objetos
-de \texttt{R} almacenaban un único valor cada uno. Sin embargo, las estructuras
-de datos que proporciona \texttt{R} permiten
-almacenar en un mismo objeto varios valores. Las principales estructuras
-son:
+En los ejemplos que hemos visto hasta ahora los objetos de \texttt{R} almacenaban un único valor cada uno.
+Sin embargo, las estructuras de datos que proporciona \texttt{R} permiten almacenar en un mismo objeto varios valores.
+Las principales estructuras son:
 
 \begin{itemize}
 \item
@@ -1332,19 +1292,19 @@ A continuación se obtiene una simulación de 10 lanzamientos de un dado
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }\AttributeTok{size=}\DecValTok{10}\NormalTok{, }\AttributeTok{replace =}\NormalTok{ T) }\CommentTok{\#lanzamiento de un dado}
+\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }\AttributeTok{size=}\DecValTok{10}\NormalTok{, }\AttributeTok{replace =}\NormalTok{ T) }\CommentTok{\# lanzamiento de un dado}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 6 2 3 3 1 2 6 4 5
+##  [1] 4 5 5 3 1 4 6 4 1 6
 \end{verbatim}
 
 Para simular el lanzamiento de una moneda podemos escribir
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{resultado }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{cara=}\DecValTok{1}\NormalTok{,}\AttributeTok{cruz=}\DecValTok{0}\NormalTok{) }\CommentTok{\# se le han asignado nombres al objeto}
+\NormalTok{resultado }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{cara =} \DecValTok{1}\NormalTok{, }\AttributeTok{cruz =} \DecValTok{0}\NormalTok{) }\CommentTok{\# se asignan nombres a los componentes}
 \FunctionTok{print}\NormalTok{(resultado)}
 \end{Highlighting}
 \end{Shaded}
@@ -1393,8 +1353,8 @@ Para simular el lanzamiento de una moneda podemos escribir
 \end{Shaded}
 
 \begin{verbatim}
-## cara cruz cruz cara cruz cruz cruz cruz cruz cruz 
-##    1    0    0    1    0    0    0    0    0    0
+## cara cara cara cruz cara cruz cruz cara cara cara 
+##    1    1    1    0    1    0    0    1    1    1
 \end{verbatim}
 
 \begin{Shaded}
@@ -1406,7 +1366,7 @@ Para simular el lanzamiento de una moneda podemos escribir
 \begin{verbatim}
 ## lanz
 ## 0 1 
-## 8 2
+## 3 7
 \end{verbatim}
 
 Otros ejemplos
@@ -1418,8 +1378,8 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  0.8270889  0.4193440 -0.1962943 -0.7439787  2.4990090  1.2134150
-##  [7]  1.8154623  1.9213110  2.3284604  1.6449086
+##  [1] -0.3933354 -0.9906359  0.8368773 -1.1865968 -1.5659103  0.2542658
+##  [7]  0.2500611  1.9582344 -1.3087537 -0.6703466
 \end{verbatim}
 
 \begin{Shaded}
@@ -1429,12 +1389,11 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 3.110629 9.782394 3.352017 7.827904 4.119838 6.720995 4.428090 8.024008
-##  [9] 9.913126 8.774884 2.865199 3.358302 7.611230 5.505256 6.289807
+##  [1] 8.502302 6.214129 4.532339 9.456021 9.292896 7.110318 8.811407 3.194070
+##  [9] 5.422113 6.638950 4.933562 8.084592 8.047748 7.815741 2.053054
 \end{verbatim}
 
-El lector puede utilizar la función \texttt{help()} para obtener la ayuda de las funciones
-anteriores.
+Como ya se comentó, se puede utilizar \texttt{help(funcion)} (o \texttt{?funcion}) para mostrar la ayuda de las funciones anteriores.
 
 \hypertarget{selecciuxf3n-de-elementos-de-un-vector}{%
 \subsection{Selección de elementos de un vector}\label{selecciuxf3n-de-elementos-de-un-vector}}
@@ -1455,7 +1414,7 @@ correspondiente vector de subíndices (enteros positivos).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x[}\DecValTok{1}\NormalTok{] }\CommentTok{\# primer elemento}
+\NormalTok{x[}\DecValTok{1}\NormalTok{]  }\CommentTok{\# primer elemento}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1466,7 +1425,7 @@ correspondiente vector de subíndices (enteros positivos).
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{ii }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{)}
-\NormalTok{x[ii] }\CommentTok{\#posiciones 1, 5 y 7}
+\NormalTok{x[ii] }\CommentTok{\# posiciones 1, 5 y 7}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1476,7 +1435,8 @@ correspondiente vector de subíndices (enteros positivos).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ii }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{; ii}
+\NormalTok{ii }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{\textgreater{}} \DecValTok{0}
+\NormalTok{ii}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1564,15 +1524,14 @@ La función \texttt{rev()} devuelve los valores del vector en orden inverso.
 ## [1] 26 94  6 18 59 18 65
 \end{verbatim}
 
-\hypertarget{valores-perdidos}{%
-\subsection{Valores perdidos}\label{valores-perdidos}}
+\hypertarget{datos-faltantes}{%
+\subsection{Datos faltantes}\label{datos-faltantes}}
 
-Los valore perdidos aparecen normalmente cuando algún dato no ha sido registrado. Este tipo de
-valores se registran como \texttt{NA} (abreviatura de \emph{Not Available}).
+Los datos faltantes (también denominados valores perdidos) aparecen normalmente cuando algún dato no ha sido registrado.
+Este tipo de valores se registran como \texttt{NA} (abreviatura de \emph{Not Available}).
 
-Por ejemplo, supongamos que tenemos registrado las alturas de 5 personas
-pero desconocemos la altura de la cuarta persona. El vector sería
-registrado como sigue:
+Por ejemplo, supongamos que tenemos registrado las alturas de 5 personas pero desconocemos la altura de la cuarta persona.
+El vector sería registrado como sigue:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1598,7 +1557,7 @@ que contiene algún \texttt{NA} dará como resultado otro \texttt{NA}.
 ## [1] NA
 \end{verbatim}
 
-Para forzar a \texttt{R} a que ignore los valores perdidos se utliza la opción \texttt{na.rm\ =\ TRUE}.
+En muchas funciones para forzar a \texttt{R} a que ignore los valores perdidos se utiliza la opción \texttt{na.rm\ =\ TRUE}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1700,16 +1659,13 @@ Los vectores pueden ser no numéricos, aunque todas las componentes deben ser de
 \hypertarget{factores}{%
 \subsection{Factores}\label{factores}}
 
-Los factores se utilizan para representar datos categóricos. Se
-puede pensar en ellos como vectores de enteros en los que cada entero
-tiene asociada una etiqueta (\emph{label}). Los factores son muy importantes
-en la modelización estadística ya que \texttt{R}los trata de forma especial.
+Los factores se utilizan para representar datos categóricos.
+Se puede pensar en ellos como vectores de enteros en los que cada entero tiene asociada una etiqueta (\emph{label}).
+Los factores son muy importantes en la modelización estadística ya que \texttt{R}los trata de forma especial.
 
-Utilizar factores con etiquetas es preferible a utilizar enteros porque
-las etiquetas son auto-descriptivas.
+Utilizar factores con etiquetas es preferible a utilizar enteros porque las etiquetas son auto-descriptivas.
 
-Veamos un ejemplo. Supongamos que el vector \texttt{sexo} indica el sexo de un
-persona codificado como 0 si hombre y 1 si mujer
+Veamos un ejemplo. Supongamos que el vector \texttt{sexo} indica el sexo de un persona codificado como 0 si hombre y 1 si mujer
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1734,9 +1690,8 @@ persona codificado como 0 si hombre y 1 si mujer
 ## 4 5
 \end{verbatim}
 
-El problema de introducir así los datos es que no queda reflejado la
-etiquetación de los mismos. Para ello guardaremos los datos en una
-estructura tipo factor:
+El problema de introducir así los valores es que no queda reflejada la codificación de los mismos.
+Para ello guardaremos los datos en una estructura tipo factor:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1783,8 +1738,8 @@ estructura tipo factor:
 ##      4      5
 \end{verbatim}
 
-Veamos otro ejemplo, en el que inicialmente tenemos datos categóricos. Los
-niveles se toman automáticamente por orden alfabético
+Veamos otro ejemplo, en el que inicialmente tenemos datos categóricos.
+Los niveles se toman automáticamente por orden alfabético
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1798,8 +1753,7 @@ niveles se toman automáticamente por orden alfabético
 ## Levels: no si
 \end{verbatim}
 
-Si deseásemos otro orden (lo cual puede ser importante en algunos casos, por ejemplo
-para representaciones gráficas), habría que indicarlo expresamente
+Si deseásemos otro orden (lo cual puede ser importante en algunos casos, por ejemplo para representaciones gráficas), habría que indicarlo expresamente
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1822,8 +1776,7 @@ para representaciones gráficas), habría que indicarlo expresamente
 Las \emph{matrices} son la extensión natural de los vectores a dos dimensiones.
 Su generalización a más dimensiones se llama \emph{array}.
 
-Las matrices se pueden crear concatenando vectores
-con las funciones \texttt{cbind} o \texttt{rbind}:
+Las matrices se pueden crear concatenando vectores con las funciones \texttt{cbind()} o \texttt{rbind()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1854,8 +1807,7 @@ con las funciones \texttt{cbind} o \texttt{rbind}:
 ## y    7    5    2    1    0
 \end{verbatim}
 
-Una matriz se puede crear con la función \texttt{matrix} donde el parámetro
-\texttt{nrow} indica el número de filas y \texttt{ncol} el número de columnas.
+Una matriz se puede crear con la función \texttt{matrix()} donde el parámetro \texttt{nrow} indica el número de filas y \texttt{ncol} el número de columnas.
 Por defecto, los valores se colocan por columnas.
 
 \begin{Shaded}
@@ -1870,8 +1822,7 @@ Por defecto, los valores se colocan por columnas.
 ## [2,]    2    4    6    8
 \end{verbatim}
 
-Los nombres de los parámetros se pueden acortar siempre y cuando no haya
-ambigüedad, por lo que es habitual escribir
+Los nombres de los parámetros se pueden acortar siempre y cuando no haya ambigüedad, por lo que podríamos escribir
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1885,7 +1836,7 @@ ambigüedad, por lo que es habitual escribir
 ## [2,]    2    4    6    8
 \end{verbatim}
 
-Si queremos indicar que los valores se escriban por filas
+Si queremos indicar que los valores se almacenen por filas
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1972,8 +1923,7 @@ Internamente, las matrices son vectores con un atributo especial: la \emph{dimen
 \hypertarget{acceso-a-los-elementos-de-una-matriz}{%
 \subsection{Acceso a los elementos de una matriz}\label{acceso-a-los-elementos-de-una-matriz}}
 
-El acceso a los elementos de una matriz se realiza de forma análoga al acceso ya
-comentado para los vectores.
+El acceso a los elementos de una matriz se realiza de forma análoga al acceso ya comentado para los vectores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2040,8 +1990,7 @@ comentado para los vectores.
 \hypertarget{ordenaciuxf3n-por-filas-y-columnas}{%
 \subsection{Ordenación por filas y columnas}\label{ordenaciuxf3n-por-filas-y-columnas}}
 
-En ocasiones, interesará ordenar los elementos de una matriz por los valores de una
-determinada columna o fila.
+En ocasiones, interesará ordenar los elementos de una matriz por los valores de una determinada columna o fila.
 
 Por ejemplo, supongamos la matriz
 
@@ -2101,11 +2050,11 @@ matrices
 Función & Descripción \\
 \midrule
 \endhead
-\texttt{dim(),nrow(),ncol()} & número de filas y/o columnas \\
+\texttt{dim(),\ nrow(),\ ncol()} & número de filas y/o columnas \\
 \texttt{diag()} & diagonal de una matrix \\
 \texttt{*} & multiplicación elemento a elemento \\
 \texttt{\%*\%} & multiplicación matricial de matrices \\
-\texttt{cbind(),rbind()} & encadenamiento de columnas o filas \\
+\texttt{cbind(),\ rbind()} & encadenamiento de columnas o filas \\
 \texttt{t()} & transpuesta \\
 \texttt{solve(A)} & inversa de la matriz A \\
 \texttt{solve(A,b)} & solución del sistema de ecuaciones \(Ax=b\) \\
@@ -2197,15 +2146,12 @@ Función & Descripción \\
 \hypertarget{data-frames}{%
 \section{Data frames}\label{data-frames}}
 
-Los \texttt{data.fames} (\emph{marcos de datos}) son el objeto más habitual para el
-almacenamiento de datos. En este tipo de objetos cada individuo de la muestra
-se corresponde con una fila y cada una de las variables con una columna.
-Para la creación de estas estructuras se utiliza la función
-\texttt{data.frame()}.
+Los \texttt{data.frames} (\emph{marcos de datos}) son el objeto más habitual para el almacenamiento de conjuntos de datos.
+En este tipo de objetos cada individuo de la muestra se corresponde con una fila y cada una de las variables con una columna.
+Para la creación de estas estructuras se utiliza la función \texttt{data.frame()}.
 
-Este tipo de estructuras son en apariencia muy similares a las matrices, con la
-ventaja de que permiten que los valores de las distintas columnas sean de tipos
-diferentes. Por ejemplo, supongamos que tenemos registrados los siguientes valores
+Este tipo de estructuras son en apariencia muy similares a las matrices, con la ventaja de que permiten que los valores de las distintas columnas sean de tipos diferentes.
+Por ejemplo, supongamos que tenemos registrados los siguientes valores
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2241,9 +2187,8 @@ Los valores anteriores se podrían guardar en una única matriz
 ## [3,] "Yogourt" "Lácteos" "10"
 \end{verbatim}
 
-Sin embargo, el resultado anterior no es satisfactorio ya que todos
-los valores se han transformado en caracteres. Una solución mejor es
-utilizar un \texttt{data.frame}, con lo cual se mantiene el tipo original de las variables.
+Sin embargo, el resultado anterior no es satisfactorio ya que todos los valores se han transformado en caracteres.
+Una solución mejor es utilizar un \texttt{data.frame}, con lo cual se mantiene el tipo original de las variables.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2345,17 +2290,15 @@ variables (columnas) del data.frame.
 \hypertarget{listas}{%
 \section{Listas}\label{listas}}
 
-Las listas son colecciones ordenadas de cualquier tipo de objetos (en \texttt{R} las
-listas son un tipo especial de vectores). Así, mientras que los elementos de
-los vectores, matrices y arrays deben ser del mismo tipo, en el caso de las
-listas se pueden tener elementos de tipos distintos.
+Las listas son colecciones ordenadas de cualquier tipo de objetos (en \texttt{R} las listas son un tipo especial de vectores).
+Así, mientras que los elementos de los vectores, matrices y arrays deben ser del mismo tipo, en el caso de las listas se pueden tener elementos de tipos distintos.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
 \NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Hombre"}\NormalTok{, }\StringTok{"Mujer"}\NormalTok{)}
 \NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{4}\NormalTok{)}
-\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{A=}\NormalTok{x, }\AttributeTok{B=}\NormalTok{y, }\AttributeTok{C=}\NormalTok{z)}
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{A =}\NormalTok{ x, }\AttributeTok{B =}\NormalTok{ y, }\AttributeTok{C =}\NormalTok{ z)}
 \NormalTok{datos}
 \end{Highlighting}
 \end{Shaded}
@@ -2795,8 +2738,9 @@ Para cargar un fichero de datos se emplea normalmente \href{https://www.rdocumen
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "citefig"   "citefig2"  "empleados" "fig.path"  "inline"    "inline2"  
-##  [7] "is_html"   "is_latex"  "latexfig"  "res"
+##  [1] "cite_fsimres" "cite_simres"  "citefig"      "citefig2"     "citepkg"     
+##  [6] "empleados"    "fig.path"     "inline"       "inline2"      "is_html"     
+## [11] "is_latex"     "latexfig"     "res"
 \end{verbatim}
 
 y para guardar \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save}{\texttt{save()}}:
@@ -6809,7 +6753,7 @@ En este caso el parámetro sería:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.635163
+## [1] 3.989587
 \end{verbatim}
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -6823,14 +6767,14 @@ y el modelo resultante contiene todas las variables explicativas:
 \begin{verbatim}
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
 ##                     s1
-## (Intercept) 5.26333438
-## velocida    1.58051175
-## precio      0.70395775
-## flexprec    2.24798481
-## imgfabri    0.31897738
-## servconj    3.76988236
-## imgfvent    1.07304993
-## calidadp    0.06641356
+## (Intercept) 6.25898621
+## velocida    1.56785760
+## precio      0.67897678
+## flexprec    2.17894174
+## imgfabri    0.32939271
+## servconj    3.69427361
+## imgfvent    1.05562044
+## calidadp    0.04709431
 \end{verbatim}
 
 \hypertarget{lasso}{%
@@ -7869,8 +7813,8 @@ La función \texttt{gam.check} realiza una diagnosis del modelo:
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
 ##                k'  edf k-index p-value
-## s(income)    9.00 3.12    0.98    0.40
-## s(education) 9.00 3.18    1.03    0.49
+## s(income)    9.00 3.12    0.98    0.37
+## s(education) 9.00 3.18    1.03    0.59
 \end{verbatim}
 
 Lo ideal sería observar normalidad en los dos gráficos de la izquierda, falta de patrón en el superior derecho, y ajuste a una recta en el inferior derecho. En este caso parece que el modelo se comporta adecuadamente.
@@ -8257,7 +8201,7 @@ contenido:
 ## function(a1, r, n) {
 ##         a1 * r^(n - 1)
 ##       }
-## <bytecode: 0x000000001a2dfee0>
+## <bytecode: 0x000000001e7af3f0>
 \end{verbatim}
 
 \hypertarget{salida}{%
@@ -8455,7 +8399,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##    1    2    3    4    5    6 
-## 0.17 0.20 0.12 0.18 0.21 0.12
+## 0.20 0.14 0.16 0.16 0.22 0.12
 \end{verbatim}
 
 \begin{Shaded}
@@ -8469,7 +8413,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##     1     2     3     4     5     6 
-## 0.178 0.164 0.154 0.156 0.162 0.186
+## 0.184 0.182 0.172 0.160 0.166 0.136
 \end{verbatim}
 
 \begin{Shaded}
@@ -8483,7 +8427,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##      1      2      3      4      5      6 
-## 0.1634 0.1738 0.1620 0.1699 0.1646 0.1663
+## 0.1648 0.1623 0.1646 0.1654 0.1721 0.1708
 \end{verbatim}
 
 Se puede comprobar que al aumentar el valor de \(n\) las frecuencias se
@@ -9486,7 +9430,72 @@ En \emph{RStudio} basta con pulsar ``Ctrl + Shift + K'' o seleccionar \emph{File
 \chapter*{Referencias}\label{referencias}}
 \addcontentsline{toc}{chapter}{Referencias}
 
-Ver Apéndice \ref{links}.
+Fernández-Casal R., Costa J. y Oviedo de la Fuente, M. (2021). \emph{\href{https://rubenfcasal.github.io/aprendizaje_estadistico}{Aprendizaje Estadístico}}. \href{https://github.com/rubenfcasal/aprendizaje_estadistico}{github}.
+
+Gil Bellosta C.J. (2018). \emph{\href{https://www.datanalytics.com/libro_r/index.html}{R para profesionales de los datos: una introducción}}.
+
+Grolemund, G. (2014). \emph{\href{https://rstudio-education.github.io/hopr}{Hands-on programming with R: Write your own functions and simulations}}, \href{http://shop.oreilly.com/product/0636920028574.do}{O'Reilly}.
+
+Matloff, N. (2011). \emph{The art of R programming: A tour of statistical software design}, \href{https://www.nostarch.com/artofr.htm}{No Starch Press}.
+
+Quintela del Rio A. (2019). \emph{\href{https://bookdown.org/aquintela/EBE}{Estadística Básica Edulcorada}}
+
+Wickham, H., y Grolemund, G. (2016). \emph{\href{http://r4ds.had.co.nz}{R for data science: import, tidy, transform, visualize, and model data}}, \href{https://es.r4ds.hadley.nz}{online-castellano}, \href{http://shop.oreilly.com/product/0636920034407.do}{O'Reilly}.
+
+\hypertarget{links}{%
+\section*{Enlaces}\label{links}}
+\addcontentsline{toc}{section}{Enlaces}
+
+\textbf{\emph{Repositorio}}: \href{https://github.com/rubenfcasal/intror}{rubenfcasal/intror}
+
+\textbf{Recursos para el aprendizaje de R}: En este \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{post} se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda.
+
+\href{https://bookdown.org}{\textbf{\emph{Bookdown}}}:
+
+\begin{itemize}
+\item
+  Fernández-Casal, R. y Cotos-Yáñez, T.R. (2018). \emph{\href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con bookdown}}, \href{https://github.com/rubenfcasal/bookdown_intro}{github}. Incluye un apéndice con una \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{Introducción a RMarkdown}.
+\item
+  Kuhn, M. y Silge, J. (2022). \emph{\href{https://www.tmwr.org}{Tidy Modeling with R}}. \href{https://amzn.to/35Hn96s}{O'Reill}.
+\item
+  Wickham, H. (2015). \emph{\href{http://r-pkgs.had.co.nz/}{R packages: organize, test, document, and share your code}} (actualmente 2ª edición en desarrollo con H. Bryan), \href{http://shop.oreilly.com/product/0636920034421.do}{O'Reilly, 1ª edición}.
+\item
+  Wickham, H. (2019). \emph{\href{https://adv-r.hadley.nz/}{Advanced R, 2ª edición}}, \href{https://www.amazon.com/dp/0815384572}{Chapman \& Hall}, \href{http://adv-r.had.co.nz/}{1ª edición.}.
+\end{itemize}
+
+\href{https://posit.co}{*\textbf{Posit (RStudio)}}
+
+\begin{itemize}
+\item
+  \href{https://posit.co/blog}{Blog}
+\item
+  \href{https://posit.co/resources/videos}{Videos}
+\item
+  \href{https://posit.co/resources/cheatsheets}{Chuletas (Cheatsheets)}
+\item
+  \href{https://www.tidyverse.org/}{\textbf{\emph{tidyverse}}}:
+
+  \begin{itemize}
+  \item
+    \href{https://dplyr.tidyverse.org}{dplyr}
+  \item
+    \href{https://tibble.tidyverse.org}{tibble}
+  \item
+    \href{https://tidyr.tidyverse.org}{tidyr}
+  \item
+    \href{https://stringr.tidyverse.org}{stringr}
+  \item
+    \href{https://readr.tidyverse.org}{readr}
+  \item
+    \href{https://solutions.posit.co/connections/db}{Best Practices in Working with Databases}
+  \end{itemize}
+\item
+  \href{https://www.tidymodels.org}{tidymodels}
+\item
+  \href{https://spark.rstudio.com/}{sparklyr}
+\item
+  \href{http://shiny.rstudio.com}{shiny}
+\end{itemize}
 
 \hypertarget{bibliografuxeda-complementaria}{%
 \section*{Bibliografía complementaria}\label{bibliografuxeda-complementaria}}
@@ -9521,435 +9530,292 @@ Yihui Xie (2015). \emph{Dynamic Documents with R and knitr}. Chapman.
 \appendix}
 
 
-\hypertarget{links}{%
-\chapter{Enlaces}\label{links}}
-
-\textbf{Recursos para el aprendizaje de R} ( \url{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}
-): A continuación se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda\ldots{}
-
-\textbf{\emph{Ayuda online}}:
-
-\begin{itemize}
-\item
-  Ayuda en línea sobre funciones o paquetes: \href{https://www.rdocumentation.org/}{RDocumentation}
-\item
-  Buscador \href{http://rseek.org/}{RSeek}
-\item
-  \href{http://stackoverflow.com/questions/tagged/r}{StackOverflow}
-\end{itemize}
-
-\textbf{\emph{Cursos}}:
-algunos cursos gratuitos:
-
-\begin{itemize}
-\item
-  \href{https://www.coursera.org/}{Coursera}:
-
-  \begin{itemize}
-  \item
-    \href{https://www.coursera.org/learn/intro-data-science-programacion-estadistica-r}{Introducción a Data Science: Programación Estadística con R}
-  \item
-    \href{https://www.coursera.org/specializations/r}{Mastering Software Development in R}
-  \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-\item
-  \href{https://www.datacamp.com/courses}{DataCamp}:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{https://www.datacamp.com/courses/introduccion-a-r/}{Introducción a R}
-  \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-\item
-  \href{http://online.stanford.edu/courses}{Stanford online}:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{http://online.stanford.edu/course/statistical-learning}{Statistical Learning}
-  \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-\tightlist
-\item
-  Curso UCA: \href{http://knuth.uca.es/moodle/course/view.php?id=51}{Introducción a R, R-commander y shiny}
-\end{itemize}
-
-\begin{itemize}
-\tightlist
-\item
-  Udacity: \href{https://eu.udacity.com/course/data-analysis-with-r--ud651}{Data Analysis with R}
-\end{itemize}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://swirlstats.com/scn/title.html}{Swirl Courses}:
-  se pueden hacer cursos desde el propio R con el paquete
-  \href{https://swirlstats.com}{swirl}.
-\end{itemize}
-
-Para información sobre cursos en castellano se puede recurrir a la web de \href{http://r-es.org/}{R-Hispano} en el apartado \href{http://r-es.org/category/formacion}{formación}. Algunos de los cursos que aparecen en entradas antiguas son gratuitos.
-Ver: \href{http://r-es.org/2016/02/12/cursos-masivos-y-otra-formacion-on-line-sobre-r/}{Cursos MOOC relacionados con R}.
-
-\textbf{\emph{Libros}}
-
-\begin{itemize}
-\item
-  \textbf{\emph{Iniciación}}:
-
-  \begin{itemize}
-  \item
-    2011 - The Art of R Programming. A Tour of Statistical Software Design,
-    (\href{https://www.nostarch.com/artofr.htm}{No Starch Press})
-  \item
-    R for Data Science
-    (\href{http://r4ds.had.co.nz/}{online}, \href{http://shop.oreilly.com/product/0636920034407.do}{O'Reilly})
-  \item
-    Hands-On Programming with R: Write Your Own Functions and Simulations,
-    by Garrett Grolemund
-    (\href{http://shop.oreilly.com/product/0636920028574.do}{O'Reilly})
-  \end{itemize}
-\item
-  \textbf{\emph{Avanzados}}:
-
-  \begin{itemize}
-  \item
-    2008 - Software for Data Analysis: Programming with R - Chambers
-    (\href{http://www.springer.com/la/book/9780387759357}{Springer})
-  \item
-    Advanced R by Hadley Wickham
-    (online: \href{http://adv-r.had.co.nz/}{1ª ed},
-    \href{https://adv-r.hadley.nz/}{2ª ed},
-    \href{https://www.amazon.com/dp/1466586966}{Chapman \& Hall})
-  \item
-    R packages by Hadley Wickham
-    (\href{http://r-pkgs.had.co.nz/}{online},
-    \href{http://shop.oreilly.com/product/0636920034421.do}{O'Reilly})
-  \end{itemize}
-\item
-  \textbf{\emph{Bookdown}}:
-  el paquete \href{https://bookdown.org}{\texttt{bookdown}} de R permite escribir libros empleando
-  \href{http://rmarkdown.rstudio.com}{R Markdown} y compartirlos.
-  En \url{https://bookdown.org} está disponible una selección de libros escritos con este paquete
-  (un listado más completo está disponible \href{https://bookdown.org/home/archive/}{aquí}).
-  Algunos libros en este formato en castellano son:
-
-  \begin{itemize}
-  \item
-    \href{https://rubenfcasal.github.io/simbook}{Prácticas de Simulación}
-    (disponible en el repositorio de GitHub
-    \href{https://github.com/rubenfcasal/simbook}{rubenfcasal/simbook}).
-  \item
-    \href{https://rubenfcasal.github.io/bookdown_intro/}{Escritura de libros con bookdown}
-    (disponible en el repositorio de GitHub
-    \href{https://github.com/rubenfcasal/bookdown_intro}{rubenfcasal/bookdown\_intro}).
-  \item
-    \href{https://www.datanalytics.com/libro_r/index.html}{R para profesionales de los datos: una introducción}.
-  \item
-    \href{https://bookdown.org/aquintela/EBE}{Estadística Básica Edulcorada}.
-  \end{itemize}
-\end{itemize}
-
-\textbf{\emph{Material online}}:
-en la web se puede encontrar mucho material adicional, por ejemplo:
-
-\begin{itemize}
-\item
-  \href{https://www.r-project.org/other-docs.html}{CRAN: Other R documentation}
-\item
-  Blogs en inglés:
-
-  \begin{itemize}
-  \item
-    \url{https://www.r-bloggers.com/}
-  \item
-    \url{https://www.littlemissdata.com/blog/rstudioconf2019}
-  \item
-    RStudio: \url{https://blog.rstudio.com}
-  \item
-    Microsoft Revolutions: \url{https://blog.revolutionanalytics.com}
-  \end{itemize}
-\item
-  Blogs en castellano:
-
-  \begin{itemize}
-  \item
-    \url{https://www.datanalytics.com}
-  \item
-    \url{http://oscarperpinan.github.io/R}
-  \item
-    \url{http://rubenfcasal.github.io}
-  \end{itemize}
-\item
-  Listas de correo:
-
-  \begin{itemize}
-  \item
-    Listas de distribución de r-project.org: \url{https://stat.ethz.ch/mailman/listinfo}
-  \item
-    Búsqueda en R-help: \url{http://r.789695.n4.nabble.com/R-help-f789696.html}
-  \item
-    Búsqueda en R-help-es: \url{https://r-help-es.r-project.narkive.com}
-
-    \url{https://grokbase.com/g/r/r-help-es}
-  \item
-    Archivos de R-help-es: \url{https://stat.ethz.ch/pipermail/r-help-es}
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{rstudio-links}{%
-\section{RStudio}\label{rstudio-links}}
-
-\href{https://www.rstudio.com}{\textbf{\emph{RStudio}}}:
-
-\begin{itemize}
-\item
-  \href{https://www.rstudio.com/online-learning}{Online learning}
-\item
-  \href{https://resources.rstudio.com/webinars}{Webinars}
-\item
-  \href{https://spark.rstudio.com/}{sparklyr}
-\item
-  \href{http://shiny.rstudio.com}{shiny}
-\end{itemize}
-
-\href{https://www.tidyverse.org/}{\textbf{\emph{tidyverse}}}:
-
-\begin{itemize}
-\item
-  \href{https://dplyr.tidyverse.org}{dplyr}
-\item
-  \href{https://tibble.tidyverse.org}{tibble}
-\item
-  \href{https://tidyr.tidyverse.org}{tidyr}
-\item
-  \href{https://stringr.tidyverse.org}{stringr}
-\item
-  \href{https://readr.tidyverse.org}{readr}
-\item
-  \href{https://db.rstudio.com}{Databases using R},
-  \href{https://db.rstudio.com/overview}{dplyr as a database interface}
-\end{itemize}
-
-\href{https://resources.rstudio.com/rstudio-cheatsheets}{\textbf{\emph{CheatSheets}}}:
-
-\begin{itemize}
-\item
-  \href{https://resources.rstudio.com/rstudio-cheatsheets/rmarkdown-2-0-cheat-sheet}{rmarkdown}
-\item
-  \href{https://resources.rstudio.com/rstudio-cheatsheets/shiny-cheat-sheet}{shiny}
-\item
-  \href{https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf}{dplyr}
-\item
-  \href{https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf}{tidyr}
-\item
-  \href{https://resources.rstudio.com/rstudio-cheatsheets/stringr-cheat-sheet}{stringr}
-\end{itemize}
-
 \hypertarget{instalacion}{%
 \chapter{Instalación de R}\label{instalacion}}
 
-En la web del proyecto R
-(\href{http://www.r-project.org}{www.r-project.org}) está disponible
-mucha información sobre este entorno estadístico.
+En la web del proyecto R (\href{http://www.r-project.org}{www.r-project.org}) está disponible mucha información sobre este entorno estadístico.
 
-\begin{longtable}[]{@{}cc@{}}
-\toprule
-\endhead
-\includegraphics[width=0.8\textwidth,height=\textheight]{figuras/rproject.png} & \includegraphics[width=0.7\textwidth,height=\textheight]{figuras/cran.png} \\
-\href{https://r-project.org}{R-project} & \href{https://cran.r-project.org}{CRAN} \\
-\bottomrule
-\end{longtable}
+\begin{figure}[!htb]
 
-Las descargas se realizan a través de la web del CRAN (The Comprehensive
-R Archive Network), con múltiples mirrors:
+{\centering \includegraphics[width=0.45\linewidth]{figuras/rproject} \includegraphics[width=0.45\linewidth]{figuras/cran} 
+
+}
+
+\caption{Web de [R-project](https://r-project.org) y [CRAN](https://cran.r-project.org).}\label{fig:rproject}
+\end{figure}
+
+Las descargas se realizan a través de la web del CRAN (The Comprehensive R Archive Network), con múltiples \href{https://cran.r-project.org/mirrors.html}{mirrors}:
 
 \begin{itemize}
 \tightlist
 \item
-  \emph{Oficina de software libre} (CIXUG) \href{http://ftp.cixug.es/CRAN/}{ftp.cixug.es/CRAN}.
+  \emph{Oficina de Software Libre (A Coruña)} (CIXUG): \href{http://ftp.cixug.es/CRAN/}{ftp.cixug.es/CRAN}.
 \item
-  \emph{Spanish National Research Network (Madrid)} (RedIRIS) es
-  \href{http://cran.es.r-project.org/}{cran.es.r-project.org}.
+  \emph{Spanish National Research Network (Madrid)} (RedIRIS): \href{http://cran.es.r-project.org/}{cran.es.r-project.org}.
 \end{itemize}
 
-\hypertarget{instalaciuxf3n-de-r-en-windows}{%
-\section{Instalación de R en Windows}\label{instalaciuxf3n-de-r-en-windows}}
+\hypertarget{windows}{%
+\section{Instalación de R en Windows}\label{windows}}
 
-Seleccionando \href{http://ftp.cixug.es/CRAN/bin/windows/}{Download R for Windows} y posteriormente
-\href{http://ftp.cixug.es/CRAN/bin/windows/base/}{base} accedemos
-al enlace con el instalador de R para Windows (actualmente de la versión
-\href{http://ftp.cixug.es/CRAN/bin/windows/base/R-3.6.1-win.exe}{3.6.1}).
+Seleccionando \href{http://ftp.cixug.es/CRAN/bin/windows/}{Download R for Windows} y posteriormente \href{http://ftp.cixug.es/CRAN/bin/windows/base/}{base} accedemos al enlace con el instalador de R para Windows (actualmente de la versión \href{http://ftp.cixug.es/CRAN/bin/windows/base/R-4.2.2-win.exe}{4.2.2}).
 
-\includegraphics[width=0.4\textwidth,height=\textheight]{figuras/R351.png}
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.5\linewidth]{figuras/R351} 
+
+}
+
+\caption{Web de [descarga de R para Windows](http://ftp.cixug.es/CRAN/bin/windows).}\label{fig:rdownload}
+\end{figure}
 
 \hypertarget{asistente-de-instalaciuxf3n}{%
 \subsection{Asistente de instalación}\label{asistente-de-instalaciuxf3n}}
 
-Durante el proceso de instalación la recomendación (para evitar posibles
-problemas) es seleccionar ventanas simples SDI en lugar de múltiples
-ventanas MDI (hay que \emph{utilizar opciones de configuración}).
+Durante el proceso de instalación la recomendación (para evitar posibles problemas) es seleccionar ventanas simples SDI en lugar de múltiples ventanas MDI (hay que utilizar \emph{Opciones de configuración}).
 
-\begin{longtable}[]{@{}cc@{}}
-\toprule
-\endhead
-\includegraphics[width=0.95\textwidth,height=\textheight]{figuras/image3.png} & \includegraphics[width=0.95\textwidth,height=\textheight]{figuras/image4.png} \\
-\includegraphics[width=0.95\textwidth,height=\textheight]{figuras/image5.png} & \includegraphics[width=0.95\textwidth,height=\textheight]{figuras/image6.png} \\
-\bottomrule
-\end{longtable}
+\begin{figure}[!htb]
 
-Una vez terminada la instalación, al abrir el programa \texttt{R}, aparece la
-ventana de la consola (simula una ventana de comandos de Unix) que permite
-ejecutar comandos de R al irlos introduciendo.
+{\centering \includegraphics[width=0.9\linewidth]{figuras/asistente} 
 
-\hypertarget{instalaciuxf3n-de-paquetes}{%
-\subsection{Instalación de paquetes}\label{instalaciuxf3n-de-paquetes}}
+}
 
-Después de la instalación de R, puede ser necesario instalar paquetes
-adicionales.
+\caption{Pasos del asistente para instalación de R en Windows.}\label{fig:asistente}
+\end{figure}
 
-Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes:
-\href{https://cran.r-project.org/web/packages/lattice/index.html}{\texttt{lattice}},
-\href{https://cran.r-project.org/web/packages/ggplot2/index.html}{\texttt{ggplot2}},
-\href{https://cran.r-project.org/web/packages/foreign/index.html}{\texttt{foreign}},
-\href{https://cran.r-project.org/web/packages/car/index.html}{\texttt{car}},
-\href{https://cran.r-project.org/web/packages/leaps/index.html}{\texttt{leaps}},
-\href{https://cran.r-project.org/web/packages/MASS/index.html}{\texttt{MASS}},
-\href{https://cran.r-project.org/web/packages/RcmdrMisc/index.html}{\texttt{RcmdrMisc}},
-\href{https://cran.r-project.org/web/packages/lmtest/index.html}{\texttt{lmtest}},
-\href{https://cran.r-project.org/web/packages/glmnet/index.html}{\texttt{glmnet}},
-\href{https://cran.r-project.org/web/packages/mgcv/index.html}{\texttt{mgcv}},
-\href{https://cran.r-project.org/web/packages/rmarkdown/index.html}{\texttt{rmarkdown}},
-\href{https://cran.r-project.org/web/packages/knitr/index.html}{\texttt{knitr}},
-\href{https://cran.r-project.org/web/packages/dplyr/index.html}{\texttt{dplyr}}.
-Por ejemplo mediante el comando:
+Una vez terminada la instalación, al abrir R aparece la ventana de la consola (simula una ventana de comandos de Unix) que permite ejecutar comandos de R.
+
+Por defecto se instalan un conjunto de paquetes base de R (que se cargan automáticamente al iniciarlo) y un conjunto de \href{https://cran.r-project.org/src/contrib/4.1.2/Recommended}{paquetes recomendados} (que se pueden cargar empleando el comando \texttt{library()}),
+pero hay disponibles miles de paquetes que cubren literalmente todos los campos del análisis de datos.
+Ver por ejemplo:
+
+\begin{itemize}
+\item
+  \href{https://cran.r-project.org/web/packages/index.html}{CRAN: Packages}
+\item
+  \href{https://cran.r-project.org/web/views}{CRAN: Task Views}
+\end{itemize}
+
+\hypertarget{paquetes-win}{%
+\subsection{Instalación de paquetes}\label{paquetes-win}}
+
+Después de la instalación de R suele ser necesario instalar paquetes adicionales (puede ser recomendable \emph{Ejecutar como administrador} R para evitar problemas de permiso de escritura en la carpeta \emph{C:\textbackslash Program Files\textbackslash R\textbackslash R-X.Y.Z\textbackslash library}, o cambiar previamente los permisos de esta carpeta como se indica \protect\hyperlink{library}{aquí}).
+
+Para ejecutar los ejemplos mostrados en el libro sería necesario tener instalados los siguientes paquetes:
+\href{https://CRAN.R-project.org/package=lattice}{\texttt{lattice}}, \href{https://CRAN.R-project.org/package=ggplot2}{\texttt{ggplot2}}, \href{https://CRAN.R-project.org/package=foreign}{\texttt{foreign}}, \href{https://CRAN.R-project.org/package=car}{\texttt{car}}, \href{https://CRAN.R-project.org/package=leaps}{\texttt{leaps}}, \href{https://CRAN.R-project.org/package=MASS}{\texttt{MASS}}, \href{https://CRAN.R-project.org/package=RcmdrMisc}{\texttt{RcmdrMisc}}, \href{https://CRAN.R-project.org/package=lmtest}{\texttt{lmtest}}, \href{https://CRAN.R-project.org/package=glmnet}{\texttt{glmnet}}, \href{https://CRAN.R-project.org/package=mgcv}{\texttt{mgcv}}, \href{https://CRAN.R-project.org/package=rmarkdown}{\texttt{rmarkdown}}, \href{https://CRAN.R-project.org/package=knitr}{\texttt{knitr}}, \href{https://CRAN.R-project.org/package=dplyr}{\texttt{dplyr}}, \href{https://CRAN.R-project.org/package=tidyr}{\texttt{tidyr}}.
+Por ejemplo mediante los siguientes comandos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{pkgs }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"lattice"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"foreign"}\NormalTok{, }\StringTok{"car"}\NormalTok{, }\StringTok{"leaps"}\NormalTok{, }\StringTok{"MASS"}\NormalTok{, }\StringTok{"RcmdrMisc"}\NormalTok{, }
-          \StringTok{"lmtest"}\NormalTok{, }\StringTok{"glmnet"}\NormalTok{, }\StringTok{"mgcv"}\NormalTok{, }\StringTok{"rmarkdown"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
-
+          \StringTok{"lmtest"}\NormalTok{, }\StringTok{"glmnet"}\NormalTok{, }\StringTok{"mgcv"}\NormalTok{, }\StringTok{"rmarkdown"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"tidyr"}\NormalTok{)}
 \FunctionTok{install.packages}\NormalTok{(}\FunctionTok{setdiff}\NormalTok{(pkgs, }\FunctionTok{installed.packages}\NormalTok{()[,}\StringTok{"Package"}\NormalTok{]), }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{)}
-\CommentTok{\# Si aparecen errores debidos a incompatibilidades entre las versiones de los paquetes, }
-\CommentTok{\# probar a ejecutar en lugar de lo anterior:}
-\CommentTok{\# install.packages(pkgs, dependencies=TRUE) \# Instala todos...}
 \end{Highlighting}
 \end{Shaded}
 
-(puede que haya que seleccionar el repositorio de descarga, e.g.~\emph{Spain
-(Madrid)}).
+(puede que haya que seleccionar el repositorio de descarga, e.g.~\emph{Spain (Madrid)}).
 
-La forma tradicional es esta:
+El código anterior no reinstala los paquetes ya instalados, por lo que podrían aparecer problemas debidos a incompatibilidades entre versiones (aunque no suele ocurrir, salvo que nuestra instalación de R esté muy desactualizada).
+Si es el caso, en lugar de la última línea se puede ejecutar:
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Se inicia R y se selecciona \emph{Paquetes \textgreater{} Instalar paquetes}
-\item
-  Se selecciona el repositorio.
-\item
-  Se selecciona el paquete y automáticamente se instala.
-\end{enumerate}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(pkgs, }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# Instala todos...}
+\end{Highlighting}
+\end{Shaded}
 
-Alternativamente se podrían instalar los siguientes paquetes: \texttt{Rcmdr},
-\texttt{RcmdrPlugin.FactoMineR}, \texttt{dplyr} y \texttt{rattle}, ya que sus dependencias
-incluyen los empleados en este libro.
-La instalación de los paquetes \texttt{Rcmdr} y \texttt{rattle} (que incluyen interfaces gráficas) se describe
-en el Apéndice \ref{interfaces}.
+\hypertarget{library}{%
+\subsubsection{\texorpdfstring{Cambiar los permisos de la carpeta \emph{library} (opcional)}{Cambiar los permisos de la carpeta library (opcional)}}\label{library}}
 
-\hypertarget{interfaces}{%
-\chapter{Interfaces gráficas}\label{interfaces}}
+Para evitar problemas con la instalación de paquetes en Windows (y evitar también que los paquetes se instalen en \emph{Documentos\textbackslash R\textbackslash win-library\textbackslash X.Y}) se puede dar permiso de \emph{control total} a los usuarios del equipo en el subdirectorio \emph{library} de la instalación de R.
+Para ello, pulsar con el botón derecho en esta carpeta (e.g.~\emph{C:\textbackslash Program Files\textbackslash R\textbackslash R-4.2.2\textbackslash library}), seleccionar \emph{Propiedades \textgreater{} Seguridad \textgreater{} Editar}, seleccionar los \emph{Usuarios} del equipo, marcar \emph{Control total} y \emph{Aplicar}.
 
-Aunque la consola de R dispone de un editor básico de códido (script),
-puede ser recomendable trabajar con un editor de comandos más cómodo y
-flexible.
+\begin{figure}[!htb]
 
-En los últimos años han surgido \emph{interfaces gráficas} que permiten
-realizar las operaciones más comunes a través de periféricos como el
-ratón. Una lista de de estas interfaces puede ser encontrada en
-\url{www.sciviews.org/SciViews-R}
+{\centering \includegraphics[width=0.45\linewidth]{figuras/propiedades} \includegraphics[width=0.45\linewidth]{figuras/permisos} 
 
-\hypertarget{rstudio}{%
-\section{RStudio}\label{rstudio}}
+}
 
-Un entorno de R muy recomendable es el \textbf{RStudio},
-\href{http://rstudio.org}{\emph{http://rstudio.org}}:
+\caption{Pasos en Windows para cambiar permisos en la carpeta library.}\label{fig:permisos-library}
+\end{figure}
 
-\includegraphics[width=0.5\textwidth,height=\textheight]{figuras/RStudio-screenshot.png}
+\hypertarget{ide}{%
+\subsection{Instalación de RStudio Desktop}\label{ide}}
 
-Para instalarlo descargar el archivo de instalación de
-\href{http://rstudio.org/download/desktop}{\emph{http://rstudio.org/download/desktop}}.
+Aunque la consola de R dispone de un editor básico de código (script), puede ser recomendable trabajar con un editor de comandos más cómodo y flexible.
+El entorno de desarrollo (\emph{Integrated Development Environment}, IDE) recomendado es \href{https://posit.co/products/open-source/rstudio}{RStudio}.
+Está disponible para la mayoría de plataformas\footnote{También hay una versión para servidores: \href{https://posit.co/download/rstudio-server}{RStudio Server}} e integra una gran cantidad de herramientas, que permiten desde la generación de informes, hasta la gestión de distintos tipos de proyectos, depuración de código, control de versiones, etc.
+También es compatible con otros lenguajes, incluido \href{https://support.posit.co/hc/en-us/articles/1500007929061-Using-Python-with-the-RStudio-IDE}{Python}.
 
-\hypertarget{rcmdr}{%
-\section{RCommander}\label{rcmdr}}
+Una vez instalado R, para instalar RStudio Desktop basta con descargar el correspondiente archivo de instalación de \href{https://posit.co/download/rstudio-desktop}{\emph{https://posit.co/download/rstudio-desktop}} y seguir las instrucciones.
 
-\texttt{RCommander} es una de las interfaces más populares para \texttt{R}. Algunas de
-sus ventajas son:
+Este entorno se describe en la Sección \ref{rstudio}.
 
-\begin{itemize}
-\item
-  Se distribuye también bajo licencia GPL de GNU
-\item
-  Fácil instalación
-\item
-  Numerosa documentación en castellano
-\item
-  Adecuado para la iniciación en la Estadística
-\item
-  Introduce a la programación de \texttt{R} al mostrar el código asociado a
-  las acciones de los menús.
-\end{itemize}
+\hypertarget{op-rstudio-win}{%
+\subsubsection{Configuración adicional de RStudio (opcional)}\label{op-rstudio-win}}
 
-\includegraphics{figuras/Rcommander.png}
+En lugar de emplear los visores de gráficos, ayuda y navegador web integrados, nos puede interesar que los gráficos se muestren en ventanas independientes y las páginas web en el navegador del equipo.
+Esto se puede conseguir modificando los archivos de configuración (en el directorio \emph{C:\textbackslash Program Files\textbackslash RStudio\textbackslash R} en Windows y \emph{/Applications/RStudio.app/Contents/Resources/R} en Linux), que normalmente habrá que editar como administrador.
 
-\hypertarget{instalaciuxf3n-de-r-commander}{%
-\subsection{Instalación de R-Commander}\label{instalaciuxf3n-de-r-commander}}
+Por defecto los gráficos generados desde RStudio se mostrarán en la pestaña \emph{Plots} panel inferior derecho y por ejemplo puede aparecer errores si el área gráfica es demasiado pequeña.
+Para utilizar el dispositivo gráfico de R habría que modificar las siguientes líneas de \emph{C:\textbackslash Program Files\textbackslash RStudio\textbackslash R\textbackslash Tools.R}:
 
-Por ejemplo, la
-instalación de la interfaz gráfica R-Commander se puede hacer
-directamente desde la ventana de consola tecleando
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# set our graphics device as the default and cause it to be created/set}
+\FunctionTok{.rs.addFunction}\NormalTok{( }\StringTok{"initGraphicsDevice"}\NormalTok{, }\ControlFlowTok{function}\NormalTok{()}
+\NormalTok{\{}
+   \CommentTok{\# options(device="RStudioGD")}
+   \CommentTok{\# grDevices::deviceIsInteractive("RStudioGD")}
+\NormalTok{  grDevices}\SpecialCharTok{::}\FunctionTok{deviceIsInteractive}\NormalTok{()}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{verbatim}
-> install.packages("Rcmdr")
-\end{verbatim}
+El visor integrado de RStudio no resulta muy cómodo para navegar por la ayuda de las funciones (por ejemplo no permite hacer zoom o abrir múltiples ventanas).
+Para utilizar en su lugar el navegador del equipo habría que comentar las siguientes líneas de \emph{C:\textbackslash Program Files\textbackslash RStudio\textbackslash R\textbackslash Options.R}:
 
-Otra posibilidad es seleccionar el menú \texttt{Paquetes} e
-\texttt{Instalar\ paquetes...}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \# custom browseURL implementation.}
+\CommentTok{\# .rs.setOption("browser", function(url)}
+\CommentTok{\# \{}
+   \CommentTok{\# .Call("rs\_browseURL", url, PACKAGE = "(embedding)")}
+\CommentTok{\# \})}
+\end{Highlighting}
+\end{Shaded}
 
-\includegraphics{figuras/Rcommander1.png}
+\hypertarget{ubuntu}{%
+\section{Instalación de R en Ubuntu/Devian}\label{ubuntu}}
 
-A continuación se abrirá una nueva ventana con todos los posibles
-espejos, donde conviene seleccionar el espejo de Madrid.
+Instalar dependencias:
 
-Una vez elegido el espejo (figura de la izquierda) se seleccionará el
-paquete \texttt{Rcmdr} (figura de la derecha).
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt install libcurl4{-}gnutls{-}dev libgit2{-}dev libxml2{-}dev libssl{-}dev }
+\end{Highlighting}
+\end{Shaded}
 
-\includegraphics{figuras/Rcommander2.png}
+Si aparecen problemas asegurarse de que los repositorios \emph{universe} y \emph{multiverse} están disponibles:
 
-El programa \texttt{R} realizará la correspondiente instalación y,
-una vez finalizada, mostrará la pantalla de consola. Entonces se escribe
-en la consola
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ add{-}apt{-}repository universe}
+\FunctionTok{sudo}\NormalTok{ add{-}apt{-}repository multiverse}
+\FunctionTok{sudo}\NormalTok{ apt update}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{verbatim}
->library(Rcmdr)
-\end{verbatim}
+Se puede instalar R desde estos repositorios, pero normalmente no será la versión más actualizada y no lo recomendaría.
 
-y se abrirá la siguiente ventana de R-Commander.
+\hypertarget{instalaciuxf3n-de-r-desde-cran}{%
+\subsection{\texorpdfstring{Instalación de R desde \href{https://cran.r-project.org/bin/linux/ubuntu}{CRAN}}{Instalación de R desde CRAN}}\label{instalaciuxf3n-de-r-desde-cran}}
 
-\includegraphics{figuras/Rcommander3.png}
+Añadir la llave de firma GPG, añadir el repositorio CRAN a la lista de fuentes (para ver la versión de ubuntu se puede ejecutar \texttt{lsb\_release\ -a}, el siguiente código ya la obtiene directamente) e instalar R:
 
-La ayuda sobre este paquete se obtiene con
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cambiar a root (alternativamente añadir \textasciigrave{}sudo\textasciigrave{} al principio de los comandos)}
+\FunctionTok{sudo} \AttributeTok{{-}i}
+\CommentTok{\# update indices}
+\ExtensionTok{apt}\NormalTok{ update }\AttributeTok{{-}qq}
+\CommentTok{\# install two helper packages we need}
+\ExtensionTok{apt}\NormalTok{ install }\AttributeTok{{-}{-}no{-}install{-}recommends}\NormalTok{ software{-}properties{-}common dirmngr}
+\CommentTok{\# add the signing key (by Michael Rutter) for these repos}
+\CommentTok{\# To verify key, run gpg {-}{-}show{-}keys /etc/apt/trusted.gpg.d/cran\_ubuntu\_key.asc }
+\CommentTok{\# Fingerprint: 298A3A825C0D65DFD57CBB651716619E084DAB9}
+\FunctionTok{wget} \AttributeTok{{-}qO{-}}\NormalTok{ https://cloud.r{-}project.org/bin/linux/ubuntu/marutter\_pubkey.asc }\KeywordTok{|} \FunctionTok{sudo}\NormalTok{ tee }\AttributeTok{{-}a}\NormalTok{ /etc/apt/trusted.gpg.d/cran\_ubuntu\_key.asc}
+\CommentTok{\# add the R 4.0 repo from CRAN {-}{-} adjust \textquotesingle{}focal\textquotesingle{} to \textquotesingle{}groovy\textquotesingle{} or \textquotesingle{}bionic\textquotesingle{} as needed}
+\ExtensionTok{add{-}apt{-}repository} \StringTok{"deb https://cloud.r{-}project.org/bin/linux/ubuntu }\VariableTok{$(}\ExtensionTok{lsb\_release} \AttributeTok{{-}cs}\VariableTok{)}\StringTok{{-}cran40/"}
+\ExtensionTok{apt{-}get}\NormalTok{ update}
+\ExtensionTok{apt{-}get}\NormalTok{ install r{-}base r{-}base{-}dev}
+\BuiltInTok{logout}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{verbatim}
->help(package="Rcmdr")
-\end{verbatim}
+\hypertarget{instalaciuxf3n-de-devtools-y-demuxe1s-paquetes}{%
+\subsection{Instalación de devtools y demás paquetes}\label{instalaciuxf3n-de-devtools-y-demuxe1s-paquetes}}
+
+Ejecutar R en modo administrador para que los paquetes que se instalen estén disponibles para todos los usuarios
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo} \AttributeTok{{-}i}\NormalTok{ R}
+\end{Highlighting}
+\end{Shaded}
+
+Ejecutar en la consola de R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{\textquotesingle{}devtools\textquotesingle{}}\NormalTok{, }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Si aparecen problemas mirar \href{http://stackoverflow.com/a/20924082}{stackoverflow - Problems installing the devtools package}.
+
+Instalar el resto de paquetes como se muestra en la sección de \protect\hyperlink{paquetes-win}{Windows}.
+
+\hypertarget{ayuda-html}{%
+\subsection{Ayuda html}\label{ayuda-html}}
+
+Si queremos la ayuda html (en un entorno gráfico con un navegador web instalado):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"options(help\_type=\textquotesingle{}html\textquotesingle{})"} \KeywordTok{|} \FunctionTok{sudo}\NormalTok{ tee }\AttributeTok{{-}a}\NormalTok{ /etc/R/Rprofile.site}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{actualizar-r}{%
+\subsection{Actualizar R}\label{actualizar-r}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt{-}get update}
+\FunctionTok{sudo}\NormalTok{ apt{-}get upgrade}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{instalacion-de-rstudio-desktop}{%
+\subsection{Instalacion de RStudio Desktop}\label{instalacion-de-rstudio-desktop}}
+
+Antes de nada, puede ser recomendable crear un directorio donde descargar el instalador:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mkdir}\NormalTok{ installr}
+\BuiltInTok{cd}\NormalTok{ installr}
+\end{Highlighting}
+\end{Shaded}
+
+Buscar la versión actualizada de RStudio en \href{https://posit.co/download/rstudio-desktop}{Download RStudio} correspondiente a la versión de Ubuntu, en este caso emplearemos ``\url{https://download1.rstudio.org/electron/bionic/amd64/rstudio-2022.12.0-353-amd64.deb}'',
+para Ubuntu 18+/Debian 10.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sudo}\NormalTok{ apt{-}get install gdebi{-}core}
+\FunctionTok{wget}\NormalTok{ https://download1.rstudio.org/electron/bionic/amd64/rstudio{-}2022.12.0{-}353{-}amd64.deb}
+\FunctionTok{sudo}\NormalTok{ gdebi }\AttributeTok{{-}n}\NormalTok{ rstudio{-}2022.12.0{-}353{-}amd64.deb}
+\end{Highlighting}
+\end{Shaded}
+
+Al igual que como se mostró para el caso de \protect\hyperlink{op-rstudio-win}{Windows}, nos puede interesar modificar la configuración de de RStudio para mostrar los gráficos en ventanas independientes y las páginas web en el navegador del equipo.
+En este caso se procedería de forma idéntica, modificando los archivos de configuración en \emph{/Applications/RStudio.app/Contents/Resources/R}, editándolos como administrador.
+
+\hypertarget{macosx}{%
+\section{Instalación en Mac OS X}\label{macosx}}
+
+Instalar R de \url{http://cran.es.r‐project.org/bin/macosx} siguiendo los pasos habituales.
+
+Para instalar R-Commander (\url{https://socialsciences.mcmaster.ca/jfox/Misc/Rcmdr/installation-notes.html}) es necesario disponer de las librerías gráficas X11, como a partir de OS X Lion ya no están instaladas por defecto en el sistema, hay que instalar las librerías Open Source XQuartz \url{https://www.xquartz.org}.
+
+Finalmente, para instalar \texttt{Rcmdr} ejecutar en la consola de R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"Rcmdr"}\NormalTok{, }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{manipulaciuxf3n-de-datos-con-dplyr}{%
 \chapter{Manipulación de datos con dplyr}\label{manipulaciuxf3n-de-datos-con-dplyr}}
@@ -10311,7 +10177,7 @@ Cada vez son más las empresas que utilizan \texttt{R}.
 
 \begin{itemize}
 \item
-  Diseñado para entornos Big Data y computación de altas prestaciones.
+  Herramientas para entornos Big Data y computación de altas prestaciones.
 \item
   Versión de R con rendimiento mejorado.
 
@@ -10327,35 +10193,38 @@ Cada vez son más las empresas que utilizan \texttt{R}.
 \end{itemize}
 
 \hypertarget{rstudio-com}{%
-\section{RStudio}\label{rstudio-com}}
+\section{RStudio (Posit)}\label{rstudio-com}}
 
 \includegraphics[width=0.4\textwidth,height=\textheight]{figuras/rstudio_stickers.png}
 
 Además del entorno de desarrollo (IDE) con múltiples herramientas,
-descrito en el Apéndice \ref{rstudio}:
+descrito en la Sección \ref{rstudio}:
 
 \begin{itemize}
 \item
-  Interfaz web que permite ejecutar RStudio en el servidor.
+  RStudio Server: permite ejecutar RStudio en un servidor mediante una interfaz web.
 
   \begin{itemize}
   \item
     Evita el movimiento de datos a los clientes.
   \item
-    Ediciones Open Source y Professional.
+    Ediciones Open Source y Professional (RStudio Workbench).
   \end{itemize}
+\end{itemize}
+
+\begin{itemize}
 \item
   Compañía muy activa en el desarrollo de R:
 
   \begin{itemize}
   \item
-    Múltiples paquetes: Shiny, rmarkdown, knitr, ggplot2, dplyr, tidyr, \ldots{}
+    Múltiples paquetes: tidyverse (dplyr, tidyr, ggplot2, knitr, \ldots), tidymodels, shiny, rmarkdown, \ldots{}
   \item
     Hadley Wickham (Jefe científico de RStudio).
   \end{itemize}
 \end{itemize}
 
-Ver enlaces en el Apéndice \ref{rstudio-links}.
+En la Sección \protect\hyperlink{links}{Enlaces} de las Referencias se incluyen recursos adicionales.
 
   \bibliography{book.bib,packages.bib}
 

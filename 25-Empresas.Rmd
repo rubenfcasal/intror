@@ -19,7 +19,7 @@ Cada vez son más las empresas que utilizan `R`.
 
 ![](figuras/Revolution.jpeg){width="20%"}
 
-- Diseñado para entornos Big Data y computación de altas prestaciones.
+- Herramientas para entornos Big Data y computación de altas prestaciones.
 
 - Versión de R con rendimiento mejorado.
 
@@ -30,23 +30,26 @@ Cada vez son más las empresas que utilizan `R`.
 - Integracion de R con: SQL Server, PowerBI, Azure y Cortana
   Analytics.
 
-## RStudio {#rstudio-com}
+## RStudio (Posit) {#rstudio-com}
 
 ![](figuras/rstudio_stickers.png){width="40%"}
 
 Además del entorno de desarrollo (IDE) con múltiples herramientas,
-descrito en el Apéndice \@ref(rstudio):
+descrito en la Sección \@ref(rstudio):
     
-- Interfaz web que permite ejecutar RStudio en el servidor.
+- RStudio Server: permite ejecutar RStudio en un servidor mediante una interfaz web.
 
     - Evita el movimiento de datos a los clientes.
 
-    - Ediciones Open Source y Professional.
+    - Ediciones Open Source y Professional (RStudio Workbench).
+
+<!-- https://support.posit.co/hc/en-us/articles/234653607-Getting-Started-with-RStudio-Workbench-RStudio-Server -->
 
 - Compañía muy activa en el desarrollo de R:
 
-    - Múltiples paquetes: Shiny, rmarkdown, knitr, ggplot2, dplyr, tidyr, ...
+    - Múltiples paquetes: tidyverse (dplyr, tidyr, ggplot2, knitr, ...), tidymodels, shiny, rmarkdown, ... 
 
     - Hadley Wickham (Jefe científico de RStudio).
     
-Ver enlaces en el Apéndice \@ref(rstudio-links).
+
+En la Sección [Enlaces](#links) de las Referencias se incluyen recursos adicionales.

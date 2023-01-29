@@ -16,49 +16,44 @@ github-repo: rubenfcasal/intror
 description: "Este es un libro introductorio al análisis de datos con R"
 ---
 
+```{r , echo=FALSE}
+citepkg <- function(x, url = paste0("https://CRAN.R-project.org/package=", x))
+  paste0("[`", x, "`](", url, ")")
+citepkgs <- function(pkgs) paste(sapply(pkgs, citepkg), collapse = ", ")
+```
+
 # Prólogo {-}
 
-Este es un libro introductorio al análisis de datos con R. 
+Este es un libro introductorio al análisis de datos con R.
+
+En el Apéndice \@ref(instalacion) se detallan los pasos para la instalación de `R` y el entorno de desarrollo RStudio.
+En la Sección [Enlaces](#links) de las Referencias se incluyen recursos adicionales, incluyendo algunos que pueden ser útiles para el aprendizaje de R.
 
 Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com) empleando el paquete [`bookdown`](https://bookdown.org/yihui/bookdown/)  y está disponible en el repositorio Github: [rubenfcasal/intror](https://github.com/rubenfcasal/book_remuestreo). 
 Se puede acceder a la versión en línea a través del siguiente enlace:
 
 <https://rubenfcasal.github.io/intror>.
 
-<!-- 
-<a class="btn pull-left js-toolbar-action" aria-label="PDF" title="PDF" href="#"><i class="fa fa-file-pdf-o"></i></a> 
--->
-
 donde puede descargarse en formato [pdf](https://rubenfcasal.github.io/intror/Intro_Analisis_Datos_R.pdf).
 
-Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes:
-[`lattice`](https://cran.r-project.org/web/packages/lattice/index.html), 
-[`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html), 
-[`foreign`](https://cran.r-project.org/web/packages/foreign/index.html), 
-[`car`](https://cran.r-project.org/web/packages/car/index.html), 
-[`leaps`](https://cran.r-project.org/web/packages/leaps/index.html), 
-[`MASS`](https://cran.r-project.org/web/packages/MASS/index.html), 
-[`RcmdrMisc`](https://cran.r-project.org/web/packages/RcmdrMisc/index.html), 
-[`lmtest`](https://cran.r-project.org/web/packages/lmtest/index.html), 
-[`glmnet`](https://cran.r-project.org/web/packages/glmnet/index.html), 
-[`mgcv`](https://cran.r-project.org/web/packages/mgcv/index.html), 
-[`rmarkdown`](https://cran.r-project.org/web/packages/rmarkdown/index.html), 
-[`knitr`](https://cran.r-project.org/web/packages/knitr/index.html), 
-[`dplyr`](https://cran.r-project.org/web/packages/dplyr/index.html).
-Por ejemplo mediante el comando:
+Para ejecutar los ejemplos mostrados en el libro sería necesario tener instalados los siguientes paquetes:
+`r citepkgs(c("lattice", "ggplot2", "foreign", "car", "leaps", "MASS", "RcmdrMisc", "lmtest", "glmnet", "mgcv", "rmarkdown", "knitr", "dplyr", "tidyr"))`.
+Por ejemplo mediante los siguientes comandos:
 ```{r eval=FALSE}
 pkgs <- c("lattice", "ggplot2", "foreign", "car", "leaps", "MASS", "RcmdrMisc", 
-          "lmtest", "glmnet", "mgcv", "rmarkdown", "knitr", "dplyr")
-
+          "lmtest", "glmnet", "mgcv", "rmarkdown", "knitr", "dplyr", "tidyr")
 install.packages(setdiff(pkgs, installed.packages()[,"Package"]), dependencies = TRUE)
-# Si aparecen errores debidos a incompatibilidades entre las versiones de los paquetes, 
-# probar a ejecutar en lugar de lo anterior:
-# install.packages(pkgs, dependencies=TRUE) # Instala todos...
+```
+(puede que haya que seleccionar el repositorio de descarga, e.g. *Spain (Madrid)*).
+
+El código anterior no reinstala los paquetes ya instalados, por lo que podrían aparecer problemas debidos a incompatibilidades entre versiones (aunque no suele ocurrir, salvo que nuestra instalación de R esté muy desactualizada). 
+Si es el caso, en lugar de la última línea se puede ejecutar: 
+```{r, eval=FALSE}
+install.packages(pkgs, dependencies = TRUE) # Instala todos...
 ```
 
 Para generar el libro (compilar) serán necesarios paquetes adicionales, 
 para lo que se recomendaría consultar el libro de ["Escritura de libros con bookdown" ](https://rubenfcasal.github.io/bookdown_intro) en castellano.
-
 
 Este obra está bajo una licencia de [Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional ](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES) 
 (esperamos poder liberarlo bajo una licencia menos restrictiva más adelante...).
@@ -84,10 +79,11 @@ También puede resultar de utilidad la siguiente entrada BibTeX:
 }
 ```
 
-
 ```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(.packages(), 
-      "bookdown", "knitr", "rmarkdown"
-      ), "packages.bib")
+# Automatically create a bib database for R packages
+pkgs <- c("lattice", "ggplot2", "foreign", "car", "leaps", "MASS", "RcmdrMisc", 
+          "lmtest", "glmnet", "mgcv", "rmarkdown", "knitr", "dplyr", "tidyr")
+knitr::write_bib(c(pkgs, "bookdown"), 'packages.bib')
+# Create .nojekyll file in the /docs folder
+file.create('docs/.nojekyll')
 ```

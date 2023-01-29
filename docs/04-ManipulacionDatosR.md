@@ -45,8 +45,9 @@ ls()
 ```
 
 ```
-##  [1] "citefig"   "citefig2"  "empleados" "fig.path"  "inline"    "inline2"  
-##  [7] "is_html"   "is_latex"  "latexfig"  "res"
+##  [1] "cite_fsimres" "cite_simres"  "citefig"      "citefig2"     "citepkg"     
+##  [6] "empleados"    "fig.path"     "inline"       "inline2"      "is_html"     
+## [11] "is_latex"     "latexfig"     "res"
 ```
 y para guardar [`save()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save):
 

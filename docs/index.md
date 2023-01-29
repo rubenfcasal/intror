@@ -5,7 +5,7 @@ author:
   - "Javier Roca-Pardiñas (roca@uvigo.es)"
   - "Julián Costa Bouzas (julian.costa@udc.es)"
   - "Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)"
-date: "Edición: Junio de 2022. Impresión: 2022-06-20. ISBN: 978-84-09-41823-7"
+date: "Edición: Junio de 2022. Impresión: 2023-01-29. ISBN: 978-84-09-41823-7"
 output: bookdown::gitbook
 site: bookdown::bookdown_site
 documentclass: book
@@ -16,50 +16,42 @@ github-repo: rubenfcasal/intror
 description: "Este es un libro introductorio al análisis de datos con R"
 ---
 
+
+
 # Prólogo {-}
 
-Este es un libro introductorio al análisis de datos con R. 
+Este es un libro introductorio al análisis de datos con R.
+
+En el Apéndice \@ref(instalacion) se detallan los pasos para la instalación de `R` y el entorno de desarrollo RStudio.
+En la Sección [Enlaces](#links) de las Referencias se incluyen recursos adicionales, incluyendo algunos que pueden ser útiles para el aprendizaje de R.
 
 Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com) empleando el paquete [`bookdown`](https://bookdown.org/yihui/bookdown/)  y está disponible en el repositorio Github: [rubenfcasal/intror](https://github.com/rubenfcasal/book_remuestreo). 
 Se puede acceder a la versión en línea a través del siguiente enlace:
 
 <https://rubenfcasal.github.io/intror>.
 
-<!-- 
-<a class="btn pull-left js-toolbar-action" aria-label="PDF" title="PDF" href="#"><i class="fa fa-file-pdf-o"></i></a> 
--->
-
 donde puede descargarse en formato [pdf](https://rubenfcasal.github.io/intror/Intro_Analisis_Datos_R.pdf).
 
-Para ejecutar los ejemplos mostrados en el libro será necesario tener instalados los siguientes paquetes:
-[`lattice`](https://cran.r-project.org/web/packages/lattice/index.html), 
-[`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html), 
-[`foreign`](https://cran.r-project.org/web/packages/foreign/index.html), 
-[`car`](https://cran.r-project.org/web/packages/car/index.html), 
-[`leaps`](https://cran.r-project.org/web/packages/leaps/index.html), 
-[`MASS`](https://cran.r-project.org/web/packages/MASS/index.html), 
-[`RcmdrMisc`](https://cran.r-project.org/web/packages/RcmdrMisc/index.html), 
-[`lmtest`](https://cran.r-project.org/web/packages/lmtest/index.html), 
-[`glmnet`](https://cran.r-project.org/web/packages/glmnet/index.html), 
-[`mgcv`](https://cran.r-project.org/web/packages/mgcv/index.html), 
-[`rmarkdown`](https://cran.r-project.org/web/packages/rmarkdown/index.html), 
-[`knitr`](https://cran.r-project.org/web/packages/knitr/index.html), 
-[`dplyr`](https://cran.r-project.org/web/packages/dplyr/index.html).
-Por ejemplo mediante el comando:
+Para ejecutar los ejemplos mostrados en el libro sería necesario tener instalados los siguientes paquetes:
+[`lattice`](https://CRAN.R-project.org/package=lattice), [`ggplot2`](https://CRAN.R-project.org/package=ggplot2), [`foreign`](https://CRAN.R-project.org/package=foreign), [`car`](https://CRAN.R-project.org/package=car), [`leaps`](https://CRAN.R-project.org/package=leaps), [`MASS`](https://CRAN.R-project.org/package=MASS), [`RcmdrMisc`](https://CRAN.R-project.org/package=RcmdrMisc), [`lmtest`](https://CRAN.R-project.org/package=lmtest), [`glmnet`](https://CRAN.R-project.org/package=glmnet), [`mgcv`](https://CRAN.R-project.org/package=mgcv), [`rmarkdown`](https://CRAN.R-project.org/package=rmarkdown), [`knitr`](https://CRAN.R-project.org/package=knitr), [`dplyr`](https://CRAN.R-project.org/package=dplyr), [`tidyr`](https://CRAN.R-project.org/package=tidyr).
+Por ejemplo mediante los siguientes comandos:
 
 ```r
 pkgs <- c("lattice", "ggplot2", "foreign", "car", "leaps", "MASS", "RcmdrMisc", 
-          "lmtest", "glmnet", "mgcv", "rmarkdown", "knitr", "dplyr")
-
+          "lmtest", "glmnet", "mgcv", "rmarkdown", "knitr", "dplyr", "tidyr")
 install.packages(setdiff(pkgs, installed.packages()[,"Package"]), dependencies = TRUE)
-# Si aparecen errores debidos a incompatibilidades entre las versiones de los paquetes, 
-# probar a ejecutar en lugar de lo anterior:
-# install.packages(pkgs, dependencies=TRUE) # Instala todos...
+```
+(puede que haya que seleccionar el repositorio de descarga, e.g. *Spain (Madrid)*).
+
+El código anterior no reinstala los paquetes ya instalados, por lo que podrían aparecer problemas debidos a incompatibilidades entre versiones (aunque no suele ocurrir, salvo que nuestra instalación de R esté muy desactualizada). 
+Si es el caso, en lugar de la última línea se puede ejecutar: 
+
+```r
+install.packages(pkgs, dependencies = TRUE) # Instala todos...
 ```
 
 Para generar el libro (compilar) serán necesarios paquetes adicionales, 
 para lo que se recomendaría consultar el libro de ["Escritura de libros con bookdown" ](https://rubenfcasal.github.io/bookdown_intro) en castellano.
-
 
 Este obra está bajo una licencia de [Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional ](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es_ES) 
 (esperamos poder liberarlo bajo una licencia menos restrictiva más adelante...).
@@ -82,6 +74,5 @@ También puede resultar de utilidad la siguiente entrada BibTeX:
     url          = {https://rubenfcasal.github.io/intror/}
 }
 ```
-
 
 

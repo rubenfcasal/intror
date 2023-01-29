@@ -1100,7 +1100,7 @@ cv.ridge$lambda.1se
 ```
 
 ```
-## [1] 3.635163
+## [1] 3.989587
 ```
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -1113,14 +1113,14 @@ coef(cv.ridge)
 ```
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
 ##                     s1
-## (Intercept) 5.26333438
-## velocida    1.58051175
-## precio      0.70395775
-## flexprec    2.24798481
-## imgfabri    0.31897738
-## servconj    3.76988236
-## imgfvent    1.07304993
-## calidadp    0.06641356
+## (Intercept) 6.25898621
+## velocida    1.56785760
+## precio      0.67897678
+## flexprec    2.17894174
+## imgfabri    0.32939271
+## servconj    3.69427361
+## imgfvent    1.05562044
+## calidadp    0.04709431
 ```
 
 ### Lasso

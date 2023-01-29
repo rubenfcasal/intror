@@ -13,8 +13,7 @@ fig.path <- "images/"
     # Rmd code:
     inline <- function(x = "") paste0("`` `r ", x, "` ``")
     inline2 <- function(x = "") paste0("`r ", x, "`")
-  # Citas
-    # Figuras:
+  # Citas Figuras:
     # paste0("\\@ref(fig:", "media-dt-conocida", ")")   
     # labs <- c("fig1", "fig2")
     # paste0("\\@ref(fig:", labs, ")")  
@@ -28,12 +27,26 @@ fig.path <- "images/"
         paste0("\\@ref(fig:", x, ")", collapse = ", "),
         ")")
     }  
-    citefig2 <- function(...) {
+    citefig2 <- function(..., text = "") {
       x <- list(...)
-      paste0(if(length(x)>1) "[Figuras: " else "[Figura ", 
+      paste0(text, if(length(x)>1) "[Figuras: " else "[Figura ", 
         paste0("\\@ref(fig:", x, ")", collapse = ", "),
         "]")
     }  
     latexfig <- function(..., output = is_latex()) 
-      if (output) citefig2(...) else ""
+      if (output) citefig2(..., text = " ") else ""
+  # Citas Paquetes:
+    citepkg <- function(x, url = paste0("https://CRAN.R-project.org/package=", x))
+      paste0("[`", x, "`](", url, ")")
+      # paste0("[`", x, "`](https://cran.r-project.org/web/packages/", x, "/index.html)")
+    
+    cite_simres <- function() citepkg("simres", "https://rubenfcasal.github.io/simres")
+    cite_fsimres <- function(..., lnk = NULL, pkg = FALSE)  {
+      x <- list(...)
+      paste0(if(pkg) "[`simres::" else "[`", x, "()`](https://rubenfcasal.github.io/simres/reference/",
+                            if (!is.null(lnk)) lnk else x,
+                            ".html)",
+                            collapse = ", ")
+      # downlit::autolink_url
+    }  
 ```

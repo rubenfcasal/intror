@@ -1,15 +1,11 @@
-Estructuras de datos
-====================
+# Estructuras de datos
 
 
 
 
-
-En los ejemplos que hemos visto hasta ahora los objetos
-de `R` almacenaban un único valor cada uno. Sin embargo, las estructuras
-de datos que proporciona `R` permiten
-almacenar en un mismo objeto varios valores. Las principales estructuras
-son:
+En los ejemplos que hemos visto hasta ahora los objetos de `R` almacenaban un único valor cada uno. 
+Sin embargo, las estructuras de datos que proporciona `R` permiten almacenar en un mismo objeto varios valores. 
+Las principales estructuras son:
 
 -   Vectores
 
@@ -20,8 +16,8 @@ son:
 -   Listas
 
 
-Vectores
---------
+## Vectores
+
 Un vector es un conjunto de valores básicos del mismo tipo. 
 La forma más sencilla de crear vectores es a
 través de la función `c()` que se usa para combinar (concatenar) valores.
@@ -66,6 +62,7 @@ z
 
 
 ### Generación de secuencias 
+
 Existen varias funciones que pemiten obtener secuencias de números
 
 ```r
@@ -110,17 +107,17 @@ rep(1, 5)
 A continuación se obtiene una simulación de 10 lanzamientos de un dado
 
 ```r
-sample(1:6, size=10, replace = T) #lanzamiento de un dado
+sample(1:6, size=10, replace = T) # lanzamiento de un dado
 ```
 
 ```
-##  [1] 1 6 2 3 3 1 2 6 4 5
+##  [1] 4 5 5 3 1 4 6 4 1 6
 ```
 
 Para simular el lanzamiento de una moneda podemos escribir 
 
 ```r
-resultado <- c(cara=1,cruz=0) # se le han asignado nombres al objeto
+resultado <- c(cara = 1, cruz = 0) # se asignan nombres a los componentes
 print(resultado)
 ```
 
@@ -161,8 +158,8 @@ lanz
 ```
 
 ```
-## cara cruz cruz cara cruz cruz cruz cruz cruz cruz 
-##    1    0    0    1    0    0    0    0    0    0
+## cara cara cara cruz cara cruz cruz cara cara cara 
+##    1    1    1    0    1    0    0    1    1    1
 ```
 
 ```r
@@ -172,7 +169,7 @@ table(lanz)
 ```
 ## lanz
 ## 0 1 
-## 8 2
+## 3 7
 ```
 
 Otros ejemplos
@@ -182,8 +179,8 @@ rnorm(10)  # rnorm(10, mean = 0, sd = 1)
 ```
 
 ```
-##  [1]  0.8270889  0.4193440 -0.1962943 -0.7439787  2.4990090  1.2134150
-##  [7]  1.8154623  1.9213110  2.3284604  1.6449086
+##  [1] -0.3933354 -0.9906359  0.8368773 -1.1865968 -1.5659103  0.2542658
+##  [7]  0.2500611  1.9582344 -1.3087537 -0.6703466
 ```
 
 ```r
@@ -191,15 +188,15 @@ runif(15, min = 2, max = 10)
 ```
 
 ```
-##  [1] 3.110629 9.782394 3.352017 7.827904 4.119838 6.720995 4.428090 8.024008
-##  [9] 9.913126 8.774884 2.865199 3.358302 7.611230 5.505256 6.289807
+##  [1] 8.502302 6.214129 4.532339 9.456021 9.292896 7.110318 8.811407 3.194070
+##  [9] 5.422113 6.638950 4.933562 8.084592 8.047748 7.815741 2.053054
 ```
 
-El lector puede utilizar la función `help()` para obtener la ayuda de las funciones
-anteriores.
+Como ya se comentó, se puede utilizar `help(funcion)` (o `?funcion`) para mostrar la ayuda de las funciones anteriores.
 
 
 ### Selección de elementos de un vector 
+
 Para acceder a los elementos de un vector se indica entre corchetes el
 correspondiente vector de subíndices (enteros positivos).
 
@@ -213,7 +210,7 @@ x
 ```
 
 ```r
-x[1] # primer elemento
+x[1]  # primer elemento
 ```
 
 ```
@@ -222,7 +219,7 @@ x[1] # primer elemento
 
 ```r
 ii <- c(1, 5, 7)
-x[ii] #posiciones 1, 5 y 7
+x[ii] # posiciones 1, 5 y 7
 ```
 
 ```
@@ -230,7 +227,8 @@ x[ii] #posiciones 1, 5 y 7
 ```
 
 ```r
-ii <- x>0; ii
+ii <- x > 0
+ii
 ```
 
 ```
@@ -256,6 +254,7 @@ x[-ii]  # elementos de x salvo los 3 primeros
 
 
 ### Ordenación de vectores
+
 
 ```r
 x <- c(65, 18, 59, 18, 6, 94, 26)
@@ -303,13 +302,13 @@ rev(x)
 ## [1] 26 94  6 18 59 18 65
 ```
 
-### Valores perdidos 
-Los valore perdidos aparecen normalmente cuando algún dato no ha sido registrado. Este tipo de
-valores se registran como `NA` (abreviatura de *Not Available*).
+### Datos faltantes
 
-Por ejemplo, supongamos que tenemos registrado las alturas de 5 personas
-pero desconocemos la altura de la cuarta persona. El vector sería
-registrado como sigue:
+Los datos faltantes (también denominados valores perdidos) aparecen normalmente cuando algún dato no ha sido registrado. 
+Este tipo de valores se registran como `NA` (abreviatura de *Not Available*).
+
+Por ejemplo, supongamos que tenemos registrado las alturas de 5 personas pero desconocemos la altura de la cuarta persona. 
+El vector sería registrado como sigue:
 
 ```r
 altura <- c(165, 178, 184, NA, 175)
@@ -331,7 +330,7 @@ mean(altura)
 ## [1] NA
 ```
 
-Para forzar a `R` a que ignore los valores perdidos se utliza la opción `na.rm = TRUE`.
+En muchas funciones para forzar a `R` a que ignore los valores perdidos se utiliza la opción `na.rm = TRUE`.
 
 ```r
 mean(altura, na.rm = TRUE)
@@ -377,6 +376,7 @@ log(0)  # -Infinito
 
 
 ### Vectores no numéricos 
+
 Los vectores pueden ser no numéricos, aunque todas las componentes deben ser del mismo tipo:
 
 ```r
@@ -414,16 +414,14 @@ month.name[1:6]  # primeros 6 meses del año en inglés
 
 
 ### Factores 
-Los factores se utilizan para representar datos categóricos. Se 
-puede pensar en ellos como vectores de enteros en los que cada entero 
-tiene asociada una etiqueta (*label*). Los factores son muy importantes 
-en la modelización estadística ya que `R`los trata de forma especial.
 
-Utilizar factores con etiquetas es preferible a utilizar enteros porque 
-las etiquetas son auto-descriptivas.
+Los factores se utilizan para representar datos categóricos. 
+Se puede pensar en ellos como vectores de enteros en los que cada entero tiene asociada una etiqueta (*label*). 
+Los factores son muy importantes en la modelización estadística ya que `R`los trata de forma especial.
 
-Veamos un ejemplo. Supongamos que el vector `sexo` indica el sexo de un
-persona codificado como 0 si hombre y 1 si mujer
+Utilizar factores con etiquetas es preferible a utilizar enteros porque las etiquetas son auto-descriptivas.
+
+Veamos un ejemplo. Supongamos que el vector `sexo` indica el sexo de un persona codificado como 0 si hombre y 1 si mujer
 
 ```r
 sexo <- c(0, 1, 1, 1, 0, 0, 1, 0, 1)
@@ -444,9 +442,8 @@ table(sexo)
 ## 4 5
 ```
 
-El problema de introducir así los datos es que no queda reflejado la
-etiquetación de los mismos. Para ello guardaremos los datos en una
-estructura tipo factor:
+El problema de introducir así los valores es que no queda reflejada la codificación de los mismos. 
+Para ello guardaremos los datos en una estructura tipo factor:
 
 ```r
 sexo2 <- factor(sexo, labels = c("hombre", "mujer")); sexo2
@@ -485,8 +482,8 @@ table(sexo2)
 ##      4      5
 ```
 
-Veamos otro ejemplo, en el que inicialmente tenemos datos categóricos. Los 
-niveles se toman automáticamente por orden alfabético
+Veamos otro ejemplo, en el que inicialmente tenemos datos categóricos.
+Los niveles se toman automáticamente por orden alfabético
 
 ```r
 respuestas <- factor(c('si', 'si', 'no', 'si', 'si', 'no', 'no'))
@@ -498,8 +495,7 @@ respuestas
 ## Levels: no si
 ```
 
-Si deseásemos otro orden (lo cual puede ser importante en algunos casos, por ejemplo 
-para representaciones gráficas), habría que indicarlo expresamente
+Si deseásemos otro orden (lo cual puede ser importante en algunos casos, por ejemplo para representaciones gráficas), habría que indicarlo expresamente
 
 ```r
 respuestas <- factor(c('si', 'si', 'no', 'si', 'si', 'no', 'no'), levels = c('si', 'no'))
@@ -512,15 +508,14 @@ respuestas
 ```
 
 
-Matrices y arrays
------------------
+## Matrices y arrays
 
 ### Matrices 
+
 Las *matrices* son la extensión natural de los vectores a dos dimensiones. 
 Su generalización a más dimensiones se llama *array*. 
 
-Las matrices se pueden crear concatenando vectores
-con las funciones `cbind` o `rbind`:
+Las matrices se pueden crear concatenando vectores con las funciones `cbind()` o `rbind()`:
 
 ```r
 x <- c(3, 7, 1, 8, 4)
@@ -547,8 +542,7 @@ rbind(x, y)  # por filas
 ## y    7    5    2    1    0
 ```
 
- Una matriz se puede crear con la función `matrix` donde el parámetro
-`nrow` indica el número de filas y `ncol` el número de columnas. 
+Una matriz se puede crear con la función `matrix()` donde el parámetro `nrow` indica el número de filas y `ncol` el número de columnas. 
 Por defecto, los valores se colocan por columnas.
 
 ```r
@@ -561,8 +555,7 @@ matrix(1:8, nrow = 2, ncol = 4)  # equivalente a matrix(1:8, nrow=2)
 ## [2,]    2    4    6    8
 ```
 
-Los nombres de los parámetros se pueden acortar siempre y cuando no haya 
-ambigüedad, por lo que es habitual escribir
+Los nombres de los parámetros se pueden acortar siempre y cuando no haya ambigüedad, por lo que podríamos escribir
 
 ```r
 matrix(1:8, nr = 2, nc = 4)
@@ -574,7 +567,7 @@ matrix(1:8, nr = 2, nc = 4)
 ## [2,]    2    4    6    8
 ```
 
-Si queremos indicar que los valores se escriban por filas
+Si queremos indicar que los valores se almacenen por filas
 
 ```r
 matrix(1:8, nr = 2, byrow = TRUE)
@@ -588,6 +581,7 @@ matrix(1:8, nr = 2, byrow = TRUE)
 
 
 ### Nombres en matrices
+
 Se pueden dar nombres a las filas y columnas de una matriz.
 
 ```r
@@ -647,8 +641,8 @@ attributes(x)
 
 
 ### Acceso a los elementos de una matriz 
-El acceso a los elementos de una matriz se realiza de forma análoga al acceso ya
-comentado para los vectores.
+
+El acceso a los elementos de una matriz se realiza de forma análoga al acceso ya comentado para los vectores.
 
 ```r
 x <- matrix(1:6, 2, 3); x
@@ -702,8 +696,8 @@ x[1, 1:2]  # primera fila, columnas 1ª y 2ª
 
 
 ### Ordenación por filas y columnas 
-En ocasiones, interesará ordenar los elementos de una matriz por los valores de una
-determinada columna o fila.
+
+En ocasiones, interesará ordenar los elementos de una matriz por los valores de una determinada columna o fila.
 
 Por ejemplo, supongamos la matriz
 
@@ -748,16 +742,17 @@ ii <- order(x[ ,4]); x[ii, ]  # ordenación columna 4
 
 
 ### Operaciones con Matrices y Arrays 
+
 A continuación se muestran algunas funciones que se pueden emplear con
 matrices
 
 Función  |  Descripción
 -------  |  -----------
-`dim(),nrow(),ncol()`  |  número de filas y/o columnas
+`dim(), nrow(), ncol()`  |  número de filas y/o columnas
 `diag()`  |  diagonal de una matrix
 `*`    |  multiplicación elemento a elemento
 `%*%`  |  multiplicación matricial de matrices
-`cbind(),rbind() `| encadenamiento de columnas o filas
+`cbind(), rbind() `| encadenamiento de columnas o filas
 `t()`  |  transpuesta
 `solve(A)`  |  inversa de la matriz A
 `solve(A,b)`  |  solución del sistema de ecuaciones $Ax=b$
@@ -767,6 +762,7 @@ Función  |  Descripción
 
 
 ### Ejemplos
+
 
 ```r
 x <- matrix(1:6, ncol = 3)
@@ -801,6 +797,7 @@ dim(x)  # dimensiones de la matriz
 
 ### Inversión de una matriz
 
+
 ```r
 A <- matrix(c(2, 4, 0, 2), nrow = 2); A
 ```
@@ -833,18 +830,14 @@ A %*% B  # comprobamos que está bien
 ```
 
 
-Data frames
------------
+## Data frames
 
-Los `data.fames` (*marcos de datos*) son el objeto más habitual para el
-almacenamiento de datos. En este tipo de objetos cada individuo de la muestra
-se corresponde con una fila y cada una de las variables con una columna.
-Para la creación de estas estructuras se utiliza la función
-`data.frame()`.
+Los `data.frames` (*marcos de datos*) son el objeto más habitual para el almacenamiento de conjuntos de datos. 
+En este tipo de objetos cada individuo de la muestra se corresponde con una fila y cada una de las variables con una columna.
+Para la creación de estas estructuras se utiliza la función `data.frame()`.
 
-Este tipo de estructuras son en apariencia muy similares a las matrices, con la
-ventaja de que permiten que los valores de las distintas columnas sean de tipos
-diferentes. Por ejemplo, supongamos que tenemos registrados los siguientes valores
+Este tipo de estructuras son en apariencia muy similares a las matrices, con la ventaja de que permiten que los valores de las distintas columnas sean de tipos diferentes. 
+Por ejemplo, supongamos que tenemos registrados los siguientes valores
 
 ```r
 Producto <- c("Zumo", "Queso", "Yogourt")
@@ -874,9 +867,8 @@ x
 ## [3,] "Yogourt" "Lácteos" "10"
 ```
 
-Sin embargo, el resultado anterior no es satisfactorio ya que todos
-los valores se han transformado en caracteres. Una solución mejor es
-utilizar un `data.frame`, con lo cual se mantiene el tipo original de las variables.
+Sin embargo, el resultado anterior no es satisfactorio ya que todos los valores se han transformado en caracteres. 
+Una solución mejor es utilizar un `data.frame`, con lo cual se mantiene el tipo original de las variables.
 
 ```r
 lista.compra <- data.frame(Producto, Seccion, Unidades)
@@ -960,19 +952,16 @@ summary(lista.compra)
 ```
 
 
-Listas
-------
+## Listas
 
-Las listas son colecciones ordenadas de cualquier tipo de objetos (en `R` las
-listas son un tipo especial de vectores). Así, mientras que los elementos de 
-los vectores, matrices y arrays deben ser del mismo tipo, en el caso de las 
-listas se pueden tener elementos de tipos distintos.
+Las listas son colecciones ordenadas de cualquier tipo de objetos (en `R` las listas son un tipo especial de vectores). 
+Así, mientras que los elementos de los vectores, matrices y arrays deben ser del mismo tipo, en el caso de las listas se pueden tener elementos de tipos distintos.
 
 ```r
 x <- c(1, 2, 3, 4)
 y <- c("Hombre", "Mujer")
 z <- matrix(1:12, ncol = 4)
-datos <- list(A=x, B=y, C=z)
+datos <- list(A = x, B = y, C = z)
 datos
 ```
 
@@ -989,3 +978,12 @@ datos
 ## [2,]    2    5    8   11
 ## [3,]    3    6    9   12
 ```
+
+
+<!-- 
+PENDIENTE:
+Poner antes listas y data.frame caso particular
+Indexado
+Objetos S3 -> Apéndice
+-->
+

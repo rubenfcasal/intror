@@ -49,7 +49,7 @@ plot(cars$speed, cars$dist)    # otra posibilidad plot(cars)
 
 \caption{Gráfico de dispersión de distancia frente a velocidad}(\#fig:cars1)
 \end{figure}
-[Figura \@ref(fig:cars1)]
+ [Figura \@ref(fig:cars1)]
 
 El comando `plot` incluye por defecto una elección automáticas de
 títulos, ejes, escalas, etiquetas, etc., que pueden ser modificados
@@ -86,7 +86,7 @@ plot(cars, xlab = "velocidad", ylab = "distancia", main = "Título")
 
 \caption{Gráfico de dispersión de distancia frente a velocidad, especificando título y etiquetas de los ejes}(\#fig:cars2)
 \end{figure}
-[Figura \@ref(fig:cars2)]
+ [Figura \@ref(fig:cars2)]
 
 
 ```r
@@ -101,7 +101,7 @@ plot(cars, pch = 16, col = 'blue', main = 'pch=16')
 
 \caption{Gráfico de dispersión de distancia frente a velocidad, cambiando el color y el tipo de símbolo}(\#fig:cars3)
 \end{figure}
-[Figura \@ref(fig:cars3)]
+ [Figura \@ref(fig:cars3)]
 
 ## Funciones gráficas de bajo nivel
 Las principales funciones gráficas de bajo nivel son:

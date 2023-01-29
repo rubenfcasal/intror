@@ -1,6 +1,4 @@
-Introducción
-============
-
+# Introducción
 
 
 
@@ -42,14 +40,13 @@ análisis estadístico y la visualización de datos.
 
 Se pueden destacar las siguientes características del entorno `R`:
 
-- Dispone de numerosos complementos (librerías, paquetes) que cubren “literalmente”
-  todos los campos del análisis de datos.
+- Dispone de numerosos complementos (librerías, paquetes) que cubren “literalmente” todos los campos del análisis de datos.
 
 - Repositorios: 
     
-    - [CRAN](https://cran.r-project.org) (9705, 14972, ...)
+    - [CRAN](https://cran.r-project.org) (9705, 14972, 19122, ...)
     
-    - [Bioconductor](https://www.bioconductor.org) (1289, 1741, ...), 
+    - [Bioconductor](https://www.bioconductor.org) (1289, 1741, 2183, ...),
     
     - [GitHub](https://github.com/trending/r?since=monthly), ...    
 
@@ -106,40 +103,17 @@ Hoy en día es muy popular:
 
     - Análisis de redes.
 
-    -   ...
+    - ...
 
-### Interfaces gráficas 
-
-El programa `R`
-utiliza una **interfaz de comandos** donde se teclean las instrucciones
-que se pretenden ejecutar (ver Figura \@ref(fig:consola)).
-
-Por ejemplo, para obtener una secuencia de números desde el 1 hasta el
-10, se utilizará la sentencia:
+En el Apéndice \@ref(instalacion) se detallan los pasos para la instalación de `R` y el entorno de desarrollo RStudio.
+En la Sección [Enlaces](#links) de las Referencias se incluyen recursos adicionales, incluyendo algunos que pueden ser útiles para el aprendizaje de R.
 
 
-```r
-1:10
-```
-obteniéndose el resultado
+## Interfaz de comandos 
 
-```
-##  [1]  1  2  3  4  5  6  7  8  9 10
-```
-
-En el Apéndice \@ref(instalacion) se detallan los pasos para la instalación de `R`,
-y en el Apéndice \@ref(interfaces) los de otras interfaces gráficas.
-
-
-Entorno de trabajo
-------------------
-
-### Ventana de Consola 
-
-Al abrir el programa `R`, tal y como ya
-se ha visto, aparece la siguiente ventana de consola para trabajar de
-modo interactivo en modo comando (ver Figura \@ref(fig:consola)).
-
+Normalmente se trabaja en `R` de forma interactiva empleando una **interfaz de comandos** donde se teclean las instrucciones que se pretenden ejecutar.
+En Linux se trabaja directamente en el terminal de comandos y se inicia ejecutando el comando `R`. 
+En Windows se puede emplear el menú de inicio para ejecutar `R` (e.g. abriendo *R x64 X.Y.Z*) y se mostrará una ventana de consola que permite trabajar de modo interactivo (ver Figura \@ref(fig:consola)).
 
 \begin{figure}[!htb]
 
@@ -150,63 +124,44 @@ modo interactivo en modo comando (ver Figura \@ref(fig:consola)).
 \caption{Consola de `R` en Windows (modo MDI).}(\#fig:consola)
 \end{figure}
 
+En la línea de comandos `R` muestra el carácter `>` (el *prompt*)  para indicar que está a la espera de instrucciones.
+Para ejecutar una línea de instrucciones hay que pulsar *Retorno* (y por defecto se imprime el resultado).
 
-En la ventana de consola cada línea en que el usuario puede
-introducir información se inicia con el carácter `>` que pone el sistema
-`R`.
+Por ejemplo, para obtener una secuencia de números desde el 1 hasta el 10, se utilizará la sentencia:
 
--   Para ejecutar las instrucciones que están en una línea, se pulsa la
-    tecla de Retorno (y por defecto se imprime el resultado).
-    
-    
-    ```r
-    2+2
-    ```
-    
-    ```
-    ## [1] 4
-    ```
-    
-    ```r
-    1+2*4
-    ```
-    
-    ```
-    ## [1] 9
-    ```
-    
--   Se pueden escribir varias instrucción en una misma línea
-    separándolas por ";"
+```r
+1:10
+```
+obteniéndose el resultado
 
-    
-    ```r
-    2+2;1+2*4
-    ```
-    
-    ```
-    ## [1] 4
-    ```
-    
-    ```
-    ## [1] 9
-    ```
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
 
--   Se pueden recuperar líneas de instrucciones introducidas
-    anteriormente pulsando la tecla con la flecha ascendente del
-    teclado, a fin de re-ejecutarlas o modificarlas.
+Se pueden escribir varias instrucciones en una misma línea separándolas por ";". 
 
-### Ventana de Script 
+```r
+2+2; 1+2*4
+```
 
-La ventana consola ejecuta de
-forma automática cada línea de comando. Sin embargo, suele interesar
-guardar un conjunto de instrucciones en un único archivo de texto para
-formar lo que se conoce como un *script*. Las instrucciones del script
-se copian y pegan en la ventana de comandos para ser ejecutadas.
+```
+## [1] 4
+```
 
-Para crear un fichero de script se selecciona el submenú *Nuevo script*
-dentro del menú *Archivo*. Otra posibilidad es utilizar directamente la
-combinación de teclas Ctrl+N.
+```
+## [1] 9
+```
 
+Si no se completó algún comando, el prompt cambia a `+` (habría que completar la instrucción anterior antes de escribir una nueva, o pulsar *Escape* para cancelarla).
+
+Se pueden recuperar líneas de instrucciones introducidas anteriormente pulsando la tecla *Arriba*, a fin de re-ejecutarlas o modificarlas.
+
+La ventana consola ejecuta de forma automática cada línea de comando.
+Sin embargo, suele interesar guardar un conjunto de instrucciones en un único archivo de texto para formar lo que se conoce como un *script* (archivo de código). 
+Las instrucciones del script se pueden pegar en la ventana de comandos para ser ejecutadas, pero también hay editores o entornos de desarrollo que permiten interactuar directamente con R.
+
+Por ejemplo, en la consola de R en Windows se puede abrir una ventana de código seleccionando el menú *Archivo > Nuevo script*.
+Posteriormente se pueden ejecutar líneas de código pulsando *Ctrl+R*.
 
 \begin{figure}[!htb]
 
@@ -214,33 +169,62 @@ combinación de teclas Ctrl+N.
 
 }
 
-\caption{Ventanas de la consola y de *script* en Windows (modo MDI).}(\#fig:script)
+\caption{Ventanas de la consola y de comandos en Windows (modo MDI).}(\#fig:script)
 \end{figure}
 
-
-Para guardar este tipo de fichero se utiliza directamente el menú *Archivo > Guardar como...* 
-y se elige a continuación la ubicación en el disco duro del ordenador.
-
-De igual modo para abrir un script existente se hace a través del menú *Archivo > Abrir script...*.
-
-En el Apéndice \@ref(links) se incluyen enlaces a numerosos recursos para el aprendizaje de R,
-incluyendo manuales y libros, además de otros recursos para la obtención de ayuda.
+Sin embargo, nosotros recomendamos emplear *RStudio Desktop*.
 
 
-### Ayuda dentro del programa
- 
-Como ya se ha comentado con anterioridad,
-hay manuales de `R` alos que se puede acceder a través del menú
-*Ayuda > Manuales (en PDF)*
-    
-Puede empezarse utilizando `help.start()` o `demo()`.
+## El entorno de desarrollo RStudio Desktop {#rstudio}
 
-Todas las funciones de `R` tienen su documentación integrada en
-el programa. Para obtener la ayuda de una determinada función se
-utilizará `help (función)` o de forma equivalente `?función`.
+Al ejecutar RStudio se muestra la ventana principal:
+
+\begin{figure}[!htb]
+
+{\centering \includegraphics[width=0.7\linewidth]{figuras/rstudio} 
+
+}
+
+\caption{Ventana principal de RStudio.}(\#fig:rstudio)
+\end{figure}
+
+Por defecto RStudio está organizado en cuatro paneles:
+
+- Editor de código (normalmente un fichero *.R* o *.Rmd*).
+
+- Consola de R (y terminal de comandos del sistema operativo).
+
+- Explorador del entorno e historial.
+
+- Explorador de archivos, visor de gráficos, ayuda y navegador web integrado.
+
+
+Primeros pasos:
+
+- Presionar *Ctrl-Enter* (*Command-Enter* en OS X) para ejecutar la línea de código actual o el código seleccionado (también se puede emplear el botón *Run* en la barra de herramientas del Editor o el menú *Code*).
+
+- Presionar *Tab* para autocompletado.
+
+- Pulsar en el nombre del objeto en la pestaña *Environment*, o ejecutar `View(objeto)` en la consola, para visualizar el objeto en una nueva pestaña del editor.
+
+Información adicional:
+
+- [RStudio cheatsheet](https://posit.co/wp-content/uploads/2022/10/rstudio-ide-1.pdf)
+
+- [Using the RStudio IDE](https://support.posit.co/hc/en-us/sections/200107586-Using-the-RStudio-IDE)
+
+
+## Ayuda
+
+Se puede acceder a la ayuda empleando el entorno de comandos o los menús correspondientes de la intefaz gráfica.
+Por ejemplo en RStudio se puede emplear el menú *Help*, y en la consola de `R` el menú *Ayuda > Manuales (en PDF)*.
+Para acceder a la ayuda desde la interfaz de comandos se puede ejecutar `help.start()` (también puede ser de interés la función `demo()`).
+
+Todas las funciones de `R` están documentadas. 
+Para obtener la ayuda de una determinada función se utilizará `help (función)` o de forma equivalente `?función`.
 
 Por ejemplo, la ayuda de la función `rnorm` (utilizada para la
-generación de datos normales) se obtiene con el código
+generación de datos con distribución normal) se obtiene con el código
 
 
 ```r
@@ -252,62 +236,46 @@ En muchas ocasiones no se conoce el nombre exacto de la función de la
 que queremos obtener la documentación. En estos casos, la función
 `help.search()` realiza búsquedas en la documentación en todos los
 paquetes instalados, estén cargados o no.
-
-Por ejemplo, si no conocemos la función que permite calcular la mediana
-de un conjunto de datos, se puede utilizar
-
+Por ejemplo, si no conocemos la función que permite calcular la mediana de un conjunto de datos, se puede utilizar
 
 ```r
 help.search("median")
 ```
-
 Para más detalles véase `?help.search`
 
 
-Librerías
----------
+## Librerías (paquetes)
 
-### Paquetes 
+Al iniciar el programa `R` se cargan por defecto una serie de librerías básicas con las que se pueden realizar una gran cantidad de operaciones básicas. 
+Estas librerías conforman el llamado **paquete base**.
 
-Al iniciar el programa `R` se cargan
-por defecto una serie de librerías básicas con las que se pueden
-realizar una gran cantidad de operaciones básicas. Estas librerías
-conforman el llamado **paquete base**.
-
-En otras ocasiones es necesario cargar otras librerías distintas a las
-anteriores. Esto se hace a través de los llamados paquetes (packages)
-que pueden ser descargados directamente de la web
-
-<http://cran.r-project.org/web/packages/>
-
-o directamente a través del menú `Paquetes`.
+En otras ocasiones es necesario cargar librerías adicionales, empleando los denominados paquetes (packages).
+Normalmente se emplean los disponibles en el repositorio CRAN oficial
+<http://cran.r-project.org/web/packages/>.
 
 
 ### Instalación {#instalacion-pkg}
 
-La instalación de un paquete, bajo el sistema
-operativo Windows, se puede hacer de varias formas:
+La instalación de un paquete se puede hacer de varias formas:
 
--   Desde el menú *Paquetes > Instalar paquete(s)...*
-
--   Desde la ventana de consola utilizando la instrucción
+-   Desde la interfaz de comandos utilizando la instrucción
 
     
     ```r
     install.packages("nombre del paquete")
     ```
 
-Este proceso sólo es necesario realizarlo la primera vez que se utilice
-el paquete.
+-   Desde el correspondiente menú de la intefaz gráfica (*Paquetes > Instalar paquete(s)...* en la consola de R y *Tools > Install packages...* o la pestaña *Packages* en RStudio).
+
+Este proceso sólo es necesario realizarlo la primera vez que se utilice el paquete.
 
 ### Carga
 
-Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de
-varias formas:
+Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de varias formas:
 
--   Desde el menú `Paquetes > Cargar paquete(s)...`
+-   Desde el menú *Paquetes > Cargar paquete(s)...*
 
--   Por consola, utilizando `library(nombre del paquete)`
+-   Por consola, utilizando `library(paquete)` (también `require(paquete)`)
 
 Esta operación será necesario realizarla cada vez que se inicie una
 sesión de R.
@@ -319,16 +287,10 @@ library(help = "nombre del paquete")
 ```
 
 
-Una primera sesión
-------------------
+## Una primera sesión
 
-### Inicio de una sesión 
- El programa `R` (bajo
-Windows) se arranca al hacer un doble-click sobre el icono del programa.
-Entonces aparecerá la ventana de consola donde se escribirán los
-comandos y los resultados serán mostrados inmediatamente por pantalla.
-
-Veamos algún ejemplo:
+Como ya se comentó, al emplear la interfaz de comandos, el usuario puede ir ejecutando instrucciones y se va imprimiendo el resultado.
+Por ejemplo:
 
 ```r
 3+5
@@ -354,18 +316,16 @@ pi # R reconoce el número pi
 ## [1] 3.141593
 ```
 
-Nótese que en los comandos se pueden hacer comentarios utilizando el
-símbolo `#`.
+Nótese que en los comandos se pueden hacer comentarios utilizando el símbolo `#`.
 
-Los resultados obtenidos pueden guardarse en objetos. Por
-ejemplo, al escribir
+Los resultados obtenidos pueden guardarse en objetos empleando el operador asignación  `<-` (o `=`). 
+Por ejemplo, al ejecutar
 
 ```r
 a <- 3 + 5
 ```
-el resultado de la suma se guarda en `a`. Se puede comprobar si la
-asignación se ha realizado correctamente escribiendo el nombre del
-objeto
+el resultado de la suma se guarda en el objeto `a` (se crea o se reescribe si ya existía previamente). 
+Se puede comprobar si la asignación se ha realizado correctamente escribiendo el nombre del objeto (equivalente a ejecutar `print(a)`)
 
 ```r
 a
@@ -374,59 +334,6 @@ a
 ```
 ## [1] 8
 ```
-La asignación anterior se puede hacer del siguiente modo
-ejemplo, al escribir
-
-```r
-a <- 3 + 5; a
-```
-
-```
-## [1] 8
-```
-
-**Nota**: Habitualmente no habrá diferencia entre la utilización de las
-asignaciones hechas con `=` y `<-` (aunque nosotros emplearemos el segundo). 
-Las diferencias aparecen a nivel
-de programación y se tratarán en el Capítulo \@ref(programacion).
-
- Veamos ahora un ejemplo un poco más avanzado. Con el
-siguiente código
-
--   Se obtienen 200 datos simulados siguiendo una distribución gaussiana
-    de media 105 y desviación típica 2
-
--   Se hace un resumen estadístico de los valores obtenidos
-
--   Se hace el correspondiente histograma y gráfico de cajas
-
-    
-    ```r
-    x <- rnorm(n = 200, mean = 105, sd = 2) #datos normales
-    summary(x) # resumen estadístico
-    ```
-    
-    ```
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   99.37  103.36  105.07  104.97  106.37  111.15
-    ```
-    
-    ```r
-    hist(x) # histograma
-    ```
-    
-    
-    
-    \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-14-1} \end{center}
-    
-    ```r
-    boxplot(x) # gráfico de cajas
-    ```
-    
-    
-    
-    \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-14-2} \end{center}
-
 
 Es importante señalar que `R` diferencia entre mayúsculas y
 minúsculas, de modo que los objetos `a` y `A` serán diferentes.
@@ -449,13 +356,50 @@ A
 ## [1] "casa"
 ```
 
-Objetos básicos
----------------
+**Nota**: Habitualmente no habrá diferencia entre la utilización de las asignaciones hechas con `=` y `<-` (aunque nosotros emplearemos el segundo). 
+Las diferencias aparecen a nivel de programación y se tratarán en el Capítulo \@ref(programacion).
+
+Veamos ahora un ejemplo un poco más avanzado. 
+En el siguiente código:
+
+-   Se carga el conjunto de datos `precip`, disponible en el paquete base de `R`, que contiene el promedio de precipitación, en pulgadas de lluvia, de 70 ciudades de Estados Unidos.
+
+-   Se hace un resumen estadístico de los datos.
+
+-   Se hace el correspondiente histograma y gráfico de cajas.
+
+    
+    ```r
+    data(precip)    # Datos de lluvia
+    summary(precip) # Resumen estadístico
+    ```
+    
+    ```
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    ##    7.00   29.38   36.60   34.89   42.77   67.00
+    ```
+    
+    ```r
+    hist(precip)    # Histograma
+    ```
+    
+    
+    
+    \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-13-1} \end{center}
+    
+    ```r
+    boxplot(precip) # Gráfico de cajas
+    ```
+    
+    
+    
+    \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-13-2} \end{center}
+
+
+
+## Objetos básicos
  
-`R` es un lenguaje **orientado a
-objetos** lo que significa que las variables, datos, funciones,
-resultados, etc., se guardan en la memoria del ordenador en forma de
-*objetos* con un nombre específico.
+`R` es un lenguaje **orientado a objetos** lo que significa que las variables, datos, funciones, resultados, etc., se guardan en la memoria del ordenador en forma de *objetos* con un nombre específico.
 
 Los principales tipos de valores básicos de `R` son:
 
@@ -731,33 +675,24 @@ TRUE | FALSE
 ```
 
 
-Área de trabajo
----------------
+## Área de trabajo
 
-Como ya se ha comentado
-con anterioridad es posible guardar los comandos que se han utilizado en
-una sesión en ficheros llamados **script**. En ocasiones interesará
-además guardar todos los objetos que han sido generados a lo largo de
-una sesión de trabajo.
+Como ya se ha comentado con anterioridad es posible guardar los comandos que se han utilizado en una sesión en ficheros llamados **script**. 
+En ocasiones interesará además guardar todos los objetos que han sido generados a lo largo de una sesión de trabajo.
 
 
-El **Workspace** o **Área de Trabajo** es el entorno en el que se puede
-guardar todo el trabajo realizado en una sesión. De este modo, la
-próxima vez que se inicie el programa, al cargar dicho entorno, se podrá
-acceder a lo objetos almacenados en él.
+El **Workspace** o **Área de Trabajo** es el entorno en el que se almacenan todos los objetos creados en una sesión. 
+Se puede guardar este entorno en el disco de forma que la próxima vez que se inicie el programa, al cargar dicho entorno, se pueda acceder a lo objetos almacenados en él.
 
-En primer lugar, para saber los objetos que tenemos en memoria se
-utiliza la función `ls`. Por ejemplo, supongamos que acabamos de iniciar
-una sesión de `R` y hemos escrito
+En primer lugar, para saber los objetos que tenemos en memoria se utiliza la función `ls()`. 
+Por ejemplo, supongamos que acabamos de iniciar una sesión de `R` y hemos escrito
 
 ```r
 a <- 1:10
 b <- log(50)
 ```
 
-
-Entonces al utilizar `ls` se obtendrá la siguiente lista de objetos en
-memoria
+Entonces al utilizar `ls()` se obtendrá la siguiente lista de objetos en memoria
 
 ```r
 ls()
@@ -767,8 +702,7 @@ ls()
 ## [1] "a" "b"
 ```
 
- También es posible borrar objetos a través de la función
-`rm`
+Los objetos se pueden eliminar empleando la función `rm()`.
 
 ```r
 rm(b)
@@ -779,8 +713,7 @@ ls()
 ## [1] "a"
 ```
 
-Para borrar todos los objetos en memoria se puede utilizar
-`rm(list=ls())`
+Para borrar todos los objetos en memoria se puede utilizar `rm(list=ls())`.
 
 ```r
 rm(list = ls())
@@ -789,42 +722,38 @@ rm(list = ls())
 ```
 ## character(0)
 ```
-`character(0)` (lista vacía)  significa que no hay objetos en memoria.
+`character(0)` (cadena de texto vacía) significa que no hay objetos en memoria.
 
-### Guardar y cargar resultados
 
-Para guardar
-el área de trabajo (Workspace) con todos los objetos de memoria (es
-decir, los que figuran al utilizar `ls()`) se utiliza la función
-`save.image(nombre archivo)`.
+### Guardar y cargar objetos
+
+Para guardar el área de trabajo (Workspace) con todos los objetos de memoria (es decir, los que figuran al utilizar `ls()`) se utiliza la función `save.image(nombre archivo)`.
 
 ```r
-rm(list = ls()) # primero borramos toda la mamoria
+rm(list = ls()) # borramos todos los objetos en memoria
 x <- 20
 y <- 34
 z <- "casa"
-save.image(file = "prueba.RData") # guarda area de trabajo en prueba.RData
+save.image(file = "prueba.RData") # guarda área de trabajo en prueba.RData
 ```
 
 
-La función `save` permite guardar los objetos seleccionados.
+La función `save()` permite guardar los objetos especificados.
 
 ```r
 save(x, y, file = "prueba2.RData") # guarda los objetos x e y
 ```
 
-Para cargar una ára de trabajo ya exitente se utiliza la función
-`load()`.
+Para cargar los objetos almacenados en un archivo se utiliza la función `load()`.
 
 ```r
-load("prueba2.RData") # carga área de trabajo
+load("prueba2.RData") # carga los objetos x e y
 ```
 
 ### Directorio de trabajo 
 
-Por defecto `R` utiliza
-una carpeta de trabajo donde guardará toda la información. Dicha carpeta
-se puede obtener con la función
+Por defecto `R` utiliza una carpeta de trabajo donde guardará toda la información. 
+Dicha carpeta se puede obtener con la función
 
 ```r
 getwd() 
@@ -834,13 +763,12 @@ getwd()
 ## [1] "d:/"
 ```
 
-El directorio de trabajo se puede cambiar utilizando `setwd(carpeta)`.
-Por ejemplo, para cambiar el directorio de trabajo a `c:\datos`,
-se utiliza el comando
+El directorio de trabajo se puede cambiar utilizando `setwd(directorio)`.
+Por ejemplo, para cambiar el directorio de trabajo a `c:\datos`, se utiliza el comando
 
 ```r
 setwd("c:/datos")
-# Importante la barra utilizada
+# Importante podemos emplear '/' o '\\' como separador en la ruta
 # NO funciona setwd("c:\datos")
 ```
 
