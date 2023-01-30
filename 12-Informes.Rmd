@@ -1,13 +1,11 @@
-Generación de informes
-======================
-
+# Generación de informes {#informes}
 
 ```{r , child = '_global_options.Rmd'}
 ```
 
 Una versión más completa de este capítulo está disponible en el
 [apéndice](https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html) del libro 
-[Escritura de libros con bookdown](https://rubenfcasal.github.io/bookdown_intro)
+[Escritura de libros con bookdown](https://rubenfcasal.github.io/bookdown_intro).
 
 R Markdown
 ----------

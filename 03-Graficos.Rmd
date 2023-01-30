@@ -1,37 +1,50 @@
-Gráficos
-========
-
+# Gráficos {#graficos}
 
 ```{r , child = '_global_options.Rmd'}
 ```
 
+<!-- 
+---
+title: "Gráficos"
+author: "Estadística"
+date: "Grado en Inteligencia Artificial (UDC)"
+output: 
+  bookdown::html_document2:
+    pandoc_args: ["--number-offset", "2,0"]
+    toc: yes 
+    # mathjax: local            # copia local de MathJax, hay que establecer:
+    # self_contained: false     # las dependencias se guardan en ficheros externos 
+  bookdown::pdf_document2:
+    keep_tex: yes
+    toc: yes 
+---
 
-`R` dispone de varias funciones que permiten la
-realización de gráficos. Estas funciones se dividen en dos grandes
-grupos
+bookdown::preview_chapter("03-Graficos.Rmd")
+knitr::purl("03-Graficos.Rmd", documentation = 2)
+knitr::spin("03-Graficos.R",knit = FALSE)
+-->
+
+
+En el paquete base de `R` se dispone de múltiples funciones que permiten la generación de gráficos (los denominados gráficos estándar). Se dividen en dos grandes grupos:
 
 -   Gráficos de **alto nivel**: Crean un gráfico nuevo.
 
-    -   `plot, hist, boxplot, ... `
+    -   `plot`, `hist`, `boxplot`, ... 
 
--   Gráficos de **bajo nivel**: Permiten añadir elementos (líneas, puntos, ...) a un
-    gráfico ya existente
+-   Gráficos de **bajo nivel**: Permiten añadir elementos (líneas, puntos, ...) a un gráfico ya existente
 
-    -   `points, lines, legend, text, ...`
+    -   `points`, `lines`, `legend`, `text`, ...
 
-    -   El parámetro `add=TRUE` convierte una función de nivel alto a bajo.
-
-
-Dentro de las funciones gráficas de alto nivel destaca la función `plot`
-que tiene muchas variantes y dependiendo del tipo de datos que se le
-pasen como argumento actuará de modo distinto.
+El parámetro `add = TRUE` convierte una función de nivel alto a bajo.
 
 
-El comando plot
----------------
+Dentro de las funciones gráficas de alto nivel destaca la función `plot()` que tiene muchas variantes y dependiendo del tipo de datos que se le pasen como argumento actuará de modo distinto
+(es una *función genérica*, `methods(plot)` devuelve los métodos disponibles).
 
-Si escribimos `plot(x, y)` donde `x` e `y` son vectores, entonces `R`
-hará directamente el conocido como **gráfico de dispersión** que
+
+## La función plot {#funcion-plot}
+
+Si ejecutamos `plot(x, y)` siendo `x` e `y` vectores, entonces `R` generará el denominado **gráfico de dispersión** que
 representa en un sistema coordenado los pares de valores $(x,y)$.
 
 Por ejemplo, utilizando el siguiente código
@@ -45,20 +58,34 @@ El comando `plot` incluye por defecto una elección automáticas de
 títulos, ejes, escalas, etiquetas, etc., que pueden ser modificados
 añadiendo parámetros gráficos al comando: 
 
-Parámetro  |  Descripción
-----------  |  -------------
-`type`  |  tipo de gráfico:
-\t      |  `p`: puntos, `l`: líneas, `b`: puntos y líneas, `n`: gráfico en blanco, ...
-`xlim`, `ylim`  |  límites de los ejes (e.g. `xlim=c(1, 10)` o  `xlim=range(x)`)
-`xlab`, `ylab`  |   títulos de los ejes
-`main, sub`   |  título principal y subtítulo
-`col`  |  color de los símbolos (véase `colors()`)
-\t     |  véase `col.axis`, `col.lab`, `col.main`, `col.sub`
-`lty`  |  tipo de línea
-`lwd`  |  anchura de línea
-`pch`  |  tipo de símbolo
-`cex`  |  tamaño de los símbolos
-`bg`   |  color de relleno (para `pch = 21:25`)
+-------------------------------------------------------------
+Parámetro       Descripción
+--------------  ---------------------------------------------
+`type`          tipo de gráfico:
+                `p`: puntos, `l`: líneas, `b`: puntos y líneas, 
+                `n`: gráfico en blanco...
+            
+`xlim`, `ylim`  límites de los ejes 
+                (e.g. `xlim=c(1, 10)` o  `xlim=range(x)`)
+                
+`xlab`, `ylab`  títulos de los ejes
+
+`main, sub`     título principal y subtítulo
+
+`col`           color de los símbolos (véase `colors()`).
+                También `col.axis`, `col.lab`, `col.main`, `col.sub`
+                
+`lty`           tipo de línea
+
+`lwd`           anchura de línea
+
+`pch`           tipo de símbolo
+
+`cex`           tamaño de los símbolos
+
+`bg`            color de relleno (para `pch = 21:25`)
+
+-------------------------------------------------------------
 
 Para obtener ayuda sobre estos parámetros ejecutar `help(par)`.
 
@@ -73,22 +100,38 @@ plot(cars, pch = 16, col = 'blue', main = 'pch=16')
 ```
 `r latexfig("cars3")`
 
+
 ## Funciones gráficas de bajo nivel
+
 Las principales funciones gráficas de bajo nivel son:
 
-Función  |  Descripción
--------  |  -----------
-`points` y `lines`  |  agregan puntos y líneas
-`text`    |  agrega un texto
-`mtext`   |  agrega texto en los márgenes
-`segments`  |  dibuja línea desde el punto inicial al final
-`abline`  |  dibuja líneas
-`rect`    |  dibuja rectángulos
-`polygon` |  dibuja polígonos
-`legend`  |  agrega una leyenda
-`axis`    |  agrega ejes
-`locator` |  devuelve coordenadas de puntos
-`identify`  |  similar a `locator`
+-------------------------------------------------------------
+Función             Descripción
+-----------------   ------------------------------------------
+`points`, `lines`   agregan puntos y líneas
+
+`text`              agrega un texto
+
+`mtext`             agrega texto en los márgenes
+
+`segments`          dibuja trozos de líneas desde puntos 
+                    iniciales a finales
+
+`abline`            dibuja líneas
+
+`rect`              dibuja rectángulos
+
+`polygon`           dibuja polígonos
+
+`legend`            agrega una leyenda
+
+`axis`              agrega ejes
+
+`locator`           devuelve coordenadas de puntos
+
+`identify`          similar a `locator`
+
+-------------------------------------------------------------
 
 
 ## Ejemplos
@@ -121,35 +164,43 @@ curve(cos, 0, 2*pi, col = 2, lwd = 3,
 curve(sin, col = 3, lwd = 3, lty = 2, add = TRUE)
 ```
 
-## Parámetros gráficos
+## Parámetros gráficos {#bajo-nivel-plot}
 
-Como ya hemos visto, muchas funciones gráficas permiten establecer (temporalmente) 
-opciones gráficas mediante estos parámetros.
+Como ya hemos visto, muchas funciones gráficas permiten establecer (temporalmente) opciones gráficas mediante estos parámetros.
 Con la función `par()` se pueden obtener y establecer (de forma permanente) todas las opciones gráficas. 
 Algunas más de estas opciones son:
 
-Parámetro  |  Descripción
-----------  |  -------------
-`adj`  |  justificación del texto
-`axes` |  si es `FALSE` no dibuja los ejes ni la caja
-`bg`   |  color del fondo 
-`bty`  |  tipo de caja alrededor del gráfico
-`font` |  estilo del texto 
-\      | (1: normal, 2: cursiva, 3:negrita, 4: negrita cursiva)
-`las`  |  orientación de los caracteres en los ejes
-`mar`  |  márgenes
-`mfcol`  |  divide la pantalla gráfica por columnas
-`mfrow`  |  lo mismo que `mfcol` pero por filas
+-------------------------------------------------------------
+Parámetro   Descripción
+----------  -----------------------------------------------
+`adj`       justificación del texto
+
+`axes`      si es `FALSE` no dibuja los ejes ni la caja
+
+`bg`        color del fondo 
+
+`bty`       tipo de caja alrededor del gráfico
+
+`font`      estilo del texto 
+            (1: normal, 2: cursiva, 3:negrita, 4: negrita cursiva)
+
+`las`       orientación de los caracteres en los ejes
+
+`mar`       márgenes
+
+`mfcol`     divide la pantalla gráfica por columnas
+
+`mfrow`     lo mismo que `mfcol` pero por filas
+
+-------------------------------------------------------------
 
 Ejecutar `help(par)` para obtener la lista completa.
 
 
-Múltiples gráficos por ventana
-------------------------------
+## Múltiples gráficos por ventana {#mfrow-plot}
 
-En `R` se pueden
-hacer varios gráficos por ventana. Para ello, antes de ejecutar la
-función `plot`, se puede utilizar la función:
+En `R` se pueden hacer varios gráficos por ventana. 
+Para ello, antes de ejecutar la función `plot()`, se puede ejecutar:
 ```{r, eval=FALSE}
 par(mfrow = c(filas, columnas))
 ```
@@ -158,10 +209,9 @@ Los gráficos se irán mostrando en pantalla por filas. En caso de que se
 quieran mostrar por columnas en la función anterior se sustituye `mfrow`
 por `mfcol`.
 
-Por ejemplo, con el siguiente código se obtiene el gráfico de la
-siguiente transparencia.
+Por ejemplo:
 ```{r, results="hold", collapse=TRUE}
-par(mfrow = c(2, 3))
+old.par <- par(mfrow = c(2, 3))
 plot(cars, pch = 1, main = "pch = 1")
 plot(cars, pch = 2, main = "pch = 2")
 plot(cars, pch = 3, main = "pch = 3")
@@ -169,17 +219,19 @@ plot(cars, pch = 3, main = "pch = 3")
 plot(cars, col = "red", main = "col = red")
 plot(cars, col = "blue", main = "col = blue")
 plot(cars, col = "brown", main = "col = brown")
+par(old.par)
 ```
+
+La función `par()` devuelve la anterior configuración de parámetros,
+lo que permite volverlos a establecer.
 
 Para estructuras gráficas más complicadas véase `help(layout)`.
 
 
-Exportar gráficos
------------------------
+## Exportar gráficos
 
-Para guardar gráficos, en
-Windows, se puede usar el menú `Archivo -> Guardar como` de la ventana gráfica (seleccionando el formato deseado: bitmap, postscript,...) y también 
-mediante código ejecutando `savePlot(filename, type)`. 
+Para guardar gráficos, en Windows, se puede usar el menú `Archivo -> Guardar como` de la ventana gráfica (seleccionando el formato deseado: bitmap, postscript,...) 
+y también mediante código ejecutando `savePlot(filename, type)`. 
 Alternativamente, se pueden emplear ficheros como dispositivos gráficos. Por ejemplo, a continuación guardamos un gráfico en el fichero *car.pdf*:
 
 ```{r, eval=FALSE}
@@ -195,13 +247,12 @@ plot(cars)
 dev.off()         # cerramos el dispositivo
 ```
 
-Otros formatos disponibles son `bmp`, `png` y `tiff`. Para más detalles ejecutar:
-```{r, eval=FALSE}
-help(Devices)
-```
+Otros formatos disponibles son `bmp`, `png` y `tiff`. Para más detalles ejecutar `help(Devices)`.
 
-Otras librerías gráficas
-------------------------
+Sin embargo para exportar resultados, incluyendo gráficos, suele ser preferible emplear informes en RMarkdown cono se muestra en el Capítulo \@ref(informes).
+
+
+## Otras librerías gráficas
 
 Además de los gráficos estándar, en `R` están disponibles muchas librerías gráficas adicionales:
 
@@ -219,13 +270,9 @@ Además de los gráficos estándar, en `R` están disponibles muchas librerías 
 
     -   Devuelven un objeto con el que se puede interactuar.
 
--   Más librerías gráficas:
+-   [ggplot2](https://ggplot2.tidyverse.org): Create Elegant Data Visualisations Using the Grammar of Graphics.
 
-    -   [ggplot2](http://had.co.nz/ggplot2)
-
-    -   [rgl](http://rgl.neoscientists.org)
-
-    -   [rggobi](http://www.ggobi.org/rggobi)
+-   [rgl](https://dmurdoch.github.io/rgl): 3D visualization device system for R using OpenGL.
 
 
 Para más detalles ver [CRAN Task View: Graphics](http://cran.r-project.org/web/views/Graphics.html)

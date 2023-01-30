@@ -1,7 +1,6 @@
 # Introducción al Análisis de Datos con `R`
 
-## Rubén Fernández-Casal, Javier Roca-Pardiñas y Julián Costa
-
+## Rubén Fernández-Casal, Javier Roca, Julián Costa y Manuel Oviedo
 
 Este es un libro introductorio al análisis de datos con R. 
 
@@ -9,10 +8,6 @@ Este libro ha sido escrito en [R-Markdown](http://rmarkdown.rstudio.com) emplean
 Se puede acceder a la versión en línea a través del siguiente enlace:
 
 <https://rubenfcasal.github.io/intror>.
-
-<!-- 
-<a class="btn pull-left js-toolbar-action" aria-label="PDF" title="PDF" href="#"><i class="fa fa-file-pdf-o"></i></a> 
--->
 
 donde puede descargarse en formato [pdf](https://rubenfcasal.github.io/intror/Intro_Analisis_Datos_R.pdf).
 
@@ -36,9 +31,13 @@ pkgs <- c("lattice", "ggplot2", "foreign", "car", "leaps", "MASS", "RcmdrMisc",
           "lmtest", "glmnet", "mgcv", "rmarkdown", "knitr", "dplyr")
 
 install.packages(setdiff(pkgs, installed.packages()[,"Package"]), dependencies = TRUE)
-# Si aparecen errores debidos a incompatibilidades entre las versiones de los paquetes, 
-# probar a ejecutar en lugar de lo anterior:
-# install.packages(pkgs, dependencies=TRUE) # Instala todos...
+```
+(puede que haya que seleccionar el repositorio de descarga, e.g. *Spain (Madrid)*).
+
+El código anterior no reinstala los paquetes ya instalados, por lo que podrían aparecer problemas debidos a incompatibilidades entre versiones (aunque no suele ocurrir, salvo que nuestra instalación de R esté muy desactualizada). 
+Si es el caso, en lugar de la última línea se puede ejecutar: 
+```{r, eval=FALSE}
+install.packages(pkgs, dependencies = TRUE) # Instala todos...
 ```
 
 Para generar el libro (compilar) serán necesarios paquetes adicionales, 
