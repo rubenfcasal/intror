@@ -5,7 +5,7 @@ author:
   - "Javier Roca-Pardiñas (roca@uvigo.es)"
   - "Julián Costa Bouzas (julian.costa@udc.es)"
   - "Manuel Oviedo de la Fuente (manuel.oviedo@udc.es)"
-date: "Edición: Junio de 2022. Impresión: 2023-01-29. ISBN: 978-84-09-41823-7"
+date: "Edición: Junio de 2022. Impresión: 2023-01-30. ISBN: 978-84-09-41823-7"
 output: bookdown::gitbook
 site: bookdown::bookdown_site
 documentclass: book

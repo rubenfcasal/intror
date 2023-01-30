@@ -3,6 +3,27 @@
 ```{r , child = '_global_options.Rmd'}
 ```
 
+<!-- 
+---
+title: "Introducción"
+author: "Estadística"
+date: "Grado en Inteligencia Artificial (UDC)"
+output: 
+  bookdown::html_document2:
+    pandoc_args: ["--number-offset", "0,0"]
+    toc: yes 
+    # mathjax: local            # copia local de MathJax, hay que establecer:
+    # self_contained: false     # las dependencias se guardan en ficheros externos 
+  bookdown::pdf_document2:
+    keep_tex: yes
+    toc: yes 
+---
+
+bookdown::preview_chapter("01-Introduccion.Rmd")
+knitr::purl("01-Introduccion.Rmd", documentation = 2)
+knitr::spin("01-Introduccion.R",knit = FALSE)
+-->
+
 El entorno estadístico `R` puede ser una herramienta de gran
 utilidad a lo largo de todo el proceso de obtención de información
 a partir de datos (normalmente con el objetivo final de ayudar a tomar decisiones). 
@@ -180,20 +201,17 @@ Por ejemplo en RStudio se puede emplear el menú *Help*, y en la consola de `R` 
 Para acceder a la ayuda desde la interfaz de comandos se puede ejecutar `help.start()` (también puede ser de interés la función `demo()`).
 
 Todas las funciones de `R` están documentadas. 
-Para obtener la ayuda de una determinada función se utilizará `help (función)` o de forma equivalente `?función`.
+Para obtener la ayuda de una determinada función se utilizará `help(función)` o de forma equivalente `?función`.
 
-Por ejemplo, la ayuda de la función `rnorm` (utilizada para la
-generación de datos con distribución normal) se obtiene con el código
+Por ejemplo, la ayuda de la función `rnorm` (utilizada para la generación de datos con distribución normal) se obtiene con el código 
 
 ```{r eval=FALSE}
 help(rnorm)
 ?rnorm
 ```
 
-En muchas ocasiones no se conoce el nombre exacto de la función de la
-que queremos obtener la documentación. En estos casos, la función
-`help.search()` realiza búsquedas en la documentación en todos los
-paquetes instalados, estén cargados o no.
+En muchas ocasiones no se conoce el nombre exacto de la función de la que queremos obtener la documentación. 
+En estos casos, la función `help.search()` realiza búsquedas en la documentación en todos los paquetes instalados, estén cargados o no.
 Por ejemplo, si no conocemos la función que permite calcular la mediana de un conjunto de datos, se puede utilizar
 ```{r eval=FALSE}
 help.search("median")
@@ -201,48 +219,7 @@ help.search("median")
 Para más detalles véase `?help.search`
 
 
-## Librerías (paquetes)
-
-Al iniciar el programa `R` se cargan por defecto una serie de librerías básicas con las que se pueden realizar una gran cantidad de operaciones básicas. 
-Estas librerías conforman el llamado **paquete base**.
-
-En otras ocasiones es necesario cargar librerías adicionales, empleando los denominados paquetes (packages).
-Normalmente se emplean los disponibles en el repositorio CRAN oficial
-<http://cran.r-project.org/web/packages/>.
-
-
-### Instalación {#instalacion-pkg}
-
-La instalación de un paquete se puede hacer de varias formas:
-
--   Desde la interfaz de comandos utilizando la instrucción
-
-    ```{r eval=FALSE}
-    install.packages("nombre del paquete")
-    ```
-
--   Desde el correspondiente menú de la intefaz gráfica (*Paquetes > Instalar paquete(s)...* en la consola de R y *Tools > Install packages...* o la pestaña *Packages* en RStudio).
-
-Este proceso sólo es necesario realizarlo la primera vez que se utilice el paquete.
-
-### Carga
-
-Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de varias formas:
-
--   Desde el menú *Paquetes > Cargar paquete(s)...*
-
--   Por consola, utilizando `library(paquete)` (también `require(paquete)`)
-
-Esta operación será necesario realizarla cada vez que se inicie una
-sesión de R.
-
-Finalmente, la ayuda de un paquete se puede obtener con la sentencia
-```{r eval=FALSE}
-library(help = "nombre del paquete") 
-```
-
-
-## Una primera sesión
+## Una primera sesión {#primera-sesion}
 
 Como ya se comentó, al emplear la interfaz de comandos, el usuario puede ir ejecutando instrucciones y se va imprimiendo el resultado.
 Por ejemplo:
@@ -277,22 +254,80 @@ A
 **Nota**: Habitualmente no habrá diferencia entre la utilización de las asignaciones hechas con `=` y `<-` (aunque nosotros emplearemos el segundo). 
 Las diferencias aparecen a nivel de programación y se tratarán en el Capítulo \@ref(programacion).
 
-Veamos ahora un ejemplo un poco más avanzado. 
+Veamos ahora un ejemplo de un análisis exploratorio muy básico (de una variable numérica). 
 En el siguiente código:
 
--   Se carga el conjunto de datos `precip`, disponible en el paquete base de `R`, que contiene el promedio de precipitación, en pulgadas de lluvia, de 70 ciudades de Estados Unidos.
+-   Se carga el objeto `precip` (uno de los conjuntos de datos de ejemplo disponibles en el paquete base de `R`) que contiene el promedio de precipitación, en pulgadas de lluvia, de 70 ciudades de Estados Unidos.
 
 -   Se hace un resumen estadístico de los datos.
 
 -   Se hace el correspondiente histograma y gráfico de cajas.
 
-    ```{r}
-    data(precip)    # Datos de lluvia
-    summary(precip) # Resumen estadístico
-    hist(precip)    # Histograma
-    boxplot(precip) # Gráfico de cajas
+```{r}
+data(precip)    # Datos de lluvia
+# ?precip       # Mostrar ayuda?
+# precip        # Imprimir?
+summary(precip) # Resumen estadístico
+hist(precip)    # Histograma
+boxplot(precip) # Gráfico de cajas
+```
+
+
+## Funciones y librerías (paquetes) {#funciones-paquetes}
+
+Al iniciar el programa `R` se cargan por defecto una serie de librerías básicas con las que se pueden realizar una gran cantidad de operaciones empleando las funciones que implementan. 
+Estas librerías conforman el llamado **paquete base**.
+
+En otras ocasiones es necesario cargar librerías adicionales, empleando los denominados paquetes (packages).
+Normalmente se emplean los disponibles en el repositorio CRAN oficial
+<http://cran.r-project.org/web/packages/>.
+
+
+### Funciones internas
+
+Las llamadas a una función son de la forma `nombre_función(argumento1, argumento2, ...)` y típicamente al evaluarlas devuelven un objeto con los resultados (o generan un gráfico).
+Los argumentos pueden tener nombres (se asignan por posición ó nombre) y valores por defecto (solo es necesario especificarlos para asignarles un valor distinto).
+Un nombre seguido de paréntesis hace siempre referencia a una función (realmente es un tipo de objeto y si por ejemplo se introduce solo el nombre en la línea de comandos simplemente se imprime el código).
+
+```{r}
+x <- sin(pi/2) 
+# La función `sin()` y el objeto `pi` están en el paquete base
+cat("El objeto x contiene:", x, "\n")
+```
+
+El parámetro `...` aglutina los argumentos no definidos explícitamente (cuando la función puede operar sobre múltiples argumentos, e.g. `cat(...)`,  o para poder incluir parámetros de otra función a la que se llama internamente).
+
+Algunas funciones se comportan de manera diferente dependiendo del tipo de objeto (la clase) de sus argumentos, son lo que se denominan *funciones genéricas*. 
+Entre ellas `summary()`, `print()`, `plot()` (por ejemplo, al ejecutar `methods(plot)` se muestran los métodos asociados esta función; el método por defecto es `plot.default()`).
+
+
+### Paquetes {#instalacion-pkg}
+
+La instalación de un paquete se puede hacer de varias formas:
+
+-   Desde la interfaz de comandos utilizando la instrucción
+
+    ```{r eval=FALSE}
+    install.packages("nombre del paquete")
     ```
 
+-   Desde el correspondiente menú de la intefaz gráfica (*Paquetes > Instalar paquete(s)...* en la consola de R y *Tools > Install packages...* o la pestaña *Packages* en RStudio).
+
+Este proceso sólo es necesario realizarlo la primera vez que se utilice el paquete.
+
+Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de varias formas:
+
+-   Desde el menú *Paquetes > Cargar paquete(s)...*
+
+-   Por consola, utilizando `library(paquete)` (también `require(paquete)`)
+
+Esta operación será necesario realizarla cada vez que se inicie una
+sesión de R.
+
+Finalmente, la ayuda de un paquete se puede obtener con la sentencia
+```{r eval=FALSE}
+library(help = "nombre del paquete") 
+```
 
 
 ## Objetos básicos

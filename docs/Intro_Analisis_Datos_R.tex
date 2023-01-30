@@ -178,7 +178,7 @@
 
 \title{Introducción al Análisis de Datos con \texttt{R}}
 \author{Rubén Fernández Casal (\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}}) \and Javier Roca-Pardiñas (\href{mailto:roca@uvigo.es}{\nolinkurl{roca@uvigo.es}}) \and Julián Costa Bouzas (\href{mailto:julian.costa@udc.es}{\nolinkurl{julian.costa@udc.es}}) \and Manuel Oviedo de la Fuente (\href{mailto:manuel.oviedo@udc.es}{\nolinkurl{manuel.oviedo@udc.es}})}
-\date{Edición: Junio de 2022. Impresión: 2023-01-29. ISBN: 978-84-09-41823-7}
+\date{Edición: Junio de 2022. Impresión: 2023-01-30. ISBN: 978-84-09-41823-7}
 
 \begin{document}
 \maketitle
@@ -511,10 +511,9 @@ Por ejemplo en RStudio se puede emplear el menú \emph{Help}, y en la consola de
 Para acceder a la ayuda desde la interfaz de comandos se puede ejecutar \texttt{help.start()} (también puede ser de interés la función \texttt{demo()}).
 
 Todas las funciones de \texttt{R} están documentadas.
-Para obtener la ayuda de una determinada función se utilizará \texttt{help\ (función)} o de forma equivalente \texttt{?función}.
+Para obtener la ayuda de una determinada función se utilizará \texttt{help(función)} o de forma equivalente \texttt{?función}.
 
-Por ejemplo, la ayuda de la función \texttt{rnorm} (utilizada para la
-generación de datos con distribución normal) se obtiene con el código
+Por ejemplo, la ayuda de la función \texttt{rnorm} (utilizada para la generación de datos con distribución normal) se obtiene con el código
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -523,10 +522,8 @@ generación de datos con distribución normal) se obtiene con el código
 \end{Highlighting}
 \end{Shaded}
 
-En muchas ocasiones no se conoce el nombre exacto de la función de la
-que queremos obtener la documentación. En estos casos, la función
-\texttt{help.search()} realiza búsquedas en la documentación en todos los
-paquetes instalados, estén cargados o no.
+En muchas ocasiones no se conoce el nombre exacto de la función de la que queremos obtener la documentación.
+En estos casos, la función \texttt{help.search()} realiza búsquedas en la documentación en todos los paquetes instalados, estén cargados o no.
 Por ejemplo, si no conocemos la función que permite calcular la mediana de un conjunto de datos, se puede utilizar
 
 \begin{Shaded}
@@ -537,61 +534,8 @@ Por ejemplo, si no conocemos la función que permite calcular la mediana de un c
 
 Para más detalles véase \texttt{?help.search}
 
-\hypertarget{libreruxedas-paquetes}{%
-\section{Librerías (paquetes)}\label{libreruxedas-paquetes}}
-
-Al iniciar el programa \texttt{R} se cargan por defecto una serie de librerías básicas con las que se pueden realizar una gran cantidad de operaciones básicas.
-Estas librerías conforman el llamado \textbf{paquete base}.
-
-En otras ocasiones es necesario cargar librerías adicionales, empleando los denominados paquetes (packages).
-Normalmente se emplean los disponibles en el repositorio CRAN oficial
-\url{http://cran.r-project.org/web/packages/}.
-
-\hypertarget{instalacion-pkg}{%
-\subsection{Instalación}\label{instalacion-pkg}}
-
-La instalación de un paquete se puede hacer de varias formas:
-
-\begin{itemize}
-\item
-  Desde la interfaz de comandos utilizando la instrucción
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"nombre del paquete"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\item
-  Desde el correspondiente menú de la intefaz gráfica (\emph{Paquetes \textgreater{} Instalar paquete(s)\ldots{}} en la consola de R y \emph{Tools \textgreater{} Install packages\ldots{}} o la pestaña \emph{Packages} en RStudio).
-\end{itemize}
-
-Este proceso sólo es necesario realizarlo la primera vez que se utilice el paquete.
-
-\hypertarget{carga}{%
-\subsection{Carga}\label{carga}}
-
-Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de varias formas:
-
-\begin{itemize}
-\item
-  Desde el menú \emph{Paquetes \textgreater{} Cargar paquete(s)\ldots{}}
-\item
-  Por consola, utilizando \texttt{library(paquete)} (también \texttt{require(paquete)})
-\end{itemize}
-
-Esta operación será necesario realizarla cada vez que se inicie una
-sesión de R.
-
-Finalmente, la ayuda de un paquete se puede obtener con la sentencia
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\AttributeTok{help =} \StringTok{"nombre del paquete"}\NormalTok{) }
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{una-primera-sesiuxf3n}{%
-\section{Una primera sesión}\label{una-primera-sesiuxf3n}}
+\hypertarget{primera-sesion}{%
+\section{Una primera sesión}\label{primera-sesion}}
 
 Como ya se comentó, al emplear la interfaz de comandos, el usuario puede ir ejecutando instrucciones y se va imprimiendo el resultado.
 Por ejemplo:
@@ -678,20 +622,23 @@ minúsculas, de modo que los objetos \texttt{a} y \texttt{A} serán diferentes.
 \textbf{Nota}: Habitualmente no habrá diferencia entre la utilización de las asignaciones hechas con \texttt{=} y \texttt{\textless{}-} (aunque nosotros emplearemos el segundo).
 Las diferencias aparecen a nivel de programación y se tratarán en el Capítulo \ref{programacion}.
 
-Veamos ahora un ejemplo un poco más avanzado.
+Veamos ahora un ejemplo de un análisis exploratorio muy básico (de una variable numérica).
 En el siguiente código:
 
 \begin{itemize}
 \item
-  Se carga el conjunto de datos \texttt{precip}, disponible en el paquete base de \texttt{R}, que contiene el promedio de precipitación, en pulgadas de lluvia, de 70 ciudades de Estados Unidos.
+  Se carga el objeto \texttt{precip} (uno de los conjuntos de datos de ejemplo disponibles en el paquete base de \texttt{R}) que contiene el promedio de precipitación, en pulgadas de lluvia, de 70 ciudades de Estados Unidos.
 \item
   Se hace un resumen estadístico de los datos.
 \item
   Se hace el correspondiente histograma y gráfico de cajas.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{data}\NormalTok{(precip)    }\CommentTok{\# Datos de lluvia}
+\CommentTok{\# ?precip       \# Mostrar ayuda?}
+\CommentTok{\# precip        \# Imprimir?}
 \FunctionTok{summary}\NormalTok{(precip) }\CommentTok{\# Resumen estadístico}
 \end{Highlighting}
 \end{Shaded}
@@ -707,7 +654,7 @@ En el siguiente código:
 \end{Highlighting}
 \end{Shaded}
 
-  \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -715,8 +662,81 @@ En el siguiente código:
 \end{Highlighting}
 \end{Shaded}
 
-  \begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-13-2} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{01-Introduccion_files/figure-latex/unnamed-chunk-11-2} \end{center}
+
+\hypertarget{funciones-paquetes}{%
+\section{Funciones y librerías (paquetes)}\label{funciones-paquetes}}
+
+Al iniciar el programa \texttt{R} se cargan por defecto una serie de librerías básicas con las que se pueden realizar una gran cantidad de operaciones empleando las funciones que implementan.
+Estas librerías conforman el llamado \textbf{paquete base}.
+
+En otras ocasiones es necesario cargar librerías adicionales, empleando los denominados paquetes (packages).
+Normalmente se emplean los disponibles en el repositorio CRAN oficial
+\url{http://cran.r-project.org/web/packages/}.
+
+\hypertarget{funciones-internas}{%
+\subsection{Funciones internas}\label{funciones-internas}}
+
+Las llamadas a una función son de la forma \texttt{nombre\_función(argumento1,\ argumento2,\ ...)} y típicamente al evaluarlas devuelven un objeto con los resultados (o generan un gráfico).
+Los argumentos pueden tener nombres (se asignan por posición ó nombre) y valores por defecto (solo es necesario especificarlos para asignarles un valor distinto).
+Un nombre seguido de paréntesis hace siempre referencia a una función (realmente es un tipo de objeto y si por ejemplo se introduce solo el nombre en la línea de comandos simplemente se imprime el código).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{sin}\NormalTok{(pi}\SpecialCharTok{/}\DecValTok{2}\NormalTok{) }
+\CommentTok{\# La función \textasciigrave{}sin()\textasciigrave{} y el objeto \textasciigrave{}pi\textasciigrave{} están en el paquete base}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"El objeto x contiene:"}\NormalTok{, x, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## El objeto x contiene: 1
+\end{verbatim}
+
+El parámetro \texttt{...} aglutina los argumentos no definidos explícitamente (cuando la función puede operar sobre múltiples argumentos, e.g.~\texttt{cat(...)}, o para poder incluir parámetros de otra función a la que se llama internamente).
+
+Algunas funciones se comportan de manera diferente dependiendo del tipo de objeto (la clase) de sus argumentos, son lo que se denominan \emph{funciones genéricas}.
+Entre ellas \texttt{summary()}, \texttt{print()}, \texttt{plot()} (por ejemplo, al ejecutar \texttt{methods(plot)} se muestran los métodos asociados esta función; el método por defecto es \texttt{plot.default()}).
+
+\hypertarget{instalacion-pkg}{%
+\subsection{Paquetes}\label{instalacion-pkg}}
+
+La instalación de un paquete se puede hacer de varias formas:
+
+\begin{itemize}
+\item
+  Desde la interfaz de comandos utilizando la instrucción
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"nombre del paquete"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Desde el correspondiente menú de la intefaz gráfica (\emph{Paquetes \textgreater{} Instalar paquete(s)\ldots{}} en la consola de R y \emph{Tools \textgreater{} Install packages\ldots{}} o la pestaña \emph{Packages} en RStudio).
 \end{itemize}
+
+Este proceso sólo es necesario realizarlo la primera vez que se utilice el paquete.
+
+Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de varias formas:
+
+\begin{itemize}
+\item
+  Desde el menú \emph{Paquetes \textgreater{} Cargar paquete(s)\ldots{}}
+\item
+  Por consola, utilizando \texttt{library(paquete)} (también \texttt{require(paquete)})
+\end{itemize}
+
+Esta operación será necesario realizarla cada vez que se inicie una
+sesión de R.
+
+Finalmente, la ayuda de un paquete se puede obtener con la sentencia
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\AttributeTok{help =} \StringTok{"nombre del paquete"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{objetos-buxe1sicos}{%
 \section{Objetos básicos}\label{objetos-buxe1sicos}}
@@ -1297,7 +1317,7 @@ A continuación se obtiene una simulación de 10 lanzamientos de un dado
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 4 5 5 3 1 4 6 4 1 6
+##  [1] 6 3 1 1 5 5 5 3 6 6
 \end{verbatim}
 
 Para simular el lanzamiento de una moneda podemos escribir
@@ -1353,8 +1373,8 @@ Para simular el lanzamiento de una moneda podemos escribir
 \end{Shaded}
 
 \begin{verbatim}
-## cara cara cara cruz cara cruz cruz cara cara cara 
-##    1    1    1    0    1    0    0    1    1    1
+## cara cruz cara cruz cara cara cara cara cara cruz 
+##    1    0    1    0    1    1    1    1    1    0
 \end{verbatim}
 
 \begin{Shaded}
@@ -1378,8 +1398,8 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] -0.3933354 -0.9906359  0.8368773 -1.1865968 -1.5659103  0.2542658
-##  [7]  0.2500611  1.9582344 -1.3087537 -0.6703466
+##  [1]  1.06057423 -1.13112660 -0.55005465 -0.06400286  0.37460541  0.90174865
+##  [7]  0.60904681 -0.06503237 -0.72623274  0.99699218
 \end{verbatim}
 
 \begin{Shaded}
@@ -1389,8 +1409,8 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 8.502302 6.214129 4.532339 9.456021 9.292896 7.110318 8.811407 3.194070
-##  [9] 5.422113 6.638950 4.933562 8.084592 8.047748 7.815741 2.053054
+##  [1] 4.133106 6.093477 7.363590 5.900827 7.166668 4.672351 8.618037 3.510272
+##  [9] 9.658221 5.722486 5.455435 2.315432 3.362482 8.963233 7.090975
 \end{verbatim}
 
 Como ya se comentó, se puede utilizar \texttt{help(funcion)} (o \texttt{?funcion}) para mostrar la ayuda de las funciones anteriores.
@@ -2317,12 +2337,10 @@ Así, mientras que los elementos de los vectores, matrices y arrays deben ser de
 ## [3,]    3    6    9   12
 \end{verbatim}
 
-\hypertarget{gruxe1ficos}{%
-\chapter{Gráficos}\label{gruxe1ficos}}
+\hypertarget{graficos}{%
+\chapter{Gráficos}\label{graficos}}
 
-\texttt{R} dispone de varias funciones que permiten la
-realización de gráficos. Estas funciones se dividen en dos grandes
-grupos
+En el paquete base de \texttt{R} se dispone de múltiples funciones que permiten la generación de gráficos (los denominados gráficos estándar). Se dividen en dos grandes grupos:
 
 \begin{itemize}
 \item
@@ -2331,29 +2349,27 @@ grupos
   \begin{itemize}
   \tightlist
   \item
-    \texttt{plot,\ hist,\ boxplot,\ ...}
+    \texttt{plot}, \texttt{hist}, \texttt{boxplot}, \ldots{}
   \end{itemize}
 \item
-  Gráficos de \textbf{bajo nivel}: Permiten añadir elementos (líneas, puntos, \ldots) a un
-  gráfico ya existente
+  Gráficos de \textbf{bajo nivel}: Permiten añadir elementos (líneas, puntos, \ldots) a un gráfico ya existente
 
   \begin{itemize}
+  \tightlist
   \item
-    \texttt{points,\ lines,\ legend,\ text,\ ...}
-  \item
-    El parámetro \texttt{add=TRUE} convierte una función de nivel alto a bajo.
+    \texttt{points}, \texttt{lines}, \texttt{legend}, \texttt{text}, \ldots{}
   \end{itemize}
 \end{itemize}
 
-Dentro de las funciones gráficas de alto nivel destaca la función \texttt{plot}
-que tiene muchas variantes y dependiendo del tipo de datos que se le
-pasen como argumento actuará de modo distinto.
+El parámetro \texttt{add\ =\ TRUE} convierte una función de nivel alto a bajo.
 
-\hypertarget{el-comando-plot}{%
-\section{El comando plot}\label{el-comando-plot}}
+Dentro de las funciones gráficas de alto nivel destaca la función \texttt{plot()} que tiene muchas variantes y dependiendo del tipo de datos que se le pasen como argumento actuará de modo distinto
+(es una \emph{función genérica}, \texttt{methods(plot)} devuelve los métodos disponibles).
 
-Si escribimos \texttt{plot(x,\ y)} donde \texttt{x} e \texttt{y} son vectores, entonces \texttt{R}
-hará directamente el conocido como \textbf{gráfico de dispersión} que
+\hypertarget{funcion-plot}{%
+\section{La función plot}\label{funcion-plot}}
+
+Si ejecutamos \texttt{plot(x,\ y)} siendo \texttt{x} e \texttt{y} vectores, entonces \texttt{R} generará el denominado \textbf{gráfico de dispersión} que
 representa en un sistema coordenado los pares de valores \((x,y)\).
 
 Por ejemplo, utilizando el siguiente código
@@ -2380,26 +2396,29 @@ El comando \texttt{plot} incluye por defecto una elección automáticas de
 títulos, ejes, escalas, etiquetas, etc., que pueden ser modificados
 añadiendo parámetros gráficos al comando:
 
-\begin{longtable}[]{@{}ll@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.22}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.64}}@{}}
 \toprule
 Parámetro & Descripción \\
 \midrule
 \endhead
-\texttt{type} & tipo de gráfico: \\
+\texttt{type} & tipo de gráfico:
+\texttt{p}: puntos, \texttt{l}: líneas, \texttt{b}: puntos y líneas,
+\texttt{n}: gráfico en blanco\ldots{} \\
+\texttt{xlim}, \texttt{ylim} & límites de los ejes
+(e.g.~\texttt{xlim=c(1,\ 10)} o \texttt{xlim=range(x)}) \\
+\texttt{xlab}, \texttt{ylab} & títulos de los ejes \\
+\texttt{main,\ sub} & título principal y subtítulo \\
+\texttt{col} & color de los símbolos (véase \texttt{colors()}).
+También \texttt{col.axis}, \texttt{col.lab}, \texttt{col.main}, \texttt{col.sub} \\
+\texttt{lty} & tipo de línea \\
+\texttt{lwd} & anchura de línea \\
+\texttt{pch} & tipo de símbolo \\
+\texttt{cex} & tamaño de los símbolos \\
+\texttt{bg} & color de relleno (para \texttt{pch\ =\ 21:25}) \\
 \bottomrule
 \end{longtable}
-
-\t      | \texttt{p}: puntos, \texttt{l}: líneas, \texttt{b}: puntos y líneas, \texttt{n}: gráfico en blanco, \ldots{}
-\texttt{xlim}, \texttt{ylim} \textbar{} límites de los ejes (e.g.~\texttt{xlim=c(1,\ 10)} o \texttt{xlim=range(x)})
-\texttt{xlab}, \texttt{ylab} \textbar{} títulos de los ejes
-\texttt{main,\ sub} \textbar{} título principal y subtítulo
-\texttt{col} \textbar{} color de los símbolos (véase \texttt{colors()})
-\t     | véase \texttt{col.axis}, \texttt{col.lab}, \texttt{col.main}, \texttt{col.sub}
-\texttt{lty} \textbar{} tipo de línea
-\texttt{lwd} \textbar{} anchura de línea
-\texttt{pch} \textbar{} tipo de símbolo
-\texttt{cex} \textbar{} tamaño de los símbolos
-\texttt{bg} \textbar{} color de relleno (para \texttt{pch\ =\ 21:25})
 
 Para obtener ayuda sobre estos parámetros ejecutar \texttt{help(par)}.
 
@@ -2444,15 +2463,18 @@ Veamos algún ejemplo:
 
 Las principales funciones gráficas de bajo nivel son:
 
-\begin{longtable}[]{@{}ll@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.28}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.60}}@{}}
 \toprule
 Función & Descripción \\
 \midrule
 \endhead
-\texttt{points} y \texttt{lines} & agregan puntos y líneas \\
+\texttt{points}, \texttt{lines} & agregan puntos y líneas \\
 \texttt{text} & agrega un texto \\
 \texttt{mtext} & agrega texto en los márgenes \\
-\texttt{segments} & dibuja línea desde el punto inicial al final \\
+\texttt{segments} & dibuja trozos de líneas desde puntos
+iniciales a finales \\
 \texttt{abline} & dibuja líneas \\
 \texttt{rect} & dibuja rectángulos \\
 \texttt{polygon} & dibuja polígonos \\
@@ -2507,15 +2529,16 @@ Alternativamente se podría usar \texttt{curve()}:
 
 \begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
-\hypertarget{paruxe1metros-gruxe1ficos}{%
-\section{Parámetros gráficos}\label{paruxe1metros-gruxe1ficos}}
+\hypertarget{bajo-nivel-plot}{%
+\section{Parámetros gráficos}\label{bajo-nivel-plot}}
 
-Como ya hemos visto, muchas funciones gráficas permiten establecer (temporalmente)
-opciones gráficas mediante estos parámetros.
+Como ya hemos visto, muchas funciones gráficas permiten establecer (temporalmente) opciones gráficas mediante estos parámetros.
 Con la función \texttt{par()} se pueden obtener y establecer (de forma permanente) todas las opciones gráficas.
 Algunas más de estas opciones son:
 
-\begin{longtable}[]{@{}ll@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.67}}@{}}
 \toprule
 Parámetro & Descripción \\
 \midrule
@@ -2524,8 +2547,8 @@ Parámetro & Descripción \\
 \texttt{axes} & si es \texttt{FALSE} no dibuja los ejes ni la caja \\
 \texttt{bg} & color del fondo \\
 \texttt{bty} & tipo de caja alrededor del gráfico \\
-\texttt{font} & estilo del texto \\
-\textbackslash{} & (1: normal, 2: cursiva, 3:negrita, 4: negrita cursiva) \\
+\texttt{font} & estilo del texto
+(1: normal, 2: cursiva, 3:negrita, 4: negrita cursiva) \\
 \texttt{las} & orientación de los caracteres en los ejes \\
 \texttt{mar} & márgenes \\
 \texttt{mfcol} & divide la pantalla gráfica por columnas \\
@@ -2535,12 +2558,11 @@ Parámetro & Descripción \\
 
 Ejecutar \texttt{help(par)} para obtener la lista completa.
 
-\hypertarget{muxfaltiples-gruxe1ficos-por-ventana}{%
-\section{Múltiples gráficos por ventana}\label{muxfaltiples-gruxe1ficos-por-ventana}}
+\hypertarget{mfrow-plot}{%
+\section{Múltiples gráficos por ventana}\label{mfrow-plot}}
 
-En \texttt{R} se pueden
-hacer varios gráficos por ventana. Para ello, antes de ejecutar la
-función \texttt{plot}, se puede utilizar la función:
+En \texttt{R} se pueden hacer varios gráficos por ventana.
+Para ello, antes de ejecutar la función \texttt{plot()}, se puede ejecutar:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2552,12 +2574,11 @@ Los gráficos se irán mostrando en pantalla por filas. En caso de que se
 quieran mostrar por columnas en la función anterior se sustituye \texttt{mfrow}
 por \texttt{mfcol}.
 
-Por ejemplo, con el siguiente código se obtiene el gráfico de la
-siguiente transparencia.
+Por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\NormalTok{old.par }\OtherTok{\textless{}{-}} \FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{))}
 \FunctionTok{plot}\NormalTok{(cars, }\AttributeTok{pch =} \DecValTok{1}\NormalTok{, }\AttributeTok{main =} \StringTok{"pch = 1"}\NormalTok{)}
 \FunctionTok{plot}\NormalTok{(cars, }\AttributeTok{pch =} \DecValTok{2}\NormalTok{, }\AttributeTok{main =} \StringTok{"pch = 2"}\NormalTok{)}
 \FunctionTok{plot}\NormalTok{(cars, }\AttributeTok{pch =} \DecValTok{3}\NormalTok{, }\AttributeTok{main =} \StringTok{"pch = 3"}\NormalTok{)}
@@ -2570,14 +2591,22 @@ siguiente transparencia.
 
 \begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(old.par)}
+\end{Highlighting}
+\end{Shaded}
+
+La función \texttt{par()} devuelve la anterior configuración de parámetros,
+lo que permite volverlos a establecer.
+
 Para estructuras gráficas más complicadas véase \texttt{help(layout)}.
 
 \hypertarget{exportar-gruxe1ficos}{%
 \section{Exportar gráficos}\label{exportar-gruxe1ficos}}
 
-Para guardar gráficos, en
-Windows, se puede usar el menú \texttt{Archivo\ -\textgreater{}\ Guardar\ como} de la ventana gráfica (seleccionando el formato deseado: bitmap, postscript,\ldots) y también
-mediante código ejecutando \texttt{savePlot(filename,\ type)}.
+Para guardar gráficos, en Windows, se puede usar el menú \texttt{Archivo\ -\textgreater{}\ Guardar\ como} de la ventana gráfica (seleccionando el formato deseado: bitmap, postscript,\ldots)
+y también mediante código ejecutando \texttt{savePlot(filename,\ type)}.
 Alternativamente, se pueden emplear ficheros como dispositivos gráficos. Por ejemplo, a continuación guardamos un gráfico en el fichero \emph{car.pdf}:
 
 \begin{Shaded}
@@ -2598,13 +2627,9 @@ Con el siguiente código guardaremos el gráfico en formato jpeg:
 \end{Highlighting}
 \end{Shaded}
 
-Otros formatos disponibles son \texttt{bmp}, \texttt{png} y \texttt{tiff}. Para más detalles ejecutar:
+Otros formatos disponibles son \texttt{bmp}, \texttt{png} y \texttt{tiff}. Para más detalles ejecutar \texttt{help(Devices)}.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{help}\NormalTok{(Devices)}
-\end{Highlighting}
-\end{Shaded}
+Sin embargo para exportar resultados, incluyendo gráficos, suele ser preferible emplear informes en RMarkdown cono se muestra en el Capítulo \ref{informes}.
 
 \hypertarget{otras-libreruxedas-gruxe1ficas}{%
 \section{Otras librerías gráficas}\label{otras-libreruxedas-gruxe1ficas}}
@@ -2633,16 +2658,9 @@ Además de los gráficos estándar, en \texttt{R} están disponibles muchas libr
     Devuelven un objeto con el que se puede interactuar.
   \end{itemize}
 \item
-  Más librerías gráficas:
-
-  \begin{itemize}
-  \item
-    \href{http://had.co.nz/ggplot2}{ggplot2}
-  \item
-    \href{http://rgl.neoscientists.org}{rgl}
-  \item
-    \href{http://www.ggobi.org/rggobi}{rggobi}
-  \end{itemize}
+  \href{https://ggplot2.tidyverse.org}{ggplot2}: Create Elegant Data Visualisations Using the Grammar of Graphics.
+\item
+  \href{https://dmurdoch.github.io/rgl}{rgl}: 3D visualization device system for R using OpenGL.
 \end{itemize}
 
 Para más detalles ver \href{http://cran.r-project.org/web/views/Graphics.html}{CRAN Task View: Graphics}
@@ -2658,7 +2676,7 @@ Para más detalles ver \href{http://cran.r-project.org/web/views/Graphics.html}{
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-10-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2675,7 +2693,7 @@ Para más detalles ver \href{http://cran.r-project.org/web/views/Graphics.html}{
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2684,7 +2702,7 @@ Para más detalles ver \href{http://cran.r-project.org/web/views/Graphics.html}{
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-11-2} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-10-2} \end{center}
 
 \hypertarget{manipulaciuxf3n-de-datos-con-r}{%
 \chapter{Manipulación de datos con R}\label{manipulaciuxf3n-de-datos-con-r}}
@@ -4013,8 +4031,8 @@ El \emph{rango} y el \emph{rango intercuartílico}
 ##  Max.   :285.00
 \end{verbatim}
 
-\hypertarget{gruxe1ficos-1}{%
-\section{Gráficos}\label{gruxe1ficos-1}}
+\hypertarget{gruxe1ficos}{%
+\section{Gráficos}\label{gruxe1ficos}}
 
 \hypertarget{diagrama-de-barras-y-gruxe1fico-de-sectores}{%
 \subsection{Diagrama de barras y gráfico de sectores}\label{diagrama-de-barras-y-gruxe1fico-de-sectores}}
@@ -6753,7 +6771,7 @@ En este caso el parámetro sería:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.989587
+## [1] 3.635163
 \end{verbatim}
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -6767,14 +6785,14 @@ y el modelo resultante contiene todas las variables explicativas:
 \begin{verbatim}
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
 ##                     s1
-## (Intercept) 6.25898621
-## velocida    1.56785760
-## precio      0.67897678
-## flexprec    2.17894174
-## imgfabri    0.32939271
-## servconj    3.69427361
-## imgfvent    1.05562044
-## calidadp    0.04709431
+## (Intercept) 5.26333438
+## velocida    1.58051175
+## precio      0.70395775
+## flexprec    2.24798481
+## imgfabri    0.31897738
+## servconj    3.76988236
+## imgfvent    1.07304993
+## calidadp    0.06641356
 \end{verbatim}
 
 \hypertarget{lasso}{%
@@ -7813,8 +7831,8 @@ La función \texttt{gam.check} realiza una diagnosis del modelo:
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
 ##                k'  edf k-index p-value
-## s(income)    9.00 3.12    0.98    0.37
-## s(education) 9.00 3.18    1.03    0.59
+## s(income)    9.00 3.12    0.98    0.44
+## s(education) 9.00 3.18    1.03    0.57
 \end{verbatim}
 
 Lo ideal sería observar normalidad en los dos gráficos de la izquierda, falta de patrón en el superior derecho, y ajuste a una recta en el inferior derecho. En este caso parece que el modelo se comporta adecuadamente.
@@ -8201,7 +8219,7 @@ contenido:
 ## function(a1, r, n) {
 ##         a1 * r^(n - 1)
 ##       }
-## <bytecode: 0x000000001e7af3f0>
+## <bytecode: 0x000000001d6ff5f0>
 \end{verbatim}
 
 \hypertarget{salida}{%
@@ -8399,7 +8417,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##    1    2    3    4    5    6 
-## 0.20 0.14 0.16 0.16 0.22 0.12
+## 0.20 0.24 0.13 0.12 0.11 0.20
 \end{verbatim}
 
 \begin{Shaded}
@@ -8413,7 +8431,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##     1     2     3     4     5     6 
-## 0.184 0.182 0.172 0.160 0.166 0.136
+## 0.168 0.174 0.162 0.162 0.188 0.146
 \end{verbatim}
 
 \begin{Shaded}
@@ -8427,7 +8445,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##      1      2      3      4      5      6 
-## 0.1648 0.1623 0.1646 0.1654 0.1721 0.1708
+## 0.1690 0.1695 0.1657 0.1655 0.1629 0.1674
 \end{verbatim}
 
 Se puede comprobar que al aumentar el valor de \(n\) las frecuencias se
@@ -9209,12 +9227,12 @@ y la correspondiente estimación:
 
 \begin{center}\includegraphics[width=0.7\linewidth]{11-Programacion_files/figure-latex/unnamed-chunk-51-1} \end{center}
 
-\hypertarget{generaciuxf3n-de-informes}{%
-\chapter{Generación de informes}\label{generaciuxf3n-de-informes}}
+\hypertarget{informes}{%
+\chapter{Generación de informes}\label{informes}}
 
 Una versión más completa de este capítulo está disponible en el
 \href{https://rubenfcasal.github.io/bookdown_intro/rmarkdown.html}{apéndice} del libro
-\href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con bookdown}
+\href{https://rubenfcasal.github.io/bookdown_intro}{Escritura de libros con bookdown}.
 
 \hypertarget{r-markdown}{%
 \section{R Markdown}\label{r-markdown}}
