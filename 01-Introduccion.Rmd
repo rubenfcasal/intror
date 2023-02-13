@@ -311,18 +311,14 @@ La instalación de un paquete se puede hacer de varias formas:
     install.packages("nombre del paquete")
     ```
 
--   Desde el correspondiente menú de la intefaz gráfica (*Paquetes > Instalar paquete(s)...* en la consola de R y *Tools > Install packages...* o la pestaña *Packages* en RStudio).
+-   Desde el correspondiente menú de la interfaz gráfica (*Paquetes > Instalar paquete(s)...* en la consola de R y *Tools > Install packages...* o la pestaña *Packages* en RStudio).
 
 Este proceso sólo es necesario realizarlo la primera vez que se utilice el paquete.
 
-Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de varias formas:
+Para utilizar un paquete ya instalado es necesario cargarlo en memoria, ejecutando `library(paquete)` (también `require(paquete)`, o emplear el menú *Paquetes > Cargar paquete(s)...* de la consola de R).
+Esta operación será necesario realizarla en cada nueva sesión de R.
 
--   Desde el menú *Paquetes > Cargar paquete(s)...*
-
--   Por consola, utilizando `library(paquete)` (también `require(paquete)`)
-
-Esta operación será necesario realizarla cada vez que se inicie una
-sesión de R.
+También se puede ejecutar una función específica de un paquete empleando^[Siempre que la función sea un objeto visible del paquete (i.e. que haya sido exportada en el NAMESPACE), en caso contrario se puede emplear `paquete:::funcion`.] `paquete::funcion()`.
 
 Finalmente, la ayuda de un paquete se puede obtener con la sentencia
 ```{r eval=FALSE}
@@ -334,7 +330,7 @@ library(help = "nombre del paquete")
  
 `R` es un lenguaje **orientado a objetos** lo que significa que las variables, datos, funciones, resultados, etc., se guardan en la memoria del ordenador en forma de *objetos* con un nombre específico.
 
-Los principales tipos de valores básicos de `R` son:
+Los principales tipos de valores básicos de `R` (también denominados objetos atómicos) son:
 
 -   numéricos,
 
@@ -342,17 +338,16 @@ Los principales tipos de valores básicos de `R` son:
 
 -   lógicos
 
+
 ### Objetos numéricos 
 
-Los valores numéricos adoptan
-la notación habitual en informática: punto decimal, notacion científica, ...
+Los valores numéricos adoptan la notación habitual en informática: punto decimal, notación científica...
 ```{r}
 pi
 1e3
 ```
 
-Con este tipo de objetos se pueden hacer operaciones aritméticas
-utilizando el operador correspondiente.
+Con este tipo de objetos se pueden hacer operaciones aritméticas utilizando el operador correspondiente.
 ```{r}
 a <- 3.4
 b <- 4.5
@@ -380,8 +375,7 @@ a
 
 ### Objetos lógicos
 
-Los objetos lógicos sólo pueden
-tomar dos valores `TRUE` (numéricamente toma el valor 1) y `FALSE`
+Los objetos lógicos sólo pueden tomar dos valores `TRUE` (numéricamente toma el valor 1) y `FALSE`
 (valor 0).
 ```{r}
 A <- TRUE
@@ -396,8 +390,7 @@ as.numeric(B)
 
 ### Operadores lógicos
 
-Existen varios operadores en
-`R` que devuelven un valor de tipo lógico. Veamos algún ejemplo
+Existen varios operadores en `R` que devuelven un valor de tipo lógico. Veamos algún ejemplo
 ```{r}
 a <- 2
 b <- 3
@@ -418,8 +411,7 @@ Nótese la diferencia entre `=` (asignación) y `==` (operador lógico)
 # Error en 2 = 3 : lado izquierdo de la asignación inválida (do_set)
 ```
 
-Se pueden encadenar varias condiciones lógicas utiilizando
-los operadores `&` (y lógico) y `|` (o lógico).
+Se pueden encadenar varias condiciones lógicas utilizando los operadores `&` (y lógico) y `|` (o lógico).
 ```{r}
 TRUE & TRUE
 TRUE | TRUE
@@ -473,7 +465,7 @@ character(0)
 `character(0)` (cadena de texto vacía) significa que no hay objetos en memoria.
 
 
-### Guardar y cargar objetos
+### Guardar y cargar objetos {#load-save}
 
 Para guardar el área de trabajo (Workspace) con todos los objetos de memoria (es decir, los que figuran al utilizar `ls()`) se utiliza la función `save.image(nombre archivo)`.
 ```{r eval=FALSE}
@@ -494,6 +486,18 @@ Para cargar los objetos almacenados en un archivo se utiliza la función `load()
 ```{r eval=FALSE}
 load("prueba2.RData") # carga los objetos x e y
 ```
+
+
+### Carga de datos en paquetes {#data-paquetes}
+
+R dispone de múltiples conjuntos de datos en distintos paquetes, normalmente para ilustrar los procedimientos que implementan.
+Uno de estos paquetes es `datasets` que se carga por defecto al abrir R. 
+Con el comando `data()` podemos obtener un listado de las bases de datos disponibles.
+
+Para cargar una base de datos concreta se utiliza el comando
+`data(nombre)` (aunque en algunos casos se cargan automáticamente al emplearlos). 
+Por ejemplo, `data(cars)` carga la base de datos llamada `cars` en el entorno de trabajo (`".GlobalEnv"`) y `?cars` muestra la ayuda correspondiente con la descripción de la base de datos.
+
 
 ### Directorio de trabajo 
 

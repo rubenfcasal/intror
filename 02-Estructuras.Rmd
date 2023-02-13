@@ -1,7 +1,29 @@
-# Estructuras de datos
+# Estructuras de datos {#estructuras}
 
 ```{r , child = '_global_options.Rmd'}
 ```
+
+<!-- 
+---
+title: "Estructuras de datos"
+author: "Estadística"
+date: "Grado en Inteligencia Artificial (UDC)"
+output: 
+  bookdown::html_document2:
+    pandoc_args: ["--number-offset", "1,0"]
+    toc: yes 
+    # mathjax: local            # copia local de MathJax, hay que establecer:
+    # self_contained: false     # las dependencias se guardan en ficheros externos 
+  bookdown::pdf_document2:
+    keep_tex: yes
+    toc: yes 
+---
+
+bookdown::preview_chapter("02-Estructuras.Rmd")
+knitr::purl("02-Estructuras.Rmd", documentation = 2)
+knitr::spin("02-Estructuras.R",knit = FALSE)
+-->
+
 
 En los ejemplos que hemos visto hasta ahora los objetos de `R` almacenaban un único valor cada uno. 
 Sin embargo, las estructuras de datos que proporciona `R` permiten almacenar en un mismo objeto varios valores. 
@@ -16,7 +38,7 @@ Las principales estructuras son:
 -   Listas
 
 
-## Vectores
+## Vectores {#vectores}
 
 Un vector es un conjunto de valores básicos del mismo tipo. 
 La forma más sencilla de crear vectores es a
@@ -182,7 +204,7 @@ month.name[1:6]  # primeros 6 meses del año en inglés
 ```
 
 
-### Factores 
+### Factores {#factores}
 
 Los factores se utilizan para representar datos categóricos. 
 Se puede pensar en ellos como vectores de enteros en los que cada entero tiene asociada una etiqueta (*label*). 
@@ -220,7 +242,7 @@ respuestas
 ```
 
 
-## Matrices y arrays
+## Matrices y arrays {#matrices-y-arrays}
 
 ### Matrices 
 
@@ -350,9 +372,9 @@ A %*% B  # comprobamos que está bien
 ```
 
 
-## Data frames
+## Data frames {#data-frames}
 
-Los `data.frames` (*marcos de datos*) son el objeto más habitual para el almacenamiento de conjuntos de datos. 
+El `data.frame` (*marco o tabla de datos*) es el objeto más habitual para el almacenamiento de conjuntos de datos. 
 En este tipo de objetos cada individuo de la muestra se corresponde con una fila y cada una de las variables con una columna.
 Para la creación de estas estructuras se utiliza la función `data.frame()`.
 
@@ -379,8 +401,7 @@ class(lista.compra)
 lista.compra
 ```
 
-A continuación se muestran ejemplos que ilustran la manera de acceder
-a los valores de un data.frame.
+A continuación se muestran ejemplos que ilustran la manera de acceder a los valores de un data.frame.
 ```{r}
 lista.compra$Unidades
 lista.compra[ ,3]  # de manera equivalente
