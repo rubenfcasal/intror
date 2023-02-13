@@ -1,82 +1,103 @@
-Manipulación de datos con R
-===========================
+# Manipulación de datos {#manipulacion}
 
 
 
 
-La mayoría de los estudios estadísticos
-requieren disponer de un conjunto de datos. 
+<!-- 
+---
+title: "Manipulación de datos"
+author: "Estadística"
+date: "Grado en Inteligencia Artificial (UDC)"
+output: 
+  bookdown::html_document2:
+    pandoc_args: ["--number-offset", "3,0"]
+    toc: yes 
+    # mathjax: local            # copia local de MathJax, hay que establecer:
+    # self_contained: false     # las dependencias se guardan en ficheros externos 
+  bookdown::pdf_document2:
+    keep_tex: yes
+    toc: yes 
+---
 
-Lectura, importación y exportación de datos
--------------------------------------------
+bookdown::preview_chapter("04-ManipulacionDatosR.Rmd")
+knitr::purl("04-ManipulacionDatosR.Rmd", documentation = 2)
+knitr::spin("04-ManipulacionDatosR.R",knit = FALSE)
+-->
 
-Además de la introducción directa, R es capaz de
-importar datos externos en múltiples formatos:
+El punto de partida para (casi) cualquier estudio estadístico son los datos.
 
--   bases de datos disponibles en librerías de R
+> "In God we trust, all others must bring data."
+>
+> "Without data, you’re just another person with an opinion."
+>
+> --- W. E. Deming
 
--   archivos de texto en formato ASCII
+Como ya se comentó anteriormente, el objeto de R en el que se suele almacenar un conjunto de datos es el `data.frame` (ver Sección \@ref(data-frames)).
+En este capítulo se muestran las herramientas básicas disponibles en el paquete base de R para la manipulación de conjuntos de datos.
+Otras alternativas más avanzadas pero que pueden resultar de gran interés son las que proporcionan las librerías `tidyverse` (ver Apéndice) o `data.table`, aunque pueden requerir de cierto tiempo de aprendizaje y no serían muy recomendables para usuarios que se están iniciando en R.
 
--   archivos en otros formatos: Excel, SPSS, ...
+Como también se mostró en capítulos anteriores, podemos crear conjuntos de datos mediante código (Sección \@ref(data-frames)) o cargar bases de datos disponibles en librerías de R con el comando `data()` (Sección \@ref(data-paquetes)). 
+Sin embargo, normalmente importaremos los datos de un archivo externo.
 
--   bases de datos relacionales: MySQL, Oracle, ...
 
--   formatos web: HTML, XML, JSON, ...
+## Importación y exportación de datos {#importar-exportar}
 
--   ....
-
-### Formato de datos de R
-
-El formato de archivo en el que habitualmente se almacena objetos (datos)
-R es binario y está comprimido (en formato `"gzip"` por defecto).
-Para cargar un fichero de datos se emplea normalmente [`load()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load):
+Como ya se comentó en la Sección \@ref(load-save) podemos cargar y almacenar datos en ficheros (normalmente con extensión *.RData* o *.rda*) con las funciones `load()` y `save()` que emplean el formato por defecto de R (datos binarios comprimidos).
+Por ejemplo:
 
 ```r
 res <- load("datos/empleados.RData")
-res
+res # Devuelve el nombre de los objetos cargados en memoria
 ```
 
 ```
 ## [1] "empleados"
 ```
-
-```r
-ls()
-```
-
-```
-##  [1] "cite_fsimres" "cite_simres"  "citefig"      "citefig2"     "citepkg"     
-##  [6] "empleados"    "fig.path"     "inline"       "inline2"      "is_html"     
-## [11] "is_latex"     "latexfig"     "res"
-```
-y para guardar [`save()`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save):
+En estos casos hay que tener en cuenta que, aunque es lo habitual, el nombre del conjunto de datos puede no coincidir con el nombre del archivo, incluso puede contener varios objetos^[Para almacenar un único objeto de forma que se pueda cargar posteriormente especificando el nombre, se pueden emplear las funciones `saveRDS()` y `readRDS()`.].
 
 ```r
 # Guardar
 save(empleados, file = "datos/empleados_new.RData")
 ```
 
-El objeto empleado normalmente en R para almacenar datos en memoria 
-es el [`data.frame`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame).
+Además R es capaz de importar datos externos en casi cualquier formato (aunque puede requerir instalar paquetes adicionales), entre ellos:
+
+-   Archivos de texto (con distintos formatos).
+
+-   Archivos en otros formatos: Excel, SPSS...
+
+-   Bases de datos relacionales: MySQL, SQLite, PostgreSQL...
+
+-   Formatos web: HTML, XML, JSON...
+
+A continuación se muestran algunos ejemplos empleando código. 
+Adicionalmente en RStudio se puede emplear los submenús en *File > Import Dataset* (se previsualizará el resultado y escribirá el código por nosotros).
 
 
-### Acceso a datos en paquetes
+### Lectura de archivos de texto {#archivos-texto}
 
-R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete `datasets` 
-que se carga por defecto al abrir R. 
-Con el comando `data()` podemos obtener un listado de las bases de datos disponibles.
+En R para leer archivos de texto se suele utilizar la función `read.table()`:
 
-Para cargar una base de datos concreta se utiliza el comando
-`data(nombre)` (aunque en algunos casos se cargan automáticamente al emplearlos). 
-Por ejemplo, `data(cars)` carga la base de datos llamada `cars` en el entorno de trabajo (`".GlobalEnv"`)
-y `?cars` muestra la ayuda correspondiente con la descripición de la base de datos.
+```r
+read.table(file, header = FALSE, sep = "", dec = ".", ...)  
+```
+Los principales argumentos son:
 
+-   `header`: indica si el fichero tiene cabecera (`header = TRUE`) o no
+    (`header = FALSE`). Por defecto toma el valor `header = FALSE`.
 
-### Lectura de archivos de texto {#cap4-texto}
+-   `sep`: carácter separador de columnas que por defecto es un espacio
+    en blanco (`sep = ""`). Otras opciones serían: `sep = ";"` si el separador es
+    un ";", `sep = "\t"` si el separador es una tabulación, etc.
 
-En R para leer archivos de texto se suele utilizar la función `read.table()`.
-Supóngase, por ejemplo, que en el directorio actual está el fichero
-*empleados.txt*. La lectura de este fichero vendría dada por el código:
+-   `dec`: carácter utilizado en el fichero para los números decimales.
+    Por defecto se establece `dec = "."`. Si los decimales vienen dados
+    por "," se utiliza `dec = ","`
+
+Para más detalles y argumentos adicionales ver `help(read.table)`.
+
+Por ejemplo, supongamos que en el subdirectorio *datos* del directorio actual de trabajo está el fichero *empleados.txt* (con valores separados por espacios y con los los nombres de las columnas en la primera línea). 
+Para leer este fichero y almacenarlo en un data.frame podemos emplear el siguiente código:
 
 
 ```r
@@ -99,46 +120,19 @@ str(datos)
 ##  $ expprev : int  144 36 381 190 138 67 114 0 115 244 ...
 ##  $ minoria : chr  "No" "No" "No" "No" ...
 ```
+
+
 Si el fichero estuviese en el directorio *c:\\datos* bastaría con especificar
 `file = "c:/datos/empleados.txt"`.
-Nótese también que para la lectura del fichero anterior se ha
-establecido el argumento `header=TRUE` para indicar que la primera línea del
-fichero contiene los nombres de las variables.
 
-Los argumentos utilizados habitualmente para esta función son:
-
--   `header`: indica si el fichero tiene cabecera (`header=TRUE`) o no
-    (`header=FALSE`). Por defecto toma el valor `header=FALSE`.
-
--   `sep`: carácter separador de columnas que por defecto es un espacio
-    en blanco (`sep=""`). Otras opciones serían: `sep=","` si el separador es
-    un ";", `sep="*"` si el separador es un "\*", etc.
-
--   `dec`: carácter utilizado en el fichero para los números decimales.
-    Por defecto se establece `dec = "."`. Si los decimales vienen dados
-    por "," se utiliza `dec = ","`
-
-Resumiendo, los (principales) argumentos por defecto de la función
-`read.table` son los que se muestran en la siguiente línea:
-
-
-```r
-read.table(file, header = FALSE, sep = "", dec = ".")  
-```
-
-Para más detalles sobre esta función véase
-`help(read.table)`.
-
-Estan disponibles otras funciones con valores por defecto de los parámetros 
-adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores 
-se puede utilizar `read.delim()` o `read.delim2()`:
+Además están disponibles otras funciones con valores por defecto de los parámetros adecuados para otras situaciones. 
+Por ejemplo, para ficheros separados por tabuladores se puede utilizar `read.delim()` o `read.delim2()` (ver también la Sección \@ref(datos-excel)):
 
 ```r
 read.delim(file, header = TRUE, sep = "\t", dec = ".")
 read.delim2(file, header = TRUE, sep = "\t", dec = ",")
 ```
 
-### Alternativa `tidyverse`
 
 Para leer archivos de texto en distintos formatos también se puede emplear el paquete [`readr`](https://readr.tidyverse.org) 
 (colección [`tidyverse`](https://www.tidyverse.org/)), para lo que se recomienda
@@ -147,15 +141,7 @@ consultar el [Capítulo 11](https://r4ds.had.co.nz/data-import.html) del libro [
 
 ### Importación desde SPSS
 
-El programa R permite
-lectura de ficheros de datos en formato SPSS (extensión *.sav*) sin
-necesidad de tener instalado dicho programa en el ordenador. Para ello
-se necesita:
-
--   cargar la librería `foreign`
-
--   utilizar la función `read.spss`
-
+Podemos importar ficheros de datos en formato SPSS (extensión *.sav*) empleando la función `read.spss()` de la librería `foreign`.
 Por ejemplo:
 
 
@@ -183,18 +169,16 @@ str(datos)
 ##  - attr(*, "codepage")= int 1252
 ```
 
-**Nota**: Si hay fechas, puede ser recomendable emplear la función `spss.get()` del paquete `Hmisc`.
+También se puede emplear la función `spss.get()` del paquete `Hmisc`, lo cual puede ser recomendable si alguna de las variables contiene fechas.
 
 
-### Importación desde Excel
+### Importación desde Excel {#datos-excel}
 
-Se pueden leer fichero de
-Excel (con extensión *.xlsx*) utilizando por ejemplo los paquetes [`openxlsx`](https://cran.r-project.org/web/packages/openxlsx/index.html), [`readxl`](https://readxl.tidyverse.org) (colección [`tidyverse`](https://www.tidyverse.org/)), `XLConnect` o 
+Se pueden leer fichero de Excel (con extensión *.xlsx*) utilizando por ejemplo los paquetes [`openxlsx`](https://cran.r-project.org/web/packages/openxlsx/index.html), [`readxl`](https://readxl.tidyverse.org) (colección [`tidyverse`](https://www.tidyverse.org/)), `XLConnect` o 
 [`RODBC`](https://cran.r-project.org/web/packages/RODBC/index.html) (este paquete se empleará más adelante para acceder a bases de datos),
 entre otros.
 
-Sin embargo, un procedimiento sencillo consiste en  exportar los datos desde Excel a un archivo
-de texto separado por tabuladores (extensión *.csv*).
+Sin embargo, un procedimiento sencillo consiste en  exportar los datos desde Excel a un archivo de texto separado por tabuladores (extensión *.csv*).
 Por ejemplo, supongamos que queremos leer el fichero *coches.xls*:
 
 -   Desde Excel se selecciona el menú
@@ -230,11 +214,9 @@ datos <- read.csv2("coches.csv")
 
 ### Exportación de datos
 
-Puede ser de interés la
-exportación de datos para que puedan leídos con otros programas. Para
-ello, se puede emplear la función `write.table()`. Esta función es
-similar, pero funcionando en sentido inverso, a `read.table()` 
-(Sección \@ref(cap4-texto)).
+Puede ser de interés la exportación de datos para que puedan leídos con otros programas. 
+Para ello, se puede emplear la función `write.table()`. 
+Esta función es similar, pero operando en sentido inverso, a `read.table()` (Sección \@ref(archivos-texto)).
 
 Veamos un ejemplo:
 
@@ -263,15 +245,12 @@ Otra posibilidad es utilizar la función:
 ```r
 write.csv2(datos, file = "datos.csv")
 ```
-que dará lugar al fichero *datos.csv* importable directamente desde Excel.
+y se creará el fichero *datos.csv* que se puede abrir directamente con Excel.
 
 
-Manipulación de datos
----------------------
+## Manipulación de datos {#manipulacion-datos}
 
-Una vez cargada una (o varias) bases
-de datos hay una series de operaciones que serán de interés para el
-tratamiento de datos: 
+Una vez cargada una (o varias) bases de datos hay una serie de operaciones que serán de interés para el tratamiento de datos: 
 
 -   Operaciones con variables: 
     - crear
@@ -286,7 +265,7 @@ tratamiento de datos:
 
 A continuación se tratan algunas operaciones *básicas*.
 
-### Operaciones con variables
+### Operaciones con variables {#op-var}
 
 #### Creación (y eliminación) de variables
 
@@ -420,7 +399,92 @@ exportable a Excel con el siguiente comando:
 write.csv2(coches, file = "coches.csv")
 ```
 
-### Operaciones con casos
+#### Recodificación de variables
+
+Con el comando `cut()` podemos crear variables categóricas a partir de variables numéricas.
+El parámetro `breaks` permite especificar los intervalos para la discretización, puede ser un vector con los extremos de los intervalos o un entero con el número de intervalos.
+Por ejemplo, para categorizar la variable `cars$speed` en tres intervalos equidistantes podemos emplear^[Aunque si el objetivo es obtener las frecuencias de cada intervalo puede ser más eficiente emplear `hist()` con `plot = FALSE`.]:
+
+
+```r
+fspeed <- cut(cars$speed, 3, labels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+```
+## fspeed
+##  Baja Media  Alta 
+##    11    24    15
+```
+
+Para categorizar esta variable en tres niveles con aproximadamente el mismo número de observaciones podríamos combinar esta función con `quantile()`:
+
+
+```r
+breaks <- quantile(cars$speed, probs = seq(0, 1, len = 4))
+fspeed <- cut(cars$speed, breaks, labels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+```
+## fspeed
+##  Baja Media  Alta 
+##    17    16    15
+```
+
+Para otro tipo de recodificaciones podríamos emplear la función `ifelse()` vectorial:
+
+
+```r
+fspeed <- ifelse(cars$speed < 15, "Baja", "Alta")
+fspeed <- factor(fspeed, levels = c("Baja", "Alta"))
+table(fspeed)
+```
+
+```
+## fspeed
+## Baja Alta 
+##   23   27
+```
+
+Alternativamente en el caso de dos niveles podríamos emplear directamente la función `factor()`:
+
+
+```r
+fspeed <- factor(cars$speed >= 15, labels = c("Baja", "Alta")) # levels = c("FALSE", "TRUE")
+table(fspeed)
+```
+
+```
+## fspeed
+## Baja Alta 
+##   23   27
+```
+
+En el caso de múltiples niveles se podría emplear `ifelse()` anidados o la función [`recode()`](https://www.rdocumentation.org/packages/car/versions/3.0-9/topics/recode) del paquete `car`.
+
+Para acceder directamente a las variables de un data.frame podríamos emplear la función `attach()` para añadirlo a la ruta de búsqueda y `detach()` al finalizar.
+Sin embargo esta forma de proceder puede causar numerosos inconvenientes, especialmente al modificar la base de datos, por lo que la recomendación sería emplear `with()`.
+Por ejemplo:
+
+
+```r
+fspeed <- with(cars, ifelse(speed < 10, "Baja",
+                 ifelse(speed < 20, "Media", "Alta")))
+fspeed <- factor(fspeed, levels = c("Baja", "Media", "Alta"))
+table(fspeed)
+```
+
+```
+## fspeed
+##  Baja Media  Alta 
+##     6    32    12
+```
+
+Para manipular factores (variables cualitativas) pueden resultar de interés las herramientas en el paquete [`forcats`](https://forcats.tidyverse.org) de la colección [`tidyverse`](https://tidyverse.org).
+
+
+### Operaciones con casos {#op-casos}
 
 #### Ordenación
 
@@ -479,10 +543,8 @@ head(cars2)
 
 #### Filtrado
 
-El filtrado de datos consiste en
-elegir una submuestra que cumpla determinadas condiciones. Para ello se
-puede utilizar la función [`subset()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset) 
-(que además permite seleccionar variables).
+El filtrado de datos consiste en elegir un subconjunto que cumpla determinadas condiciones. 
+Para ello se puede utilizar la función [`subset()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset) (que además permite seleccionar variables).
 
 A continuación se muestran un par de ejemplos:
 
@@ -536,7 +598,7 @@ cars[ii, ]  # speed en (10,15) y dist>45
 ## 23    14   80  22.53086  24.38430
 ```
 
-En este caso puede ser de utilidad la función [`which()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which):
+En este caso también puede ser de utilidad la función [`which()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which):
 
 
 ```r
@@ -577,3 +639,24 @@ str(cars[id, 1:2])
 # ?which.min
 ```
 
+### Operaciones con tablas de datos {#op-tablas}
+
+El paquete base de R dispone de diversas herramientas para realizar distintos tipos de operaciones, como:
+
+* Añadir casos o variables:
+
+    - [`rbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind): combina vectores, matrices, arrays o data.frames por filas.
+    
+    - [`cbind()` ](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind): Idem por columnas.
+
+* Combinar tablas:
+
+    - [`match(x, table)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match) devuelve un vector (de la misma longitud que `x`)  con las (primeras) posiciones de coincidencia de `x` en `table` (o `NA`, por defecto, si no hay coincidencia).
+    
+    - [`pmatch(x, table, ...)`](https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/pmatch): similar al anterior pero con coincidencias parciales de cadenas de texto. 
+
+    Estos operadores devuelven un índice con el que se pueden añadir variables de una segunda tabla. Para realizar consultas combinando tablas puede ser más cómodo el operador `%in%` (`?'%in%'`).
+
+<!-- Pendiente: Ejemplos -->
+
+Sin embargo, como se muestra en el Apéndice \@ref(dplyr) puede resultar más cómodo emplear los paquetes [`dplyr`](https://dplyr.tidyverse.org) y [`tidyr`](https://tidyr.tidyverse.org) de la colección [`tidyverse`](https://tidyverse.org).

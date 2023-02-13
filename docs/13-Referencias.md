@@ -17,7 +17,7 @@ Wickham, H., y Grolemund, G. (2016). *[R for data science: import, tidy, transfo
 
 ***Repositorio***: [rubenfcasal/intror](https://github.com/rubenfcasal/intror)
 
-**Recursos para el aprendizaje de R**: En este [post](https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r) se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda.
+***Recursos para el aprendizaje de R***: En este [post](https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r) se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda.
 
 [***Bookdown***](https://bookdown.org):
 
@@ -29,7 +29,7 @@ Wickham, H., y Grolemund, G. (2016). *[R for data science: import, tidy, transfo
 
 * Wickham, H. (2019). *[Advanced R, 2ª edición](https://adv-r.hadley.nz/)*, [Chapman & Hall](https://www.amazon.com/dp/0815384572), [1ª edición.](http://adv-r.had.co.nz/).
 
-[***Posit (RStudio)**](https://posit.co)
+[***Posit (RStudio)***](https://posit.co)
 
 * [Blog](https://posit.co/blog)
 
@@ -57,6 +57,7 @@ Wickham, H., y Grolemund, G. (2016). *[R for data science: import, tidy, transfo
 
 * [shiny](http://shiny.rstudio.com)
 
+
 ## Bibliografía complementaria {-}
 
 Beeley (2015). *Web Application Development with R Using Shiny*.
@@ -74,6 +75,8 @@ A Practical Guide to Web Scraping and Text Mining*. Wiley.
 
 Ramsay *et al.* (2009). *Functional Data Analysis with R and MATLAB*.
 Springer.
+
+Tukey, J.W. (1977). *Exploratory Data Analysis*. Volumen 2. Addison Wesley.
 
 Van der Loo y de Jonge (2012). *Learning RStudio for R Statistical
 Computing*. Packt Publishing.

@@ -1,6 +1,28 @@
-# Estructuras de datos
+# Estructuras de datos {#estructuras}
 
 
+
+
+<!-- 
+---
+title: "Estructuras de datos"
+author: "Estadística"
+date: "Grado en Inteligencia Artificial (UDC)"
+output: 
+  bookdown::html_document2:
+    pandoc_args: ["--number-offset", "1,0"]
+    toc: yes 
+    # mathjax: local            # copia local de MathJax, hay que establecer:
+    # self_contained: false     # las dependencias se guardan en ficheros externos 
+  bookdown::pdf_document2:
+    keep_tex: yes
+    toc: yes 
+---
+
+bookdown::preview_chapter("02-Estructuras.Rmd")
+knitr::purl("02-Estructuras.Rmd", documentation = 2)
+knitr::spin("02-Estructuras.R",knit = FALSE)
+-->
 
 
 En los ejemplos que hemos visto hasta ahora los objetos de `R` almacenaban un único valor cada uno. 
@@ -16,7 +38,7 @@ Las principales estructuras son:
 -   Listas
 
 
-## Vectores
+## Vectores {#vectores}
 
 Un vector es un conjunto de valores básicos del mismo tipo. 
 La forma más sencilla de crear vectores es a
@@ -111,7 +133,7 @@ sample(1:6, size=10, replace = T) # lanzamiento de un dado
 ```
 
 ```
-##  [1] 6 3 1 1 5 5 5 3 6 6
+##  [1] 1 2 1 3 6 3 5 1 6 6
 ```
 
 Para simular el lanzamiento de una moneda podemos escribir 
@@ -158,8 +180,8 @@ lanz
 ```
 
 ```
-## cara cruz cara cruz cara cara cara cara cara cruz 
-##    1    0    1    0    1    1    1    1    1    0
+## cruz cara cara cruz cara cruz cruz cruz cruz cara 
+##    0    1    1    0    1    0    0    0    0    1
 ```
 
 ```r
@@ -169,7 +191,7 @@ table(lanz)
 ```
 ## lanz
 ## 0 1 
-## 3 7
+## 6 4
 ```
 
 Otros ejemplos
@@ -179,8 +201,8 @@ rnorm(10)  # rnorm(10, mean = 0, sd = 1)
 ```
 
 ```
-##  [1]  1.06057423 -1.13112660 -0.55005465 -0.06400286  0.37460541  0.90174865
-##  [7]  0.60904681 -0.06503237 -0.72623274  0.99699218
+##  [1] -1.97731820 -0.06996328  1.14162307 -0.18816889  1.67035726  0.22572106
+##  [7] -0.06725821  1.33538544 -0.35002007 -2.02479826
 ```
 
 ```r
@@ -188,8 +210,8 @@ runif(15, min = 2, max = 10)
 ```
 
 ```
-##  [1] 4.133106 6.093477 7.363590 5.900827 7.166668 4.672351 8.618037 3.510272
-##  [9] 9.658221 5.722486 5.455435 2.315432 3.362482 8.963233 7.090975
+##  [1] 4.479850 9.063356 7.009255 9.958030 6.228489 4.061558 2.656471 3.330015
+##  [9] 8.101536 4.401777 2.983131 7.534381 9.804107 7.434091 7.280136
 ```
 
 Como ya se comentó, se puede utilizar `help(funcion)` (o `?funcion`) para mostrar la ayuda de las funciones anteriores.
@@ -413,7 +435,7 @@ month.name[1:6]  # primeros 6 meses del año en inglés
 ```
 
 
-### Factores 
+### Factores {#factores}
 
 Los factores se utilizan para representar datos categóricos. 
 Se puede pensar en ellos como vectores de enteros en los que cada entero tiene asociada una etiqueta (*label*). 
@@ -508,7 +530,7 @@ respuestas
 ```
 
 
-## Matrices y arrays
+## Matrices y arrays {#matrices-y-arrays}
 
 ### Matrices 
 
@@ -830,9 +852,9 @@ A %*% B  # comprobamos que está bien
 ```
 
 
-## Data frames
+## Data frames {#data-frames}
 
-Los `data.frames` (*marcos de datos*) son el objeto más habitual para el almacenamiento de conjuntos de datos. 
+El `data.frame` (*marco o tabla de datos*) es el objeto más habitual para el almacenamiento de conjuntos de datos. 
 En este tipo de objetos cada individuo de la muestra se corresponde con una fila y cada una de las variables con una columna.
 Para la creación de estas estructuras se utiliza la función `data.frame()`.
 
@@ -890,8 +912,7 @@ lista.compra
 ## 3  Yogourt Lácteos       10
 ```
 
-A continuación se muestran ejemplos que ilustran la manera de acceder
-a los valores de un data.frame.
+A continuación se muestran ejemplos que ilustran la manera de acceder a los valores de un data.frame.
 
 ```r
 lista.compra$Unidades

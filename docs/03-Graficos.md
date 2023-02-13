@@ -236,6 +236,7 @@ Parámetro   Descripción
 `mfcol`     divide la pantalla gráfica por columnas
 
 `mfrow`     lo mismo que `mfcol` pero por filas
+
 -------------------------------------------------------------
 
 Ejecutar `help(par)` para obtener la lista completa.

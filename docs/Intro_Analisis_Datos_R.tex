@@ -178,7 +178,7 @@
 
 \title{Introducción al Análisis de Datos con \texttt{R}}
 \author{Rubén Fernández Casal (\href{mailto:ruben.fcasal@udc.es}{\nolinkurl{ruben.fcasal@udc.es}}) \and Javier Roca-Pardiñas (\href{mailto:roca@uvigo.es}{\nolinkurl{roca@uvigo.es}}) \and Julián Costa Bouzas (\href{mailto:julian.costa@udc.es}{\nolinkurl{julian.costa@udc.es}}) \and Manuel Oviedo de la Fuente (\href{mailto:manuel.oviedo@udc.es}{\nolinkurl{manuel.oviedo@udc.es}})}
-\date{Edición: Junio de 2022. Impresión: 2023-01-30. ISBN: 978-84-09-41823-7}
+\date{Edición: Junio de 2022. Impresión: 2023-02-13. ISBN: 978-84-09-41823-7}
 
 \begin{document}
 \maketitle
@@ -713,22 +713,15 @@ La instalación de un paquete se puede hacer de varias formas:
 \end{Highlighting}
 \end{Shaded}
 \item
-  Desde el correspondiente menú de la intefaz gráfica (\emph{Paquetes \textgreater{} Instalar paquete(s)\ldots{}} en la consola de R y \emph{Tools \textgreater{} Install packages\ldots{}} o la pestaña \emph{Packages} en RStudio).
+  Desde el correspondiente menú de la interfaz gráfica (\emph{Paquetes \textgreater{} Instalar paquete(s)\ldots{}} en la consola de R y \emph{Tools \textgreater{} Install packages\ldots{}} o la pestaña \emph{Packages} en RStudio).
 \end{itemize}
 
 Este proceso sólo es necesario realizarlo la primera vez que se utilice el paquete.
 
-Para utilizar un paquete ya instalado será necesario cargarlo, lo cual se puede hacer de varias formas:
+Para utilizar un paquete ya instalado es necesario cargarlo en memoria, ejecutando \texttt{library(paquete)} (también \texttt{require(paquete)}, o emplear el menú \emph{Paquetes \textgreater{} Cargar paquete(s)\ldots{}} de la consola de R).
+Esta operación será necesario realizarla en cada nueva sesión de R.
 
-\begin{itemize}
-\item
-  Desde el menú \emph{Paquetes \textgreater{} Cargar paquete(s)\ldots{}}
-\item
-  Por consola, utilizando \texttt{library(paquete)} (también \texttt{require(paquete)})
-\end{itemize}
-
-Esta operación será necesario realizarla cada vez que se inicie una
-sesión de R.
+También se puede ejecutar una función específica de un paquete empleando\footnote{Siempre que la función sea un objeto visible del paquete (i.e.~que haya sido exportada en el NAMESPACE), en caso contrario se puede emplear \texttt{paquete:::funcion}.} \texttt{paquete::funcion()}.
 
 Finalmente, la ayuda de un paquete se puede obtener con la sentencia
 
@@ -743,7 +736,7 @@ Finalmente, la ayuda de un paquete se puede obtener con la sentencia
 
 \texttt{R} es un lenguaje \textbf{orientado a objetos} lo que significa que las variables, datos, funciones, resultados, etc., se guardan en la memoria del ordenador en forma de \emph{objetos} con un nombre específico.
 
-Los principales tipos de valores básicos de \texttt{R} son:
+Los principales tipos de valores básicos de \texttt{R} (también denominados objetos atómicos) son:
 
 \begin{itemize}
 \item
@@ -757,8 +750,7 @@ Los principales tipos de valores básicos de \texttt{R} son:
 \hypertarget{objetos-numuxe9ricos}{%
 \subsection{Objetos numéricos}\label{objetos-numuxe9ricos}}
 
-Los valores numéricos adoptan
-la notación habitual en informática: punto decimal, notacion científica, \ldots{}
+Los valores numéricos adoptan la notación habitual en informática: punto decimal, notación científica\ldots{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -780,8 +772,7 @@ la notación habitual en informática: punto decimal, notacion científica, \ldo
 ## [1] 1000
 \end{verbatim}
 
-Con este tipo de objetos se pueden hacer operaciones aritméticas
-utilizando el operador correspondiente.
+Con este tipo de objetos se pueden hacer operaciones aritméticas utilizando el operador correspondiente.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -868,8 +859,7 @@ se introducen delimitadas por comillas (``nombre'') o por apóstrofos
 \hypertarget{objetos-luxf3gicos}{%
 \subsection{Objetos lógicos}\label{objetos-luxf3gicos}}
 
-Los objetos lógicos sólo pueden
-tomar dos valores \texttt{TRUE} (numéricamente toma el valor 1) y \texttt{FALSE}
+Los objetos lógicos sólo pueden tomar dos valores \texttt{TRUE} (numéricamente toma el valor 1) y \texttt{FALSE}
 (valor 0).
 
 \begin{Shaded}
@@ -918,8 +908,7 @@ tomar dos valores \texttt{TRUE} (numéricamente toma el valor 1) y \texttt{FALSE
 \hypertarget{operadores-luxf3gicos}{%
 \subsection{Operadores lógicos}\label{operadores-luxf3gicos}}
 
-Existen varios operadores en
-\texttt{R} que devuelven un valor de tipo lógico. Veamos algún ejemplo
+Existen varios operadores en \texttt{R} que devuelven un valor de tipo lógico. Veamos algún ejemplo
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1012,8 +1001,7 @@ Nótese la diferencia entre \texttt{=} (asignación) y \texttt{==} (operador ló
 \end{Highlighting}
 \end{Shaded}
 
-Se pueden encadenar varias condiciones lógicas utiilizando
-los operadores \texttt{\&} (y lógico) y \texttt{\textbar{}} (o lógico).
+Se pueden encadenar varias condiciones lógicas utilizando los operadores \texttt{\&} (y lógico) y \texttt{\textbar{}} (o lógico).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1133,8 +1121,8 @@ Para borrar todos los objetos en memoria se puede utilizar \texttt{rm(list=ls())
 
 \texttt{character(0)} (cadena de texto vacía) significa que no hay objetos en memoria.
 
-\hypertarget{guardar-y-cargar-objetos}{%
-\subsection{Guardar y cargar objetos}\label{guardar-y-cargar-objetos}}
+\hypertarget{load-save}{%
+\subsection{Guardar y cargar objetos}\label{load-save}}
 
 Para guardar el área de trabajo (Workspace) con todos los objetos de memoria (es decir, los que figuran al utilizar \texttt{ls()}) se utiliza la función \texttt{save.image(nombre\ archivo)}.
 
@@ -1164,6 +1152,17 @@ Para cargar los objetos almacenados en un archivo se utiliza la función \texttt
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{data-paquetes}{%
+\subsection{Carga de datos en paquetes}\label{data-paquetes}}
+
+R dispone de múltiples conjuntos de datos en distintos paquetes, normalmente para ilustrar los procedimientos que implementan.
+Uno de estos paquetes es \texttt{datasets} que se carga por defecto al abrir R.
+Con el comando \texttt{data()} podemos obtener un listado de las bases de datos disponibles.
+
+Para cargar una base de datos concreta se utiliza el comando
+\texttt{data(nombre)} (aunque en algunos casos se cargan automáticamente al emplearlos).
+Por ejemplo, \texttt{data(cars)} carga la base de datos llamada \texttt{cars} en el entorno de trabajo (\texttt{".GlobalEnv"}) y \texttt{?cars} muestra la ayuda correspondiente con la descripción de la base de datos.
+
 \hypertarget{directorio-de-trabajo}{%
 \subsection{Directorio de trabajo}\label{directorio-de-trabajo}}
 
@@ -1191,8 +1190,8 @@ Por ejemplo, para cambiar el directorio de trabajo a \texttt{c:\textbackslash{}d
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{estructuras-de-datos}{%
-\chapter{Estructuras de datos}\label{estructuras-de-datos}}
+\hypertarget{estructuras}{%
+\chapter{Estructuras de datos}\label{estructuras}}
 
 En los ejemplos que hemos visto hasta ahora los objetos de \texttt{R} almacenaban un único valor cada uno.
 Sin embargo, las estructuras de datos que proporciona \texttt{R} permiten almacenar en un mismo objeto varios valores.
@@ -1317,7 +1316,7 @@ A continuación se obtiene una simulación de 10 lanzamientos de un dado
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 6 3 1 1 5 5 5 3 6 6
+##  [1] 1 2 1 3 6 3 5 1 6 6
 \end{verbatim}
 
 Para simular el lanzamiento de una moneda podemos escribir
@@ -1373,8 +1372,8 @@ Para simular el lanzamiento de una moneda podemos escribir
 \end{Shaded}
 
 \begin{verbatim}
-## cara cruz cara cruz cara cara cara cara cara cruz 
-##    1    0    1    0    1    1    1    1    1    0
+## cruz cara cara cruz cara cruz cruz cruz cruz cara 
+##    0    1    1    0    1    0    0    0    0    1
 \end{verbatim}
 
 \begin{Shaded}
@@ -1386,7 +1385,7 @@ Para simular el lanzamiento de una moneda podemos escribir
 \begin{verbatim}
 ## lanz
 ## 0 1 
-## 3 7
+## 6 4
 \end{verbatim}
 
 Otros ejemplos
@@ -1398,8 +1397,8 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  1.06057423 -1.13112660 -0.55005465 -0.06400286  0.37460541  0.90174865
-##  [7]  0.60904681 -0.06503237 -0.72623274  0.99699218
+##  [1] -1.97731820 -0.06996328  1.14162307 -0.18816889  1.67035726  0.22572106
+##  [7] -0.06725821  1.33538544 -0.35002007 -2.02479826
 \end{verbatim}
 
 \begin{Shaded}
@@ -1409,8 +1408,8 @@ Otros ejemplos
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 4.133106 6.093477 7.363590 5.900827 7.166668 4.672351 8.618037 3.510272
-##  [9] 9.658221 5.722486 5.455435 2.315432 3.362482 8.963233 7.090975
+##  [1] 4.479850 9.063356 7.009255 9.958030 6.228489 4.061558 2.656471 3.330015
+##  [9] 8.101536 4.401777 2.983131 7.534381 9.804107 7.434091 7.280136
 \end{verbatim}
 
 Como ya se comentó, se puede utilizar \texttt{help(funcion)} (o \texttt{?funcion}) para mostrar la ayuda de las funciones anteriores.
@@ -2166,7 +2165,7 @@ Función & Descripción \\
 \hypertarget{data-frames}{%
 \section{Data frames}\label{data-frames}}
 
-Los \texttt{data.frames} (\emph{marcos de datos}) son el objeto más habitual para el almacenamiento de conjuntos de datos.
+El \texttt{data.frame} (\emph{marco o tabla de datos}) es el objeto más habitual para el almacenamiento de conjuntos de datos.
 En este tipo de objetos cada individuo de la muestra se corresponde con una fila y cada una de las variables con una columna.
 Para la creación de estas estructuras se utiliza la función \texttt{data.frame()}.
 
@@ -2234,8 +2233,7 @@ Una solución mejor es utilizar un \texttt{data.frame}, con lo cual se mantiene 
 ## 3  Yogourt Lácteos       10
 \end{verbatim}
 
-A continuación se muestran ejemplos que ilustran la manera de acceder
-a los valores de un data.frame.
+A continuación se muestran ejemplos que ilustran la manera de acceder a los valores de un data.frame.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2704,44 +2702,36 @@ Para más detalles ver \href{http://cran.r-project.org/web/views/Graphics.html}{
 
 \begin{center}\includegraphics[width=0.7\linewidth]{03-Graficos_files/figure-latex/unnamed-chunk-10-2} \end{center}
 
-\hypertarget{manipulaciuxf3n-de-datos-con-r}{%
-\chapter{Manipulación de datos con R}\label{manipulaciuxf3n-de-datos-con-r}}
+\hypertarget{manipulacion}{%
+\chapter{Manipulación de datos}\label{manipulacion}}
 
-La mayoría de los estudios estadísticos
-requieren disponer de un conjunto de datos.
+El punto de partida para (casi) cualquier estudio estadístico son los datos.
 
-\hypertarget{lectura-importaciuxf3n-y-exportaciuxf3n-de-datos}{%
-\section{Lectura, importación y exportación de datos}\label{lectura-importaciuxf3n-y-exportaciuxf3n-de-datos}}
+\begin{quote}
+``In God we trust, all others must bring data.''
 
-Además de la introducción directa, R es capaz de
-importar datos externos en múltiples formatos:
+``Without data, you're just another person with an opinion.''
 
-\begin{itemize}
-\item
-  bases de datos disponibles en librerías de R
-\item
-  archivos de texto en formato ASCII
-\item
-  archivos en otros formatos: Excel, SPSS, \ldots{}
-\item
-  bases de datos relacionales: MySQL, Oracle, \ldots{}
-\item
-  formatos web: HTML, XML, JSON, \ldots{}
-\item
-  \ldots.
-\end{itemize}
+--- W. E. Deming
+\end{quote}
 
-\hypertarget{formato-de-datos-de-r}{%
-\subsection{Formato de datos de R}\label{formato-de-datos-de-r}}
+Como ya se comentó anteriormente, el objeto de R en el que se suele almacenar un conjunto de datos es el \texttt{data.frame} (ver Sección \ref{data-frames}).
+En este capítulo se muestran las herramientas básicas disponibles en el paquete base de R para la manipulación de conjuntos de datos.
+Otras alternativas más avanzadas pero que pueden resultar de gran interés son las que proporcionan las librerías \texttt{tidyverse} (ver Apéndice) o \texttt{data.table}, aunque pueden requerir de cierto tiempo de aprendizaje y no serían muy recomendables para usuarios que se están iniciando en R.
 
-El formato de archivo en el que habitualmente se almacena objetos (datos)
-R es binario y está comprimido (en formato \texttt{"gzip"} por defecto).
-Para cargar un fichero de datos se emplea normalmente \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/load}{\texttt{load()}}:
+Como también se mostró en capítulos anteriores, podemos crear conjuntos de datos mediante código (Sección \ref{data-frames}) o cargar bases de datos disponibles en librerías de R con el comando \texttt{data()} (Sección \ref{data-paquetes}).
+Sin embargo, normalmente importaremos los datos de un archivo externo.
+
+\hypertarget{importar-exportar}{%
+\section{Importación y exportación de datos}\label{importar-exportar}}
+
+Como ya se comentó en la Sección \ref{load-save} podemos cargar y almacenar datos en ficheros (normalmente con extensión \emph{.RData} o \emph{.rda}) con las funciones \texttt{load()} y \texttt{save()} que emplean el formato por defecto de R (datos binarios comprimidos).
+Por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{load}\NormalTok{(}\StringTok{"datos/empleados.RData"}\NormalTok{)}
-\NormalTok{res}
+\NormalTok{res }\CommentTok{\# Devuelve el nombre de los objetos cargados en memoria}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2749,19 +2739,7 @@ Para cargar un fichero de datos se emplea normalmente \href{https://www.rdocumen
 ## [1] "empleados"
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ls}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "cite_fsimres" "cite_simres"  "citefig"      "citefig2"     "citepkg"     
-##  [6] "empleados"    "fig.path"     "inline"       "inline2"      "is_html"     
-## [11] "is_latex"     "latexfig"     "res"
-\end{verbatim}
-
-y para guardar \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/save}{\texttt{save()}}:
+En estos casos hay que tener en cuenta que, aunque es lo habitual, el nombre del conjunto de datos puede no coincidir con el nombre del archivo, incluso puede contener varios objetos\footnote{Para almacenar un único objeto de forma que se pueda cargar posteriormente especificando el nombre, se pueden emplear las funciones \texttt{saveRDS()} y \texttt{readRDS()}.}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2770,27 +2748,53 @@ y para guardar \href{https://www.rdocumentation.org/packages/base/versions/3.6.1
 \end{Highlighting}
 \end{Shaded}
 
-El objeto empleado normalmente en R para almacenar datos en memoria
-es el \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/data.frame}{\texttt{data.frame}}.
+Además R es capaz de importar datos externos en casi cualquier formato (aunque puede requerir instalar paquetes adicionales), entre ellos:
 
-\hypertarget{acceso-a-datos-en-paquetes}{%
-\subsection{Acceso a datos en paquetes}\label{acceso-a-datos-en-paquetes}}
+\begin{itemize}
+\item
+  Archivos de texto (con distintos formatos).
+\item
+  Archivos en otros formatos: Excel, SPSS\ldots{}
+\item
+  Bases de datos relacionales: MySQL, SQLite, PostgreSQL\ldots{}
+\item
+  Formatos web: HTML, XML, JSON\ldots{}
+\end{itemize}
 
-R dispone de múltiples conjuntos de datos en distintos paquetes, especialmente en el paquete \texttt{datasets}
-que se carga por defecto al abrir R.
-Con el comando \texttt{data()} podemos obtener un listado de las bases de datos disponibles.
+A continuación se muestran algunos ejemplos empleando código.
+Adicionalmente en RStudio se puede emplear los submenús en \emph{File \textgreater{} Import Dataset} (se previsualizará el resultado y escribirá el código por nosotros).
 
-Para cargar una base de datos concreta se utiliza el comando
-\texttt{data(nombre)} (aunque en algunos casos se cargan automáticamente al emplearlos).
-Por ejemplo, \texttt{data(cars)} carga la base de datos llamada \texttt{cars} en el entorno de trabajo (\texttt{".GlobalEnv"})
-y \texttt{?cars} muestra la ayuda correspondiente con la descripición de la base de datos.
+\hypertarget{archivos-texto}{%
+\subsection{Lectura de archivos de texto}\label{archivos-texto}}
 
-\hypertarget{cap4-texto}{%
-\subsection{Lectura de archivos de texto}\label{cap4-texto}}
+En R para leer archivos de texto se suele utilizar la función \texttt{read.table()}:
 
-En R para leer archivos de texto se suele utilizar la función \texttt{read.table()}.
-Supóngase, por ejemplo, que en el directorio actual está el fichero
-\emph{empleados.txt}. La lectura de este fichero vendría dada por el código:
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{read.table}\NormalTok{(file, }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{sep =} \StringTok{""}\NormalTok{, }\AttributeTok{dec =} \StringTok{"."}\NormalTok{, ...)  }
+\end{Highlighting}
+\end{Shaded}
+
+Los principales argumentos son:
+
+\begin{itemize}
+\item
+  \texttt{header}: indica si el fichero tiene cabecera (\texttt{header\ =\ TRUE}) o no
+  (\texttt{header\ =\ FALSE}). Por defecto toma el valor \texttt{header\ =\ FALSE}.
+\item
+  \texttt{sep}: carácter separador de columnas que por defecto es un espacio
+  en blanco (\texttt{sep\ =\ ""}). Otras opciones serían: \texttt{sep\ =\ ";"} si el separador es
+  un ``;'', \texttt{sep\ =\ "\textbackslash{}t"} si el separador es una tabulación, etc.
+\item
+  \texttt{dec}: carácter utilizado en el fichero para los números decimales.
+  Por defecto se establece \texttt{dec\ =\ "."}. Si los decimales vienen dados
+  por ``,'' se utiliza \texttt{dec\ =\ ","}
+\end{itemize}
+
+Para más detalles y argumentos adicionales ver \texttt{help(read.table)}.
+
+Por ejemplo, supongamos que en el subdirectorio \emph{datos} del directorio actual de trabajo está el fichero \emph{empleados.txt} (con valores separados por espacios y con los los nombres de las columnas en la primera línea).
+Para leer este fichero y almacenarlo en un data.frame podemos emplear el siguiente código:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2817,41 +2821,9 @@ Supóngase, por ejemplo, que en el directorio actual está el fichero
 
 Si el fichero estuviese en el directorio \emph{c:\textbackslash datos} bastaría con especificar
 \texttt{file\ =\ "c:/datos/empleados.txt"}.
-Nótese también que para la lectura del fichero anterior se ha
-establecido el argumento \texttt{header=TRUE} para indicar que la primera línea del
-fichero contiene los nombres de las variables.
 
-Los argumentos utilizados habitualmente para esta función son:
-
-\begin{itemize}
-\item
-  \texttt{header}: indica si el fichero tiene cabecera (\texttt{header=TRUE}) o no
-  (\texttt{header=FALSE}). Por defecto toma el valor \texttt{header=FALSE}.
-\item
-  \texttt{sep}: carácter separador de columnas que por defecto es un espacio
-  en blanco (\texttt{sep=""}). Otras opciones serían: \texttt{sep=","} si el separador es
-  un ``;'', \texttt{sep="*"} si el separador es un ``*'', etc.
-\item
-  \texttt{dec}: carácter utilizado en el fichero para los números decimales.
-  Por defecto se establece \texttt{dec\ =\ "."}. Si los decimales vienen dados
-  por ``,'' se utiliza \texttt{dec\ =\ ","}
-\end{itemize}
-
-Resumiendo, los (principales) argumentos por defecto de la función
-\texttt{read.table} son los que se muestran en la siguiente línea:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{read.table}\NormalTok{(file, }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{sep =} \StringTok{""}\NormalTok{, }\AttributeTok{dec =} \StringTok{"."}\NormalTok{)  }
-\end{Highlighting}
-\end{Shaded}
-
-Para más detalles sobre esta función véase
-\texttt{help(read.table)}.
-
-Estan disponibles otras funciones con valores por defecto de los parámetros
-adecuados para otras situaciones. Por ejemplo, para ficheros separados por tabuladores
-se puede utilizar \texttt{read.delim()} o \texttt{read.delim2()}:
+Además están disponibles otras funciones con valores por defecto de los parámetros adecuados para otras situaciones.
+Por ejemplo, para ficheros separados por tabuladores se puede utilizar \texttt{read.delim()} o \texttt{read.delim2()} (ver también la Sección \ref{datos-excel}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2860,9 +2832,6 @@ se puede utilizar \texttt{read.delim()} o \texttt{read.delim2()}:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{alternativa-tidyverse}{%
-\subsection{\texorpdfstring{Alternativa \texttt{tidyverse}}{Alternativa tidyverse}}\label{alternativa-tidyverse}}
-
 Para leer archivos de texto en distintos formatos también se puede emplear el paquete \href{https://readr.tidyverse.org}{\texttt{readr}}
 (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}), para lo que se recomienda
 consultar el \href{https://r4ds.had.co.nz/data-import.html}{Capítulo 11} del libro \href{http://r4ds.had.co.nz}{R for Data Science}.
@@ -2870,18 +2839,7 @@ consultar el \href{https://r4ds.had.co.nz/data-import.html}{Capítulo 11} del li
 \hypertarget{importaciuxf3n-desde-spss}{%
 \subsection{Importación desde SPSS}\label{importaciuxf3n-desde-spss}}
 
-El programa R permite
-lectura de ficheros de datos en formato SPSS (extensión \emph{.sav}) sin
-necesidad de tener instalado dicho programa en el ordenador. Para ello
-se necesita:
-
-\begin{itemize}
-\item
-  cargar la librería \texttt{foreign}
-\item
-  utilizar la función \texttt{read.spss}
-\end{itemize}
-
+Podemos importar ficheros de datos en formato SPSS (extensión \emph{.sav}) empleando la función \texttt{read.spss()} de la librería \texttt{foreign}.
 Por ejemplo:
 
 \begin{Shaded}
@@ -2910,18 +2868,16 @@ Por ejemplo:
 ##  - attr(*, "codepage")= int 1252
 \end{verbatim}
 
-\textbf{Nota}: Si hay fechas, puede ser recomendable emplear la función \texttt{spss.get()} del paquete \texttt{Hmisc}.
+También se puede emplear la función \texttt{spss.get()} del paquete \texttt{Hmisc}, lo cual puede ser recomendable si alguna de las variables contiene fechas.
 
-\hypertarget{importaciuxf3n-desde-excel}{%
-\subsection{Importación desde Excel}\label{importaciuxf3n-desde-excel}}
+\hypertarget{datos-excel}{%
+\subsection{Importación desde Excel}\label{datos-excel}}
 
-Se pueden leer fichero de
-Excel (con extensión \emph{.xlsx}) utilizando por ejemplo los paquetes \href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://readxl.tidyverse.org}{\texttt{readxl}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}), \texttt{XLConnect} o
+Se pueden leer fichero de Excel (con extensión \emph{.xlsx}) utilizando por ejemplo los paquetes \href{https://cran.r-project.org/web/packages/openxlsx/index.html}{\texttt{openxlsx}}, \href{https://readxl.tidyverse.org}{\texttt{readxl}} (colección \href{https://www.tidyverse.org/}{\texttt{tidyverse}}), \texttt{XLConnect} o
 \href{https://cran.r-project.org/web/packages/RODBC/index.html}{\texttt{RODBC}} (este paquete se empleará más adelante para acceder a bases de datos),
 entre otros.
 
-Sin embargo, un procedimiento sencillo consiste en exportar los datos desde Excel a un archivo
-de texto separado por tabuladores (extensión \emph{.csv}).
+Sin embargo, un procedimiento sencillo consiste en exportar los datos desde Excel a un archivo de texto separado por tabuladores (extensión \emph{.csv}).
 Por ejemplo, supongamos que queremos leer el fichero \emph{coches.xls}:
 
 \begin{itemize}
@@ -2966,11 +2922,9 @@ más directo con:
 \hypertarget{exportaciuxf3n-de-datos}{%
 \subsection{Exportación de datos}\label{exportaciuxf3n-de-datos}}
 
-Puede ser de interés la
-exportación de datos para que puedan leídos con otros programas. Para
-ello, se puede emplear la función \texttt{write.table()}. Esta función es
-similar, pero funcionando en sentido inverso, a \texttt{read.table()}
-(Sección \ref{cap4-texto}).
+Puede ser de interés la exportación de datos para que puedan leídos con otros programas.
+Para ello, se puede emplear la función \texttt{write.table()}.
+Esta función es similar, pero operando en sentido inverso, a \texttt{read.table()} (Sección \ref{archivos-texto}).
 
 Veamos un ejemplo:
 
@@ -3007,14 +2961,12 @@ Otra posibilidad es utilizar la función:
 \end{Highlighting}
 \end{Shaded}
 
-que dará lugar al fichero \emph{datos.csv} importable directamente desde Excel.
+y se creará el fichero \emph{datos.csv} que se puede abrir directamente con Excel.
 
-\hypertarget{manipulaciuxf3n-de-datos}{%
-\section{Manipulación de datos}\label{manipulaciuxf3n-de-datos}}
+\hypertarget{manipulacion-datos}{%
+\section{Manipulación de datos}\label{manipulacion-datos}}
 
-Una vez cargada una (o varias) bases
-de datos hay una series de operaciones que serán de interés para el
-tratamiento de datos:
+Una vez cargada una (o varias) bases de datos hay una serie de operaciones que serán de interés para el tratamiento de datos:
 
 \begin{itemize}
 \tightlist
@@ -3046,8 +2998,8 @@ tratamiento de datos:
 
 A continuación se tratan algunas operaciones \emph{básicas}.
 
-\hypertarget{operaciones-con-variables}{%
-\subsection{Operaciones con variables}\label{operaciones-con-variables}}
+\hypertarget{op-var}{%
+\subsection{Operaciones con variables}\label{op-var}}
 
 \hypertarget{creaciuxf3n-y-eliminaciuxf3n-de-variables}{%
 \subsubsection{Creación (y eliminación) de variables}\label{creaciuxf3n-y-eliminaciuxf3n-de-variables}}
@@ -3202,8 +3154,98 @@ exportable a Excel con el siguiente comando:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{operaciones-con-casos}{%
-\subsection{Operaciones con casos}\label{operaciones-con-casos}}
+\hypertarget{recodificaciuxf3n-de-variables}{%
+\subsubsection{Recodificación de variables}\label{recodificaciuxf3n-de-variables}}
+
+Con el comando \texttt{cut()} podemos crear variables categóricas a partir de variables numéricas.
+El parámetro \texttt{breaks} permite especificar los intervalos para la discretización, puede ser un vector con los extremos de los intervalos o un entero con el número de intervalos.
+Por ejemplo, para categorizar la variable \texttt{cars\$speed} en tres intervalos equidistantes podemos emplear\footnote{Aunque si el objetivo es obtener las frecuencias de cada intervalo puede ser más eficiente emplear \texttt{hist()} con \texttt{plot\ =\ FALSE}.}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fspeed }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(cars}\SpecialCharTok{$}\NormalTok{speed, }\DecValTok{3}\NormalTok{, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Baja"}\NormalTok{, }\StringTok{"Media"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{))}
+\FunctionTok{table}\NormalTok{(fspeed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## fspeed
+##  Baja Media  Alta 
+##    11    24    15
+\end{verbatim}
+
+Para categorizar esta variable en tres niveles con aproximadamente el mismo número de observaciones podríamos combinar esta función con \texttt{quantile()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{breaks }\OtherTok{\textless{}{-}} \FunctionTok{quantile}\NormalTok{(cars}\SpecialCharTok{$}\NormalTok{speed, }\AttributeTok{probs =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{len =} \DecValTok{4}\NormalTok{))}
+\NormalTok{fspeed }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(cars}\SpecialCharTok{$}\NormalTok{speed, breaks, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Baja"}\NormalTok{, }\StringTok{"Media"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{))}
+\FunctionTok{table}\NormalTok{(fspeed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## fspeed
+##  Baja Media  Alta 
+##    17    16    15
+\end{verbatim}
+
+Para otro tipo de recodificaciones podríamos emplear la función \texttt{ifelse()} vectorial:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fspeed }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(cars}\SpecialCharTok{$}\NormalTok{speed }\SpecialCharTok{\textless{}} \DecValTok{15}\NormalTok{, }\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{)}
+\NormalTok{fspeed }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(fspeed, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{))}
+\FunctionTok{table}\NormalTok{(fspeed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## fspeed
+## Baja Alta 
+##   23   27
+\end{verbatim}
+
+Alternativamente en el caso de dos niveles podríamos emplear directamente la función \texttt{factor()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fspeed }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(cars}\SpecialCharTok{$}\NormalTok{speed }\SpecialCharTok{\textgreater{}=} \DecValTok{15}\NormalTok{, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{)) }\CommentTok{\# levels = c("FALSE", "TRUE")}
+\FunctionTok{table}\NormalTok{(fspeed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## fspeed
+## Baja Alta 
+##   23   27
+\end{verbatim}
+
+En el caso de múltiples niveles se podría emplear \texttt{ifelse()} anidados o la función \href{https://www.rdocumentation.org/packages/car/versions/3.0-9/topics/recode}{\texttt{recode()}} del paquete \texttt{car}.
+
+Para acceder directamente a las variables de un data.frame podríamos emplear la función \texttt{attach()} para añadirlo a la ruta de búsqueda y \texttt{detach()} al finalizar.
+Sin embargo esta forma de proceder puede causar numerosos inconvenientes, especialmente al modificar la base de datos, por lo que la recomendación sería emplear \texttt{with()}.
+Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fspeed }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(cars, }\FunctionTok{ifelse}\NormalTok{(speed }\SpecialCharTok{\textless{}} \DecValTok{10}\NormalTok{, }\StringTok{"Baja"}\NormalTok{,}
+                 \FunctionTok{ifelse}\NormalTok{(speed }\SpecialCharTok{\textless{}} \DecValTok{20}\NormalTok{, }\StringTok{"Media"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{)))}
+\NormalTok{fspeed }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(fspeed, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Baja"}\NormalTok{, }\StringTok{"Media"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{))}
+\FunctionTok{table}\NormalTok{(fspeed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## fspeed
+##  Baja Media  Alta 
+##     6    32    12
+\end{verbatim}
+
+Para manipular factores (variables cualitativas) pueden resultar de interés las herramientas en el paquete \href{https://forcats.tidyverse.org}{\texttt{forcats}} de la colección \href{https://tidyverse.org}{\texttt{tidyverse}}.
+
+\hypertarget{op-casos}{%
+\subsection{Operaciones con casos}\label{op-casos}}
 
 \hypertarget{ordenaciuxf3n}{%
 \subsubsection{Ordenación}\label{ordenaciuxf3n}}
@@ -3273,10 +3315,8 @@ ordenados por \texttt{dist}:
 \hypertarget{filtrado}{%
 \subsubsection{Filtrado}\label{filtrado}}
 
-El filtrado de datos consiste en
-elegir una submuestra que cumpla determinadas condiciones. Para ello se
-puede utilizar la función \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset}{\texttt{subset()}}
-(que además permite seleccionar variables).
+El filtrado de datos consiste en elegir un subconjunto que cumpla determinadas condiciones.
+Para ello se puede utilizar la función \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/subset}{\texttt{subset()}} (que además permite seleccionar variables).
 
 A continuación se muestran un par de ejemplos:
 
@@ -3337,7 +3377,7 @@ correspondientes vectores de índices:
 ## 23    14   80  22.53086  24.38430
 \end{verbatim}
 
-En este caso puede ser de utilidad la función \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which}{\texttt{which()}}:
+En este caso también puede ser de utilidad la función \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/which}{\texttt{which()}}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3384,6 +3424,36 @@ En este caso puede ser de utilidad la función \href{https://www.rdocumentation.
 \CommentTok{\# ?which.min}
 \end{Highlighting}
 \end{Shaded}
+
+\hypertarget{op-tablas}{%
+\subsection{Operaciones con tablas de datos}\label{op-tablas}}
+
+El paquete base de R dispone de diversas herramientas para realizar distintos tipos de operaciones, como:
+
+\begin{itemize}
+\item
+  Añadir casos o variables:
+
+  \begin{itemize}
+  \item
+    \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/rbind}{\texttt{rbind()}}: combina vectores, matrices, arrays o data.frames por filas.
+  \item
+    \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/cbind}{\texttt{cbind()}}: Idem por columnas.
+  \end{itemize}
+\item
+  Combinar tablas:
+
+  \begin{itemize}
+  \item
+    \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/match}{\texttt{match(x,\ table)}} devuelve un vector (de la misma longitud que \texttt{x}) con las (primeras) posiciones de coincidencia de \texttt{x} en \texttt{table} (o \texttt{NA}, por defecto, si no hay coincidencia).
+  \item
+    \href{https://www.rdocumentation.org/packages/base/versions/3.6.1/topics/pmatch}{\texttt{pmatch(x,\ table,\ ...)}}: similar al anterior pero con coincidencias parciales de cadenas de texto.
+  \end{itemize}
+
+  Estos operadores devuelven un índice con el que se pueden añadir variables de una segunda tabla. Para realizar consultas combinando tablas puede ser más cómodo el operador \texttt{\%in\%} (\texttt{?\textquotesingle{}\%in\%\textquotesingle{}}).
+\end{itemize}
+
+Sin embargo, como se muestra en el Apéndice \ref{dplyr} puede resultar más cómodo emplear los paquetes \href{https://dplyr.tidyverse.org}{\texttt{dplyr}} y \href{https://tidyr.tidyverse.org}{\texttt{tidyr}} de la colección \href{https://tidyverse.org}{\texttt{tidyverse}}.
 
 \hypertarget{anuxe1lisis-exploratorio-de-datos}{%
 \chapter{Análisis exploratorio de datos}\label{anuxe1lisis-exploratorio-de-datos}}
@@ -6771,7 +6841,7 @@ En este caso el parámetro sería:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.635163
+## [1] 3.312225
 \end{verbatim}
 
 y el modelo resultante contiene todas las variables explicativas:
@@ -6784,15 +6854,15 @@ y el modelo resultante contiene todas las variables explicativas:
 
 \begin{verbatim}
 ## 8 x 1 sparse Matrix of class "dgCMatrix"
-##                     s1
-## (Intercept) 5.26333438
-## velocida    1.58051175
-## precio      0.70395775
-## flexprec    2.24798481
-## imgfabri    0.31897738
-## servconj    3.76988236
-## imgfvent    1.07304993
-## calidadp    0.06641356
+##                    s1
+## (Intercept) 4.3005429
+## velocida    1.5909337
+## precio      0.7281074
+## flexprec    2.3156790
+## imgfabri    0.3078243
+## servconj    3.8426594
+## imgfvent    1.0901008
+## calidadp    0.0858432
 \end{verbatim}
 
 \hypertarget{lasso}{%
@@ -7831,8 +7901,8 @@ La función \texttt{gam.check} realiza una diagnosis del modelo:
 ## indicate that k is too low, especially if edf is close to k'.
 ## 
 ##                k'  edf k-index p-value
-## s(income)    9.00 3.12    0.98    0.44
-## s(education) 9.00 3.18    1.03    0.57
+## s(income)    9.00 3.12    0.98    0.43
+## s(education) 9.00 3.18    1.03    0.52
 \end{verbatim}
 
 Lo ideal sería observar normalidad en los dos gráficos de la izquierda, falta de patrón en el superior derecho, y ajuste a una recta en el inferior derecho. En este caso parece que el modelo se comporta adecuadamente.
@@ -8219,7 +8289,7 @@ contenido:
 ## function(a1, r, n) {
 ##         a1 * r^(n - 1)
 ##       }
-## <bytecode: 0x000000001d6ff5f0>
+## <bytecode: 0x00000000135feb98>
 \end{verbatim}
 
 \hypertarget{salida}{%
@@ -8417,7 +8487,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##    1    2    3    4    5    6 
-## 0.20 0.24 0.13 0.12 0.11 0.20
+## 0.14 0.18 0.16 0.20 0.10 0.22
 \end{verbatim}
 
 \begin{Shaded}
@@ -8431,7 +8501,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##     1     2     3     4     5     6 
-## 0.168 0.174 0.162 0.162 0.188 0.146
+## 0.148 0.156 0.162 0.182 0.176 0.176
 \end{verbatim}
 
 \begin{Shaded}
@@ -8445,7 +8515,7 @@ varias simulaciones:
 \begin{verbatim}
 ## lanzamientos
 ##      1      2      3      4      5      6 
-## 0.1690 0.1695 0.1657 0.1655 0.1629 0.1674
+## 0.1597 0.1695 0.1681 0.1689 0.1658 0.1680
 \end{verbatim}
 
 Se puede comprobar que al aumentar el valor de \(n\) las frecuencias se
@@ -9466,7 +9536,7 @@ Wickham, H., y Grolemund, G. (2016). \emph{\href{http://r4ds.had.co.nz}{R for da
 
 \textbf{\emph{Repositorio}}: \href{https://github.com/rubenfcasal/intror}{rubenfcasal/intror}
 
-\textbf{Recursos para el aprendizaje de R}: En este \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{post} se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda.
+\textbf{\emph{Recursos para el aprendizaje de R}}: En este \href{https://rubenfcasal.github.io/post/ayuda-y-recursos-para-el-aprendizaje-de-r}{post} se muestran algunos recursos que pueden ser útiles para el aprendizaje de R y la obtención de ayuda.
 
 \href{https://bookdown.org}{\textbf{\emph{Bookdown}}}:
 
@@ -9481,7 +9551,7 @@ Wickham, H., y Grolemund, G. (2016). \emph{\href{http://r4ds.had.co.nz}{R for da
   Wickham, H. (2019). \emph{\href{https://adv-r.hadley.nz/}{Advanced R, 2ª edición}}, \href{https://www.amazon.com/dp/0815384572}{Chapman \& Hall}, \href{http://adv-r.had.co.nz/}{1ª edición.}.
 \end{itemize}
 
-\href{https://posit.co}{*\textbf{Posit (RStudio)}}
+\href{https://posit.co}{\textbf{\emph{Posit (RStudio)}}}
 
 \begin{itemize}
 \item
@@ -9534,6 +9604,8 @@ A Practical Guide to Web Scraping and Text Mining}. Wiley.
 
 Ramsay \emph{et al.} (2009). \emph{Functional Data Analysis with R and MATLAB}.
 Springer.
+
+Tukey, J.W. (1977). \emph{Exploratory Data Analysis}. Volumen 2. Addison Wesley.
 
 Van der Loo y de Jonge (2012). \emph{Learning RStudio for R Statistical
 Computing}. Packt Publishing.
@@ -9835,11 +9907,20 @@ Finalmente, para instalar \texttt{Rcmdr} ejecutar en la consola de R:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{manipulaciuxf3n-de-datos-con-dplyr}{%
-\chapter{Manipulación de datos con dplyr}\label{manipulaciuxf3n-de-datos-con-dplyr}}
+\hypertarget{dplyr}{%
+\chapter{\texorpdfstring{Manipulación de datos con \texttt{dplyr}}{Manipulación de datos con dplyr}}\label{dplyr}}
 
-\hypertarget{el-paquete-dplyr}{%
-\section{\texorpdfstring{El paquete \textbf{dplyr}}{El paquete dplyr}}\label{el-paquete-dplyr}}
+Working draft\ldots{}
+
+En este apéndice se realiza una breve introducción al paquete \href{https://dplyr.tidyverse.org/index.html}{\texttt{dplyr}}.
+Para mas información, ver por ejemplo la `vignette' del paquete\\
+\href{https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html}{Introduction to dplyr},
+o el Capítulo \href{http://r4ds.had.co.nz/transform.html}{5 Data transformation} del libro
+\href{http://r4ds.had.co.nz}{R for Data Science}\footnote{Otra alternativa (más rápida) es emplear
+  \href{https://rdatatable.gitlab.io/data.table}{data.table}.}.
+
+\hypertarget{dplyr-pkg}{%
+\section{\texorpdfstring{El paquete \textbf{dplyr}}{El paquete dplyr}}\label{dplyr-pkg}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9847,12 +9928,12 @@ Finalmente, para instalar \texttt{Rcmdr} ejecutar en la consola de R:
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{dplyr} Permite sustituir funciones base de R (como \texttt{split()}, \texttt{subset()},
+\href{https://dplyr.tidyverse.org/index.html}{\texttt{dplyr}}
+permite sustituir funciones base de R (como \texttt{split()}, \texttt{subset()},
 \texttt{apply()}, \texttt{sapply()}, \texttt{lapply()}, \texttt{tapply()} y \texttt{aggregate()})
 mediante una ``gramática'' más sencilla para la manipulación de datos:
 
 \begin{itemize}
-\tightlist
 \item
   \texttt{select()} seleccionar variables/columnas (también \texttt{rename()}).
 \item
@@ -9871,13 +9952,12 @@ mediante una ``gramática'' más sencilla para la manipulación de datos:
 Puede trabajar con conjuntos de datos en distintos formatos:
 
 \begin{itemize}
-\tightlist
 \item
-  \texttt{data.frame}, \texttt{data.table}, \texttt{tibble}, \ldots{}
+  \texttt{data.frame}, \texttt{tibble}, \texttt{data.table}\ldots{}
 \item
-  bases de datos relacionales (lenguaje SQL), \ldots{}
+  bases de datos relacionales (lenguaje SQL); \href{https://dbplyr.tidyverse.org}{dbplyr}.
 \item
-  bases de datos \emph{Hadoop} (paquete \texttt{plyrmr}).
+  bases de datos \emph{Hadoop}: \href{https://spark.rstudio.com}{\texttt{sparklyr}}.
 \end{itemize}
 
 En lugar de operar sobre vectores como las funciones base,
@@ -9890,36 +9970,8 @@ El fichero \emph{empleados.RData} contiene datos de empleados de un banco.
 Supongamos por ejemplo que estamos interesados en estudiar si hay
 discriminación por cuestión de sexo o raza.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{load}\NormalTok{(}\StringTok{"datos/empleados.RData"}\NormalTok{)}
-\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Etiquetas =} \FunctionTok{attr}\NormalTok{(empleados, }\StringTok{"variable.labels"}\NormalTok{))  }\CommentTok{\# Listamos las etiquetas}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                              Etiquetas
-## id                  Código de empleado
-## sexo                              Sexo
-## fechnac            Fecha de nacimiento
-## educ            Nivel educativo (años)
-## catlab               Categoría Laboral
-## salario                 Salario actual
-## salini                 Salario inicial
-## tiempemp       Meses desde el contrato
-## expprev     Experiencia previa (meses)
-## minoria           Clasificación étnica
-## sexoraza Clasificación por sexo y raza
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{attr}\NormalTok{(empleados, }\StringTok{"variable.labels"}\NormalTok{) }\OtherTok{\textless{}{-}} \ConstantTok{NULL}                  \CommentTok{\# Eliminamos las etiquetas para que no molesten...}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{operaciones-con-variables-columnas}{%
-\section{Operaciones con variables (columnas)}\label{operaciones-con-variables-columnas}}
+\hypertarget{dplyr-variables}{%
+\section{Operaciones con variables (columnas)}\label{dplyr-variables}}
 
 \hypertarget{seleccionar-variables-con-select}{%
 \subsection{\texorpdfstring{Seleccionar variables con \textbf{select()}}{Seleccionar variables con select()}}\label{seleccionar-variables-con-select}}
@@ -9994,7 +10046,7 @@ Se pueden emplear los nombres de variables como índices:
 \end{verbatim}
 
 Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \texttt{ends\_with()},
-\texttt{contains()}, \texttt{matches()}, \texttt{one\_of()} (ver \emph{?select}).
+\texttt{contains()}, \texttt{matches()}, \texttt{one\_of()} (ver \texttt{?select}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10031,8 +10083,8 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 ## 6  6 Hombre      No       98  13500   32100  18600 189.79592
 \end{verbatim}
 
-\hypertarget{operaciones-con-casos-filas}{%
-\section{Operaciones con casos (filas)}\label{operaciones-con-casos-filas}}
+\hypertarget{dplyr-casos}{%
+\section{Operaciones con casos (filas)}\label{dplyr-casos}}
 
 \hypertarget{seleccionar-casos-con-filter}{%
 \subsection{\texorpdfstring{Seleccionar casos con \textbf{filter()}}{Seleccionar casos con filter()}}\label{seleccionar-casos-con-filter}}
@@ -10089,7 +10141,7 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 \end{verbatim}
 
 \hypertarget{resumir-valores-con-summarise}{%
-\section{\texorpdfstring{Resumir valores con \textbf{summarise()}}{Resumir valores con summarise()}}\label{resumir-valores-con-summarise}}
+\subsection{\texorpdfstring{Resumir valores con \textbf{summarise()}}{Resumir valores con summarise()}}\label{resumir-valores-con-summarise}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10103,13 +10155,18 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 \end{verbatim}
 
 \hypertarget{agrupar-casos-con-group_by}{%
-\section{\texorpdfstring{Agrupar casos con \textbf{group\_by()}}{Agrupar casos con group\_by()}}\label{agrupar-casos-con-group_by}}
+\subsection{\texorpdfstring{Agrupar casos con \textbf{group\_by()}}{Agrupar casos con group\_by()}}\label{agrupar-casos-con-group_by}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{summarise}\NormalTok{(}\FunctionTok{group\_by}\NormalTok{(empleados, sexo, minoria), }\AttributeTok{sal.med =} \FunctionTok{mean}\NormalTok{(salario), }\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'sexo'. You can override using the `.groups`
+## argument.
+\end{verbatim}
 
 \begin{verbatim}
 ## # A tibble: 4 x 4
@@ -10122,8 +10179,8 @@ Hay opciones para considerar distintos criterios: \texttt{starts\_with()}, \text
 ## 4 Mujer  Sí       23062.    40
 \end{verbatim}
 
-\hypertarget{operador-pipe-tuberuxeda-redirecciuxf3n}{%
-\section{\texorpdfstring{Operador \emph{pipe} \textbf{\%\textgreater\% }(tubería, redirección)}{Operador pipe \%\textgreater\% (tubería, redirección)}}\label{operador-pipe-tuberuxeda-redirecciuxf3n}}
+\hypertarget{dplyr-pipe}{%
+\section{\texorpdfstring{Operador \emph{pipe} \textbf{\%\textgreater\%} (tubería, redirección)}{Operador pipe \%\textgreater\% (tubería, redirección)}}\label{dplyr-pipe}}
 
 Este operador le permite canalizar la salida de una función a la entrada de otra función.
 \texttt{segundo(primero(datos))} se traduce en \texttt{datos\ \%\textgreater{}\%\ primero\ \%\textgreater{}\%\ segundo}
@@ -10138,6 +10195,11 @@ Ejemplos:
           \FunctionTok{summarise}\NormalTok{(}\AttributeTok{sal.med =} \FunctionTok{mean}\NormalTok{(salario), }\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'sexo'. You can override using the `.groups`
+## argument.
+\end{verbatim}
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
@@ -10161,12 +10223,597 @@ Ejemplos:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{24-dplyr_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\includegraphics{24-dplyr_files/figure-latex/unnamed-chunk-12-1.pdf}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\hypertarget{operaciones-con-tablas-de-datos-dplyr-join}{%
+\section{Operaciones con tablas de datos \{\# dplyr-join\}}\label{operaciones-con-tablas-de-datos-dplyr-join}}
 
-Para mas información sobre \emph{dplyr} ver por ejemplo la `vignette' del paquete:\\
-\href{http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html}{Introduction to dplyr}.
+Se emplean funciones \texttt{xxx\_join()} (ver la documentación del paquete
+\href{https://dplyr.tidyverse.org/reference/join.html}{Join two tbls together},
+o la vignette \href{https://dplyr.tidyverse.org/articles/two-table.html}{Two-table verbs}):
+
+\begin{itemize}
+\item
+  \texttt{inner\_join()}: devuelve las filas de \texttt{x} que tienen valores coincidentes en \texttt{y},
+  y todas las columnas de \texttt{x} e \texttt{y}. Si hay varias coincidencias entre \texttt{x} e \texttt{y},
+  se devuelven todas las combinaciones.
+\item
+  \texttt{left\_join()}: devuelve todas las filas de \texttt{x} y todas las columnas de \texttt{x} e \texttt{y}.
+  Las filas de \texttt{x} sin correspondencia en \texttt{y} contendrán \texttt{NA} en las nuevas columnas.
+  Si hay varias coincidencias entre \texttt{x} e \texttt{y}, se devuelven todas las combinaciones
+  (duplicando las filas).
+
+  \texttt{right\_join()} hace lo contrario, devuelve todas las filas de \texttt{y}.
+
+  \texttt{full\_join()} devuelve todas las filas de \texttt{x} e \texttt{y} (duplicando o asignando \texttt{NA} si es necesario).
+\item
+  \texttt{semi\_join()}: devuelve las filas de \texttt{x} que tienen valores coincidentes en \texttt{y},
+  manteniendo sólo las columnas de \texttt{x} (al contrario que \texttt{inner\_join()} no duplica filas).
+
+  \texttt{anti\_join()} hace lo contrario, devuelve las filas sin correspondencia.
+\end{itemize}
+
+El parámetro \texttt{by} determina las variables clave para las correspondencias.
+Si no se establece se considerarán todas las que tengan el mismo nombre en ambas tablas.
+Se puede establecer a un vector de nombres coincidentes y en caso de que los nombres sean distintos a un vector con nombres de la forma \texttt{c("clave\_x"\ =\ "clave\_y")}.
+
+Adicionalmente, si las tablas \texttt{x} e \texttt{y} tienen las mismas variables, se pueden combinar las observaciones con operaciones de conjuntos:
+
+\begin{itemize}
+\item
+  \texttt{intersect(x,\ y)}: observaciones en \texttt{x} y en \texttt{y}.
+\item
+  \texttt{union(x,\ y)}: observaciones en \texttt{x} o \texttt{y} no duplicadas.
+\item
+  \texttt{setdiff(x,\ y)}: observaciones en \texttt{x} pero no en \texttt{y}.
+\end{itemize}
+
+\hypertarget{dbplyr}{%
+\section{Bases de datos con dplyr}\label{dbplyr}}
+
+Para poder usar tablas en bases de datos relacionales con \texttt{dplyr} hay que emplear el paquete \href{https://dbplyr.tidyverse.org}{dbplyr} (convierte automáticamente el código de dplyr en consultas SQL).
+
+Algunos enlaces:
+
+\begin{itemize}
+\item
+  \href{https://solutions.posit.co/connections/db}{Best Practices in Working with Databases}
+\item
+  \href{https://dbplyr.tidyverse.org/articles/dbplyr.html}{Introduction to dbplyr}
+\item
+  \href{https://datacarpentry.org/R-ecology-lesson/index.html}{Data Carpentry}:
+  \href{https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html}{SQL databases and R},
+\item
+  \href{https://intellixus.com/2018/06/29/r-and-data-when-should-we-use-relational-databases}{R and Data -- When Should we Use Relational Databases?}
+\end{itemize}
+
+\hypertarget{ejemplos-3}{%
+\subsection{Ejemplos}\label{ejemplos-3}}
+
+Como ejemplo emplearemos la base de datos de \href{https://www.sqlitetutorial.net/sqlite-sample-database/}{SQLite Sample Database Tutorial}, almacenada en el archivo \href{datos/chinook.db}{\emph{chinook.db}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install.packages(\textquotesingle{}dbplyr\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(dbplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+En primer lugar hay que conectar la base de datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chinook }\OtherTok{\textless{}{-}}\NormalTok{ DBI}\SpecialCharTok{::}\FunctionTok{dbConnect}\NormalTok{(RSQLite}\SpecialCharTok{::}\FunctionTok{SQLite}\NormalTok{(), }\StringTok{"datos/chinook.db"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Podemos listar las tablas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{src\_dbi}\NormalTok{(chinook)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## src:  sqlite 3.36.0 [D:\OneDrive - Universidade da Coruña\__Actual\__IA\_intror\datos\chinook.db]
+## tbls: albums, artists, customers, employees, genres, invoice_items, invoices,
+##   media_types, playlist_track, playlists, sqlite_sequence, sqlite_stat1, tracks
+\end{verbatim}
+
+Para enlazar una tabla:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invoices }\OtherTok{\textless{}{-}} \FunctionTok{tbl}\NormalTok{(chinook, }\StringTok{"invoices"}\NormalTok{)}
+\NormalTok{invoices}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # Source:   table<invoices> [?? x 9]
+## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
+## #   Coruña\__Actual\__IA\_intror\datos\chinook.db]
+##    InvoiceId CustomerId InvoiceD~1 Billi~2 Billi~3 Billi~4 Billi~5 Billi~6 Total
+##        <int>      <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
+##  1         1          2 2009-01-0~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
+##  2         2          4 2009-01-0~ Ullevå~ Oslo    <NA>    Norway  0171     3.96
+##  3         3          8 2009-01-0~ Grétry~ Brusse~ <NA>    Belgium 1000     5.94
+##  4         4         14 2009-01-0~ 8210 1~ Edmont~ AB      Canada  T6G 2C7  8.91
+##  5         5         23 2009-01-1~ 69 Sal~ Boston  MA      USA     2113    13.9 
+##  6         6         37 2009-01-1~ Berger~ Frankf~ <NA>    Germany 60316    0.99
+##  7         7         38 2009-02-0~ Barbar~ Berlin  <NA>    Germany 10779    1.98
+##  8         8         40 2009-02-0~ 8, Rue~ Paris   <NA>    France  75002    1.98
+##  9         9         42 2009-02-0~ 9, Pla~ Bordea~ <NA>    France  33000    3.96
+## 10        10         46 2009-02-0~ 3 Chat~ Dublin  Dublin  Ireland <NA>     5.94
+## # ... with more rows, and abbreviated variable names 1: InvoiceDate,
+## #   2: BillingAddress, 3: BillingCity, 4: BillingState, 5: BillingCountry,
+## #   6: BillingPostalCode
+\end{verbatim}
+
+Ojo \texttt{{[}??\ x\ 9{]}}: de momento no conoce el número de filas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(invoices)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
+Podemos mostrar la consulta SQL correspondiente a una operación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{show\_query}\NormalTok{(}\FunctionTok{head}\NormalTok{(invoices))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <SQL>
+## SELECT *
+## FROM `invoices`
+## LIMIT 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(}\FunctionTok{head}\NormalTok{(invoices))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 2
+##  $ src:List of 2
+##   ..$ con  :Formal class 'SQLiteConnection' [package "RSQLite"] with 8 slots
+##   .. .. ..@ ptr                :<externalptr> 
+##   .. .. ..@ dbname             : chr "D:\\OneDrive - Universidade da Coruña\\__Actual\\__IA\\_intror\\datos\\chinook.db"
+##   .. .. ..@ loadable.extensions: logi TRUE
+##   .. .. ..@ flags              : int 70
+##   .. .. ..@ vfs                : chr ""
+##   .. .. ..@ ref                :<environment: 0x00000000195e1d60> 
+##   .. .. ..@ bigint             : chr "integer64"
+##   .. .. ..@ extended_types     : logi FALSE
+##   ..$ disco: NULL
+##   ..- attr(*, "class")= chr [1:4] "src_SQLiteConnection" "src_dbi" "src_sql" "src"
+##  $ ops:List of 4
+##   ..$ name: chr "head"
+##   ..$ x   :List of 2
+##   .. ..$ x   : 'ident' chr "invoices"
+##   .. ..$ vars: chr [1:9] "InvoiceId" "CustomerId" "InvoiceDate" "BillingAddress" ...
+##   .. ..- attr(*, "class")= chr [1:3] "op_base_remote" "op_base" "op"
+##   ..$ dots: list()
+##   ..$ args:List of 1
+##   .. ..$ n: num 6
+##   ..- attr(*, "class")= chr [1:3] "op_head" "op_single" "op"
+##  - attr(*, "class")= chr [1:5] "tbl_SQLiteConnection" "tbl_dbi" "tbl_sql" "tbl_lazy" ...
+\end{verbatim}
+
+Al trabajar con bases de datos, dplyr intenta ser lo más vago posible:
+
+\begin{itemize}
+\item
+  No exporta datos a R a menos que se pida explícitamente (\texttt{colect()}).
+\item
+  Retrasa cualquier operación lo máximo posible:
+  agrupa todo lo que se desea hacer y luego hace una única petición a la base de datos.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invoices }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ head }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 9
+##   InvoiceId CustomerId InvoiceDate Billi~1 Billi~2 Billi~3 Billi~4 Billi~5 Total
+##       <int>      <int> <chr>       <chr>   <chr>   <chr>   <chr>   <chr>   <dbl>
+## 1         1          2 2009-01-01~ Theodo~ Stuttg~ <NA>    Germany 70174    1.98
+## 2         2          4 2009-01-02~ Ullevå~ Oslo    <NA>    Norway  0171     3.96
+## 3         3          8 2009-01-03~ Grétry~ Brusse~ <NA>    Belgium 1000     5.94
+## 4         4         14 2009-01-06~ 8210 1~ Edmont~ AB      Canada  T6G 2C7  8.91
+## 5         5         23 2009-01-11~ 69 Sal~ Boston  MA      USA     2113    13.9 
+## 6         6         37 2009-01-19~ Berger~ Frankf~ <NA>    Germany 60316    0.99
+## # ... with abbreviated variable names 1: BillingAddress, 2: BillingCity,
+## #   3: BillingState, 4: BillingCountry, 5: BillingPostalCode
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invoices }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ count }\CommentTok{\# número de filas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # Source:   lazy query [?? x 1]
+## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
+## #   Coruña\__Actual\__IA\_intror\datos\chinook.db]
+##       n
+##   <int>
+## 1   412
+\end{verbatim}
+
+Por ejemplo, para obtener el importe mínimo, máximo y la media de las facturas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}}\NormalTok{ invoices }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{min =} \FunctionTok{min}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }
+                        \AttributeTok{max =} \FunctionTok{max}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\AttributeTok{med =} \FunctionTok{mean}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\FunctionTok{show\_query}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <SQL>
+## SELECT MIN(`Total`) AS `min`, MAX(`Total`) AS `max`, AVG(`Total`) AS `med`
+## FROM `invoices`
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res  }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 3
+##     min   max   med
+##   <dbl> <dbl> <dbl>
+## 1  0.99  25.9  5.65
+\end{verbatim}
+
+Para obtener el total de las facturas de cada uno de los países:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}}\NormalTok{ invoices }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(BillingCountry) }\SpecialCharTok{\%\textgreater{}\%} 
+          \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{total =} \FunctionTok{sum}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\FunctionTok{show\_query}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <SQL>
+## SELECT `BillingCountry`, COUNT(*) AS `n`, SUM(`Total`) AS `total`
+## FROM `invoices`
+## GROUP BY `BillingCountry`
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res  }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 24 x 3
+##    BillingCountry     n total
+##    <chr>          <int> <dbl>
+##  1 Argentina          7  37.6
+##  2 Australia          7  37.6
+##  3 Austria            7  42.6
+##  4 Belgium            7  37.6
+##  5 Brazil            35 190. 
+##  6 Canada            56 304. 
+##  7 Chile              7  46.6
+##  8 Czech Republic    14  90.2
+##  9 Denmark            7  37.6
+## 10 Finland            7  41.6
+## # ... with 14 more rows
+\end{verbatim}
+
+Para obtener el listado de países junto con su facturación media, ordenado alfabéticamente por país:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}}\NormalTok{ invoices }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(BillingCountry) }\SpecialCharTok{\%\textgreater{}\%} 
+          \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{med =} \FunctionTok{mean}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+          \FunctionTok{arrange}\NormalTok{(BillingCountry)}
+\FunctionTok{show\_query}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <SQL>
+## SELECT `BillingCountry`, COUNT(*) AS `n`, AVG(`Total`) AS `med`
+## FROM `invoices`
+## GROUP BY `BillingCountry`
+## ORDER BY `BillingCountry`
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res  }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 24 x 3
+##    BillingCountry     n   med
+##    <chr>          <int> <dbl>
+##  1 Argentina          7  5.37
+##  2 Australia          7  5.37
+##  3 Austria            7  6.09
+##  4 Belgium            7  5.37
+##  5 Brazil            35  5.43
+##  6 Canada            56  5.43
+##  7 Chile              7  6.66
+##  8 Czech Republic    14  6.45
+##  9 Denmark            7  5.37
+## 10 Finland            7  5.95
+## # ... with 14 more rows
+\end{verbatim}
+
+Si el resultado lo queremos en orden decreciente por importe de facturación media:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invoices }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(BillingCountry) }\SpecialCharTok{\%\textgreater{}\%} 
+          \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{med =} \FunctionTok{mean}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+          \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(med)) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 24 x 3
+##    BillingCountry     n   med
+##    <chr>          <int> <dbl>
+##  1 Chile              7  6.66
+##  2 Ireland            7  6.52
+##  3 Hungary            7  6.52
+##  4 Czech Republic    14  6.45
+##  5 Austria            7  6.09
+##  6 Finland            7  5.95
+##  7 Netherlands        7  5.80
+##  8 India             13  5.79
+##  9 USA               91  5.75
+## 10 Norway             7  5.66
+## # ... with 14 more rows
+\end{verbatim}
+
+Para obtener un listado con Nombre y Apellidos de cliente y el importe de cada una de sus facturas (Hint: WHERE customer.CustomerID=invoices.CustomerID):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{customers }\OtherTok{\textless{}{-}} \FunctionTok{tbl}\NormalTok{(chinook, }\StringTok{"customers"}\NormalTok{)}
+\FunctionTok{tbl\_vars}\NormalTok{(customers) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <dplyr:::vars>
+##  [1] "CustomerId"   "FirstName"    "LastName"     "Company"      "Address"     
+##  [6] "City"         "State"        "Country"      "PostalCode"   "Phone"       
+## [11] "Fax"          "Email"        "SupportRepId"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}}\NormalTok{ customers }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(invoices, }\AttributeTok{by =} \StringTok{"CustomerId"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(FirstName, LastName, Country, Total) }
+\FunctionTok{show\_query}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <SQL>
+## SELECT `FirstName`, `LastName`, `Country`, `Total`
+## FROM (SELECT `LHS`.`CustomerId` AS `CustomerId`, `FirstName`, `LastName`, `Company`, `Address`, `City`, `State`, `Country`, `PostalCode`, `Phone`, `Fax`, `Email`, `SupportRepId`, `InvoiceId`, `InvoiceDate`, `BillingAddress`, `BillingCity`, `BillingState`, `BillingCountry`, `BillingPostalCode`, `Total`
+## FROM `customers` AS `LHS`
+## INNER JOIN `invoices` AS `RHS`
+## ON (`LHS`.`CustomerId` = `RHS`.`CustomerId`)
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res  }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 412 x 4
+##    FirstName LastName  Country Total
+##    <chr>     <chr>     <chr>   <dbl>
+##  1 Luís      Gonçalves Brazil   3.98
+##  2 Luís      Gonçalves Brazil   3.96
+##  3 Luís      Gonçalves Brazil   5.94
+##  4 Luís      Gonçalves Brazil   0.99
+##  5 Luís      Gonçalves Brazil   1.98
+##  6 Luís      Gonçalves Brazil  13.9 
+##  7 Luís      Gonçalves Brazil   8.91
+##  8 Leonie    Köhler    Germany  1.98
+##  9 Leonie    Köhler    Germany 13.9 
+## 10 Leonie    Köhler    Germany  8.91
+## # ... with 402 more rows
+\end{verbatim}
+
+Para obtener el porcentaje de canciones que son vídeos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tracks }\OtherTok{\textless{}{-}} \FunctionTok{tbl}\NormalTok{(chinook, }\StringTok{"tracks"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(tracks) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # Source:   lazy query [?? x 9]
+## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
+## #   Coruña\__Actual\__IA\_intror\datos\chinook.db]
+##   TrackId Name            AlbumId Media~1 GenreId Compo~2 Milli~3  Bytes UnitP~4
+##     <int> <chr>             <int>   <int>   <int> <chr>     <int>  <int>   <dbl>
+## 1       1 For Those Abou~       1       1       1 Angus ~  343719 1.12e7    0.99
+## 2       2 Balls to the W~       2       2       1 <NA>     342562 5.51e6    0.99
+## 3       3 Fast As a Shark       3       2       1 F. Bal~  230619 3.99e6    0.99
+## 4       4 Restless and W~       3       2       1 F. Bal~  252051 4.33e6    0.99
+## 5       5 Princess of th~       3       2       1 Deaffy~  375418 6.29e6    0.99
+## 6       6 Put The Finger~       1       1       1 Angus ~  205662 6.71e6    0.99
+## # ... with abbreviated variable names 1: MediaTypeId, 2: Composer,
+## #   3: Milliseconds, 4: UnitPrice
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tracks }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(MediaTypeId) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{freq =}\NormalTok{ n }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##   MediaTypeId     n    freq
+##         <int> <int>   <dbl>
+## 1           1  3034 0.866  
+## 2           2   237 0.0677 
+## 3           3   214 0.0611 
+## 4           4     7 0.00200
+## 5           5    11 0.00314
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{media\_types }\OtherTok{\textless{}{-}} \FunctionTok{tbl}\NormalTok{(chinook, }\StringTok{"media\_types"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(media\_types)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # Source:   lazy query [?? x 2]
+## # Database: sqlite 3.36.0 [D:\OneDrive - Universidade da
+## #   Coruña\__Actual\__IA\_intror\datos\chinook.db]
+##   MediaTypeId Name                       
+##         <int> <chr>                      
+## 1           1 MPEG audio file            
+## 2           2 Protected AAC audio file   
+## 3           3 Protected MPEG-4 video file
+## 4           4 Purchased AAC audio file   
+## 5           5 AAC audio file
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tracks }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(media\_types, }\AttributeTok{by =} \StringTok{"MediaTypeId"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(Name.y) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{    collect }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{freq =}\NormalTok{ n }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\FunctionTok{grepl}\NormalTok{(}\StringTok{\textquotesingle{}video\textquotesingle{}}\NormalTok{, Name.y))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 3
+##   Name.y                          n   freq
+##   <chr>                       <int>  <dbl>
+## 1 Protected MPEG-4 video file   214 0.0611
+\end{verbatim}
+
+Para listar los 10 mejores clientes (aquellos a los que se les ha facturado más cantidad) indicando Nombre, Apellidos, Pais y el importe total de su facturación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{customers }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(invoices, }\AttributeTok{by =} \StringTok{"CustomerId"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(CustomerId) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{summarise}\NormalTok{(FirstName, LastName, country, }\AttributeTok{total =} \FunctionTok{sum}\NormalTok{(Total, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}  
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(total)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 5
+##    CustomerId FirstName LastName   Country        total
+##         <int> <chr>     <chr>      <chr>          <dbl>
+##  1          6 Helena    Holý       Czech Republic  49.6
+##  2         26 Richard   Cunningham USA             47.6
+##  3         57 Luis      Rojas      Chile           46.6
+##  4         45 Ladislav  Kovács     Hungary         45.6
+##  5         46 Hugh      O'Reilly   Ireland         45.6
+##  6         28 Julia     Barnett    USA             43.6
+##  7         24 Frank     Ralston    USA             43.6
+##  8         37 Fynn      Zimmermann Germany         43.6
+##  9          7 Astrid    Gruber     Austria         42.6
+## 10         25 Victor    Stevens    USA             42.6
+\end{verbatim}
+
+Para listar los géneros musicales por orden decreciente de popularidad (definida la popularidad como el número de canciones de ese género), indicando el porcentaje de las canciones de ese género:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tracks }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(}\FunctionTok{tbl}\NormalTok{(chinook, }\StringTok{"genres"}\NormalTok{), }\AttributeTok{by =} \StringTok{"GenreId"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(Name.y) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n)) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{freq =}\NormalTok{ n }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 25 x 3
+##    Name.y                 n   freq
+##    <chr>              <int>  <dbl>
+##  1 Rock                1297 0.370 
+##  2 Latin                579 0.165 
+##  3 Metal                374 0.107 
+##  4 Alternative & Punk   332 0.0948
+##  5 Jazz                 130 0.0371
+##  6 TV Shows              93 0.0265
+##  7 Blues                 81 0.0231
+##  8 Classical             74 0.0211
+##  9 Drama                 64 0.0183
+## 10 R&B/Soul              61 0.0174
+## # ... with 15 more rows
+\end{verbatim}
+
+Para listar los 10 artistas con mayor número de canciones de forma descendente según el número de canciones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tracks }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(}\FunctionTok{tbl}\NormalTok{(chinook, }\StringTok{"albums"}\NormalTok{), }\AttributeTok{by =} \StringTok{"AlbumId"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{inner\_join}\NormalTok{(}\FunctionTok{tbl}\NormalTok{(chinook, }\StringTok{"artists"}\NormalTok{), }\AttributeTok{by =} \StringTok{"ArtistId"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{count}\NormalTok{(Name.y) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n)) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ collect}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 204 x 2
+##    Name.y              n
+##    <chr>           <int>
+##  1 Iron Maiden       213
+##  2 U2                135
+##  3 Led Zeppelin      114
+##  4 Metallica         112
+##  5 Lost               92
+##  6 Deep Purple        92
+##  7 Pearl Jam          67
+##  8 Lenny Kravitz      57
+##  9 Various Artists    56
+## 10 The Office         53
+## # ... with 194 more rows
+\end{verbatim}
+
+Al finalizar hay que desconectar la base de datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DBI}\SpecialCharTok{::}\FunctionTok{dbDisconnect}\NormalTok{(chinook)            }
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{compauxf1uxedas-que-usan-r}{%
 \chapter{\texorpdfstring{Compañías que usan \texttt{R}}{Compañías que usan R}}\label{compauxf1uxedas-que-usan-r}}
